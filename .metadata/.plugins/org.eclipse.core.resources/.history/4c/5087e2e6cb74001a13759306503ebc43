@@ -1,0 +1,32 @@
+grammar org.xtext.example.mydsl.JSchema with org.eclipse.xtext.common.Terminals
+
+generate jSchema "http://www.xtext.org/example/mydsl/JSchema"
+
+Model:
+	Object
+;
+
+	
+Number:
+	value=INT
+;
+Object:
+	'object' (ObjectRequireMinimumProperties)?
+;
+
+ObjectRequireMinimumProperties:
+	'require' (('minimum') | ('maximum')) Number 'properties' properties=Property
+;
+
+Types:
+	{Object} 'object' | {String} 'string' | {Number} 'number' |	{Array} 'array' | {Boolean} 'boolean' | {null} 'null'
+;
+
+Property:
+	'name' name=ID
+;
+
+
+
+
+
