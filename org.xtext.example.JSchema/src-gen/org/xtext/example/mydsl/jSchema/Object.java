@@ -9,11 +9,62 @@ package org.xtext.example.mydsl.jSchema;
  * A representation of the model object '<em><b>Object</b></em>'.
  * <!-- end-user-doc -->
  *
+ * <p>
+ * The following features are supported:
+ * </p>
+ * <ul>
+ *   <li>{@link org.xtext.example.mydsl.jSchema.Object#getIncludeObjects <em>Include Objects</em>}</li>
+ *   <li>{@link org.xtext.example.mydsl.jSchema.Object#getProperties <em>Properties</em>}</li>
+ * </ul>
  *
  * @see org.xtext.example.mydsl.jSchema.JSchemaPackage#getObject()
  * @model
  * @generated
  */
-public interface Object extends Model, Types
+public interface Object extends Model
 {
+  /**
+   * Returns the value of the '<em><b>Include Objects</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the value of the '<em>Include Objects</em>' containment reference.
+   * @see #setIncludeObjects(Includes)
+   * @see org.xtext.example.mydsl.jSchema.JSchemaPackage#getObject_IncludeObjects()
+   * @model containment="true"
+   * @generated
+   */
+  Includes getIncludeObjects();
+
+  /**
+   * Sets the value of the '{@link org.xtext.example.mydsl.jSchema.Object#getIncludeObjects <em>Include Objects</em>}' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @param value the new value of the '<em>Include Objects</em>' containment reference.
+   * @see #getIncludeObjects()
+   * @generated
+   */
+  void setIncludeObjects(Includes value);
+
+  /**
+   * Returns the value of the '<em><b>Properties</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the value of the '<em>Properties</em>' containment reference.
+   * @see #setProperties(hasProperties)
+   * @see org.xtext.example.mydsl.jSchema.JSchemaPackage#getObject_Properties()
+   * @model containment="true"
+   * @generated
+   */
+  hasProperties getProperties();
+
+  /**
+   * Sets the value of the '{@link org.xtext.example.mydsl.jSchema.Object#getProperties <em>Properties</em>}' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @param value the new value of the '<em>Properties</em>' containment reference.
+   * @see #getProperties()
+   * @generated
+   */
+  void setProperties(hasProperties value);
+
 } // Object

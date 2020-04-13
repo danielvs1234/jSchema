@@ -3,6 +3,7 @@
  */
 package org.xtext.example.mydsl.jSchema;
 
+import org.eclipse.emf.ecore.EObject;
 
 /**
  * <!-- begin-user-doc -->
@@ -13,58 +14,58 @@ package org.xtext.example.mydsl.jSchema;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link org.xtext.example.mydsl.jSchema.Number#getValue <em>Value</em>}</li>
- *   <li>{@link org.xtext.example.mydsl.jSchema.Number#getProperties <em>Properties</em>}</li>
+ *   <li>{@link org.xtext.example.mydsl.jSchema.Number#getNumber <em>Number</em>}</li>
+ *   <li>{@link org.xtext.example.mydsl.jSchema.Number#getDecimal <em>Decimal</em>}</li>
  * </ul>
  *
  * @see org.xtext.example.mydsl.jSchema.JSchemaPackage#getNumber()
  * @model
  * @generated
  */
-public interface Number extends ObjectRequireMinimumProperties
+public interface Number extends EObject
 {
   /**
-   * Returns the value of the '<em><b>Value</b></em>' attribute.
+   * Returns the value of the '<em><b>Number</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the value of the '<em>Value</em>' attribute.
-   * @see #setValue(int)
-   * @see org.xtext.example.mydsl.jSchema.JSchemaPackage#getNumber_Value()
+   * @return the value of the '<em>Number</em>' attribute.
+   * @see #setNumber(int)
+   * @see org.xtext.example.mydsl.jSchema.JSchemaPackage#getNumber_Number()
    * @model
    * @generated
    */
-  int getValue();
+  int getNumber();
 
   /**
-   * Sets the value of the '{@link org.xtext.example.mydsl.jSchema.Number#getValue <em>Value</em>}' attribute.
+   * Sets the value of the '{@link org.xtext.example.mydsl.jSchema.Number#getNumber <em>Number</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Value</em>' attribute.
-   * @see #getValue()
+   * @param value the new value of the '<em>Number</em>' attribute.
+   * @see #getNumber()
    * @generated
    */
-  void setValue(int value);
+  void setNumber(int value);
 
   /**
-   * Returns the value of the '<em><b>Properties</b></em>' containment reference.
+   * Returns the value of the '<em><b>Decimal</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the value of the '<em>Properties</em>' containment reference.
-   * @see #setProperties(Properties)
-   * @see org.xtext.example.mydsl.jSchema.JSchemaPackage#getNumber_Properties()
-   * @model containment="true"
+   * @return the value of the '<em>Decimal</em>' attribute.
+   * @see #setDecimal(int)
+   * @see org.xtext.example.mydsl.jSchema.JSchemaPackage#getNumber_Decimal()
+   * @model
    * @generated
    */
-  Properties getProperties();
+  int getDecimal();
 
   /**
-   * Sets the value of the '{@link org.xtext.example.mydsl.jSchema.Number#getProperties <em>Properties</em>}' containment reference.
+   * Sets the value of the '{@link org.xtext.example.mydsl.jSchema.Number#getDecimal <em>Decimal</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Properties</em>' containment reference.
-   * @see #getProperties()
+   * @param value the new value of the '<em>Decimal</em>' attribute.
+   * @see #getDecimal()
    * @generated
    */
-  void setProperties(Properties value);
+  void setDecimal(int value);
 
 } // Number

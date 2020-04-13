@@ -4,6 +4,7 @@
 package org.xtext.example.mydsl.jSchema.impl;
 
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EDataType;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 
@@ -12,15 +13,17 @@ import org.eclipse.emf.ecore.impl.EFactoryImpl;
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
 
 import org.xtext.example.mydsl.jSchema.Array;
+import org.xtext.example.mydsl.jSchema.FormatTypes;
+import org.xtext.example.mydsl.jSchema.Includes;
 import org.xtext.example.mydsl.jSchema.JSchemaFactory;
 import org.xtext.example.mydsl.jSchema.JSchemaPackage;
 import org.xtext.example.mydsl.jSchema.Model;
-import org.xtext.example.mydsl.jSchema.Null;
-import org.xtext.example.mydsl.jSchema.ObjectRequireMinimumProperties;
-import org.xtext.example.mydsl.jSchema.Properties;
+import org.xtext.example.mydsl.jSchema.PrimitiveObject;
+import org.xtext.example.mydsl.jSchema.PrimitiveProperties;
 import org.xtext.example.mydsl.jSchema.Property;
 import org.xtext.example.mydsl.jSchema.STRING;
 import org.xtext.example.mydsl.jSchema.Types;
+import org.xtext.example.mydsl.jSchema.hasProperties;
 
 /**
  * <!-- begin-user-doc -->
@@ -77,16 +80,50 @@ public class JSchemaFactoryImpl extends EFactoryImpl implements JSchemaFactory
       case JSchemaPackage.MODEL: return createModel();
       case JSchemaPackage.NUMBER: return createNumber();
       case JSchemaPackage.OBJECT: return createObject();
-      case JSchemaPackage.OBJECT_REQUIRE_MINIMUM_PROPERTIES: return createObjectRequireMinimumProperties();
+      case JSchemaPackage.PRIMITIVE_OBJECT: return createPrimitiveObject();
       case JSchemaPackage.TYPES: return createTypes();
-      case JSchemaPackage.PROPERTIES: return createProperties();
+      case JSchemaPackage.HAS_PROPERTIES: return createhasProperties();
       case JSchemaPackage.PROPERTY: return createProperty();
+      case JSchemaPackage.PRIMITIVE_PROPERTIES: return createPrimitiveProperties();
+      case JSchemaPackage.INCLUDES: return createIncludes();
       case JSchemaPackage.ARRAY: return createArray();
       case JSchemaPackage.STRING: return createSTRING();
-      case JSchemaPackage.BOOLEAN: return createBoolean();
-      case JSchemaPackage.NULL: return createNull();
       default:
         throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
+    }
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public Object createFromString(EDataType eDataType, String initialValue)
+  {
+    switch (eDataType.getClassifierID())
+    {
+      case JSchemaPackage.FORMAT_TYPES:
+        return createFormatTypesFromString(eDataType, initialValue);
+      default:
+        throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
+    }
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public String convertToString(EDataType eDataType, Object instanceValue)
+  {
+    switch (eDataType.getClassifierID())
+    {
+      case JSchemaPackage.FORMAT_TYPES:
+        return convertFormatTypesToString(eDataType, instanceValue);
+      default:
+        throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
     }
   }
 
@@ -132,10 +169,10 @@ public class JSchemaFactoryImpl extends EFactoryImpl implements JSchemaFactory
    * @generated
    */
   @Override
-  public ObjectRequireMinimumProperties createObjectRequireMinimumProperties()
+  public PrimitiveObject createPrimitiveObject()
   {
-    ObjectRequireMinimumPropertiesImpl objectRequireMinimumProperties = new ObjectRequireMinimumPropertiesImpl();
-    return objectRequireMinimumProperties;
+    PrimitiveObjectImpl primitiveObject = new PrimitiveObjectImpl();
+    return primitiveObject;
   }
 
   /**
@@ -156,10 +193,10 @@ public class JSchemaFactoryImpl extends EFactoryImpl implements JSchemaFactory
    * @generated
    */
   @Override
-  public Properties createProperties()
+  public hasProperties createhasProperties()
   {
-    PropertiesImpl properties = new PropertiesImpl();
-    return properties;
+    hasPropertiesImpl hasProperties = new hasPropertiesImpl();
+    return hasProperties;
   }
 
   /**
@@ -172,6 +209,30 @@ public class JSchemaFactoryImpl extends EFactoryImpl implements JSchemaFactory
   {
     PropertyImpl property = new PropertyImpl();
     return property;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public PrimitiveProperties createPrimitiveProperties()
+  {
+    PrimitivePropertiesImpl primitiveProperties = new PrimitivePropertiesImpl();
+    return primitiveProperties;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public Includes createIncludes()
+  {
+    IncludesImpl includes = new IncludesImpl();
+    return includes;
   }
 
   /**
@@ -203,11 +264,11 @@ public class JSchemaFactoryImpl extends EFactoryImpl implements JSchemaFactory
    * <!-- end-user-doc -->
    * @generated
    */
-  @Override
-  public org.xtext.example.mydsl.jSchema.Boolean createBoolean()
+  public FormatTypes createFormatTypesFromString(EDataType eDataType, String initialValue)
   {
-    BooleanImpl boolean_ = new BooleanImpl();
-    return boolean_;
+    FormatTypes result = FormatTypes.get(initialValue);
+    if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+    return result;
   }
 
   /**
@@ -215,11 +276,9 @@ public class JSchemaFactoryImpl extends EFactoryImpl implements JSchemaFactory
    * <!-- end-user-doc -->
    * @generated
    */
-  @Override
-  public Null createNull()
+  public String convertFormatTypesToString(EDataType eDataType, Object instanceValue)
   {
-    NullImpl null_ = new NullImpl();
-    return null_;
+    return instanceValue == null ? null : instanceValue.toString();
   }
 
   /**

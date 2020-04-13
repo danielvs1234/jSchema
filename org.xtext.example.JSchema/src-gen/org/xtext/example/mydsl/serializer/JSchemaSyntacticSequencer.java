@@ -11,6 +11,7 @@ import org.eclipse.xtext.RuleCall;
 import org.eclipse.xtext.nodemodel.INode;
 import org.eclipse.xtext.serializer.analysis.GrammarAlias.AbstractElementAlias;
 import org.eclipse.xtext.serializer.analysis.GrammarAlias.AlternativeAlias;
+import org.eclipse.xtext.serializer.analysis.GrammarAlias.GroupAlias;
 import org.eclipse.xtext.serializer.analysis.GrammarAlias.TokenAlias;
 import org.eclipse.xtext.serializer.analysis.ISyntacticSequencerPDAProvider.ISynNavigable;
 import org.eclipse.xtext.serializer.analysis.ISyntacticSequencerPDAProvider.ISynTransition;
@@ -21,32 +22,42 @@ import org.xtext.example.mydsl.services.JSchemaGrammarAccess;
 public class JSchemaSyntacticSequencer extends AbstractSyntacticSequencer {
 
 	protected JSchemaGrammarAccess grammarAccess;
-	protected AbstractElementAlias match_Array_RightSquareBracketKeyword_2_q;
-	protected AbstractElementAlias match_ObjectRequireMinimumProperties_MaximumKeyword_1_1_or_MinimumKeyword_1_0;
+	protected AbstractElementAlias match_PrimitiveProperties___LengthKeyword_0_0_INTTerminalRuleCall_0_1_HyphenMinusKeyword_0_2_INTTerminalRuleCall_0_3___or___PatternKeyword_1_0_QuotationMarkKeyword_1_1_STRINGTerminalRuleCall_1_2_QuotationMarkKeyword_1_3__;
 	
 	@Inject
 	protected void init(IGrammarAccess access) {
 		grammarAccess = (JSchemaGrammarAccess) access;
-		match_Array_RightSquareBracketKeyword_2_q = new TokenAlias(false, true, grammarAccess.getArrayAccess().getRightSquareBracketKeyword_2());
-		match_ObjectRequireMinimumProperties_MaximumKeyword_1_1_or_MinimumKeyword_1_0 = new AlternativeAlias(false, false, new TokenAlias(false, false, grammarAccess.getObjectRequireMinimumPropertiesAccess().getMaximumKeyword_1_1()), new TokenAlias(false, false, grammarAccess.getObjectRequireMinimumPropertiesAccess().getMinimumKeyword_1_0()));
+		match_PrimitiveProperties___LengthKeyword_0_0_INTTerminalRuleCall_0_1_HyphenMinusKeyword_0_2_INTTerminalRuleCall_0_3___or___PatternKeyword_1_0_QuotationMarkKeyword_1_1_STRINGTerminalRuleCall_1_2_QuotationMarkKeyword_1_3__ = new AlternativeAlias(false, false, new GroupAlias(false, false, new TokenAlias(false, false, grammarAccess.getPrimitivePropertiesAccess().getLengthKeyword_0_0()), new TokenAlias(false, false, grammarAccess.getPrimitivePropertiesAccess().getINTTerminalRuleCall_0_1()), new TokenAlias(false, false, grammarAccess.getPrimitivePropertiesAccess().getHyphenMinusKeyword_0_2()), new TokenAlias(false, false, grammarAccess.getPrimitivePropertiesAccess().getINTTerminalRuleCall_0_3())), new GroupAlias(false, false, new TokenAlias(false, false, grammarAccess.getPrimitivePropertiesAccess().getPatternKeyword_1_0()), new TokenAlias(false, false, grammarAccess.getPrimitivePropertiesAccess().getQuotationMarkKeyword_1_1()), new TokenAlias(false, false, grammarAccess.getPrimitivePropertiesAccess().getSTRINGTerminalRuleCall_1_2()), new TokenAlias(false, false, grammarAccess.getPrimitivePropertiesAccess().getQuotationMarkKeyword_1_3())));
 	}
 	
 	@Override
 	protected String getUnassignedRuleCallToken(EObject semanticObject, RuleCall ruleCall, INode node) {
-		if (ruleCall.getRule() == grammarAccess.getDOUBLERule())
-			return getDOUBLEToken(semanticObject, ruleCall, node);
+		if (ruleCall.getRule() == grammarAccess.getINTRule())
+			return getINTToken(semanticObject, ruleCall, node);
+		else if (ruleCall.getRule() == grammarAccess.getSTRINGRule())
+			return getSTRINGToken(semanticObject, ruleCall, node);
 		return "";
 	}
 	
 	/**
-	 * terminal DOUBLE:
-	 * 	INT('.'INT+)?
-	 * ;
+	 * terminal INT returns ecore::EInt: ('0'..'9')+;
 	 */
-	protected String getDOUBLEToken(EObject semanticObject, RuleCall ruleCall, INode node) {
+	protected String getINTToken(EObject semanticObject, RuleCall ruleCall, INode node) {
 		if (node != null)
 			return getTokenText(node);
 		return "";
+	}
+	
+	/**
+	 * terminal STRING:
+	 * 			'"' ( '\\' .  | !('\\'|'"') )* '"' |
+	 * 			"'" ( '\\' .  | !('\\'|"'") )* "'"
+	 * 		;
+	 */
+	protected String getSTRINGToken(EObject semanticObject, RuleCall ruleCall, INode node) {
+		if (node != null)
+			return getTokenText(node);
+		return "\"\"";
 	}
 	
 	@Override
@@ -55,37 +66,20 @@ public class JSchemaSyntacticSequencer extends AbstractSyntacticSequencer {
 		List<INode> transitionNodes = collectNodes(fromNode, toNode);
 		for (AbstractElementAlias syntax : transition.getAmbiguousSyntaxes()) {
 			List<INode> syntaxNodes = getNodesFor(transitionNodes, syntax);
-			if (match_Array_RightSquareBracketKeyword_2_q.equals(syntax))
-				emit_Array_RightSquareBracketKeyword_2_q(semanticObject, getLastNavigableState(), syntaxNodes);
-			else if (match_ObjectRequireMinimumProperties_MaximumKeyword_1_1_or_MinimumKeyword_1_0.equals(syntax))
-				emit_ObjectRequireMinimumProperties_MaximumKeyword_1_1_or_MinimumKeyword_1_0(semanticObject, getLastNavigableState(), syntaxNodes);
+			if (match_PrimitiveProperties___LengthKeyword_0_0_INTTerminalRuleCall_0_1_HyphenMinusKeyword_0_2_INTTerminalRuleCall_0_3___or___PatternKeyword_1_0_QuotationMarkKeyword_1_1_STRINGTerminalRuleCall_1_2_QuotationMarkKeyword_1_3__.equals(syntax))
+				emit_PrimitiveProperties___LengthKeyword_0_0_INTTerminalRuleCall_0_1_HyphenMinusKeyword_0_2_INTTerminalRuleCall_0_3___or___PatternKeyword_1_0_QuotationMarkKeyword_1_1_STRINGTerminalRuleCall_1_2_QuotationMarkKeyword_1_3__(semanticObject, getLastNavigableState(), syntaxNodes);
 			else acceptNodes(getLastNavigableState(), syntaxNodes);
 		}
 	}
 
 	/**
 	 * Ambiguous syntax:
-	 *     ']'?
+	 *     ('length' INT '-' INT) | ('pattern' '"' STRING '"')
 	 *
 	 * This ambiguous syntax occurs at:
-	 *     array?='[' (ambiguity) (rule end)
-	 *     length=INT (ambiguity) (rule end)
+	 *     (rule start) (ambiguity) (rule start)
 	 */
-	protected void emit_Array_RightSquareBracketKeyword_2_q(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
-		acceptNodes(transition, nodes);
-	}
-	
-	/**
-	 * Ambiguous syntax:
-	 *     'minimum' | 'maximum'
-	 *
-	 * This ambiguous syntax occurs at:
-	 *     (rule start) 'object' 'require' (ambiguity) 'num' value=INT
-	 *     (rule start) 'object' 'require' (ambiguity) DOUBLE 'properties' properties=Properties
-	 *     (rule start) 'require' (ambiguity) 'num' value=INT
-	 *     (rule start) 'require' (ambiguity) DOUBLE 'properties' properties=Properties
-	 */
-	protected void emit_ObjectRequireMinimumProperties_MaximumKeyword_1_1_or_MinimumKeyword_1_0(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
+	protected void emit_PrimitiveProperties___LengthKeyword_0_0_INTTerminalRuleCall_0_1_HyphenMinusKeyword_0_2_INTTerminalRuleCall_0_3___or___PatternKeyword_1_0_QuotationMarkKeyword_1_1_STRINGTerminalRuleCall_1_2_QuotationMarkKeyword_1_3__(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
 		acceptNodes(transition, nodes);
 	}
 	

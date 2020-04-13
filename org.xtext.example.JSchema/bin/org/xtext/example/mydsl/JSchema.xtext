@@ -6,20 +6,13 @@ Model:
 	Object | PrimitiveObject
 ;
 
-terminal BOOLEAN:
-	'True' | 'False'
-;
 
-terminal DOUBLE:
-	INT'.'INT
+Number:
+    number=INT ('.' decimal=INT)?
 ;
-
-terminal NUMBER:
-	INT | DOUBLE
-;
-
+//(nestedObjectName=ID nestedObject=Object)
 Object:
- 	name=ID ('includes' includeObjects=Includes)? '{' (properties=hasProperties)? (nestedObjectName=ID nestedObject=Object)? '}' 
+ 	name=ID ('includes' includeObjects=Includes)? '{' (properties=hasProperties)? '}' 
 ;
 
 PrimitiveObject:
@@ -31,11 +24,13 @@ PrimitiveObject:
 //;
 
 Types:
-	object=Object | ({STRING} 'String' string=STRING) | {Array} array=Array | number=NUMBER | boolean=BOOLEAN | 'null'
+	//object=Object |
+	({STRING} string=STRING) | {Array} array=Array | number=Number
+
 ;
 
 hasProperties:
-	{hasProperties} properties+=Property*
+	properties+=Property*
 ;
 
 Property:
@@ -71,7 +66,7 @@ Includes:
 
 //Types
 Array:
- 	name=ID '[' (length=INT)? ']'
+ 	name=ID '[' (properties+=Property (',' properties+=Property)*)? ']'
 ;
 
 

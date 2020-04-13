@@ -11,14 +11,15 @@ import org.eclipse.emf.common.notify.impl.AdapterFactoryImpl;
 import org.eclipse.emf.ecore.EObject;
 
 import org.xtext.example.mydsl.jSchema.Array;
+import org.xtext.example.mydsl.jSchema.Includes;
 import org.xtext.example.mydsl.jSchema.JSchemaPackage;
 import org.xtext.example.mydsl.jSchema.Model;
-import org.xtext.example.mydsl.jSchema.Null;
-import org.xtext.example.mydsl.jSchema.ObjectRequireMinimumProperties;
-import org.xtext.example.mydsl.jSchema.Properties;
+import org.xtext.example.mydsl.jSchema.PrimitiveObject;
+import org.xtext.example.mydsl.jSchema.PrimitiveProperties;
 import org.xtext.example.mydsl.jSchema.Property;
 import org.xtext.example.mydsl.jSchema.STRING;
 import org.xtext.example.mydsl.jSchema.Types;
+import org.xtext.example.mydsl.jSchema.hasProperties;
 
 /**
  * <!-- begin-user-doc -->
@@ -99,9 +100,9 @@ public class JSchemaAdapterFactory extends AdapterFactoryImpl
         return createObjectAdapter();
       }
       @Override
-      public Adapter caseObjectRequireMinimumProperties(ObjectRequireMinimumProperties object)
+      public Adapter casePrimitiveObject(PrimitiveObject object)
       {
-        return createObjectRequireMinimumPropertiesAdapter();
+        return createPrimitiveObjectAdapter();
       }
       @Override
       public Adapter caseTypes(Types object)
@@ -109,14 +110,24 @@ public class JSchemaAdapterFactory extends AdapterFactoryImpl
         return createTypesAdapter();
       }
       @Override
-      public Adapter caseProperties(Properties object)
+      public Adapter casehasProperties(hasProperties object)
       {
-        return createPropertiesAdapter();
+        return createhasPropertiesAdapter();
       }
       @Override
       public Adapter caseProperty(Property object)
       {
         return createPropertyAdapter();
+      }
+      @Override
+      public Adapter casePrimitiveProperties(PrimitiveProperties object)
+      {
+        return createPrimitivePropertiesAdapter();
+      }
+      @Override
+      public Adapter caseIncludes(Includes object)
+      {
+        return createIncludesAdapter();
       }
       @Override
       public Adapter caseArray(Array object)
@@ -127,16 +138,6 @@ public class JSchemaAdapterFactory extends AdapterFactoryImpl
       public Adapter caseSTRING(STRING object)
       {
         return createSTRINGAdapter();
-      }
-      @Override
-      public Adapter caseBoolean(org.xtext.example.mydsl.jSchema.Boolean object)
-      {
-        return createBooleanAdapter();
-      }
-      @Override
-      public Adapter caseNull(Null object)
-      {
-        return createNullAdapter();
       }
       @Override
       public Adapter defaultCase(EObject object)
@@ -206,16 +207,16 @@ public class JSchemaAdapterFactory extends AdapterFactoryImpl
   }
 
   /**
-   * Creates a new adapter for an object of class '{@link org.xtext.example.mydsl.jSchema.ObjectRequireMinimumProperties <em>Object Require Minimum Properties</em>}'.
+   * Creates a new adapter for an object of class '{@link org.xtext.example.mydsl.jSchema.PrimitiveObject <em>Primitive Object</em>}'.
    * <!-- begin-user-doc -->
    * This default implementation returns null so that we can easily ignore cases;
    * it's useful to ignore a case when inheritance will catch all the cases anyway.
    * <!-- end-user-doc -->
    * @return the new adapter.
-   * @see org.xtext.example.mydsl.jSchema.ObjectRequireMinimumProperties
+   * @see org.xtext.example.mydsl.jSchema.PrimitiveObject
    * @generated
    */
-  public Adapter createObjectRequireMinimumPropertiesAdapter()
+  public Adapter createPrimitiveObjectAdapter()
   {
     return null;
   }
@@ -236,16 +237,16 @@ public class JSchemaAdapterFactory extends AdapterFactoryImpl
   }
 
   /**
-   * Creates a new adapter for an object of class '{@link org.xtext.example.mydsl.jSchema.Properties <em>Properties</em>}'.
+   * Creates a new adapter for an object of class '{@link org.xtext.example.mydsl.jSchema.hasProperties <em>has Properties</em>}'.
    * <!-- begin-user-doc -->
    * This default implementation returns null so that we can easily ignore cases;
    * it's useful to ignore a case when inheritance will catch all the cases anyway.
    * <!-- end-user-doc -->
    * @return the new adapter.
-   * @see org.xtext.example.mydsl.jSchema.Properties
+   * @see org.xtext.example.mydsl.jSchema.hasProperties
    * @generated
    */
-  public Adapter createPropertiesAdapter()
+  public Adapter createhasPropertiesAdapter()
   {
     return null;
   }
@@ -261,6 +262,36 @@ public class JSchemaAdapterFactory extends AdapterFactoryImpl
    * @generated
    */
   public Adapter createPropertyAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link org.xtext.example.mydsl.jSchema.PrimitiveProperties <em>Primitive Properties</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see org.xtext.example.mydsl.jSchema.PrimitiveProperties
+   * @generated
+   */
+  public Adapter createPrimitivePropertiesAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link org.xtext.example.mydsl.jSchema.Includes <em>Includes</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see org.xtext.example.mydsl.jSchema.Includes
+   * @generated
+   */
+  public Adapter createIncludesAdapter()
   {
     return null;
   }
@@ -291,36 +322,6 @@ public class JSchemaAdapterFactory extends AdapterFactoryImpl
    * @generated
    */
   public Adapter createSTRINGAdapter()
-  {
-    return null;
-  }
-
-  /**
-   * Creates a new adapter for an object of class '{@link org.xtext.example.mydsl.jSchema.Boolean <em>Boolean</em>}'.
-   * <!-- begin-user-doc -->
-   * This default implementation returns null so that we can easily ignore cases;
-   * it's useful to ignore a case when inheritance will catch all the cases anyway.
-   * <!-- end-user-doc -->
-   * @return the new adapter.
-   * @see org.xtext.example.mydsl.jSchema.Boolean
-   * @generated
-   */
-  public Adapter createBooleanAdapter()
-  {
-    return null;
-  }
-
-  /**
-   * Creates a new adapter for an object of class '{@link org.xtext.example.mydsl.jSchema.Null <em>Null</em>}'.
-   * <!-- begin-user-doc -->
-   * This default implementation returns null so that we can easily ignore cases;
-   * it's useful to ignore a case when inheritance will catch all the cases anyway.
-   * <!-- end-user-doc -->
-   * @return the new adapter.
-   * @see org.xtext.example.mydsl.jSchema.Null
-   * @generated
-   */
-  public Adapter createNullAdapter()
   {
     return null;
   }

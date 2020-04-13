@@ -5,6 +5,7 @@ package org.xtext.example.mydsl.jSchema;
 
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EEnum;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 
@@ -68,51 +69,22 @@ public interface JSchemaPackage extends EPackage
   int MODEL = 0;
 
   /**
+   * The feature id for the '<em><b>Name</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int MODEL__NAME = 0;
+
+  /**
    * The number of structural features of the '<em>Model</em>' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int MODEL_FEATURE_COUNT = 0;
-
-  /**
-   * The meta object id for the '{@link org.xtext.example.mydsl.jSchema.impl.ObjectImpl <em>Object</em>}' class.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see org.xtext.example.mydsl.jSchema.impl.ObjectImpl
-   * @see org.xtext.example.mydsl.jSchema.impl.JSchemaPackageImpl#getObject()
-   * @generated
-   */
-  int OBJECT = 2;
-
-  /**
-   * The number of structural features of the '<em>Object</em>' class.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int OBJECT_FEATURE_COUNT = MODEL_FEATURE_COUNT + 0;
-
-  /**
-   * The meta object id for the '{@link org.xtext.example.mydsl.jSchema.impl.ObjectRequireMinimumPropertiesImpl <em>Object Require Minimum Properties</em>}' class.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see org.xtext.example.mydsl.jSchema.impl.ObjectRequireMinimumPropertiesImpl
-   * @see org.xtext.example.mydsl.jSchema.impl.JSchemaPackageImpl#getObjectRequireMinimumProperties()
-   * @generated
-   */
-  int OBJECT_REQUIRE_MINIMUM_PROPERTIES = 3;
-
-  /**
-   * The number of structural features of the '<em>Object Require Minimum Properties</em>' class.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int OBJECT_REQUIRE_MINIMUM_PROPERTIES_FEATURE_COUNT = OBJECT_FEATURE_COUNT + 0;
+  int MODEL_FEATURE_COUNT = 1;
 
   /**
    * The meta object id for the '{@link org.xtext.example.mydsl.jSchema.impl.NumberImpl <em>Number</em>}' class.
@@ -125,22 +97,22 @@ public interface JSchemaPackage extends EPackage
   int NUMBER = 1;
 
   /**
-   * The feature id for the '<em><b>Value</b></em>' attribute.
+   * The feature id for the '<em><b>Number</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int NUMBER__VALUE = OBJECT_REQUIRE_MINIMUM_PROPERTIES_FEATURE_COUNT + 0;
+  int NUMBER__NUMBER = 0;
 
   /**
-   * The feature id for the '<em><b>Properties</b></em>' containment reference.
+   * The feature id for the '<em><b>Decimal</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int NUMBER__PROPERTIES = OBJECT_REQUIRE_MINIMUM_PROPERTIES_FEATURE_COUNT + 1;
+  int NUMBER__DECIMAL = 1;
 
   /**
    * The number of structural features of the '<em>Number</em>' class.
@@ -149,7 +121,99 @@ public interface JSchemaPackage extends EPackage
    * @generated
    * @ordered
    */
-  int NUMBER_FEATURE_COUNT = OBJECT_REQUIRE_MINIMUM_PROPERTIES_FEATURE_COUNT + 2;
+  int NUMBER_FEATURE_COUNT = 2;
+
+  /**
+   * The meta object id for the '{@link org.xtext.example.mydsl.jSchema.impl.ObjectImpl <em>Object</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see org.xtext.example.mydsl.jSchema.impl.ObjectImpl
+   * @see org.xtext.example.mydsl.jSchema.impl.JSchemaPackageImpl#getObject()
+   * @generated
+   */
+  int OBJECT = 2;
+
+  /**
+   * The feature id for the '<em><b>Name</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int OBJECT__NAME = MODEL__NAME;
+
+  /**
+   * The feature id for the '<em><b>Include Objects</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int OBJECT__INCLUDE_OBJECTS = MODEL_FEATURE_COUNT + 0;
+
+  /**
+   * The feature id for the '<em><b>Properties</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int OBJECT__PROPERTIES = MODEL_FEATURE_COUNT + 1;
+
+  /**
+   * The number of structural features of the '<em>Object</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int OBJECT_FEATURE_COUNT = MODEL_FEATURE_COUNT + 2;
+
+  /**
+   * The meta object id for the '{@link org.xtext.example.mydsl.jSchema.impl.PrimitiveObjectImpl <em>Primitive Object</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see org.xtext.example.mydsl.jSchema.impl.PrimitiveObjectImpl
+   * @see org.xtext.example.mydsl.jSchema.impl.JSchemaPackageImpl#getPrimitiveObject()
+   * @generated
+   */
+  int PRIMITIVE_OBJECT = 3;
+
+  /**
+   * The feature id for the '<em><b>Name</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int PRIMITIVE_OBJECT__NAME = MODEL__NAME;
+
+  /**
+   * The feature id for the '<em><b>Type</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int PRIMITIVE_OBJECT__TYPE = MODEL_FEATURE_COUNT + 0;
+
+  /**
+   * The feature id for the '<em><b>Primitive Properties</b></em>' containment reference list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int PRIMITIVE_OBJECT__PRIMITIVE_PROPERTIES = MODEL_FEATURE_COUNT + 1;
+
+  /**
+   * The number of structural features of the '<em>Primitive Object</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int PRIMITIVE_OBJECT_FEATURE_COUNT = MODEL_FEATURE_COUNT + 2;
 
   /**
    * The meta object id for the '{@link org.xtext.example.mydsl.jSchema.impl.TypesImpl <em>Types</em>}' class.
@@ -162,23 +226,32 @@ public interface JSchemaPackage extends EPackage
   int TYPES = 4;
 
   /**
+   * The feature id for the '<em><b>Number</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int TYPES__NUMBER = 0;
+
+  /**
    * The number of structural features of the '<em>Types</em>' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int TYPES_FEATURE_COUNT = 0;
+  int TYPES_FEATURE_COUNT = 1;
 
   /**
-   * The meta object id for the '{@link org.xtext.example.mydsl.jSchema.impl.PropertiesImpl <em>Properties</em>}' class.
+   * The meta object id for the '{@link org.xtext.example.mydsl.jSchema.impl.hasPropertiesImpl <em>has Properties</em>}' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see org.xtext.example.mydsl.jSchema.impl.PropertiesImpl
-   * @see org.xtext.example.mydsl.jSchema.impl.JSchemaPackageImpl#getProperties()
+   * @see org.xtext.example.mydsl.jSchema.impl.hasPropertiesImpl
+   * @see org.xtext.example.mydsl.jSchema.impl.JSchemaPackageImpl#gethasProperties()
    * @generated
    */
-  int PROPERTIES = 5;
+  int HAS_PROPERTIES = 5;
 
   /**
    * The feature id for the '<em><b>Properties</b></em>' containment reference list.
@@ -187,16 +260,16 @@ public interface JSchemaPackage extends EPackage
    * @generated
    * @ordered
    */
-  int PROPERTIES__PROPERTIES = 0;
+  int HAS_PROPERTIES__PROPERTIES = 0;
 
   /**
-   * The number of structural features of the '<em>Properties</em>' class.
+   * The number of structural features of the '<em>has Properties</em>' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int PROPERTIES_FEATURE_COUNT = 1;
+  int HAS_PROPERTIES_FEATURE_COUNT = 1;
 
   /**
    * The meta object id for the '{@link org.xtext.example.mydsl.jSchema.impl.PropertyImpl <em>Property</em>}' class.
@@ -209,22 +282,22 @@ public interface JSchemaPackage extends EPackage
   int PROPERTY = 6;
 
   /**
-   * The feature id for the '<em><b>Name</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int PROPERTY__NAME = 0;
-
-  /**
    * The feature id for the '<em><b>Type</b></em>' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int PROPERTY__TYPE = 1;
+  int PROPERTY__TYPE = 0;
+
+  /**
+   * The feature id for the '<em><b>Name</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int PROPERTY__NAME = 1;
 
   /**
    * The number of structural features of the '<em>Property</em>' class.
@@ -236,6 +309,62 @@ public interface JSchemaPackage extends EPackage
   int PROPERTY_FEATURE_COUNT = 2;
 
   /**
+   * The meta object id for the '{@link org.xtext.example.mydsl.jSchema.impl.PrimitivePropertiesImpl <em>Primitive Properties</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see org.xtext.example.mydsl.jSchema.impl.PrimitivePropertiesImpl
+   * @see org.xtext.example.mydsl.jSchema.impl.JSchemaPackageImpl#getPrimitiveProperties()
+   * @generated
+   */
+  int PRIMITIVE_PROPERTIES = 7;
+
+  /**
+   * The feature id for the '<em><b>String Format</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int PRIMITIVE_PROPERTIES__STRING_FORMAT = 0;
+
+  /**
+   * The number of structural features of the '<em>Primitive Properties</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int PRIMITIVE_PROPERTIES_FEATURE_COUNT = 1;
+
+  /**
+   * The meta object id for the '{@link org.xtext.example.mydsl.jSchema.impl.IncludesImpl <em>Includes</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see org.xtext.example.mydsl.jSchema.impl.IncludesImpl
+   * @see org.xtext.example.mydsl.jSchema.impl.JSchemaPackageImpl#getIncludes()
+   * @generated
+   */
+  int INCLUDES = 8;
+
+  /**
+   * The feature id for the '<em><b>Object ID</b></em>' attribute list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int INCLUDES__OBJECT_ID = 0;
+
+  /**
+   * The number of structural features of the '<em>Includes</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int INCLUDES_FEATURE_COUNT = 1;
+
+  /**
    * The meta object id for the '{@link org.xtext.example.mydsl.jSchema.impl.ArrayImpl <em>Array</em>}' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -243,10 +372,19 @@ public interface JSchemaPackage extends EPackage
    * @see org.xtext.example.mydsl.jSchema.impl.JSchemaPackageImpl#getArray()
    * @generated
    */
-  int ARRAY = 7;
+  int ARRAY = 9;
 
   /**
-   * The feature id for the '<em><b>Array</b></em>' attribute.
+   * The feature id for the '<em><b>Number</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int ARRAY__NUMBER = TYPES__NUMBER;
+
+  /**
+   * The feature id for the '<em><b>Array</b></em>' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
@@ -255,13 +393,22 @@ public interface JSchemaPackage extends EPackage
   int ARRAY__ARRAY = TYPES_FEATURE_COUNT + 0;
 
   /**
-   * The feature id for the '<em><b>Length</b></em>' attribute.
+   * The feature id for the '<em><b>Name</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int ARRAY__LENGTH = TYPES_FEATURE_COUNT + 1;
+  int ARRAY__NAME = TYPES_FEATURE_COUNT + 1;
+
+  /**
+   * The feature id for the '<em><b>Properties</b></em>' containment reference list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int ARRAY__PROPERTIES = TYPES_FEATURE_COUNT + 2;
 
   /**
    * The number of structural features of the '<em>Array</em>' class.
@@ -270,7 +417,7 @@ public interface JSchemaPackage extends EPackage
    * @generated
    * @ordered
    */
-  int ARRAY_FEATURE_COUNT = TYPES_FEATURE_COUNT + 2;
+  int ARRAY_FEATURE_COUNT = TYPES_FEATURE_COUNT + 3;
 
   /**
    * The meta object id for the '{@link org.xtext.example.mydsl.jSchema.impl.STRINGImpl <em>STRING</em>}' class.
@@ -280,7 +427,25 @@ public interface JSchemaPackage extends EPackage
    * @see org.xtext.example.mydsl.jSchema.impl.JSchemaPackageImpl#getSTRING()
    * @generated
    */
-  int STRING = 8;
+  int STRING = 10;
+
+  /**
+   * The feature id for the '<em><b>Number</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int STRING__NUMBER = TYPES__NUMBER;
+
+  /**
+   * The feature id for the '<em><b>String</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int STRING__STRING = TYPES_FEATURE_COUNT + 0;
 
   /**
    * The number of structural features of the '<em>STRING</em>' class.
@@ -289,45 +454,17 @@ public interface JSchemaPackage extends EPackage
    * @generated
    * @ordered
    */
-  int STRING_FEATURE_COUNT = TYPES_FEATURE_COUNT + 0;
+  int STRING_FEATURE_COUNT = TYPES_FEATURE_COUNT + 1;
 
   /**
-   * The meta object id for the '{@link org.xtext.example.mydsl.jSchema.impl.BooleanImpl <em>Boolean</em>}' class.
+   * The meta object id for the '{@link org.xtext.example.mydsl.jSchema.FormatTypes <em>Format Types</em>}' enum.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see org.xtext.example.mydsl.jSchema.impl.BooleanImpl
-   * @see org.xtext.example.mydsl.jSchema.impl.JSchemaPackageImpl#getBoolean()
+   * @see org.xtext.example.mydsl.jSchema.FormatTypes
+   * @see org.xtext.example.mydsl.jSchema.impl.JSchemaPackageImpl#getFormatTypes()
    * @generated
    */
-  int BOOLEAN = 9;
-
-  /**
-   * The number of structural features of the '<em>Boolean</em>' class.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int BOOLEAN_FEATURE_COUNT = TYPES_FEATURE_COUNT + 0;
-
-  /**
-   * The meta object id for the '{@link org.xtext.example.mydsl.jSchema.impl.NullImpl <em>Null</em>}' class.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see org.xtext.example.mydsl.jSchema.impl.NullImpl
-   * @see org.xtext.example.mydsl.jSchema.impl.JSchemaPackageImpl#getNull()
-   * @generated
-   */
-  int NULL = 10;
-
-  /**
-   * The number of structural features of the '<em>Null</em>' class.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int NULL_FEATURE_COUNT = TYPES_FEATURE_COUNT + 0;
+  int FORMAT_TYPES = 11;
 
 
   /**
@@ -341,6 +478,17 @@ public interface JSchemaPackage extends EPackage
   EClass getModel();
 
   /**
+   * Returns the meta object for the attribute '{@link org.xtext.example.mydsl.jSchema.Model#getName <em>Name</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Name</em>'.
+   * @see org.xtext.example.mydsl.jSchema.Model#getName()
+   * @see #getModel()
+   * @generated
+   */
+  EAttribute getModel_Name();
+
+  /**
    * Returns the meta object for class '{@link org.xtext.example.mydsl.jSchema.Number <em>Number</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -351,26 +499,26 @@ public interface JSchemaPackage extends EPackage
   EClass getNumber();
 
   /**
-   * Returns the meta object for the attribute '{@link org.xtext.example.mydsl.jSchema.Number#getValue <em>Value</em>}'.
+   * Returns the meta object for the attribute '{@link org.xtext.example.mydsl.jSchema.Number#getNumber <em>Number</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for the attribute '<em>Value</em>'.
-   * @see org.xtext.example.mydsl.jSchema.Number#getValue()
+   * @return the meta object for the attribute '<em>Number</em>'.
+   * @see org.xtext.example.mydsl.jSchema.Number#getNumber()
    * @see #getNumber()
    * @generated
    */
-  EAttribute getNumber_Value();
+  EAttribute getNumber_Number();
 
   /**
-   * Returns the meta object for the containment reference '{@link org.xtext.example.mydsl.jSchema.Number#getProperties <em>Properties</em>}'.
+   * Returns the meta object for the attribute '{@link org.xtext.example.mydsl.jSchema.Number#getDecimal <em>Decimal</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for the containment reference '<em>Properties</em>'.
-   * @see org.xtext.example.mydsl.jSchema.Number#getProperties()
+   * @return the meta object for the attribute '<em>Decimal</em>'.
+   * @see org.xtext.example.mydsl.jSchema.Number#getDecimal()
    * @see #getNumber()
    * @generated
    */
-  EReference getNumber_Properties();
+  EAttribute getNumber_Decimal();
 
   /**
    * Returns the meta object for class '{@link org.xtext.example.mydsl.jSchema.Object <em>Object</em>}'.
@@ -383,14 +531,58 @@ public interface JSchemaPackage extends EPackage
   EClass getObject();
 
   /**
-   * Returns the meta object for class '{@link org.xtext.example.mydsl.jSchema.ObjectRequireMinimumProperties <em>Object Require Minimum Properties</em>}'.
+   * Returns the meta object for the containment reference '{@link org.xtext.example.mydsl.jSchema.Object#getIncludeObjects <em>Include Objects</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for class '<em>Object Require Minimum Properties</em>'.
-   * @see org.xtext.example.mydsl.jSchema.ObjectRequireMinimumProperties
+   * @return the meta object for the containment reference '<em>Include Objects</em>'.
+   * @see org.xtext.example.mydsl.jSchema.Object#getIncludeObjects()
+   * @see #getObject()
    * @generated
    */
-  EClass getObjectRequireMinimumProperties();
+  EReference getObject_IncludeObjects();
+
+  /**
+   * Returns the meta object for the containment reference '{@link org.xtext.example.mydsl.jSchema.Object#getProperties <em>Properties</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference '<em>Properties</em>'.
+   * @see org.xtext.example.mydsl.jSchema.Object#getProperties()
+   * @see #getObject()
+   * @generated
+   */
+  EReference getObject_Properties();
+
+  /**
+   * Returns the meta object for class '{@link org.xtext.example.mydsl.jSchema.PrimitiveObject <em>Primitive Object</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Primitive Object</em>'.
+   * @see org.xtext.example.mydsl.jSchema.PrimitiveObject
+   * @generated
+   */
+  EClass getPrimitiveObject();
+
+  /**
+   * Returns the meta object for the containment reference '{@link org.xtext.example.mydsl.jSchema.PrimitiveObject#getType <em>Type</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference '<em>Type</em>'.
+   * @see org.xtext.example.mydsl.jSchema.PrimitiveObject#getType()
+   * @see #getPrimitiveObject()
+   * @generated
+   */
+  EReference getPrimitiveObject_Type();
+
+  /**
+   * Returns the meta object for the containment reference list '{@link org.xtext.example.mydsl.jSchema.PrimitiveObject#getPrimitiveProperties <em>Primitive Properties</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference list '<em>Primitive Properties</em>'.
+   * @see org.xtext.example.mydsl.jSchema.PrimitiveObject#getPrimitiveProperties()
+   * @see #getPrimitiveObject()
+   * @generated
+   */
+  EReference getPrimitiveObject_PrimitiveProperties();
 
   /**
    * Returns the meta object for class '{@link org.xtext.example.mydsl.jSchema.Types <em>Types</em>}'.
@@ -403,25 +595,36 @@ public interface JSchemaPackage extends EPackage
   EClass getTypes();
 
   /**
-   * Returns the meta object for class '{@link org.xtext.example.mydsl.jSchema.Properties <em>Properties</em>}'.
+   * Returns the meta object for the containment reference '{@link org.xtext.example.mydsl.jSchema.Types#getNumber <em>Number</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for class '<em>Properties</em>'.
-   * @see org.xtext.example.mydsl.jSchema.Properties
+   * @return the meta object for the containment reference '<em>Number</em>'.
+   * @see org.xtext.example.mydsl.jSchema.Types#getNumber()
+   * @see #getTypes()
    * @generated
    */
-  EClass getProperties();
+  EReference getTypes_Number();
 
   /**
-   * Returns the meta object for the containment reference list '{@link org.xtext.example.mydsl.jSchema.Properties#getProperties <em>Properties</em>}'.
+   * Returns the meta object for class '{@link org.xtext.example.mydsl.jSchema.hasProperties <em>has Properties</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>has Properties</em>'.
+   * @see org.xtext.example.mydsl.jSchema.hasProperties
+   * @generated
+   */
+  EClass gethasProperties();
+
+  /**
+   * Returns the meta object for the containment reference list '{@link org.xtext.example.mydsl.jSchema.hasProperties#getProperties <em>Properties</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @return the meta object for the containment reference list '<em>Properties</em>'.
-   * @see org.xtext.example.mydsl.jSchema.Properties#getProperties()
-   * @see #getProperties()
+   * @see org.xtext.example.mydsl.jSchema.hasProperties#getProperties()
+   * @see #gethasProperties()
    * @generated
    */
-  EReference getProperties_Properties();
+  EReference gethasProperties_Properties();
 
   /**
    * Returns the meta object for class '{@link org.xtext.example.mydsl.jSchema.Property <em>Property</em>}'.
@@ -432,17 +635,6 @@ public interface JSchemaPackage extends EPackage
    * @generated
    */
   EClass getProperty();
-
-  /**
-   * Returns the meta object for the attribute '{@link org.xtext.example.mydsl.jSchema.Property#getName <em>Name</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the attribute '<em>Name</em>'.
-   * @see org.xtext.example.mydsl.jSchema.Property#getName()
-   * @see #getProperty()
-   * @generated
-   */
-  EAttribute getProperty_Name();
 
   /**
    * Returns the meta object for the containment reference '{@link org.xtext.example.mydsl.jSchema.Property#getType <em>Type</em>}'.
@@ -456,6 +648,59 @@ public interface JSchemaPackage extends EPackage
   EReference getProperty_Type();
 
   /**
+   * Returns the meta object for the attribute '{@link org.xtext.example.mydsl.jSchema.Property#getName <em>Name</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Name</em>'.
+   * @see org.xtext.example.mydsl.jSchema.Property#getName()
+   * @see #getProperty()
+   * @generated
+   */
+  EAttribute getProperty_Name();
+
+  /**
+   * Returns the meta object for class '{@link org.xtext.example.mydsl.jSchema.PrimitiveProperties <em>Primitive Properties</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Primitive Properties</em>'.
+   * @see org.xtext.example.mydsl.jSchema.PrimitiveProperties
+   * @generated
+   */
+  EClass getPrimitiveProperties();
+
+  /**
+   * Returns the meta object for the attribute '{@link org.xtext.example.mydsl.jSchema.PrimitiveProperties#getStringFormat <em>String Format</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>String Format</em>'.
+   * @see org.xtext.example.mydsl.jSchema.PrimitiveProperties#getStringFormat()
+   * @see #getPrimitiveProperties()
+   * @generated
+   */
+  EAttribute getPrimitiveProperties_StringFormat();
+
+  /**
+   * Returns the meta object for class '{@link org.xtext.example.mydsl.jSchema.Includes <em>Includes</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Includes</em>'.
+   * @see org.xtext.example.mydsl.jSchema.Includes
+   * @generated
+   */
+  EClass getIncludes();
+
+  /**
+   * Returns the meta object for the attribute list '{@link org.xtext.example.mydsl.jSchema.Includes#getObjectID <em>Object ID</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute list '<em>Object ID</em>'.
+   * @see org.xtext.example.mydsl.jSchema.Includes#getObjectID()
+   * @see #getIncludes()
+   * @generated
+   */
+  EAttribute getIncludes_ObjectID();
+
+  /**
    * Returns the meta object for class '{@link org.xtext.example.mydsl.jSchema.Array <em>Array</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -466,26 +711,37 @@ public interface JSchemaPackage extends EPackage
   EClass getArray();
 
   /**
-   * Returns the meta object for the attribute '{@link org.xtext.example.mydsl.jSchema.Array#isArray <em>Array</em>}'.
+   * Returns the meta object for the containment reference '{@link org.xtext.example.mydsl.jSchema.Array#getArray <em>Array</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for the attribute '<em>Array</em>'.
-   * @see org.xtext.example.mydsl.jSchema.Array#isArray()
+   * @return the meta object for the containment reference '<em>Array</em>'.
+   * @see org.xtext.example.mydsl.jSchema.Array#getArray()
    * @see #getArray()
    * @generated
    */
-  EAttribute getArray_Array();
+  EReference getArray_Array();
 
   /**
-   * Returns the meta object for the attribute '{@link org.xtext.example.mydsl.jSchema.Array#getLength <em>Length</em>}'.
+   * Returns the meta object for the attribute '{@link org.xtext.example.mydsl.jSchema.Array#getName <em>Name</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for the attribute '<em>Length</em>'.
-   * @see org.xtext.example.mydsl.jSchema.Array#getLength()
+   * @return the meta object for the attribute '<em>Name</em>'.
+   * @see org.xtext.example.mydsl.jSchema.Array#getName()
    * @see #getArray()
    * @generated
    */
-  EAttribute getArray_Length();
+  EAttribute getArray_Name();
+
+  /**
+   * Returns the meta object for the containment reference list '{@link org.xtext.example.mydsl.jSchema.Array#getProperties <em>Properties</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference list '<em>Properties</em>'.
+   * @see org.xtext.example.mydsl.jSchema.Array#getProperties()
+   * @see #getArray()
+   * @generated
+   */
+  EReference getArray_Properties();
 
   /**
    * Returns the meta object for class '{@link org.xtext.example.mydsl.jSchema.STRING <em>STRING</em>}'.
@@ -498,24 +754,25 @@ public interface JSchemaPackage extends EPackage
   EClass getSTRING();
 
   /**
-   * Returns the meta object for class '{@link org.xtext.example.mydsl.jSchema.Boolean <em>Boolean</em>}'.
+   * Returns the meta object for the attribute '{@link org.xtext.example.mydsl.jSchema.STRING#getString <em>String</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for class '<em>Boolean</em>'.
-   * @see org.xtext.example.mydsl.jSchema.Boolean
+   * @return the meta object for the attribute '<em>String</em>'.
+   * @see org.xtext.example.mydsl.jSchema.STRING#getString()
+   * @see #getSTRING()
    * @generated
    */
-  EClass getBoolean();
+  EAttribute getSTRING_String();
 
   /**
-   * Returns the meta object for class '{@link org.xtext.example.mydsl.jSchema.Null <em>Null</em>}'.
+   * Returns the meta object for enum '{@link org.xtext.example.mydsl.jSchema.FormatTypes <em>Format Types</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for class '<em>Null</em>'.
-   * @see org.xtext.example.mydsl.jSchema.Null
+   * @return the meta object for enum '<em>Format Types</em>'.
+   * @see org.xtext.example.mydsl.jSchema.FormatTypes
    * @generated
    */
-  EClass getNull();
+  EEnum getFormatTypes();
 
   /**
    * Returns the factory that creates the instances of the model.
@@ -551,6 +808,14 @@ public interface JSchemaPackage extends EPackage
     EClass MODEL = eINSTANCE.getModel();
 
     /**
+     * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute MODEL__NAME = eINSTANCE.getModel_Name();
+
+    /**
      * The meta object literal for the '{@link org.xtext.example.mydsl.jSchema.impl.NumberImpl <em>Number</em>}' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -561,20 +826,20 @@ public interface JSchemaPackage extends EPackage
     EClass NUMBER = eINSTANCE.getNumber();
 
     /**
-     * The meta object literal for the '<em><b>Value</b></em>' attribute feature.
+     * The meta object literal for the '<em><b>Number</b></em>' attribute feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    EAttribute NUMBER__VALUE = eINSTANCE.getNumber_Value();
+    EAttribute NUMBER__NUMBER = eINSTANCE.getNumber_Number();
 
     /**
-     * The meta object literal for the '<em><b>Properties</b></em>' containment reference feature.
+     * The meta object literal for the '<em><b>Decimal</b></em>' attribute feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    EReference NUMBER__PROPERTIES = eINSTANCE.getNumber_Properties();
+    EAttribute NUMBER__DECIMAL = eINSTANCE.getNumber_Decimal();
 
     /**
      * The meta object literal for the '{@link org.xtext.example.mydsl.jSchema.impl.ObjectImpl <em>Object</em>}' class.
@@ -587,14 +852,46 @@ public interface JSchemaPackage extends EPackage
     EClass OBJECT = eINSTANCE.getObject();
 
     /**
-     * The meta object literal for the '{@link org.xtext.example.mydsl.jSchema.impl.ObjectRequireMinimumPropertiesImpl <em>Object Require Minimum Properties</em>}' class.
+     * The meta object literal for the '<em><b>Include Objects</b></em>' containment reference feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see org.xtext.example.mydsl.jSchema.impl.ObjectRequireMinimumPropertiesImpl
-     * @see org.xtext.example.mydsl.jSchema.impl.JSchemaPackageImpl#getObjectRequireMinimumProperties()
      * @generated
      */
-    EClass OBJECT_REQUIRE_MINIMUM_PROPERTIES = eINSTANCE.getObjectRequireMinimumProperties();
+    EReference OBJECT__INCLUDE_OBJECTS = eINSTANCE.getObject_IncludeObjects();
+
+    /**
+     * The meta object literal for the '<em><b>Properties</b></em>' containment reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference OBJECT__PROPERTIES = eINSTANCE.getObject_Properties();
+
+    /**
+     * The meta object literal for the '{@link org.xtext.example.mydsl.jSchema.impl.PrimitiveObjectImpl <em>Primitive Object</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.xtext.example.mydsl.jSchema.impl.PrimitiveObjectImpl
+     * @see org.xtext.example.mydsl.jSchema.impl.JSchemaPackageImpl#getPrimitiveObject()
+     * @generated
+     */
+    EClass PRIMITIVE_OBJECT = eINSTANCE.getPrimitiveObject();
+
+    /**
+     * The meta object literal for the '<em><b>Type</b></em>' containment reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference PRIMITIVE_OBJECT__TYPE = eINSTANCE.getPrimitiveObject_Type();
+
+    /**
+     * The meta object literal for the '<em><b>Primitive Properties</b></em>' containment reference list feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference PRIMITIVE_OBJECT__PRIMITIVE_PROPERTIES = eINSTANCE.getPrimitiveObject_PrimitiveProperties();
 
     /**
      * The meta object literal for the '{@link org.xtext.example.mydsl.jSchema.impl.TypesImpl <em>Types</em>}' class.
@@ -607,14 +904,22 @@ public interface JSchemaPackage extends EPackage
     EClass TYPES = eINSTANCE.getTypes();
 
     /**
-     * The meta object literal for the '{@link org.xtext.example.mydsl.jSchema.impl.PropertiesImpl <em>Properties</em>}' class.
+     * The meta object literal for the '<em><b>Number</b></em>' containment reference feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see org.xtext.example.mydsl.jSchema.impl.PropertiesImpl
-     * @see org.xtext.example.mydsl.jSchema.impl.JSchemaPackageImpl#getProperties()
      * @generated
      */
-    EClass PROPERTIES = eINSTANCE.getProperties();
+    EReference TYPES__NUMBER = eINSTANCE.getTypes_Number();
+
+    /**
+     * The meta object literal for the '{@link org.xtext.example.mydsl.jSchema.impl.hasPropertiesImpl <em>has Properties</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.xtext.example.mydsl.jSchema.impl.hasPropertiesImpl
+     * @see org.xtext.example.mydsl.jSchema.impl.JSchemaPackageImpl#gethasProperties()
+     * @generated
+     */
+    EClass HAS_PROPERTIES = eINSTANCE.gethasProperties();
 
     /**
      * The meta object literal for the '<em><b>Properties</b></em>' containment reference list feature.
@@ -622,7 +927,7 @@ public interface JSchemaPackage extends EPackage
      * <!-- end-user-doc -->
      * @generated
      */
-    EReference PROPERTIES__PROPERTIES = eINSTANCE.getProperties_Properties();
+    EReference HAS_PROPERTIES__PROPERTIES = eINSTANCE.gethasProperties_Properties();
 
     /**
      * The meta object literal for the '{@link org.xtext.example.mydsl.jSchema.impl.PropertyImpl <em>Property</em>}' class.
@@ -635,6 +940,14 @@ public interface JSchemaPackage extends EPackage
     EClass PROPERTY = eINSTANCE.getProperty();
 
     /**
+     * The meta object literal for the '<em><b>Type</b></em>' containment reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference PROPERTY__TYPE = eINSTANCE.getProperty_Type();
+
+    /**
      * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -643,12 +956,40 @@ public interface JSchemaPackage extends EPackage
     EAttribute PROPERTY__NAME = eINSTANCE.getProperty_Name();
 
     /**
-     * The meta object literal for the '<em><b>Type</b></em>' containment reference feature.
+     * The meta object literal for the '{@link org.xtext.example.mydsl.jSchema.impl.PrimitivePropertiesImpl <em>Primitive Properties</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.xtext.example.mydsl.jSchema.impl.PrimitivePropertiesImpl
+     * @see org.xtext.example.mydsl.jSchema.impl.JSchemaPackageImpl#getPrimitiveProperties()
+     * @generated
+     */
+    EClass PRIMITIVE_PROPERTIES = eINSTANCE.getPrimitiveProperties();
+
+    /**
+     * The meta object literal for the '<em><b>String Format</b></em>' attribute feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    EReference PROPERTY__TYPE = eINSTANCE.getProperty_Type();
+    EAttribute PRIMITIVE_PROPERTIES__STRING_FORMAT = eINSTANCE.getPrimitiveProperties_StringFormat();
+
+    /**
+     * The meta object literal for the '{@link org.xtext.example.mydsl.jSchema.impl.IncludesImpl <em>Includes</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.xtext.example.mydsl.jSchema.impl.IncludesImpl
+     * @see org.xtext.example.mydsl.jSchema.impl.JSchemaPackageImpl#getIncludes()
+     * @generated
+     */
+    EClass INCLUDES = eINSTANCE.getIncludes();
+
+    /**
+     * The meta object literal for the '<em><b>Object ID</b></em>' attribute list feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute INCLUDES__OBJECT_ID = eINSTANCE.getIncludes_ObjectID();
 
     /**
      * The meta object literal for the '{@link org.xtext.example.mydsl.jSchema.impl.ArrayImpl <em>Array</em>}' class.
@@ -661,20 +1002,28 @@ public interface JSchemaPackage extends EPackage
     EClass ARRAY = eINSTANCE.getArray();
 
     /**
-     * The meta object literal for the '<em><b>Array</b></em>' attribute feature.
+     * The meta object literal for the '<em><b>Array</b></em>' containment reference feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    EAttribute ARRAY__ARRAY = eINSTANCE.getArray_Array();
+    EReference ARRAY__ARRAY = eINSTANCE.getArray_Array();
 
     /**
-     * The meta object literal for the '<em><b>Length</b></em>' attribute feature.
+     * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    EAttribute ARRAY__LENGTH = eINSTANCE.getArray_Length();
+    EAttribute ARRAY__NAME = eINSTANCE.getArray_Name();
+
+    /**
+     * The meta object literal for the '<em><b>Properties</b></em>' containment reference list feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference ARRAY__PROPERTIES = eINSTANCE.getArray_Properties();
 
     /**
      * The meta object literal for the '{@link org.xtext.example.mydsl.jSchema.impl.STRINGImpl <em>STRING</em>}' class.
@@ -687,24 +1036,22 @@ public interface JSchemaPackage extends EPackage
     EClass STRING = eINSTANCE.getSTRING();
 
     /**
-     * The meta object literal for the '{@link org.xtext.example.mydsl.jSchema.impl.BooleanImpl <em>Boolean</em>}' class.
+     * The meta object literal for the '<em><b>String</b></em>' attribute feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see org.xtext.example.mydsl.jSchema.impl.BooleanImpl
-     * @see org.xtext.example.mydsl.jSchema.impl.JSchemaPackageImpl#getBoolean()
      * @generated
      */
-    EClass BOOLEAN = eINSTANCE.getBoolean();
+    EAttribute STRING__STRING = eINSTANCE.getSTRING_String();
 
     /**
-     * The meta object literal for the '{@link org.xtext.example.mydsl.jSchema.impl.NullImpl <em>Null</em>}' class.
+     * The meta object literal for the '{@link org.xtext.example.mydsl.jSchema.FormatTypes <em>Format Types</em>}' enum.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see org.xtext.example.mydsl.jSchema.impl.NullImpl
-     * @see org.xtext.example.mydsl.jSchema.impl.JSchemaPackageImpl#getNull()
+     * @see org.xtext.example.mydsl.jSchema.FormatTypes
+     * @see org.xtext.example.mydsl.jSchema.impl.JSchemaPackageImpl#getFormatTypes()
      * @generated
      */
-    EClass NULL = eINSTANCE.getNull();
+    EEnum FORMAT_TYPES = eINSTANCE.getFormatTypes();
 
   }
 

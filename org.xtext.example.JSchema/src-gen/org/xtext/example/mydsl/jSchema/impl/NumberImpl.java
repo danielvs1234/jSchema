@@ -4,15 +4,13 @@
 package org.xtext.example.mydsl.jSchema.impl;
 
 import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.emf.common.notify.NotificationChain;
 
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
+import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
 import org.xtext.example.mydsl.jSchema.JSchemaPackage;
-import org.xtext.example.mydsl.jSchema.Properties;
 
 /**
  * <!-- begin-user-doc -->
@@ -22,43 +20,53 @@ import org.xtext.example.mydsl.jSchema.Properties;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link org.xtext.example.mydsl.jSchema.impl.NumberImpl#getValue <em>Value</em>}</li>
- *   <li>{@link org.xtext.example.mydsl.jSchema.impl.NumberImpl#getProperties <em>Properties</em>}</li>
+ *   <li>{@link org.xtext.example.mydsl.jSchema.impl.NumberImpl#getNumber <em>Number</em>}</li>
+ *   <li>{@link org.xtext.example.mydsl.jSchema.impl.NumberImpl#getDecimal <em>Decimal</em>}</li>
  * </ul>
  *
  * @generated
  */
-public class NumberImpl extends ObjectRequireMinimumPropertiesImpl implements org.xtext.example.mydsl.jSchema.Number
+public class NumberImpl extends MinimalEObjectImpl.Container implements org.xtext.example.mydsl.jSchema.Number
 {
   /**
-   * The default value of the '{@link #getValue() <em>Value</em>}' attribute.
+   * The default value of the '{@link #getNumber() <em>Number</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getValue()
+   * @see #getNumber()
    * @generated
    * @ordered
    */
-  protected static final int VALUE_EDEFAULT = 0;
+  protected static final int NUMBER_EDEFAULT = 0;
 
   /**
-   * The cached value of the '{@link #getValue() <em>Value</em>}' attribute.
+   * The cached value of the '{@link #getNumber() <em>Number</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getValue()
+   * @see #getNumber()
    * @generated
    * @ordered
    */
-  protected int value = VALUE_EDEFAULT;
+  protected int number = NUMBER_EDEFAULT;
 
   /**
-   * The cached value of the '{@link #getProperties() <em>Properties</em>}' containment reference.
+   * The default value of the '{@link #getDecimal() <em>Decimal</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getProperties()
+   * @see #getDecimal()
    * @generated
    * @ordered
    */
-  protected Properties properties;
+  protected static final int DECIMAL_EDEFAULT = 0;
+
+  /**
+   * The cached value of the '{@link #getDecimal() <em>Decimal</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getDecimal()
+   * @generated
+   * @ordered
+   */
+  protected int decimal = DECIMAL_EDEFAULT;
 
   /**
    * <!-- begin-user-doc -->
@@ -87,9 +95,9 @@ public class NumberImpl extends ObjectRequireMinimumPropertiesImpl implements or
    * @generated
    */
   @Override
-  public int getValue()
+  public int getNumber()
   {
-    return value;
+    return number;
   }
 
   /**
@@ -98,12 +106,12 @@ public class NumberImpl extends ObjectRequireMinimumPropertiesImpl implements or
    * @generated
    */
   @Override
-  public void setValue(int newValue)
+  public void setNumber(int newNumber)
   {
-    int oldValue = value;
-    value = newValue;
+    int oldNumber = number;
+    number = newNumber;
     if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, JSchemaPackage.NUMBER__VALUE, oldValue, value));
+      eNotify(new ENotificationImpl(this, Notification.SET, JSchemaPackage.NUMBER__NUMBER, oldNumber, number));
   }
 
   /**
@@ -112,9 +120,9 @@ public class NumberImpl extends ObjectRequireMinimumPropertiesImpl implements or
    * @generated
    */
   @Override
-  public Properties getProperties()
+  public int getDecimal()
   {
-    return properties;
+    return decimal;
   }
 
   /**
@@ -122,54 +130,13 @@ public class NumberImpl extends ObjectRequireMinimumPropertiesImpl implements or
    * <!-- end-user-doc -->
    * @generated
    */
-  public NotificationChain basicSetProperties(Properties newProperties, NotificationChain msgs)
+  @Override
+  public void setDecimal(int newDecimal)
   {
-    Properties oldProperties = properties;
-    properties = newProperties;
+    int oldDecimal = decimal;
+    decimal = newDecimal;
     if (eNotificationRequired())
-    {
-      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, JSchemaPackage.NUMBER__PROPERTIES, oldProperties, newProperties);
-      if (msgs == null) msgs = notification; else msgs.add(notification);
-    }
-    return msgs;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public void setProperties(Properties newProperties)
-  {
-    if (newProperties != properties)
-    {
-      NotificationChain msgs = null;
-      if (properties != null)
-        msgs = ((InternalEObject)properties).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - JSchemaPackage.NUMBER__PROPERTIES, null, msgs);
-      if (newProperties != null)
-        msgs = ((InternalEObject)newProperties).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - JSchemaPackage.NUMBER__PROPERTIES, null, msgs);
-      msgs = basicSetProperties(newProperties, msgs);
-      if (msgs != null) msgs.dispatch();
-    }
-    else if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, JSchemaPackage.NUMBER__PROPERTIES, newProperties, newProperties));
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
-  {
-    switch (featureID)
-    {
-      case JSchemaPackage.NUMBER__PROPERTIES:
-        return basicSetProperties(null, msgs);
-    }
-    return super.eInverseRemove(otherEnd, featureID, msgs);
+      eNotify(new ENotificationImpl(this, Notification.SET, JSchemaPackage.NUMBER__DECIMAL, oldDecimal, decimal));
   }
 
   /**
@@ -182,10 +149,10 @@ public class NumberImpl extends ObjectRequireMinimumPropertiesImpl implements or
   {
     switch (featureID)
     {
-      case JSchemaPackage.NUMBER__VALUE:
-        return getValue();
-      case JSchemaPackage.NUMBER__PROPERTIES:
-        return getProperties();
+      case JSchemaPackage.NUMBER__NUMBER:
+        return getNumber();
+      case JSchemaPackage.NUMBER__DECIMAL:
+        return getDecimal();
     }
     return super.eGet(featureID, resolve, coreType);
   }
@@ -200,11 +167,11 @@ public class NumberImpl extends ObjectRequireMinimumPropertiesImpl implements or
   {
     switch (featureID)
     {
-      case JSchemaPackage.NUMBER__VALUE:
-        setValue((Integer)newValue);
+      case JSchemaPackage.NUMBER__NUMBER:
+        setNumber((Integer)newValue);
         return;
-      case JSchemaPackage.NUMBER__PROPERTIES:
-        setProperties((Properties)newValue);
+      case JSchemaPackage.NUMBER__DECIMAL:
+        setDecimal((Integer)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -220,11 +187,11 @@ public class NumberImpl extends ObjectRequireMinimumPropertiesImpl implements or
   {
     switch (featureID)
     {
-      case JSchemaPackage.NUMBER__VALUE:
-        setValue(VALUE_EDEFAULT);
+      case JSchemaPackage.NUMBER__NUMBER:
+        setNumber(NUMBER_EDEFAULT);
         return;
-      case JSchemaPackage.NUMBER__PROPERTIES:
-        setProperties((Properties)null);
+      case JSchemaPackage.NUMBER__DECIMAL:
+        setDecimal(DECIMAL_EDEFAULT);
         return;
     }
     super.eUnset(featureID);
@@ -240,10 +207,10 @@ public class NumberImpl extends ObjectRequireMinimumPropertiesImpl implements or
   {
     switch (featureID)
     {
-      case JSchemaPackage.NUMBER__VALUE:
-        return value != VALUE_EDEFAULT;
-      case JSchemaPackage.NUMBER__PROPERTIES:
-        return properties != null;
+      case JSchemaPackage.NUMBER__NUMBER:
+        return number != NUMBER_EDEFAULT;
+      case JSchemaPackage.NUMBER__DECIMAL:
+        return decimal != DECIMAL_EDEFAULT;
     }
     return super.eIsSet(featureID);
   }
@@ -259,8 +226,10 @@ public class NumberImpl extends ObjectRequireMinimumPropertiesImpl implements or
     if (eIsProxy()) return super.toString();
 
     StringBuilder result = new StringBuilder(super.toString());
-    result.append(" (value: ");
-    result.append(value);
+    result.append(" (number: ");
+    result.append(number);
+    result.append(", decimal: ");
+    result.append(decimal);
     result.append(')');
     return result.toString();
   }

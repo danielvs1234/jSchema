@@ -3,6 +3,7 @@
  */
 package org.xtext.example.mydsl.jSchema;
 
+import org.eclipse.emf.common.util.EList;
 
 /**
  * <!-- begin-user-doc -->
@@ -13,8 +14,9 @@ package org.xtext.example.mydsl.jSchema;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link org.xtext.example.mydsl.jSchema.Array#isArray <em>Array</em>}</li>
- *   <li>{@link org.xtext.example.mydsl.jSchema.Array#getLength <em>Length</em>}</li>
+ *   <li>{@link org.xtext.example.mydsl.jSchema.Array#getArray <em>Array</em>}</li>
+ *   <li>{@link org.xtext.example.mydsl.jSchema.Array#getName <em>Name</em>}</li>
+ *   <li>{@link org.xtext.example.mydsl.jSchema.Array#getProperties <em>Properties</em>}</li>
  * </ul>
  *
  * @see org.xtext.example.mydsl.jSchema.JSchemaPackage#getArray()
@@ -24,47 +26,59 @@ package org.xtext.example.mydsl.jSchema;
 public interface Array extends Types
 {
   /**
-   * Returns the value of the '<em><b>Array</b></em>' attribute.
+   * Returns the value of the '<em><b>Array</b></em>' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the value of the '<em>Array</em>' attribute.
-   * @see #setArray(boolean)
+   * @return the value of the '<em>Array</em>' containment reference.
+   * @see #setArray(Array)
    * @see org.xtext.example.mydsl.jSchema.JSchemaPackage#getArray_Array()
+   * @model containment="true"
+   * @generated
+   */
+  Array getArray();
+
+  /**
+   * Sets the value of the '{@link org.xtext.example.mydsl.jSchema.Array#getArray <em>Array</em>}' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @param value the new value of the '<em>Array</em>' containment reference.
+   * @see #getArray()
+   * @generated
+   */
+  void setArray(Array value);
+
+  /**
+   * Returns the value of the '<em><b>Name</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the value of the '<em>Name</em>' attribute.
+   * @see #setName(String)
+   * @see org.xtext.example.mydsl.jSchema.JSchemaPackage#getArray_Name()
    * @model
    * @generated
    */
-  boolean isArray();
+  String getName();
 
   /**
-   * Sets the value of the '{@link org.xtext.example.mydsl.jSchema.Array#isArray <em>Array</em>}' attribute.
+   * Sets the value of the '{@link org.xtext.example.mydsl.jSchema.Array#getName <em>Name</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Array</em>' attribute.
-   * @see #isArray()
+   * @param value the new value of the '<em>Name</em>' attribute.
+   * @see #getName()
    * @generated
    */
-  void setArray(boolean value);
+  void setName(String value);
 
   /**
-   * Returns the value of the '<em><b>Length</b></em>' attribute.
+   * Returns the value of the '<em><b>Properties</b></em>' containment reference list.
+   * The list contents are of type {@link org.xtext.example.mydsl.jSchema.Property}.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the value of the '<em>Length</em>' attribute.
-   * @see #setLength(int)
-   * @see org.xtext.example.mydsl.jSchema.JSchemaPackage#getArray_Length()
-   * @model
+   * @return the value of the '<em>Properties</em>' containment reference list.
+   * @see org.xtext.example.mydsl.jSchema.JSchemaPackage#getArray_Properties()
+   * @model containment="true"
    * @generated
    */
-  int getLength();
-
-  /**
-   * Sets the value of the '{@link org.xtext.example.mydsl.jSchema.Array#getLength <em>Length</em>}' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Length</em>' attribute.
-   * @see #getLength()
-   * @generated
-   */
-  void setLength(int value);
+  EList<Property> getProperties();
 
 } // Array

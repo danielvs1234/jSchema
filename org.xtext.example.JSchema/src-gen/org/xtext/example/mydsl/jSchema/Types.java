@@ -10,6 +10,12 @@ import org.eclipse.emf.ecore.EObject;
  * A representation of the model object '<em><b>Types</b></em>'.
  * <!-- end-user-doc -->
  *
+ * <p>
+ * The following features are supported:
+ * </p>
+ * <ul>
+ *   <li>{@link org.xtext.example.mydsl.jSchema.Types#getNumber <em>Number</em>}</li>
+ * </ul>
  *
  * @see org.xtext.example.mydsl.jSchema.JSchemaPackage#getTypes()
  * @model
@@ -17,4 +23,26 @@ import org.eclipse.emf.ecore.EObject;
  */
 public interface Types extends EObject
 {
+  /**
+   * Returns the value of the '<em><b>Number</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the value of the '<em>Number</em>' containment reference.
+   * @see #setNumber(org.xtext.example.mydsl.jSchema.Number)
+   * @see org.xtext.example.mydsl.jSchema.JSchemaPackage#getTypes_Number()
+   * @model containment="true"
+   * @generated
+   */
+  org.xtext.example.mydsl.jSchema.Number getNumber();
+
+  /**
+   * Sets the value of the '{@link org.xtext.example.mydsl.jSchema.Types#getNumber <em>Number</em>}' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @param value the new value of the '<em>Number</em>' containment reference.
+   * @see #getNumber()
+   * @generated
+   */
+  void setNumber(org.xtext.example.mydsl.jSchema.Number value);
+
 } // Types

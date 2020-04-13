@@ -9,6 +9,12 @@ package org.xtext.example.mydsl.jSchema;
  * A representation of the model object '<em><b>STRING</b></em>'.
  * <!-- end-user-doc -->
  *
+ * <p>
+ * The following features are supported:
+ * </p>
+ * <ul>
+ *   <li>{@link org.xtext.example.mydsl.jSchema.STRING#getString <em>String</em>}</li>
+ * </ul>
  *
  * @see org.xtext.example.mydsl.jSchema.JSchemaPackage#getSTRING()
  * @model
@@ -16,4 +22,26 @@ package org.xtext.example.mydsl.jSchema;
  */
 public interface STRING extends Types
 {
+  /**
+   * Returns the value of the '<em><b>String</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the value of the '<em>String</em>' attribute.
+   * @see #setString(String)
+   * @see org.xtext.example.mydsl.jSchema.JSchemaPackage#getSTRING_String()
+   * @model
+   * @generated
+   */
+  String getString();
+
+  /**
+   * Sets the value of the '{@link org.xtext.example.mydsl.jSchema.STRING#getString <em>String</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @param value the new value of the '<em>String</em>' attribute.
+   * @see #getString()
+   * @generated
+   */
+  void setString(String value);
+
 } // STRING

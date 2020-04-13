@@ -9,14 +9,15 @@ import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.util.Switch;
 
 import org.xtext.example.mydsl.jSchema.Array;
+import org.xtext.example.mydsl.jSchema.Includes;
 import org.xtext.example.mydsl.jSchema.JSchemaPackage;
 import org.xtext.example.mydsl.jSchema.Model;
-import org.xtext.example.mydsl.jSchema.Null;
-import org.xtext.example.mydsl.jSchema.ObjectRequireMinimumProperties;
-import org.xtext.example.mydsl.jSchema.Properties;
+import org.xtext.example.mydsl.jSchema.PrimitiveObject;
+import org.xtext.example.mydsl.jSchema.PrimitiveProperties;
 import org.xtext.example.mydsl.jSchema.Property;
 import org.xtext.example.mydsl.jSchema.STRING;
 import org.xtext.example.mydsl.jSchema.Types;
+import org.xtext.example.mydsl.jSchema.hasProperties;
 
 /**
  * <!-- begin-user-doc -->
@@ -92,10 +93,6 @@ public class JSchemaSwitch<T> extends Switch<T>
       {
         org.xtext.example.mydsl.jSchema.Number number = (org.xtext.example.mydsl.jSchema.Number)theEObject;
         T result = caseNumber(number);
-        if (result == null) result = caseObjectRequireMinimumProperties(number);
-        if (result == null) result = caseObject(number);
-        if (result == null) result = caseModel(number);
-        if (result == null) result = caseTypes(number);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -104,17 +101,14 @@ public class JSchemaSwitch<T> extends Switch<T>
         org.xtext.example.mydsl.jSchema.Object object = (org.xtext.example.mydsl.jSchema.Object)theEObject;
         T result = caseObject(object);
         if (result == null) result = caseModel(object);
-        if (result == null) result = caseTypes(object);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
-      case JSchemaPackage.OBJECT_REQUIRE_MINIMUM_PROPERTIES:
+      case JSchemaPackage.PRIMITIVE_OBJECT:
       {
-        ObjectRequireMinimumProperties objectRequireMinimumProperties = (ObjectRequireMinimumProperties)theEObject;
-        T result = caseObjectRequireMinimumProperties(objectRequireMinimumProperties);
-        if (result == null) result = caseObject(objectRequireMinimumProperties);
-        if (result == null) result = caseModel(objectRequireMinimumProperties);
-        if (result == null) result = caseTypes(objectRequireMinimumProperties);
+        PrimitiveObject primitiveObject = (PrimitiveObject)theEObject;
+        T result = casePrimitiveObject(primitiveObject);
+        if (result == null) result = caseModel(primitiveObject);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -125,10 +119,10 @@ public class JSchemaSwitch<T> extends Switch<T>
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
-      case JSchemaPackage.PROPERTIES:
+      case JSchemaPackage.HAS_PROPERTIES:
       {
-        Properties properties = (Properties)theEObject;
-        T result = caseProperties(properties);
+        hasProperties hasProperties = (hasProperties)theEObject;
+        T result = casehasProperties(hasProperties);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -136,6 +130,20 @@ public class JSchemaSwitch<T> extends Switch<T>
       {
         Property property = (Property)theEObject;
         T result = caseProperty(property);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case JSchemaPackage.PRIMITIVE_PROPERTIES:
+      {
+        PrimitiveProperties primitiveProperties = (PrimitiveProperties)theEObject;
+        T result = casePrimitiveProperties(primitiveProperties);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case JSchemaPackage.INCLUDES:
+      {
+        Includes includes = (Includes)theEObject;
+        T result = caseIncludes(includes);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -152,22 +160,6 @@ public class JSchemaSwitch<T> extends Switch<T>
         STRING string = (STRING)theEObject;
         T result = caseSTRING(string);
         if (result == null) result = caseTypes(string);
-        if (result == null) result = defaultCase(theEObject);
-        return result;
-      }
-      case JSchemaPackage.BOOLEAN:
-      {
-        org.xtext.example.mydsl.jSchema.Boolean boolean_ = (org.xtext.example.mydsl.jSchema.Boolean)theEObject;
-        T result = caseBoolean(boolean_);
-        if (result == null) result = caseTypes(boolean_);
-        if (result == null) result = defaultCase(theEObject);
-        return result;
-      }
-      case JSchemaPackage.NULL:
-      {
-        Null null_ = (Null)theEObject;
-        T result = caseNull(null_);
-        if (result == null) result = caseTypes(null_);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -224,17 +216,17 @@ public class JSchemaSwitch<T> extends Switch<T>
   }
 
   /**
-   * Returns the result of interpreting the object as an instance of '<em>Object Require Minimum Properties</em>'.
+   * Returns the result of interpreting the object as an instance of '<em>Primitive Object</em>'.
    * <!-- begin-user-doc -->
    * This implementation returns null;
    * returning a non-null result will terminate the switch.
    * <!-- end-user-doc -->
    * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Object Require Minimum Properties</em>'.
+   * @return the result of interpreting the object as an instance of '<em>Primitive Object</em>'.
    * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
    * @generated
    */
-  public T caseObjectRequireMinimumProperties(ObjectRequireMinimumProperties object)
+  public T casePrimitiveObject(PrimitiveObject object)
   {
     return null;
   }
@@ -256,17 +248,17 @@ public class JSchemaSwitch<T> extends Switch<T>
   }
 
   /**
-   * Returns the result of interpreting the object as an instance of '<em>Properties</em>'.
+   * Returns the result of interpreting the object as an instance of '<em>has Properties</em>'.
    * <!-- begin-user-doc -->
    * This implementation returns null;
    * returning a non-null result will terminate the switch.
    * <!-- end-user-doc -->
    * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Properties</em>'.
+   * @return the result of interpreting the object as an instance of '<em>has Properties</em>'.
    * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
    * @generated
    */
-  public T caseProperties(Properties object)
+  public T casehasProperties(hasProperties object)
   {
     return null;
   }
@@ -283,6 +275,38 @@ public class JSchemaSwitch<T> extends Switch<T>
    * @generated
    */
   public T caseProperty(Property object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Primitive Properties</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Primitive Properties</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T casePrimitiveProperties(PrimitiveProperties object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Includes</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Includes</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseIncludes(Includes object)
   {
     return null;
   }
@@ -315,38 +339,6 @@ public class JSchemaSwitch<T> extends Switch<T>
    * @generated
    */
   public T caseSTRING(STRING object)
-  {
-    return null;
-  }
-
-  /**
-   * Returns the result of interpreting the object as an instance of '<em>Boolean</em>'.
-   * <!-- begin-user-doc -->
-   * This implementation returns null;
-   * returning a non-null result will terminate the switch.
-   * <!-- end-user-doc -->
-   * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Boolean</em>'.
-   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-   * @generated
-   */
-  public T caseBoolean(org.xtext.example.mydsl.jSchema.Boolean object)
-  {
-    return null;
-  }
-
-  /**
-   * Returns the result of interpreting the object as an instance of '<em>Null</em>'.
-   * <!-- begin-user-doc -->
-   * This implementation returns null;
-   * returning a non-null result will terminate the switch.
-   * <!-- end-user-doc -->
-   * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Null</em>'.
-   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-   * @generated
-   */
-  public T caseNull(Null object)
   {
     return null;
   }

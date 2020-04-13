@@ -2,29 +2,71 @@
 <ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="jSchema" nsURI="http://www.xtext.org/example/mydsl/JSchema"
     nsPrefix="jSchema">
-  <eClassifiers xsi:type="ecore:EClass" name="Model"/>
-  <eClassifiers xsi:type="ecore:EClass" name="Number" eSuperTypes="#//ObjectRequireMinimumProperties">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="value" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="properties" eType="#//Properties"
+  <eClassifiers xsi:type="ecore:EClass" name="Model">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Number">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="number" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="decimal" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Object" eSuperTypes="#//Model">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="includeObjects" eType="#//Includes"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="properties" eType="#//hasProperties"
         containment="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Object" eSuperTypes="#//Model #//Types"/>
-  <eClassifiers xsi:type="ecore:EClass" name="ObjectRequireMinimumProperties" eSuperTypes="#//Object"/>
-  <eClassifiers xsi:type="ecore:EClass" name="Types"/>
-  <eClassifiers xsi:type="ecore:EClass" name="Properties">
+  <eClassifiers xsi:type="ecore:EClass" name="PrimitiveObject" eSuperTypes="#//Model">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="type" eType="#//Types"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="primitiveProperties" upperBound="-1"
+        eType="#//PrimitiveProperties" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Types">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="number" eType="#//Number"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="hasProperties">
     <eStructuralFeatures xsi:type="ecore:EReference" name="properties" upperBound="-1"
         eType="#//Property" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Property">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="type" eType="#//Types"
         containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="PrimitiveProperties">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="stringFormat" eType="#//FormatTypes"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="FormatTypes">
+    <eLiterals name="date_time" literal="&quot;date-time&quot;"/>
+    <eLiterals name="time" value="1" literal="&quot;time&quot;"/>
+    <eLiterals name="date" value="2" literal="&quot;date&quot;"/>
+    <eLiterals name="email" value="3" literal="&quot;email&quot;"/>
+    <eLiterals name="idn_email" value="4" literal="&quot;idn-email&quot;"/>
+    <eLiterals name="hostname" value="5" literal="&quot;hostname&quot;"/>
+    <eLiterals name="ipv4" value="6" literal="&quot;ipv4&quot;"/>
+    <eLiterals name="ipv6" value="7" literal="&quot;ipv6&quot;"/>
+    <eLiterals name="uri" value="8" literal="&quot;uri&quot;"/>
+    <eLiterals name="uri_reference" value="9" literal="&quot;uri-reference&quot;"/>
+    <eLiterals name="iri" value="10" literal="&quot;iri&quot;"/>
+    <eLiterals name="iri_reference" value="11" literal="&quot;iri-reference&quot;"/>
+    <eLiterals name="uri_template" value="12" literal="&quot;uri-template&quot;"/>
+    <eLiterals name="json_pointer" value="13" literal="&quot;json-pointer&quot;"/>
+    <eLiterals name="relative_json_pointer" value="14" literal="&quot;relative-json-pointer&quot;"/>
+    <eLiterals name="regex" value="15" literal="&quot;regex&quot;"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Includes">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="objectID" unique="false"
+        upperBound="-1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Array" eSuperTypes="#//Types">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="array" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="length" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="array" eType="#//Array"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="properties" upperBound="-1"
+        eType="#//Property" containment="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="STRING" eSuperTypes="#//Types"/>
-  <eClassifiers xsi:type="ecore:EClass" name="Boolean" eSuperTypes="#//Types"/>
-  <eClassifiers xsi:type="ecore:EClass" name="Null" eSuperTypes="#//Types"/>
+  <eClassifiers xsi:type="ecore:EClass" name="STRING" eSuperTypes="#//Types">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="string" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
 </ecore:EPackage>

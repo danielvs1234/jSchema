@@ -51,13 +51,13 @@ public interface JSchemaFactory extends EFactory
   Object createObject();
 
   /**
-   * Returns a new object of class '<em>Object Require Minimum Properties</em>'.
+   * Returns a new object of class '<em>Primitive Object</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return a new object of class '<em>Object Require Minimum Properties</em>'.
+   * @return a new object of class '<em>Primitive Object</em>'.
    * @generated
    */
-  ObjectRequireMinimumProperties createObjectRequireMinimumProperties();
+  PrimitiveObject createPrimitiveObject();
 
   /**
    * Returns a new object of class '<em>Types</em>'.
@@ -69,13 +69,13 @@ public interface JSchemaFactory extends EFactory
   Types createTypes();
 
   /**
-   * Returns a new object of class '<em>Properties</em>'.
+   * Returns a new object of class '<em>has Properties</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return a new object of class '<em>Properties</em>'.
+   * @return a new object of class '<em>has Properties</em>'.
    * @generated
    */
-  Properties createProperties();
+  hasProperties createhasProperties();
 
   /**
    * Returns a new object of class '<em>Property</em>'.
@@ -85,6 +85,24 @@ public interface JSchemaFactory extends EFactory
    * @generated
    */
   Property createProperty();
+
+  /**
+   * Returns a new object of class '<em>Primitive Properties</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Primitive Properties</em>'.
+   * @generated
+   */
+  PrimitiveProperties createPrimitiveProperties();
+
+  /**
+   * Returns a new object of class '<em>Includes</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Includes</em>'.
+   * @generated
+   */
+  Includes createIncludes();
 
   /**
    * Returns a new object of class '<em>Array</em>'.
@@ -103,24 +121,6 @@ public interface JSchemaFactory extends EFactory
    * @generated
    */
   STRING createSTRING();
-
-  /**
-   * Returns a new object of class '<em>Boolean</em>'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return a new object of class '<em>Boolean</em>'.
-   * @generated
-   */
-  Boolean createBoolean();
-
-  /**
-   * Returns a new object of class '<em>Null</em>'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return a new object of class '<em>Null</em>'.
-   * @generated
-   */
-  Null createNull();
 
   /**
    * Returns the package supported by this factory.

@@ -24,14 +24,24 @@ import org.xtext.example.mydsl.jSchema.Types;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link org.xtext.example.mydsl.jSchema.impl.PropertyImpl#getName <em>Name</em>}</li>
  *   <li>{@link org.xtext.example.mydsl.jSchema.impl.PropertyImpl#getType <em>Type</em>}</li>
+ *   <li>{@link org.xtext.example.mydsl.jSchema.impl.PropertyImpl#getName <em>Name</em>}</li>
  * </ul>
  *
  * @generated
  */
 public class PropertyImpl extends MinimalEObjectImpl.Container implements Property
 {
+  /**
+   * The cached value of the '{@link #getType() <em>Type</em>}' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getType()
+   * @generated
+   * @ordered
+   */
+  protected Types type;
+
   /**
    * The default value of the '{@link #getName() <em>Name</em>}' attribute.
    * <!-- begin-user-doc -->
@@ -53,16 +63,6 @@ public class PropertyImpl extends MinimalEObjectImpl.Container implements Proper
   protected String name = NAME_EDEFAULT;
 
   /**
-   * The cached value of the '{@link #getType() <em>Type</em>}' containment reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #getType()
-   * @generated
-   * @ordered
-   */
-  protected Types type;
-
-  /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
@@ -81,31 +81,6 @@ public class PropertyImpl extends MinimalEObjectImpl.Container implements Proper
   protected EClass eStaticClass()
   {
     return JSchemaPackage.Literals.PROPERTY;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public String getName()
-  {
-    return name;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public void setName(String newName)
-  {
-    String oldName = name;
-    name = newName;
-    if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, JSchemaPackage.PROPERTY__NAME, oldName, name));
   }
 
   /**
@@ -164,6 +139,31 @@ public class PropertyImpl extends MinimalEObjectImpl.Container implements Proper
    * @generated
    */
   @Override
+  public String getName()
+  {
+    return name;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public void setName(String newName)
+  {
+    String oldName = name;
+    name = newName;
+    if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, JSchemaPackage.PROPERTY__NAME, oldName, name));
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
   public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
   {
     switch (featureID)
@@ -184,10 +184,10 @@ public class PropertyImpl extends MinimalEObjectImpl.Container implements Proper
   {
     switch (featureID)
     {
-      case JSchemaPackage.PROPERTY__NAME:
-        return getName();
       case JSchemaPackage.PROPERTY__TYPE:
         return getType();
+      case JSchemaPackage.PROPERTY__NAME:
+        return getName();
     }
     return super.eGet(featureID, resolve, coreType);
   }
@@ -202,11 +202,11 @@ public class PropertyImpl extends MinimalEObjectImpl.Container implements Proper
   {
     switch (featureID)
     {
-      case JSchemaPackage.PROPERTY__NAME:
-        setName((String)newValue);
-        return;
       case JSchemaPackage.PROPERTY__TYPE:
         setType((Types)newValue);
+        return;
+      case JSchemaPackage.PROPERTY__NAME:
+        setName((String)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -222,11 +222,11 @@ public class PropertyImpl extends MinimalEObjectImpl.Container implements Proper
   {
     switch (featureID)
     {
-      case JSchemaPackage.PROPERTY__NAME:
-        setName(NAME_EDEFAULT);
-        return;
       case JSchemaPackage.PROPERTY__TYPE:
         setType((Types)null);
+        return;
+      case JSchemaPackage.PROPERTY__NAME:
+        setName(NAME_EDEFAULT);
         return;
     }
     super.eUnset(featureID);
@@ -242,10 +242,10 @@ public class PropertyImpl extends MinimalEObjectImpl.Container implements Proper
   {
     switch (featureID)
     {
-      case JSchemaPackage.PROPERTY__NAME:
-        return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
       case JSchemaPackage.PROPERTY__TYPE:
         return type != null;
+      case JSchemaPackage.PROPERTY__NAME:
+        return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
     }
     return super.eIsSet(featureID);
   }

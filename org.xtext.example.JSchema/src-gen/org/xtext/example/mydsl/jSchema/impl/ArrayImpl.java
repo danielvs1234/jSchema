@@ -3,16 +3,24 @@
  */
 package org.xtext.example.mydsl.jSchema.impl;
 
-import java.lang.Boolean;
+import java.util.Collection;
 
 import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.common.notify.NotificationChain;
+
+import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
+import org.eclipse.emf.ecore.util.EObjectContainmentEList;
+import org.eclipse.emf.ecore.util.InternalEList;
+
 import org.xtext.example.mydsl.jSchema.Array;
 import org.xtext.example.mydsl.jSchema.JSchemaPackage;
+import org.xtext.example.mydsl.jSchema.Property;
 
 /**
  * <!-- begin-user-doc -->
@@ -22,8 +30,9 @@ import org.xtext.example.mydsl.jSchema.JSchemaPackage;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link org.xtext.example.mydsl.jSchema.impl.ArrayImpl#isArray <em>Array</em>}</li>
- *   <li>{@link org.xtext.example.mydsl.jSchema.impl.ArrayImpl#getLength <em>Length</em>}</li>
+ *   <li>{@link org.xtext.example.mydsl.jSchema.impl.ArrayImpl#getArray <em>Array</em>}</li>
+ *   <li>{@link org.xtext.example.mydsl.jSchema.impl.ArrayImpl#getName <em>Name</em>}</li>
+ *   <li>{@link org.xtext.example.mydsl.jSchema.impl.ArrayImpl#getProperties <em>Properties</em>}</li>
  * </ul>
  *
  * @generated
@@ -31,44 +40,44 @@ import org.xtext.example.mydsl.jSchema.JSchemaPackage;
 public class ArrayImpl extends TypesImpl implements Array
 {
   /**
-   * The default value of the '{@link #isArray() <em>Array</em>}' attribute.
+   * The cached value of the '{@link #getArray() <em>Array</em>}' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #isArray()
+   * @see #getArray()
    * @generated
    * @ordered
    */
-  protected static final boolean ARRAY_EDEFAULT = false;
+  protected Array array;
 
   /**
-   * The cached value of the '{@link #isArray() <em>Array</em>}' attribute.
+   * The default value of the '{@link #getName() <em>Name</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #isArray()
+   * @see #getName()
    * @generated
    * @ordered
    */
-  protected boolean array = ARRAY_EDEFAULT;
+  protected static final String NAME_EDEFAULT = null;
 
   /**
-   * The default value of the '{@link #getLength() <em>Length</em>}' attribute.
+   * The cached value of the '{@link #getName() <em>Name</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getLength()
+   * @see #getName()
    * @generated
    * @ordered
    */
-  protected static final int LENGTH_EDEFAULT = 0;
+  protected String name = NAME_EDEFAULT;
 
   /**
-   * The cached value of the '{@link #getLength() <em>Length</em>}' attribute.
+   * The cached value of the '{@link #getProperties() <em>Properties</em>}' containment reference list.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getLength()
+   * @see #getProperties()
    * @generated
    * @ordered
    */
-  protected int length = LENGTH_EDEFAULT;
+  protected EList<Property> properties;
 
   /**
    * <!-- begin-user-doc -->
@@ -97,7 +106,7 @@ public class ArrayImpl extends TypesImpl implements Array
    * @generated
    */
   @Override
-  public boolean isArray()
+  public Array getArray()
   {
     return array;
   }
@@ -107,13 +116,16 @@ public class ArrayImpl extends TypesImpl implements Array
    * <!-- end-user-doc -->
    * @generated
    */
-  @Override
-  public void setArray(boolean newArray)
+  public NotificationChain basicSetArray(Array newArray, NotificationChain msgs)
   {
-    boolean oldArray = array;
+    Array oldArray = array;
     array = newArray;
     if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, JSchemaPackage.ARRAY__ARRAY, oldArray, array));
+    {
+      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, JSchemaPackage.ARRAY__ARRAY, oldArray, newArray);
+      if (msgs == null) msgs = notification; else msgs.add(notification);
+    }
+    return msgs;
   }
 
   /**
@@ -122,9 +134,20 @@ public class ArrayImpl extends TypesImpl implements Array
    * @generated
    */
   @Override
-  public int getLength()
+  public void setArray(Array newArray)
   {
-    return length;
+    if (newArray != array)
+    {
+      NotificationChain msgs = null;
+      if (array != null)
+        msgs = ((InternalEObject)array).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - JSchemaPackage.ARRAY__ARRAY, null, msgs);
+      if (newArray != null)
+        msgs = ((InternalEObject)newArray).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - JSchemaPackage.ARRAY__ARRAY, null, msgs);
+      msgs = basicSetArray(newArray, msgs);
+      if (msgs != null) msgs.dispatch();
+    }
+    else if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, JSchemaPackage.ARRAY__ARRAY, newArray, newArray));
   }
 
   /**
@@ -133,12 +156,56 @@ public class ArrayImpl extends TypesImpl implements Array
    * @generated
    */
   @Override
-  public void setLength(int newLength)
+  public String getName()
   {
-    int oldLength = length;
-    length = newLength;
+    return name;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public void setName(String newName)
+  {
+    String oldName = name;
+    name = newName;
     if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, JSchemaPackage.ARRAY__LENGTH, oldLength, length));
+      eNotify(new ENotificationImpl(this, Notification.SET, JSchemaPackage.ARRAY__NAME, oldName, name));
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EList<Property> getProperties()
+  {
+    if (properties == null)
+    {
+      properties = new EObjectContainmentEList<Property>(Property.class, this, JSchemaPackage.ARRAY__PROPERTIES);
+    }
+    return properties;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
+  {
+    switch (featureID)
+    {
+      case JSchemaPackage.ARRAY__ARRAY:
+        return basicSetArray(null, msgs);
+      case JSchemaPackage.ARRAY__PROPERTIES:
+        return ((InternalEList<?>)getProperties()).basicRemove(otherEnd, msgs);
+    }
+    return super.eInverseRemove(otherEnd, featureID, msgs);
   }
 
   /**
@@ -152,9 +219,11 @@ public class ArrayImpl extends TypesImpl implements Array
     switch (featureID)
     {
       case JSchemaPackage.ARRAY__ARRAY:
-        return isArray();
-      case JSchemaPackage.ARRAY__LENGTH:
-        return getLength();
+        return getArray();
+      case JSchemaPackage.ARRAY__NAME:
+        return getName();
+      case JSchemaPackage.ARRAY__PROPERTIES:
+        return getProperties();
     }
     return super.eGet(featureID, resolve, coreType);
   }
@@ -164,16 +233,21 @@ public class ArrayImpl extends TypesImpl implements Array
    * <!-- end-user-doc -->
    * @generated
    */
+  @SuppressWarnings("unchecked")
   @Override
   public void eSet(int featureID, Object newValue)
   {
     switch (featureID)
     {
       case JSchemaPackage.ARRAY__ARRAY:
-        setArray((Boolean)newValue);
+        setArray((Array)newValue);
         return;
-      case JSchemaPackage.ARRAY__LENGTH:
-        setLength((Integer)newValue);
+      case JSchemaPackage.ARRAY__NAME:
+        setName((String)newValue);
+        return;
+      case JSchemaPackage.ARRAY__PROPERTIES:
+        getProperties().clear();
+        getProperties().addAll((Collection<? extends Property>)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -190,10 +264,13 @@ public class ArrayImpl extends TypesImpl implements Array
     switch (featureID)
     {
       case JSchemaPackage.ARRAY__ARRAY:
-        setArray(ARRAY_EDEFAULT);
+        setArray((Array)null);
         return;
-      case JSchemaPackage.ARRAY__LENGTH:
-        setLength(LENGTH_EDEFAULT);
+      case JSchemaPackage.ARRAY__NAME:
+        setName(NAME_EDEFAULT);
+        return;
+      case JSchemaPackage.ARRAY__PROPERTIES:
+        getProperties().clear();
         return;
     }
     super.eUnset(featureID);
@@ -210,9 +287,11 @@ public class ArrayImpl extends TypesImpl implements Array
     switch (featureID)
     {
       case JSchemaPackage.ARRAY__ARRAY:
-        return array != ARRAY_EDEFAULT;
-      case JSchemaPackage.ARRAY__LENGTH:
-        return length != LENGTH_EDEFAULT;
+        return array != null;
+      case JSchemaPackage.ARRAY__NAME:
+        return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
+      case JSchemaPackage.ARRAY__PROPERTIES:
+        return properties != null && !properties.isEmpty();
     }
     return super.eIsSet(featureID);
   }
@@ -228,10 +307,8 @@ public class ArrayImpl extends TypesImpl implements Array
     if (eIsProxy()) return super.toString();
 
     StringBuilder result = new StringBuilder(super.toString());
-    result.append(" (array: ");
-    result.append(array);
-    result.append(", length: ");
-    result.append(length);
+    result.append(" (name: ");
+    result.append(name);
     result.append(')');
     return result.toString();
   }

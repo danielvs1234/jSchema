@@ -9,6 +9,8 @@ import java.util.List;
 import org.eclipse.xtext.Action;
 import org.eclipse.xtext.Alternatives;
 import org.eclipse.xtext.Assignment;
+import org.eclipse.xtext.EnumLiteralDeclaration;
+import org.eclipse.xtext.EnumRule;
 import org.eclipse.xtext.Grammar;
 import org.eclipse.xtext.GrammarUtil;
 import org.eclipse.xtext.Group;
@@ -17,6 +19,7 @@ import org.eclipse.xtext.ParserRule;
 import org.eclipse.xtext.RuleCall;
 import org.eclipse.xtext.TerminalRule;
 import org.eclipse.xtext.common.services.TerminalsGrammarAccess;
+import org.eclipse.xtext.service.AbstractElementFinder.AbstractEnumRuleElementFinder;
 import org.eclipse.xtext.service.AbstractElementFinder.AbstractGrammarElementFinder;
 import org.eclipse.xtext.service.GrammarProvider;
 
@@ -25,233 +28,139 @@ public class JSchemaGrammarAccess extends AbstractGrammarElementFinder {
 	
 	public class ModelElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.xtext.example.mydsl.JSchema.Model");
-		private final RuleCall cObjectParserRuleCall = (RuleCall)rule.eContents().get(1);
+		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
+		private final RuleCall cObjectParserRuleCall_0 = (RuleCall)cAlternatives.eContents().get(0);
+		private final RuleCall cPrimitiveObjectParserRuleCall_1 = (RuleCall)cAlternatives.eContents().get(1);
 		
 		//Model:
-		//	Object;
+		//	Object | PrimitiveObject;
 		@Override public ParserRule getRule() { return rule; }
 		
+		//Object | PrimitiveObject
+		public Alternatives getAlternatives() { return cAlternatives; }
+		
 		//Object
-		public RuleCall getObjectParserRuleCall() { return cObjectParserRuleCall; }
+		public RuleCall getObjectParserRuleCall_0() { return cObjectParserRuleCall_0; }
+		
+		//PrimitiveObject
+		public RuleCall getPrimitiveObjectParserRuleCall_1() { return cPrimitiveObjectParserRuleCall_1; }
 	}
 	public class NumberElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.xtext.example.mydsl.JSchema.Number");
-		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
-		private final Group cGroup_0 = (Group)cAlternatives.eContents().get(0);
-		private final Keyword cNumKeyword_0_0 = (Keyword)cGroup_0.eContents().get(0);
-		private final Assignment cValueAssignment_0_1 = (Assignment)cGroup_0.eContents().get(1);
-		private final RuleCall cValueINTTerminalRuleCall_0_1_0 = (RuleCall)cValueAssignment_0_1.eContents().get(0);
-		private final RuleCall cDOUBLETerminalRuleCall_1 = (RuleCall)cAlternatives.eContents().get(1);
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final Assignment cNumberAssignment_0 = (Assignment)cGroup.eContents().get(0);
+		private final RuleCall cNumberINTTerminalRuleCall_0_0 = (RuleCall)cNumberAssignment_0.eContents().get(0);
+		private final Group cGroup_1 = (Group)cGroup.eContents().get(1);
+		private final Keyword cFullStopKeyword_1_0 = (Keyword)cGroup_1.eContents().get(0);
+		private final Assignment cDecimalAssignment_1_1 = (Assignment)cGroup_1.eContents().get(1);
+		private final RuleCall cDecimalINTTerminalRuleCall_1_1_0 = (RuleCall)cDecimalAssignment_1_1.eContents().get(0);
 		
 		//Number:
-		//	'num' value=INT | DOUBLE;
+		//	number=INT ('.' decimal=INT)?;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//'num' value=INT | DOUBLE
-		public Alternatives getAlternatives() { return cAlternatives; }
+		//number=INT ('.' decimal=INT)?
+		public Group getGroup() { return cGroup; }
 		
-		//'num' value=INT
-		public Group getGroup_0() { return cGroup_0; }
-		
-		//'num'
-		public Keyword getNumKeyword_0_0() { return cNumKeyword_0_0; }
-		
-		//value=INT
-		public Assignment getValueAssignment_0_1() { return cValueAssignment_0_1; }
+		//number=INT
+		public Assignment getNumberAssignment_0() { return cNumberAssignment_0; }
 		
 		//INT
-		public RuleCall getValueINTTerminalRuleCall_0_1_0() { return cValueINTTerminalRuleCall_0_1_0; }
+		public RuleCall getNumberINTTerminalRuleCall_0_0() { return cNumberINTTerminalRuleCall_0_0; }
 		
-		//DOUBLE
-		public RuleCall getDOUBLETerminalRuleCall_1() { return cDOUBLETerminalRuleCall_1; }
+		//('.' decimal=INT)?
+		public Group getGroup_1() { return cGroup_1; }
+		
+		//'.'
+		public Keyword getFullStopKeyword_1_0() { return cFullStopKeyword_1_0; }
+		
+		//decimal=INT
+		public Assignment getDecimalAssignment_1_1() { return cDecimalAssignment_1_1; }
+		
+		//INT
+		public RuleCall getDecimalINTTerminalRuleCall_1_1_0() { return cDecimalINTTerminalRuleCall_1_1_0; }
 	}
 	public class ObjectElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.xtext.example.mydsl.JSchema.Object");
 		private final Group cGroup = (Group)rule.eContents().get(1);
-		private final Keyword cObjectKeyword_0 = (Keyword)cGroup.eContents().get(0);
-		private final RuleCall cObjectRequireMinimumPropertiesParserRuleCall_1 = (RuleCall)cGroup.eContents().get(1);
+		private final Assignment cNameAssignment_0 = (Assignment)cGroup.eContents().get(0);
+		private final RuleCall cNameIDTerminalRuleCall_0_0 = (RuleCall)cNameAssignment_0.eContents().get(0);
+		private final Group cGroup_1 = (Group)cGroup.eContents().get(1);
+		private final Keyword cIncludesKeyword_1_0 = (Keyword)cGroup_1.eContents().get(0);
+		private final Assignment cIncludeObjectsAssignment_1_1 = (Assignment)cGroup_1.eContents().get(1);
+		private final RuleCall cIncludeObjectsIncludesParserRuleCall_1_1_0 = (RuleCall)cIncludeObjectsAssignment_1_1.eContents().get(0);
+		private final Keyword cLeftCurlyBracketKeyword_2 = (Keyword)cGroup.eContents().get(2);
+		private final Assignment cPropertiesAssignment_3 = (Assignment)cGroup.eContents().get(3);
+		private final RuleCall cPropertiesHasPropertiesParserRuleCall_3_0 = (RuleCall)cPropertiesAssignment_3.eContents().get(0);
+		private final Keyword cRightCurlyBracketKeyword_4 = (Keyword)cGroup.eContents().get(4);
 		
+		////(nestedObjectName=ID nestedObject=Object)
 		//Object:
-		//	'object' ObjectRequireMinimumProperties?;
+		//	name=ID ('includes' includeObjects=Includes)? '{' properties=hasProperties? '}';
 		@Override public ParserRule getRule() { return rule; }
 		
-		//'object' ObjectRequireMinimumProperties?
+		//name=ID ('includes' includeObjects=Includes)? '{' properties=hasProperties? '}'
 		public Group getGroup() { return cGroup; }
 		
-		//'object'
-		public Keyword getObjectKeyword_0() { return cObjectKeyword_0; }
+		//name=ID
+		public Assignment getNameAssignment_0() { return cNameAssignment_0; }
 		
-		//ObjectRequireMinimumProperties?
-		public RuleCall getObjectRequireMinimumPropertiesParserRuleCall_1() { return cObjectRequireMinimumPropertiesParserRuleCall_1; }
-	}
-	public class ObjectRequireMinimumPropertiesElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.xtext.example.mydsl.JSchema.ObjectRequireMinimumProperties");
-		private final Group cGroup = (Group)rule.eContents().get(1);
-		private final Keyword cRequireKeyword_0 = (Keyword)cGroup.eContents().get(0);
-		private final Alternatives cAlternatives_1 = (Alternatives)cGroup.eContents().get(1);
-		private final Keyword cMinimumKeyword_1_0 = (Keyword)cAlternatives_1.eContents().get(0);
-		private final Keyword cMaximumKeyword_1_1 = (Keyword)cAlternatives_1.eContents().get(1);
-		private final RuleCall cNumberParserRuleCall_2 = (RuleCall)cGroup.eContents().get(2);
-		private final Keyword cPropertiesKeyword_3 = (Keyword)cGroup.eContents().get(3);
-		private final Assignment cPropertiesAssignment_4 = (Assignment)cGroup.eContents().get(4);
-		private final RuleCall cPropertiesPropertiesParserRuleCall_4_0 = (RuleCall)cPropertiesAssignment_4.eContents().get(0);
+		//ID
+		public RuleCall getNameIDTerminalRuleCall_0_0() { return cNameIDTerminalRuleCall_0_0; }
 		
-		//ObjectRequireMinimumProperties:
-		//	'require' ('minimum' | 'maximum') Number 'properties' properties=Properties;
-		@Override public ParserRule getRule() { return rule; }
-		
-		//'require' ('minimum' | 'maximum') Number 'properties' properties=Properties
-		public Group getGroup() { return cGroup; }
-		
-		//'require'
-		public Keyword getRequireKeyword_0() { return cRequireKeyword_0; }
-		
-		//('minimum' | 'maximum')
-		public Alternatives getAlternatives_1() { return cAlternatives_1; }
-		
-		//'minimum'
-		public Keyword getMinimumKeyword_1_0() { return cMinimumKeyword_1_0; }
-		
-		//'maximum'
-		public Keyword getMaximumKeyword_1_1() { return cMaximumKeyword_1_1; }
-		
-		//Number
-		public RuleCall getNumberParserRuleCall_2() { return cNumberParserRuleCall_2; }
-		
-		//'properties'
-		public Keyword getPropertiesKeyword_3() { return cPropertiesKeyword_3; }
-		
-		//properties=Properties
-		public Assignment getPropertiesAssignment_4() { return cPropertiesAssignment_4; }
-		
-		//Properties
-		public RuleCall getPropertiesPropertiesParserRuleCall_4_0() { return cPropertiesPropertiesParserRuleCall_4_0; }
-	}
-	public class TypesElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.xtext.example.mydsl.JSchema.Types");
-		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
-		private final Group cGroup_0 = (Group)cAlternatives.eContents().get(0);
-		private final Action cObjectAction_0_0 = (Action)cGroup_0.eContents().get(0);
-		private final Keyword cObjectKeyword_0_1 = (Keyword)cGroup_0.eContents().get(1);
-		private final Group cGroup_1 = (Group)cAlternatives.eContents().get(1);
-		private final Action cSTRINGAction_1_0 = (Action)cGroup_1.eContents().get(0);
-		private final Keyword cStringKeyword_1_1 = (Keyword)cGroup_1.eContents().get(1);
-		private final Group cGroup_2 = (Group)cAlternatives.eContents().get(2);
-		private final Action cNumberAction_2_0 = (Action)cGroup_2.eContents().get(0);
-		private final Keyword cNumberKeyword_2_1 = (Keyword)cGroup_2.eContents().get(1);
-		private final Group cGroup_3 = (Group)cAlternatives.eContents().get(3);
-		private final Action cArrayAction_3_0 = (Action)cGroup_3.eContents().get(0);
-		private final Keyword cArrayKeyword_3_1 = (Keyword)cGroup_3.eContents().get(1);
-		private final Group cGroup_4 = (Group)cAlternatives.eContents().get(4);
-		private final Action cBooleanAction_4_0 = (Action)cGroup_4.eContents().get(0);
-		private final Keyword cBooleanKeyword_4_1 = (Keyword)cGroup_4.eContents().get(1);
-		private final Group cGroup_5 = (Group)cAlternatives.eContents().get(5);
-		private final Action cNullAction_5_0 = (Action)cGroup_5.eContents().get(0);
-		private final Keyword cNullKeyword_5_1 = (Keyword)cGroup_5.eContents().get(1);
-		
-		//Types:
-		//	{Object} 'object' | {STRING} 'string' | {Number} 'number' | {Array} 'array' | {Boolean} 'boolean' | {Null} 'null';
-		@Override public ParserRule getRule() { return rule; }
-		
-		//{Object} 'object' | {STRING} 'string' | {Number} 'number' | {Array} 'array' | {Boolean} 'boolean' | {Null} 'null'
-		public Alternatives getAlternatives() { return cAlternatives; }
-		
-		//{Object} 'object'
-		public Group getGroup_0() { return cGroup_0; }
-		
-		//{Object}
-		public Action getObjectAction_0_0() { return cObjectAction_0_0; }
-		
-		//'object'
-		public Keyword getObjectKeyword_0_1() { return cObjectKeyword_0_1; }
-		
-		//{STRING} 'string'
+		//('includes' includeObjects=Includes)?
 		public Group getGroup_1() { return cGroup_1; }
 		
-		//{STRING}
-		public Action getSTRINGAction_1_0() { return cSTRINGAction_1_0; }
+		//'includes'
+		public Keyword getIncludesKeyword_1_0() { return cIncludesKeyword_1_0; }
 		
-		//'string'
-		public Keyword getStringKeyword_1_1() { return cStringKeyword_1_1; }
+		//includeObjects=Includes
+		public Assignment getIncludeObjectsAssignment_1_1() { return cIncludeObjectsAssignment_1_1; }
 		
-		//{Number} 'number'
-		public Group getGroup_2() { return cGroup_2; }
+		//Includes
+		public RuleCall getIncludeObjectsIncludesParserRuleCall_1_1_0() { return cIncludeObjectsIncludesParserRuleCall_1_1_0; }
 		
-		//{Number}
-		public Action getNumberAction_2_0() { return cNumberAction_2_0; }
+		//'{'
+		public Keyword getLeftCurlyBracketKeyword_2() { return cLeftCurlyBracketKeyword_2; }
 		
-		//'number'
-		public Keyword getNumberKeyword_2_1() { return cNumberKeyword_2_1; }
+		//properties=hasProperties?
+		public Assignment getPropertiesAssignment_3() { return cPropertiesAssignment_3; }
 		
-		//{Array} 'array'
-		public Group getGroup_3() { return cGroup_3; }
+		//hasProperties
+		public RuleCall getPropertiesHasPropertiesParserRuleCall_3_0() { return cPropertiesHasPropertiesParserRuleCall_3_0; }
 		
-		//{Array}
-		public Action getArrayAction_3_0() { return cArrayAction_3_0; }
-		
-		//'array'
-		public Keyword getArrayKeyword_3_1() { return cArrayKeyword_3_1; }
-		
-		//{Boolean} 'boolean'
-		public Group getGroup_4() { return cGroup_4; }
-		
-		//{Boolean}
-		public Action getBooleanAction_4_0() { return cBooleanAction_4_0; }
-		
-		//'boolean'
-		public Keyword getBooleanKeyword_4_1() { return cBooleanKeyword_4_1; }
-		
-		//{Null} 'null'
-		public Group getGroup_5() { return cGroup_5; }
-		
-		//{Null}
-		public Action getNullAction_5_0() { return cNullAction_5_0; }
-		
-		//'null'
-		public Keyword getNullKeyword_5_1() { return cNullKeyword_5_1; }
+		//'}'
+		public Keyword getRightCurlyBracketKeyword_4() { return cRightCurlyBracketKeyword_4; }
 	}
-	public class PropertiesElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.xtext.example.mydsl.JSchema.Properties");
+	public class PrimitiveObjectElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.xtext.example.mydsl.JSchema.PrimitiveObject");
 		private final Group cGroup = (Group)rule.eContents().get(1);
-		private final Action cPropertiesAction_0 = (Action)cGroup.eContents().get(0);
-		private final Assignment cPropertiesAssignment_1 = (Assignment)cGroup.eContents().get(1);
-		private final RuleCall cPropertiesPropertyParserRuleCall_1_0 = (RuleCall)cPropertiesAssignment_1.eContents().get(0);
-		
-		//Properties:
-		//	{Properties} properties+=Property*;
-		@Override public ParserRule getRule() { return rule; }
-		
-		//{Properties} properties+=Property*
-		public Group getGroup() { return cGroup; }
-		
-		//{Properties}
-		public Action getPropertiesAction_0() { return cPropertiesAction_0; }
-		
-		//properties+=Property*
-		public Assignment getPropertiesAssignment_1() { return cPropertiesAssignment_1; }
-		
-		//Property
-		public RuleCall getPropertiesPropertyParserRuleCall_1_0() { return cPropertiesPropertyParserRuleCall_1_0; }
-	}
-	public class PropertyElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.xtext.example.mydsl.JSchema.Property");
-		private final Group cGroup = (Group)rule.eContents().get(1);
-		private final Keyword cNameKeyword_0 = (Keyword)cGroup.eContents().get(0);
+		private final Assignment cTypeAssignment_0 = (Assignment)cGroup.eContents().get(0);
+		private final RuleCall cTypeTypesParserRuleCall_0_0 = (RuleCall)cTypeAssignment_0.eContents().get(0);
 		private final Assignment cNameAssignment_1 = (Assignment)cGroup.eContents().get(1);
 		private final RuleCall cNameIDTerminalRuleCall_1_0 = (RuleCall)cNameAssignment_1.eContents().get(0);
-		private final Keyword cTypeKeyword_2 = (Keyword)cGroup.eContents().get(2);
-		private final Assignment cTypeAssignment_3 = (Assignment)cGroup.eContents().get(3);
-		private final RuleCall cTypeTypesParserRuleCall_3_0 = (RuleCall)cTypeAssignment_3.eContents().get(0);
+		private final Group cGroup_2 = (Group)cGroup.eContents().get(2);
+		private final Keyword cWithKeyword_2_0 = (Keyword)cGroup_2.eContents().get(0);
+		private final Assignment cPrimitivePropertiesAssignment_2_1 = (Assignment)cGroup_2.eContents().get(1);
+		private final RuleCall cPrimitivePropertiesPrimitivePropertiesParserRuleCall_2_1_0 = (RuleCall)cPrimitivePropertiesAssignment_2_1.eContents().get(0);
+		private final Group cGroup_2_2 = (Group)cGroup_2.eContents().get(2);
+		private final Keyword cCommaKeyword_2_2_0 = (Keyword)cGroup_2_2.eContents().get(0);
+		private final Assignment cPrimitivePropertiesAssignment_2_2_1 = (Assignment)cGroup_2_2.eContents().get(1);
+		private final RuleCall cPrimitivePropertiesPrimitivePropertiesParserRuleCall_2_2_1_0 = (RuleCall)cPrimitivePropertiesAssignment_2_2_1.eContents().get(0);
 		
-		//Property:
-		//	'name' name=ID 'type' type=Types;
+		//PrimitiveObject:
+		//	type=Types name=ID ('with' primitiveProperties+=PrimitiveProperties (','
+		//	primitiveProperties+=PrimitiveProperties)*)?;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//'name' name=ID 'type' type=Types
+		//type=Types name=ID ('with' primitiveProperties+=PrimitiveProperties (',' primitiveProperties+=PrimitiveProperties)*)?
 		public Group getGroup() { return cGroup; }
 		
-		//'name'
-		public Keyword getNameKeyword_0() { return cNameKeyword_0; }
+		//type=Types
+		public Assignment getTypeAssignment_0() { return cTypeAssignment_0; }
+		
+		//Types
+		public RuleCall getTypeTypesParserRuleCall_0_0() { return cTypeTypesParserRuleCall_0_0; }
 		
 		//name=ID
 		public Assignment getNameAssignment_1() { return cNameAssignment_1; }
@@ -259,58 +168,453 @@ public class JSchemaGrammarAccess extends AbstractGrammarElementFinder {
 		//ID
 		public RuleCall getNameIDTerminalRuleCall_1_0() { return cNameIDTerminalRuleCall_1_0; }
 		
-		//'type'
-		public Keyword getTypeKeyword_2() { return cTypeKeyword_2; }
+		//('with' primitiveProperties+=PrimitiveProperties (',' primitiveProperties+=PrimitiveProperties)*)?
+		public Group getGroup_2() { return cGroup_2; }
+		
+		//'with'
+		public Keyword getWithKeyword_2_0() { return cWithKeyword_2_0; }
+		
+		//primitiveProperties+=PrimitiveProperties
+		public Assignment getPrimitivePropertiesAssignment_2_1() { return cPrimitivePropertiesAssignment_2_1; }
+		
+		//PrimitiveProperties
+		public RuleCall getPrimitivePropertiesPrimitivePropertiesParserRuleCall_2_1_0() { return cPrimitivePropertiesPrimitivePropertiesParserRuleCall_2_1_0; }
+		
+		//(',' primitiveProperties+=PrimitiveProperties)*
+		public Group getGroup_2_2() { return cGroup_2_2; }
+		
+		//','
+		public Keyword getCommaKeyword_2_2_0() { return cCommaKeyword_2_2_0; }
+		
+		//primitiveProperties+=PrimitiveProperties
+		public Assignment getPrimitivePropertiesAssignment_2_2_1() { return cPrimitivePropertiesAssignment_2_2_1; }
+		
+		//PrimitiveProperties
+		public RuleCall getPrimitivePropertiesPrimitivePropertiesParserRuleCall_2_2_1_0() { return cPrimitivePropertiesPrimitivePropertiesParserRuleCall_2_2_1_0; }
+	}
+	public class TypesElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.xtext.example.mydsl.JSchema.Types");
+		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
+		private final Group cGroup_0 = (Group)cAlternatives.eContents().get(0);
+		private final Action cSTRINGAction_0_0 = (Action)cGroup_0.eContents().get(0);
+		private final Assignment cStringAssignment_0_1 = (Assignment)cGroup_0.eContents().get(1);
+		private final RuleCall cStringSTRINGTerminalRuleCall_0_1_0 = (RuleCall)cStringAssignment_0_1.eContents().get(0);
+		private final Group cGroup_1 = (Group)cAlternatives.eContents().get(1);
+		private final Action cArrayAction_1_0 = (Action)cGroup_1.eContents().get(0);
+		private final Assignment cArrayAssignment_1_1 = (Assignment)cGroup_1.eContents().get(1);
+		private final RuleCall cArrayArrayParserRuleCall_1_1_0 = (RuleCall)cArrayAssignment_1_1.eContents().get(0);
+		private final Assignment cNumberAssignment_2 = (Assignment)cAlternatives.eContents().get(2);
+		private final RuleCall cNumberNumberParserRuleCall_2_0 = (RuleCall)cNumberAssignment_2.eContents().get(0);
+		
+		////ObjectRequireMinimumProperties:
+		////	'require' (('minimum') | ('maximum')) INT 'properties' properties=hasProperties
+		////;
+		//Types:
+		//	{STRING} string=STRING | {Array} array=Array | number=Number;
+		@Override public ParserRule getRule() { return rule; }
+		
+		//{STRING} string=STRING | {Array} array=Array | number=Number
+		public Alternatives getAlternatives() { return cAlternatives; }
+		
+		//{STRING} string=STRING
+		public Group getGroup_0() { return cGroup_0; }
+		
+		//{STRING}
+		public Action getSTRINGAction_0_0() { return cSTRINGAction_0_0; }
+		
+		//string=STRING
+		public Assignment getStringAssignment_0_1() { return cStringAssignment_0_1; }
+		
+		//STRING
+		public RuleCall getStringSTRINGTerminalRuleCall_0_1_0() { return cStringSTRINGTerminalRuleCall_0_1_0; }
+		
+		//{Array} array=Array
+		public Group getGroup_1() { return cGroup_1; }
+		
+		//{Array}
+		public Action getArrayAction_1_0() { return cArrayAction_1_0; }
+		
+		//array=Array
+		public Assignment getArrayAssignment_1_1() { return cArrayAssignment_1_1; }
+		
+		//Array
+		public RuleCall getArrayArrayParserRuleCall_1_1_0() { return cArrayArrayParserRuleCall_1_1_0; }
+		
+		//number=Number
+		public Assignment getNumberAssignment_2() { return cNumberAssignment_2; }
+		
+		//Number
+		public RuleCall getNumberNumberParserRuleCall_2_0() { return cNumberNumberParserRuleCall_2_0; }
+	}
+	public class HasPropertiesElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.xtext.example.mydsl.JSchema.hasProperties");
+		private final Assignment cPropertiesAssignment = (Assignment)rule.eContents().get(1);
+		private final RuleCall cPropertiesPropertyParserRuleCall_0 = (RuleCall)cPropertiesAssignment.eContents().get(0);
+		
+		//hasProperties:
+		//	properties+=Property*;
+		@Override public ParserRule getRule() { return rule; }
+		
+		//properties+=Property*
+		public Assignment getPropertiesAssignment() { return cPropertiesAssignment; }
+		
+		//Property
+		public RuleCall getPropertiesPropertyParserRuleCall_0() { return cPropertiesPropertyParserRuleCall_0; }
+	}
+	public class PropertyElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.xtext.example.mydsl.JSchema.Property");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final Assignment cTypeAssignment_0 = (Assignment)cGroup.eContents().get(0);
+		private final RuleCall cTypeTypesParserRuleCall_0_0 = (RuleCall)cTypeAssignment_0.eContents().get(0);
+		private final Assignment cNameAssignment_1 = (Assignment)cGroup.eContents().get(1);
+		private final RuleCall cNameIDTerminalRuleCall_1_0 = (RuleCall)cNameAssignment_1.eContents().get(0);
+		
+		//Property:
+		//	type=Types name=ID;
+		@Override public ParserRule getRule() { return rule; }
+		
+		//type=Types name=ID
+		public Group getGroup() { return cGroup; }
 		
 		//type=Types
-		public Assignment getTypeAssignment_3() { return cTypeAssignment_3; }
+		public Assignment getTypeAssignment_0() { return cTypeAssignment_0; }
 		
 		//Types
-		public RuleCall getTypeTypesParserRuleCall_3_0() { return cTypeTypesParserRuleCall_3_0; }
+		public RuleCall getTypeTypesParserRuleCall_0_0() { return cTypeTypesParserRuleCall_0_0; }
+		
+		//name=ID
+		public Assignment getNameAssignment_1() { return cNameAssignment_1; }
+		
+		//ID
+		public RuleCall getNameIDTerminalRuleCall_1_0() { return cNameIDTerminalRuleCall_1_0; }
+	}
+	public class PrimitivePropertiesElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.xtext.example.mydsl.JSchema.PrimitiveProperties");
+		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
+		private final Group cGroup_0 = (Group)cAlternatives.eContents().get(0);
+		private final Keyword cLengthKeyword_0_0 = (Keyword)cGroup_0.eContents().get(0);
+		private final RuleCall cINTTerminalRuleCall_0_1 = (RuleCall)cGroup_0.eContents().get(1);
+		private final Keyword cHyphenMinusKeyword_0_2 = (Keyword)cGroup_0.eContents().get(2);
+		private final RuleCall cINTTerminalRuleCall_0_3 = (RuleCall)cGroup_0.eContents().get(3);
+		private final Group cGroup_1 = (Group)cAlternatives.eContents().get(1);
+		private final Keyword cPatternKeyword_1_0 = (Keyword)cGroup_1.eContents().get(0);
+		private final Keyword cQuotationMarkKeyword_1_1 = (Keyword)cGroup_1.eContents().get(1);
+		private final RuleCall cSTRINGTerminalRuleCall_1_2 = (RuleCall)cGroup_1.eContents().get(2);
+		private final Keyword cQuotationMarkKeyword_1_3 = (Keyword)cGroup_1.eContents().get(3);
+		private final Group cGroup_2 = (Group)cAlternatives.eContents().get(2);
+		private final Keyword cFormatKeyword_2_0 = (Keyword)cGroup_2.eContents().get(0);
+		private final Assignment cStringFormatAssignment_2_1 = (Assignment)cGroup_2.eContents().get(1);
+		private final RuleCall cStringFormatFormatTypesEnumRuleCall_2_1_0 = (RuleCall)cStringFormatAssignment_2_1.eContents().get(0);
+		
+		//PrimitiveProperties:
+		//	'length' INT '-' INT | 'pattern' '"' STRING '"' | 'format' stringFormat=FormatTypes;
+		@Override public ParserRule getRule() { return rule; }
+		
+		//'length' INT '-' INT | 'pattern' '"' STRING '"' | 'format' stringFormat=FormatTypes
+		public Alternatives getAlternatives() { return cAlternatives; }
+		
+		//'length' INT '-' INT
+		public Group getGroup_0() { return cGroup_0; }
+		
+		//'length'
+		public Keyword getLengthKeyword_0_0() { return cLengthKeyword_0_0; }
+		
+		//INT
+		public RuleCall getINTTerminalRuleCall_0_1() { return cINTTerminalRuleCall_0_1; }
+		
+		//'-'
+		public Keyword getHyphenMinusKeyword_0_2() { return cHyphenMinusKeyword_0_2; }
+		
+		//INT
+		public RuleCall getINTTerminalRuleCall_0_3() { return cINTTerminalRuleCall_0_3; }
+		
+		//'pattern' '"' STRING '"'
+		public Group getGroup_1() { return cGroup_1; }
+		
+		//'pattern'
+		public Keyword getPatternKeyword_1_0() { return cPatternKeyword_1_0; }
+		
+		//'"'
+		public Keyword getQuotationMarkKeyword_1_1() { return cQuotationMarkKeyword_1_1; }
+		
+		//STRING
+		public RuleCall getSTRINGTerminalRuleCall_1_2() { return cSTRINGTerminalRuleCall_1_2; }
+		
+		//'"'
+		public Keyword getQuotationMarkKeyword_1_3() { return cQuotationMarkKeyword_1_3; }
+		
+		//'format' stringFormat=FormatTypes
+		public Group getGroup_2() { return cGroup_2; }
+		
+		//'format'
+		public Keyword getFormatKeyword_2_0() { return cFormatKeyword_2_0; }
+		
+		//stringFormat=FormatTypes
+		public Assignment getStringFormatAssignment_2_1() { return cStringFormatAssignment_2_1; }
+		
+		//FormatTypes
+		public RuleCall getStringFormatFormatTypesEnumRuleCall_2_1_0() { return cStringFormatFormatTypesEnumRuleCall_2_1_0; }
+	}
+	public class IncludesElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.xtext.example.mydsl.JSchema.Includes");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final Assignment cObjectIDAssignment_0 = (Assignment)cGroup.eContents().get(0);
+		private final RuleCall cObjectIDSTRINGTerminalRuleCall_0_0 = (RuleCall)cObjectIDAssignment_0.eContents().get(0);
+		private final Group cGroup_1 = (Group)cGroup.eContents().get(1);
+		private final Keyword cCommaKeyword_1_0 = (Keyword)cGroup_1.eContents().get(0);
+		private final Assignment cObjectIDAssignment_1_1 = (Assignment)cGroup_1.eContents().get(1);
+		private final RuleCall cObjectIDSTRINGTerminalRuleCall_1_1_0 = (RuleCall)cObjectIDAssignment_1_1.eContents().get(0);
+		
+		//Includes:
+		//	objectID+=STRING (',' objectID+=STRING)*;
+		@Override public ParserRule getRule() { return rule; }
+		
+		//objectID+=STRING (',' objectID+=STRING)*
+		public Group getGroup() { return cGroup; }
+		
+		//objectID+=STRING
+		public Assignment getObjectIDAssignment_0() { return cObjectIDAssignment_0; }
+		
+		//STRING
+		public RuleCall getObjectIDSTRINGTerminalRuleCall_0_0() { return cObjectIDSTRINGTerminalRuleCall_0_0; }
+		
+		//(',' objectID+=STRING)*
+		public Group getGroup_1() { return cGroup_1; }
+		
+		//','
+		public Keyword getCommaKeyword_1_0() { return cCommaKeyword_1_0; }
+		
+		//objectID+=STRING
+		public Assignment getObjectIDAssignment_1_1() { return cObjectIDAssignment_1_1; }
+		
+		//STRING
+		public RuleCall getObjectIDSTRINGTerminalRuleCall_1_1_0() { return cObjectIDSTRINGTerminalRuleCall_1_1_0; }
 	}
 	public class ArrayElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.xtext.example.mydsl.JSchema.Array");
 		private final Group cGroup = (Group)rule.eContents().get(1);
-		private final Assignment cArrayAssignment_0 = (Assignment)cGroup.eContents().get(0);
-		private final Keyword cArrayLeftSquareBracketKeyword_0_0 = (Keyword)cArrayAssignment_0.eContents().get(0);
-		private final Assignment cLengthAssignment_1 = (Assignment)cGroup.eContents().get(1);
-		private final RuleCall cLengthINTTerminalRuleCall_1_0 = (RuleCall)cLengthAssignment_1.eContents().get(0);
-		private final Keyword cRightSquareBracketKeyword_2 = (Keyword)cGroup.eContents().get(2);
+		private final Assignment cNameAssignment_0 = (Assignment)cGroup.eContents().get(0);
+		private final RuleCall cNameIDTerminalRuleCall_0_0 = (RuleCall)cNameAssignment_0.eContents().get(0);
+		private final Keyword cLeftSquareBracketKeyword_1 = (Keyword)cGroup.eContents().get(1);
+		private final Group cGroup_2 = (Group)cGroup.eContents().get(2);
+		private final Assignment cPropertiesAssignment_2_0 = (Assignment)cGroup_2.eContents().get(0);
+		private final RuleCall cPropertiesPropertyParserRuleCall_2_0_0 = (RuleCall)cPropertiesAssignment_2_0.eContents().get(0);
+		private final Group cGroup_2_1 = (Group)cGroup_2.eContents().get(1);
+		private final Keyword cCommaKeyword_2_1_0 = (Keyword)cGroup_2_1.eContents().get(0);
+		private final Assignment cPropertiesAssignment_2_1_1 = (Assignment)cGroup_2_1.eContents().get(1);
+		private final RuleCall cPropertiesPropertyParserRuleCall_2_1_1_0 = (RuleCall)cPropertiesAssignment_2_1_1.eContents().get(0);
+		private final Keyword cRightSquareBracketKeyword_3 = (Keyword)cGroup.eContents().get(3);
 		
 		////Types
 		//Array:
-		//	array?='[' length=INT? ']'?;
+		//	name=ID '[' (properties+=Property (',' properties+=Property)*)? ']';
 		@Override public ParserRule getRule() { return rule; }
 		
-		//array?='[' length=INT? ']'?
+		//name=ID '[' (properties+=Property (',' properties+=Property)*)? ']'
 		public Group getGroup() { return cGroup; }
 		
-		//array?='['
-		public Assignment getArrayAssignment_0() { return cArrayAssignment_0; }
+		//name=ID
+		public Assignment getNameAssignment_0() { return cNameAssignment_0; }
+		
+		//ID
+		public RuleCall getNameIDTerminalRuleCall_0_0() { return cNameIDTerminalRuleCall_0_0; }
 		
 		//'['
-		public Keyword getArrayLeftSquareBracketKeyword_0_0() { return cArrayLeftSquareBracketKeyword_0_0; }
+		public Keyword getLeftSquareBracketKeyword_1() { return cLeftSquareBracketKeyword_1; }
 		
-		//length=INT?
-		public Assignment getLengthAssignment_1() { return cLengthAssignment_1; }
+		//(properties+=Property (',' properties+=Property)*)?
+		public Group getGroup_2() { return cGroup_2; }
 		
-		//INT
-		public RuleCall getLengthINTTerminalRuleCall_1_0() { return cLengthINTTerminalRuleCall_1_0; }
+		//properties+=Property
+		public Assignment getPropertiesAssignment_2_0() { return cPropertiesAssignment_2_0; }
 		
-		//']'?
-		public Keyword getRightSquareBracketKeyword_2() { return cRightSquareBracketKeyword_2; }
+		//Property
+		public RuleCall getPropertiesPropertyParserRuleCall_2_0_0() { return cPropertiesPropertyParserRuleCall_2_0_0; }
+		
+		//(',' properties+=Property)*
+		public Group getGroup_2_1() { return cGroup_2_1; }
+		
+		//','
+		public Keyword getCommaKeyword_2_1_0() { return cCommaKeyword_2_1_0; }
+		
+		//properties+=Property
+		public Assignment getPropertiesAssignment_2_1_1() { return cPropertiesAssignment_2_1_1; }
+		
+		//Property
+		public RuleCall getPropertiesPropertyParserRuleCall_2_1_1_0() { return cPropertiesPropertyParserRuleCall_2_1_1_0; }
+		
+		//']'
+		public Keyword getRightSquareBracketKeyword_3() { return cRightSquareBracketKeyword_3; }
 	}
 	
+	public class FormatTypesElements extends AbstractEnumRuleElementFinder {
+		private final EnumRule rule = (EnumRule) GrammarUtil.findRuleForName(getGrammar(), "org.xtext.example.mydsl.JSchema.FormatTypes");
+		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
+		private final EnumLiteralDeclaration cDate_timeEnumLiteralDeclaration_0 = (EnumLiteralDeclaration)cAlternatives.eContents().get(0);
+		private final Keyword cDate_timeDateTimeKeyword_0_0 = (Keyword)cDate_timeEnumLiteralDeclaration_0.eContents().get(0);
+		private final EnumLiteralDeclaration cTimeEnumLiteralDeclaration_1 = (EnumLiteralDeclaration)cAlternatives.eContents().get(1);
+		private final Keyword cTimeTimeKeyword_1_0 = (Keyword)cTimeEnumLiteralDeclaration_1.eContents().get(0);
+		private final EnumLiteralDeclaration cDateEnumLiteralDeclaration_2 = (EnumLiteralDeclaration)cAlternatives.eContents().get(2);
+		private final Keyword cDateDateKeyword_2_0 = (Keyword)cDateEnumLiteralDeclaration_2.eContents().get(0);
+		private final EnumLiteralDeclaration cEmailEnumLiteralDeclaration_3 = (EnumLiteralDeclaration)cAlternatives.eContents().get(3);
+		private final Keyword cEmailEmailKeyword_3_0 = (Keyword)cEmailEnumLiteralDeclaration_3.eContents().get(0);
+		private final EnumLiteralDeclaration cIdn_emailEnumLiteralDeclaration_4 = (EnumLiteralDeclaration)cAlternatives.eContents().get(4);
+		private final Keyword cIdn_emailIdnEmailKeyword_4_0 = (Keyword)cIdn_emailEnumLiteralDeclaration_4.eContents().get(0);
+		private final EnumLiteralDeclaration cHostnameEnumLiteralDeclaration_5 = (EnumLiteralDeclaration)cAlternatives.eContents().get(5);
+		private final Keyword cHostnameHostnameKeyword_5_0 = (Keyword)cHostnameEnumLiteralDeclaration_5.eContents().get(0);
+		private final EnumLiteralDeclaration cIpv4EnumLiteralDeclaration_6 = (EnumLiteralDeclaration)cAlternatives.eContents().get(6);
+		private final Keyword cIpv4Ipv4Keyword_6_0 = (Keyword)cIpv4EnumLiteralDeclaration_6.eContents().get(0);
+		private final EnumLiteralDeclaration cIpv6EnumLiteralDeclaration_7 = (EnumLiteralDeclaration)cAlternatives.eContents().get(7);
+		private final Keyword cIpv6Ipv6Keyword_7_0 = (Keyword)cIpv6EnumLiteralDeclaration_7.eContents().get(0);
+		private final EnumLiteralDeclaration cUriEnumLiteralDeclaration_8 = (EnumLiteralDeclaration)cAlternatives.eContents().get(8);
+		private final Keyword cUriUriKeyword_8_0 = (Keyword)cUriEnumLiteralDeclaration_8.eContents().get(0);
+		private final EnumLiteralDeclaration cUri_referenceEnumLiteralDeclaration_9 = (EnumLiteralDeclaration)cAlternatives.eContents().get(9);
+		private final Keyword cUri_referenceUriReferenceKeyword_9_0 = (Keyword)cUri_referenceEnumLiteralDeclaration_9.eContents().get(0);
+		private final EnumLiteralDeclaration cIriEnumLiteralDeclaration_10 = (EnumLiteralDeclaration)cAlternatives.eContents().get(10);
+		private final Keyword cIriIriKeyword_10_0 = (Keyword)cIriEnumLiteralDeclaration_10.eContents().get(0);
+		private final EnumLiteralDeclaration cIri_referenceEnumLiteralDeclaration_11 = (EnumLiteralDeclaration)cAlternatives.eContents().get(11);
+		private final Keyword cIri_referenceIriReferenceKeyword_11_0 = (Keyword)cIri_referenceEnumLiteralDeclaration_11.eContents().get(0);
+		private final EnumLiteralDeclaration cUri_templateEnumLiteralDeclaration_12 = (EnumLiteralDeclaration)cAlternatives.eContents().get(12);
+		private final Keyword cUri_templateUriTemplateKeyword_12_0 = (Keyword)cUri_templateEnumLiteralDeclaration_12.eContents().get(0);
+		private final EnumLiteralDeclaration cJson_pointerEnumLiteralDeclaration_13 = (EnumLiteralDeclaration)cAlternatives.eContents().get(13);
+		private final Keyword cJson_pointerJsonPointerKeyword_13_0 = (Keyword)cJson_pointerEnumLiteralDeclaration_13.eContents().get(0);
+		private final EnumLiteralDeclaration cRelative_json_pointerEnumLiteralDeclaration_14 = (EnumLiteralDeclaration)cAlternatives.eContents().get(14);
+		private final Keyword cRelative_json_pointerRelativeJsonPointerKeyword_14_0 = (Keyword)cRelative_json_pointerEnumLiteralDeclaration_14.eContents().get(0);
+		private final EnumLiteralDeclaration cRegexEnumLiteralDeclaration_15 = (EnumLiteralDeclaration)cAlternatives.eContents().get(15);
+		private final Keyword cRegexRegexKeyword_15_0 = (Keyword)cRegexEnumLiteralDeclaration_15.eContents().get(0);
+		
+		//enum FormatTypes:
+		//	date_time='"date-time"' |
+		//	time='"time"' |
+		//	date='"date"' |
+		//	email='"email"' |
+		//	idn_email='"idn-email"' |
+		//	hostname='"hostname"' |
+		//	ipv4='"ipv4"' |
+		//	ipv6='"ipv6"' |
+		//	uri='"uri"' |
+		//	uri_reference='"uri-reference"' |
+		//	iri='"iri"' |
+		//	iri_reference='"iri-reference"' |
+		//	uri_template='"uri-template"' |
+		//	json_pointer='"json-pointer"' |
+		//	relative_json_pointer='"relative-json-pointer"' |
+		//	regex='"regex"';
+		public EnumRule getRule() { return rule; }
+		
+		//date_time='"date-time"' | time='"time"' | date='"date"' | email='"email"' | idn_email='"idn-email"' |
+		//hostname='"hostname"' | ipv4='"ipv4"' | ipv6='"ipv6"' | uri='"uri"' | uri_reference='"uri-reference"' | iri='"iri"' |
+		//iri_reference='"iri-reference"' | uri_template='"uri-template"' | json_pointer='"json-pointer"' |
+		//relative_json_pointer='"relative-json-pointer"' | regex='"regex"'
+		public Alternatives getAlternatives() { return cAlternatives; }
+		
+		//date_time='"date-time"'
+		public EnumLiteralDeclaration getDate_timeEnumLiteralDeclaration_0() { return cDate_timeEnumLiteralDeclaration_0; }
+		
+		//'"date-time"'
+		public Keyword getDate_timeDateTimeKeyword_0_0() { return cDate_timeDateTimeKeyword_0_0; }
+		
+		//time='"time"'
+		public EnumLiteralDeclaration getTimeEnumLiteralDeclaration_1() { return cTimeEnumLiteralDeclaration_1; }
+		
+		//'"time"'
+		public Keyword getTimeTimeKeyword_1_0() { return cTimeTimeKeyword_1_0; }
+		
+		//date='"date"'
+		public EnumLiteralDeclaration getDateEnumLiteralDeclaration_2() { return cDateEnumLiteralDeclaration_2; }
+		
+		//'"date"'
+		public Keyword getDateDateKeyword_2_0() { return cDateDateKeyword_2_0; }
+		
+		//email='"email"'
+		public EnumLiteralDeclaration getEmailEnumLiteralDeclaration_3() { return cEmailEnumLiteralDeclaration_3; }
+		
+		//'"email"'
+		public Keyword getEmailEmailKeyword_3_0() { return cEmailEmailKeyword_3_0; }
+		
+		//idn_email='"idn-email"'
+		public EnumLiteralDeclaration getIdn_emailEnumLiteralDeclaration_4() { return cIdn_emailEnumLiteralDeclaration_4; }
+		
+		//'"idn-email"'
+		public Keyword getIdn_emailIdnEmailKeyword_4_0() { return cIdn_emailIdnEmailKeyword_4_0; }
+		
+		//hostname='"hostname"'
+		public EnumLiteralDeclaration getHostnameEnumLiteralDeclaration_5() { return cHostnameEnumLiteralDeclaration_5; }
+		
+		//'"hostname"'
+		public Keyword getHostnameHostnameKeyword_5_0() { return cHostnameHostnameKeyword_5_0; }
+		
+		//ipv4='"ipv4"'
+		public EnumLiteralDeclaration getIpv4EnumLiteralDeclaration_6() { return cIpv4EnumLiteralDeclaration_6; }
+		
+		//'"ipv4"'
+		public Keyword getIpv4Ipv4Keyword_6_0() { return cIpv4Ipv4Keyword_6_0; }
+		
+		//ipv6='"ipv6"'
+		public EnumLiteralDeclaration getIpv6EnumLiteralDeclaration_7() { return cIpv6EnumLiteralDeclaration_7; }
+		
+		//'"ipv6"'
+		public Keyword getIpv6Ipv6Keyword_7_0() { return cIpv6Ipv6Keyword_7_0; }
+		
+		//uri='"uri"'
+		public EnumLiteralDeclaration getUriEnumLiteralDeclaration_8() { return cUriEnumLiteralDeclaration_8; }
+		
+		//'"uri"'
+		public Keyword getUriUriKeyword_8_0() { return cUriUriKeyword_8_0; }
+		
+		//uri_reference='"uri-reference"'
+		public EnumLiteralDeclaration getUri_referenceEnumLiteralDeclaration_9() { return cUri_referenceEnumLiteralDeclaration_9; }
+		
+		//'"uri-reference"'
+		public Keyword getUri_referenceUriReferenceKeyword_9_0() { return cUri_referenceUriReferenceKeyword_9_0; }
+		
+		//iri='"iri"'
+		public EnumLiteralDeclaration getIriEnumLiteralDeclaration_10() { return cIriEnumLiteralDeclaration_10; }
+		
+		//'"iri"'
+		public Keyword getIriIriKeyword_10_0() { return cIriIriKeyword_10_0; }
+		
+		//iri_reference='"iri-reference"'
+		public EnumLiteralDeclaration getIri_referenceEnumLiteralDeclaration_11() { return cIri_referenceEnumLiteralDeclaration_11; }
+		
+		//'"iri-reference"'
+		public Keyword getIri_referenceIriReferenceKeyword_11_0() { return cIri_referenceIriReferenceKeyword_11_0; }
+		
+		//uri_template='"uri-template"'
+		public EnumLiteralDeclaration getUri_templateEnumLiteralDeclaration_12() { return cUri_templateEnumLiteralDeclaration_12; }
+		
+		//'"uri-template"'
+		public Keyword getUri_templateUriTemplateKeyword_12_0() { return cUri_templateUriTemplateKeyword_12_0; }
+		
+		//json_pointer='"json-pointer"'
+		public EnumLiteralDeclaration getJson_pointerEnumLiteralDeclaration_13() { return cJson_pointerEnumLiteralDeclaration_13; }
+		
+		//'"json-pointer"'
+		public Keyword getJson_pointerJsonPointerKeyword_13_0() { return cJson_pointerJsonPointerKeyword_13_0; }
+		
+		//relative_json_pointer='"relative-json-pointer"'
+		public EnumLiteralDeclaration getRelative_json_pointerEnumLiteralDeclaration_14() { return cRelative_json_pointerEnumLiteralDeclaration_14; }
+		
+		//'"relative-json-pointer"'
+		public Keyword getRelative_json_pointerRelativeJsonPointerKeyword_14_0() { return cRelative_json_pointerRelativeJsonPointerKeyword_14_0; }
+		
+		//regex='"regex"'
+		public EnumLiteralDeclaration getRegexEnumLiteralDeclaration_15() { return cRegexEnumLiteralDeclaration_15; }
+		
+		//'"regex"'
+		public Keyword getRegexRegexKeyword_15_0() { return cRegexRegexKeyword_15_0; }
+	}
 	
 	private final ModelElements pModel;
-	private final TerminalRule tBOOLEAN;
-	private final TerminalRule tDOUBLE;
 	private final NumberElements pNumber;
 	private final ObjectElements pObject;
-	private final ObjectRequireMinimumPropertiesElements pObjectRequireMinimumProperties;
+	private final PrimitiveObjectElements pPrimitiveObject;
 	private final TypesElements pTypes;
-	private final PropertiesElements pProperties;
+	private final HasPropertiesElements pHasProperties;
 	private final PropertyElements pProperty;
+	private final PrimitivePropertiesElements pPrimitiveProperties;
+	private final FormatTypesElements eFormatTypes;
+	private final IncludesElements pIncludes;
 	private final ArrayElements pArray;
 	
 	private final Grammar grammar;
@@ -323,14 +627,15 @@ public class JSchemaGrammarAccess extends AbstractGrammarElementFinder {
 		this.grammar = internalFindGrammar(grammarProvider);
 		this.gaTerminals = gaTerminals;
 		this.pModel = new ModelElements();
-		this.tBOOLEAN = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "org.xtext.example.mydsl.JSchema.BOOLEAN");
-		this.tDOUBLE = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "org.xtext.example.mydsl.JSchema.DOUBLE");
 		this.pNumber = new NumberElements();
 		this.pObject = new ObjectElements();
-		this.pObjectRequireMinimumProperties = new ObjectRequireMinimumPropertiesElements();
+		this.pPrimitiveObject = new PrimitiveObjectElements();
 		this.pTypes = new TypesElements();
-		this.pProperties = new PropertiesElements();
+		this.pHasProperties = new HasPropertiesElements();
 		this.pProperty = new PropertyElements();
+		this.pPrimitiveProperties = new PrimitivePropertiesElements();
+		this.eFormatTypes = new FormatTypesElements();
+		this.pIncludes = new IncludesElements();
 		this.pArray = new ArrayElements();
 	}
 	
@@ -362,7 +667,7 @@ public class JSchemaGrammarAccess extends AbstractGrammarElementFinder {
 
 	
 	//Model:
-	//	Object;
+	//	Object | PrimitiveObject;
 	public ModelElements getModelAccess() {
 		return pModel;
 	}
@@ -371,20 +676,8 @@ public class JSchemaGrammarAccess extends AbstractGrammarElementFinder {
 		return getModelAccess().getRule();
 	}
 	
-	//terminal BOOLEAN:
-	//	'true' | 'false';
-	public TerminalRule getBOOLEANRule() {
-		return tBOOLEAN;
-	}
-	
-	//terminal DOUBLE:
-	//	INT ('.' INT+)?;
-	public TerminalRule getDOUBLERule() {
-		return tDOUBLE;
-	}
-	
 	//Number:
-	//	'num' value=INT | DOUBLE;
+	//	number=INT ('.' decimal=INT)?;
 	public NumberElements getNumberAccess() {
 		return pNumber;
 	}
@@ -393,8 +686,9 @@ public class JSchemaGrammarAccess extends AbstractGrammarElementFinder {
 		return getNumberAccess().getRule();
 	}
 	
+	////(nestedObjectName=ID nestedObject=Object)
 	//Object:
-	//	'object' ObjectRequireMinimumProperties?;
+	//	name=ID ('includes' includeObjects=Includes)? '{' properties=hasProperties? '}';
 	public ObjectElements getObjectAccess() {
 		return pObject;
 	}
@@ -403,18 +697,22 @@ public class JSchemaGrammarAccess extends AbstractGrammarElementFinder {
 		return getObjectAccess().getRule();
 	}
 	
-	//ObjectRequireMinimumProperties:
-	//	'require' ('minimum' | 'maximum') Number 'properties' properties=Properties;
-	public ObjectRequireMinimumPropertiesElements getObjectRequireMinimumPropertiesAccess() {
-		return pObjectRequireMinimumProperties;
+	//PrimitiveObject:
+	//	type=Types name=ID ('with' primitiveProperties+=PrimitiveProperties (','
+	//	primitiveProperties+=PrimitiveProperties)*)?;
+	public PrimitiveObjectElements getPrimitiveObjectAccess() {
+		return pPrimitiveObject;
 	}
 	
-	public ParserRule getObjectRequireMinimumPropertiesRule() {
-		return getObjectRequireMinimumPropertiesAccess().getRule();
+	public ParserRule getPrimitiveObjectRule() {
+		return getPrimitiveObjectAccess().getRule();
 	}
 	
+	////ObjectRequireMinimumProperties:
+	////	'require' (('minimum') | ('maximum')) INT 'properties' properties=hasProperties
+	////;
 	//Types:
-	//	{Object} 'object' | {STRING} 'string' | {Number} 'number' | {Array} 'array' | {Boolean} 'boolean' | {Null} 'null';
+	//	{STRING} string=STRING | {Array} array=Array | number=Number;
 	public TypesElements getTypesAccess() {
 		return pTypes;
 	}
@@ -423,18 +721,18 @@ public class JSchemaGrammarAccess extends AbstractGrammarElementFinder {
 		return getTypesAccess().getRule();
 	}
 	
-	//Properties:
-	//	{Properties} properties+=Property*;
-	public PropertiesElements getPropertiesAccess() {
-		return pProperties;
+	//hasProperties:
+	//	properties+=Property*;
+	public HasPropertiesElements getHasPropertiesAccess() {
+		return pHasProperties;
 	}
 	
-	public ParserRule getPropertiesRule() {
-		return getPropertiesAccess().getRule();
+	public ParserRule getHasPropertiesRule() {
+		return getHasPropertiesAccess().getRule();
 	}
 	
 	//Property:
-	//	'name' name=ID 'type' type=Types;
+	//	type=Types name=ID;
 	public PropertyElements getPropertyAccess() {
 		return pProperty;
 	}
@@ -443,9 +741,54 @@ public class JSchemaGrammarAccess extends AbstractGrammarElementFinder {
 		return getPropertyAccess().getRule();
 	}
 	
+	//PrimitiveProperties:
+	//	'length' INT '-' INT | 'pattern' '"' STRING '"' | 'format' stringFormat=FormatTypes;
+	public PrimitivePropertiesElements getPrimitivePropertiesAccess() {
+		return pPrimitiveProperties;
+	}
+	
+	public ParserRule getPrimitivePropertiesRule() {
+		return getPrimitivePropertiesAccess().getRule();
+	}
+	
+	//enum FormatTypes:
+	//	date_time='"date-time"' |
+	//	time='"time"' |
+	//	date='"date"' |
+	//	email='"email"' |
+	//	idn_email='"idn-email"' |
+	//	hostname='"hostname"' |
+	//	ipv4='"ipv4"' |
+	//	ipv6='"ipv6"' |
+	//	uri='"uri"' |
+	//	uri_reference='"uri-reference"' |
+	//	iri='"iri"' |
+	//	iri_reference='"iri-reference"' |
+	//	uri_template='"uri-template"' |
+	//	json_pointer='"json-pointer"' |
+	//	relative_json_pointer='"relative-json-pointer"' |
+	//	regex='"regex"';
+	public FormatTypesElements getFormatTypesAccess() {
+		return eFormatTypes;
+	}
+	
+	public EnumRule getFormatTypesRule() {
+		return getFormatTypesAccess().getRule();
+	}
+	
+	//Includes:
+	//	objectID+=STRING (',' objectID+=STRING)*;
+	public IncludesElements getIncludesAccess() {
+		return pIncludes;
+	}
+	
+	public ParserRule getIncludesRule() {
+		return getIncludesAccess().getRule();
+	}
+	
 	////Types
 	//Array:
-	//	array?='[' length=INT? ']'?;
+	//	name=ID '[' (properties+=Property (',' properties+=Property)*)? ']';
 	public ArrayElements getArrayAccess() {
 		return pArray;
 	}
