@@ -7,44 +7,44 @@ Model:
 ;
 
 terminal BOOLEAN:
-	'true' | 'false'
+	'True' | 'False'
 ;
 
 terminal DOUBLE:
 	INT'.'INT
 ;
 
-
-Number:
-	'num' value=INT | DOUBLE
-;	
-
+terminal NUMBER:
+	INT | DOUBLE
+;
 
 Object:
-	'object' (ObjectRequireMinimumProperties)?
+ 	name=ID ('includes' includeObjects=Includes)? '{' (properties=hasProperties)? (nestedObjectName=ID nestedObject=Object)? '}' 
 ;
 
-ObjectRequireMinimumProperties:
-	'require' (('minimum') | ('maximum')) Number 'properties' properties=Properties
-;
+//ObjectRequireMinimumProperties:
+//	'require' (('minimum') | ('maximum')) INT 'properties' properties=hasProperties
+//;
 
 Types:
-	{Object} 'object' | {STRING} 'string' | {Number} 'number' |	{Array} 'array' | {Boolean} 'boolean' | {Null} 'null'
+	object=Object | ({STRING} string=STRING) | {Array} array=Array | number=NUMBER | boolean=BOOLEAN| 'null'
 ;
 
-Properties:
-	{Properties} properties+=Property*
+hasProperties:
+	{hasProperties} properties+=Property*
 ;
 
 Property:
-	'name' name=ID 'type' type=Types 
+ 	type=Types name=ID  
 ;
 
-
+Includes:
+	objectID+=STRING (',' objectID+=STRING)*
+;
 
 //Types
 Array:
-'array''[' (length=INT)? ']'
+ 	name=ID '[' (length=INT)? ']'
 ;
 
 
