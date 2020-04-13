@@ -31,7 +31,7 @@ PrimitiveObject:
 //;
 
 Types:
-	object=Object | ({STRING} 'String' string=STRING) | {Array} array=Array | number=NUMBER | boolean=BOOLEAN | 'null'
+	object=Object | ({STRING} 'String' string=STRING) | {Array} array=Array | number=NUMBER | boolean=BOOLEAN| 'null'
 ;
 
 hasProperties:
@@ -64,7 +64,6 @@ enum FormatTypes:
 	relative_json_pointer='"relative-json-pointer"' | 
 	regex='"regex"'
 ;
-
 Includes:
 	objectID+=STRING (',' objectID+=STRING)*
 ;

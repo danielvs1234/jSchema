@@ -23,7 +23,7 @@ Object:
 ;
 
 PrimitiveObject:
-	type=Types name=ID ('with' primitiveProperties+=PrimitiveProperties (',' primitiveProperties+=PrimitiveProperties)*)? 
+	type=Types name=ID ('with' primitiveProperties+=PrimitiveProperties)?
 ;
 
 //ObjectRequireMinimumProperties:
@@ -31,7 +31,7 @@ PrimitiveObject:
 //;
 
 Types:
-	object=Object | ({STRING} 'String' string=STRING) | {Array} array=Array | number=NUMBER | boolean=BOOLEAN | 'null'
+	object=Object | ({STRING} 'String' string=STRING) | {Array} array=Array | number=NUMBER | boolean=BOOLEAN| 'null'
 ;
 
 hasProperties:
@@ -43,26 +43,7 @@ Property:
 ;
 
 PrimitiveProperties:
-	('length' INT '-' INT) | ('pattern' '"'STRING'"' ) | 'format' stringFormat=FormatTypes
-;
-
-enum FormatTypes:
-	date_time='"date-time"' | 
-	time='"time"' | 
-	date='"date"' | 
-	email='"email"' | 
-	idn_email='"idn-email"' | 
-	hostname='"hostname"' | 
-	ipv4='"ipv4"' | 
-	ipv6='"ipv6"' | 
-	uri='"uri"' | 
-	uri_reference='"uri-reference"' | 
-	iri='"iri"' | 
-	iri_reference='"iri-reference"' | 
-	uri_template='"uri-template"' | 
-	json_pointer='"json-pointer"' | 
-	relative_json_pointer='"relative-json-pointer"' | 
-	regex='"regex"'
+	('length' INT '-' INT) | ('pattern' '"'STRING'"' )
 ;
 
 Includes:
