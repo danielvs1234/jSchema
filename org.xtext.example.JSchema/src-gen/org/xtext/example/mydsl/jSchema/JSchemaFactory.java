@@ -42,6 +42,15 @@ public interface JSchemaFactory extends EFactory
   Number createNumber();
 
   /**
+   * Returns a new object of class '<em>Abstract Object</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Abstract Object</em>'.
+   * @generated
+   */
+  AbstractObject createAbstractObject();
+
+  /**
    * Returns a new object of class '<em>Object</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->

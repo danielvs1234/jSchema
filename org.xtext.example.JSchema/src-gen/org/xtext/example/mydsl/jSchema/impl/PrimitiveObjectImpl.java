@@ -37,7 +37,7 @@ import org.xtext.example.mydsl.jSchema.Types;
  *
  * @generated
  */
-public class PrimitiveObjectImpl extends ModelImpl implements PrimitiveObject
+public class PrimitiveObjectImpl extends AbstractObjectImpl implements PrimitiveObject
 {
   /**
    * The cached value of the '{@link #getType() <em>Type</em>}' containment reference.

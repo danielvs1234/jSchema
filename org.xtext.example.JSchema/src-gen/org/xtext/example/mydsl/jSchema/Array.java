@@ -5,6 +5,8 @@ package org.xtext.example.mydsl.jSchema;
 
 import org.eclipse.emf.common.util.EList;
 
+import org.eclipse.emf.ecore.EObject;
+
 /**
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>Array</b></em>'.
@@ -14,8 +16,7 @@ import org.eclipse.emf.common.util.EList;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link org.xtext.example.mydsl.jSchema.Array#getArray <em>Array</em>}</li>
- *   <li>{@link org.xtext.example.mydsl.jSchema.Array#getName <em>Name</em>}</li>
+ *   <li>{@link org.xtext.example.mydsl.jSchema.Array#getArrayName <em>Array Name</em>}</li>
  *   <li>{@link org.xtext.example.mydsl.jSchema.Array#getProperties <em>Properties</em>}</li>
  * </ul>
  *
@@ -23,51 +24,29 @@ import org.eclipse.emf.common.util.EList;
  * @model
  * @generated
  */
-public interface Array extends Types
+public interface Array extends EObject
 {
   /**
-   * Returns the value of the '<em><b>Array</b></em>' containment reference.
+   * Returns the value of the '<em><b>Array Name</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the value of the '<em>Array</em>' containment reference.
-   * @see #setArray(Array)
-   * @see org.xtext.example.mydsl.jSchema.JSchemaPackage#getArray_Array()
-   * @model containment="true"
-   * @generated
-   */
-  Array getArray();
-
-  /**
-   * Sets the value of the '{@link org.xtext.example.mydsl.jSchema.Array#getArray <em>Array</em>}' containment reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Array</em>' containment reference.
-   * @see #getArray()
-   * @generated
-   */
-  void setArray(Array value);
-
-  /**
-   * Returns the value of the '<em><b>Name</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the value of the '<em>Name</em>' attribute.
-   * @see #setName(String)
-   * @see org.xtext.example.mydsl.jSchema.JSchemaPackage#getArray_Name()
+   * @return the value of the '<em>Array Name</em>' attribute.
+   * @see #setArrayName(String)
+   * @see org.xtext.example.mydsl.jSchema.JSchemaPackage#getArray_ArrayName()
    * @model
    * @generated
    */
-  String getName();
+  String getArrayName();
 
   /**
-   * Sets the value of the '{@link org.xtext.example.mydsl.jSchema.Array#getName <em>Name</em>}' attribute.
+   * Sets the value of the '{@link org.xtext.example.mydsl.jSchema.Array#getArrayName <em>Array Name</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Name</em>' attribute.
-   * @see #getName()
+   * @param value the new value of the '<em>Array Name</em>' attribute.
+   * @see #getArrayName()
    * @generated
    */
-  void setName(String value);
+  void setArrayName(String value);
 
   /**
    * Returns the value of the '<em><b>Properties</b></em>' containment reference list.

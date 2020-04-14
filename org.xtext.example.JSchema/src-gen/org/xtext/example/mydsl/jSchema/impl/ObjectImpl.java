@@ -3,13 +3,20 @@
  */
 package org.xtext.example.mydsl.jSchema.impl;
 
+import java.util.Collection;
+
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
+
+import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
+
+import org.eclipse.emf.ecore.util.EObjectContainmentEList;
+import org.eclipse.emf.ecore.util.InternalEList;
 
 import org.xtext.example.mydsl.jSchema.Includes;
 import org.xtext.example.mydsl.jSchema.JSchemaPackage;
@@ -23,14 +30,35 @@ import org.xtext.example.mydsl.jSchema.hasProperties;
  * The following features are implemented:
  * </p>
  * <ul>
+ *   <li>{@link org.xtext.example.mydsl.jSchema.impl.ObjectImpl#getObjectName <em>Object Name</em>}</li>
  *   <li>{@link org.xtext.example.mydsl.jSchema.impl.ObjectImpl#getIncludeObjects <em>Include Objects</em>}</li>
  *   <li>{@link org.xtext.example.mydsl.jSchema.impl.ObjectImpl#getProperties <em>Properties</em>}</li>
  * </ul>
  *
  * @generated
  */
-public class ObjectImpl extends ModelImpl implements org.xtext.example.mydsl.jSchema.Object
+public class ObjectImpl extends AbstractObjectImpl implements org.xtext.example.mydsl.jSchema.Object
 {
+  /**
+   * The default value of the '{@link #getObjectName() <em>Object Name</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getObjectName()
+   * @generated
+   * @ordered
+   */
+  protected static final String OBJECT_NAME_EDEFAULT = null;
+
+  /**
+   * The cached value of the '{@link #getObjectName() <em>Object Name</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getObjectName()
+   * @generated
+   * @ordered
+   */
+  protected String objectName = OBJECT_NAME_EDEFAULT;
+
   /**
    * The cached value of the '{@link #getIncludeObjects() <em>Include Objects</em>}' containment reference.
    * <!-- begin-user-doc -->
@@ -42,14 +70,14 @@ public class ObjectImpl extends ModelImpl implements org.xtext.example.mydsl.jSc
   protected Includes includeObjects;
 
   /**
-   * The cached value of the '{@link #getProperties() <em>Properties</em>}' containment reference.
+   * The cached value of the '{@link #getProperties() <em>Properties</em>}' containment reference list.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @see #getProperties()
    * @generated
    * @ordered
    */
-  protected hasProperties properties;
+  protected EList<hasProperties> properties;
 
   /**
    * <!-- begin-user-doc -->
@@ -70,6 +98,31 @@ public class ObjectImpl extends ModelImpl implements org.xtext.example.mydsl.jSc
   protected EClass eStaticClass()
   {
     return JSchemaPackage.Literals.OBJECT;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public String getObjectName()
+  {
+    return objectName;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public void setObjectName(String newObjectName)
+  {
+    String oldObjectName = objectName;
+    objectName = newObjectName;
+    if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, JSchemaPackage.OBJECT__OBJECT_NAME, oldObjectName, objectName));
   }
 
   /**
@@ -128,48 +181,13 @@ public class ObjectImpl extends ModelImpl implements org.xtext.example.mydsl.jSc
    * @generated
    */
   @Override
-  public hasProperties getProperties()
+  public EList<hasProperties> getProperties()
   {
+    if (properties == null)
+    {
+      properties = new EObjectContainmentEList<hasProperties>(hasProperties.class, this, JSchemaPackage.OBJECT__PROPERTIES);
+    }
     return properties;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public NotificationChain basicSetProperties(hasProperties newProperties, NotificationChain msgs)
-  {
-    hasProperties oldProperties = properties;
-    properties = newProperties;
-    if (eNotificationRequired())
-    {
-      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, JSchemaPackage.OBJECT__PROPERTIES, oldProperties, newProperties);
-      if (msgs == null) msgs = notification; else msgs.add(notification);
-    }
-    return msgs;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public void setProperties(hasProperties newProperties)
-  {
-    if (newProperties != properties)
-    {
-      NotificationChain msgs = null;
-      if (properties != null)
-        msgs = ((InternalEObject)properties).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - JSchemaPackage.OBJECT__PROPERTIES, null, msgs);
-      if (newProperties != null)
-        msgs = ((InternalEObject)newProperties).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - JSchemaPackage.OBJECT__PROPERTIES, null, msgs);
-      msgs = basicSetProperties(newProperties, msgs);
-      if (msgs != null) msgs.dispatch();
-    }
-    else if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, JSchemaPackage.OBJECT__PROPERTIES, newProperties, newProperties));
   }
 
   /**
@@ -185,7 +203,7 @@ public class ObjectImpl extends ModelImpl implements org.xtext.example.mydsl.jSc
       case JSchemaPackage.OBJECT__INCLUDE_OBJECTS:
         return basicSetIncludeObjects(null, msgs);
       case JSchemaPackage.OBJECT__PROPERTIES:
-        return basicSetProperties(null, msgs);
+        return ((InternalEList<?>)getProperties()).basicRemove(otherEnd, msgs);
     }
     return super.eInverseRemove(otherEnd, featureID, msgs);
   }
@@ -200,6 +218,8 @@ public class ObjectImpl extends ModelImpl implements org.xtext.example.mydsl.jSc
   {
     switch (featureID)
     {
+      case JSchemaPackage.OBJECT__OBJECT_NAME:
+        return getObjectName();
       case JSchemaPackage.OBJECT__INCLUDE_OBJECTS:
         return getIncludeObjects();
       case JSchemaPackage.OBJECT__PROPERTIES:
@@ -213,16 +233,21 @@ public class ObjectImpl extends ModelImpl implements org.xtext.example.mydsl.jSc
    * <!-- end-user-doc -->
    * @generated
    */
+  @SuppressWarnings("unchecked")
   @Override
   public void eSet(int featureID, Object newValue)
   {
     switch (featureID)
     {
+      case JSchemaPackage.OBJECT__OBJECT_NAME:
+        setObjectName((String)newValue);
+        return;
       case JSchemaPackage.OBJECT__INCLUDE_OBJECTS:
         setIncludeObjects((Includes)newValue);
         return;
       case JSchemaPackage.OBJECT__PROPERTIES:
-        setProperties((hasProperties)newValue);
+        getProperties().clear();
+        getProperties().addAll((Collection<? extends hasProperties>)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -238,11 +263,14 @@ public class ObjectImpl extends ModelImpl implements org.xtext.example.mydsl.jSc
   {
     switch (featureID)
     {
+      case JSchemaPackage.OBJECT__OBJECT_NAME:
+        setObjectName(OBJECT_NAME_EDEFAULT);
+        return;
       case JSchemaPackage.OBJECT__INCLUDE_OBJECTS:
         setIncludeObjects((Includes)null);
         return;
       case JSchemaPackage.OBJECT__PROPERTIES:
-        setProperties((hasProperties)null);
+        getProperties().clear();
         return;
     }
     super.eUnset(featureID);
@@ -258,12 +286,31 @@ public class ObjectImpl extends ModelImpl implements org.xtext.example.mydsl.jSc
   {
     switch (featureID)
     {
+      case JSchemaPackage.OBJECT__OBJECT_NAME:
+        return OBJECT_NAME_EDEFAULT == null ? objectName != null : !OBJECT_NAME_EDEFAULT.equals(objectName);
       case JSchemaPackage.OBJECT__INCLUDE_OBJECTS:
         return includeObjects != null;
       case JSchemaPackage.OBJECT__PROPERTIES:
-        return properties != null;
+        return properties != null && !properties.isEmpty();
     }
     return super.eIsSet(featureID);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public String toString()
+  {
+    if (eIsProxy()) return super.toString();
+
+    StringBuilder result = new StringBuilder(super.toString());
+    result.append(" (objectName: ");
+    result.append(objectName);
+    result.append(')');
+    return result.toString();
   }
 
 } //ObjectImpl

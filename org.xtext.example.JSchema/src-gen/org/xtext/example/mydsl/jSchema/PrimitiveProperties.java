@@ -14,6 +14,8 @@ import org.eclipse.emf.ecore.EObject;
  * The following features are supported:
  * </p>
  * <ul>
+ *   <li>{@link org.xtext.example.mydsl.jSchema.PrimitiveProperties#getStringLenght <em>String Lenght</em>}</li>
+ *   <li>{@link org.xtext.example.mydsl.jSchema.PrimitiveProperties#getPatternString <em>Pattern String</em>}</li>
  *   <li>{@link org.xtext.example.mydsl.jSchema.PrimitiveProperties#getStringFormat <em>String Format</em>}</li>
  * </ul>
  *
@@ -23,6 +25,50 @@ import org.eclipse.emf.ecore.EObject;
  */
 public interface PrimitiveProperties extends EObject
 {
+  /**
+   * Returns the value of the '<em><b>String Lenght</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the value of the '<em>String Lenght</em>' attribute.
+   * @see #setStringLenght(String)
+   * @see org.xtext.example.mydsl.jSchema.JSchemaPackage#getPrimitiveProperties_StringLenght()
+   * @model
+   * @generated
+   */
+  String getStringLenght();
+
+  /**
+   * Sets the value of the '{@link org.xtext.example.mydsl.jSchema.PrimitiveProperties#getStringLenght <em>String Lenght</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @param value the new value of the '<em>String Lenght</em>' attribute.
+   * @see #getStringLenght()
+   * @generated
+   */
+  void setStringLenght(String value);
+
+  /**
+   * Returns the value of the '<em><b>Pattern String</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the value of the '<em>Pattern String</em>' attribute.
+   * @see #setPatternString(String)
+   * @see org.xtext.example.mydsl.jSchema.JSchemaPackage#getPrimitiveProperties_PatternString()
+   * @model
+   * @generated
+   */
+  String getPatternString();
+
+  /**
+   * Sets the value of the '{@link org.xtext.example.mydsl.jSchema.PrimitiveProperties#getPatternString <em>Pattern String</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @param value the new value of the '<em>Pattern String</em>' attribute.
+   * @see #getPatternString()
+   * @generated
+   */
+  void setPatternString(String value);
+
   /**
    * Returns the value of the '<em><b>String Format</b></em>' attribute.
    * The literals are from the enumeration {@link org.xtext.example.mydsl.jSchema.FormatTypes}.

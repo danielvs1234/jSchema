@@ -3,6 +3,7 @@
  */
 package org.xtext.example.mydsl.jSchema;
 
+import org.eclipse.emf.common.util.EList;
 
 /**
  * <!-- begin-user-doc -->
@@ -13,6 +14,7 @@ package org.xtext.example.mydsl.jSchema;
  * The following features are supported:
  * </p>
  * <ul>
+ *   <li>{@link org.xtext.example.mydsl.jSchema.Object#getObjectName <em>Object Name</em>}</li>
  *   <li>{@link org.xtext.example.mydsl.jSchema.Object#getIncludeObjects <em>Include Objects</em>}</li>
  *   <li>{@link org.xtext.example.mydsl.jSchema.Object#getProperties <em>Properties</em>}</li>
  * </ul>
@@ -21,8 +23,30 @@ package org.xtext.example.mydsl.jSchema;
  * @model
  * @generated
  */
-public interface Object extends Model
+public interface Object extends AbstractObject
 {
+  /**
+   * Returns the value of the '<em><b>Object Name</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the value of the '<em>Object Name</em>' attribute.
+   * @see #setObjectName(String)
+   * @see org.xtext.example.mydsl.jSchema.JSchemaPackage#getObject_ObjectName()
+   * @model
+   * @generated
+   */
+  String getObjectName();
+
+  /**
+   * Sets the value of the '{@link org.xtext.example.mydsl.jSchema.Object#getObjectName <em>Object Name</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @param value the new value of the '<em>Object Name</em>' attribute.
+   * @see #getObjectName()
+   * @generated
+   */
+  void setObjectName(String value);
+
   /**
    * Returns the value of the '<em><b>Include Objects</b></em>' containment reference.
    * <!-- begin-user-doc -->
@@ -46,25 +70,15 @@ public interface Object extends Model
   void setIncludeObjects(Includes value);
 
   /**
-   * Returns the value of the '<em><b>Properties</b></em>' containment reference.
+   * Returns the value of the '<em><b>Properties</b></em>' containment reference list.
+   * The list contents are of type {@link org.xtext.example.mydsl.jSchema.hasProperties}.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the value of the '<em>Properties</em>' containment reference.
-   * @see #setProperties(hasProperties)
+   * @return the value of the '<em>Properties</em>' containment reference list.
    * @see org.xtext.example.mydsl.jSchema.JSchemaPackage#getObject_Properties()
    * @model containment="true"
    * @generated
    */
-  hasProperties getProperties();
-
-  /**
-   * Sets the value of the '{@link org.xtext.example.mydsl.jSchema.Object#getProperties <em>Properties</em>}' containment reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Properties</em>' containment reference.
-   * @see #getProperties()
-   * @generated
-   */
-  void setProperties(hasProperties value);
+  EList<hasProperties> getProperties();
 
 } // Object

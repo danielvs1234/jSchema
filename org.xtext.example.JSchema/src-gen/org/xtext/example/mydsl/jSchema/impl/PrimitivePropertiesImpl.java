@@ -22,6 +22,8 @@ import org.xtext.example.mydsl.jSchema.PrimitiveProperties;
  * The following features are implemented:
  * </p>
  * <ul>
+ *   <li>{@link org.xtext.example.mydsl.jSchema.impl.PrimitivePropertiesImpl#getStringLenght <em>String Lenght</em>}</li>
+ *   <li>{@link org.xtext.example.mydsl.jSchema.impl.PrimitivePropertiesImpl#getPatternString <em>Pattern String</em>}</li>
  *   <li>{@link org.xtext.example.mydsl.jSchema.impl.PrimitivePropertiesImpl#getStringFormat <em>String Format</em>}</li>
  * </ul>
  *
@@ -29,6 +31,46 @@ import org.xtext.example.mydsl.jSchema.PrimitiveProperties;
  */
 public class PrimitivePropertiesImpl extends MinimalEObjectImpl.Container implements PrimitiveProperties
 {
+  /**
+   * The default value of the '{@link #getStringLenght() <em>String Lenght</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getStringLenght()
+   * @generated
+   * @ordered
+   */
+  protected static final String STRING_LENGHT_EDEFAULT = null;
+
+  /**
+   * The cached value of the '{@link #getStringLenght() <em>String Lenght</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getStringLenght()
+   * @generated
+   * @ordered
+   */
+  protected String stringLenght = STRING_LENGHT_EDEFAULT;
+
+  /**
+   * The default value of the '{@link #getPatternString() <em>Pattern String</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getPatternString()
+   * @generated
+   * @ordered
+   */
+  protected static final String PATTERN_STRING_EDEFAULT = null;
+
+  /**
+   * The cached value of the '{@link #getPatternString() <em>Pattern String</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getPatternString()
+   * @generated
+   * @ordered
+   */
+  protected String patternString = PATTERN_STRING_EDEFAULT;
+
   /**
    * The default value of the '{@link #getStringFormat() <em>String Format</em>}' attribute.
    * <!-- begin-user-doc -->
@@ -76,6 +118,56 @@ public class PrimitivePropertiesImpl extends MinimalEObjectImpl.Container implem
    * @generated
    */
   @Override
+  public String getStringLenght()
+  {
+    return stringLenght;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public void setStringLenght(String newStringLenght)
+  {
+    String oldStringLenght = stringLenght;
+    stringLenght = newStringLenght;
+    if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, JSchemaPackage.PRIMITIVE_PROPERTIES__STRING_LENGHT, oldStringLenght, stringLenght));
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public String getPatternString()
+  {
+    return patternString;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public void setPatternString(String newPatternString)
+  {
+    String oldPatternString = patternString;
+    patternString = newPatternString;
+    if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, JSchemaPackage.PRIMITIVE_PROPERTIES__PATTERN_STRING, oldPatternString, patternString));
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
   public FormatTypes getStringFormat()
   {
     return stringFormat;
@@ -105,6 +197,10 @@ public class PrimitivePropertiesImpl extends MinimalEObjectImpl.Container implem
   {
     switch (featureID)
     {
+      case JSchemaPackage.PRIMITIVE_PROPERTIES__STRING_LENGHT:
+        return getStringLenght();
+      case JSchemaPackage.PRIMITIVE_PROPERTIES__PATTERN_STRING:
+        return getPatternString();
       case JSchemaPackage.PRIMITIVE_PROPERTIES__STRING_FORMAT:
         return getStringFormat();
     }
@@ -121,6 +217,12 @@ public class PrimitivePropertiesImpl extends MinimalEObjectImpl.Container implem
   {
     switch (featureID)
     {
+      case JSchemaPackage.PRIMITIVE_PROPERTIES__STRING_LENGHT:
+        setStringLenght((String)newValue);
+        return;
+      case JSchemaPackage.PRIMITIVE_PROPERTIES__PATTERN_STRING:
+        setPatternString((String)newValue);
+        return;
       case JSchemaPackage.PRIMITIVE_PROPERTIES__STRING_FORMAT:
         setStringFormat((FormatTypes)newValue);
         return;
@@ -138,6 +240,12 @@ public class PrimitivePropertiesImpl extends MinimalEObjectImpl.Container implem
   {
     switch (featureID)
     {
+      case JSchemaPackage.PRIMITIVE_PROPERTIES__STRING_LENGHT:
+        setStringLenght(STRING_LENGHT_EDEFAULT);
+        return;
+      case JSchemaPackage.PRIMITIVE_PROPERTIES__PATTERN_STRING:
+        setPatternString(PATTERN_STRING_EDEFAULT);
+        return;
       case JSchemaPackage.PRIMITIVE_PROPERTIES__STRING_FORMAT:
         setStringFormat(STRING_FORMAT_EDEFAULT);
         return;
@@ -155,6 +263,10 @@ public class PrimitivePropertiesImpl extends MinimalEObjectImpl.Container implem
   {
     switch (featureID)
     {
+      case JSchemaPackage.PRIMITIVE_PROPERTIES__STRING_LENGHT:
+        return STRING_LENGHT_EDEFAULT == null ? stringLenght != null : !STRING_LENGHT_EDEFAULT.equals(stringLenght);
+      case JSchemaPackage.PRIMITIVE_PROPERTIES__PATTERN_STRING:
+        return PATTERN_STRING_EDEFAULT == null ? patternString != null : !PATTERN_STRING_EDEFAULT.equals(patternString);
       case JSchemaPackage.PRIMITIVE_PROPERTIES__STRING_FORMAT:
         return stringFormat != STRING_FORMAT_EDEFAULT;
     }
@@ -172,7 +284,11 @@ public class PrimitivePropertiesImpl extends MinimalEObjectImpl.Container implem
     if (eIsProxy()) return super.toString();
 
     StringBuilder result = new StringBuilder(super.toString());
-    result.append(" (stringFormat: ");
+    result.append(" (stringLenght: ");
+    result.append(stringLenght);
+    result.append(", patternString: ");
+    result.append(patternString);
+    result.append(", stringFormat: ");
     result.append(stringFormat);
     result.append(')');
     return result.toString();

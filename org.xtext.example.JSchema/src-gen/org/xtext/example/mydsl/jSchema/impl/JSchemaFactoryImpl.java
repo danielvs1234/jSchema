@@ -12,6 +12,7 @@ import org.eclipse.emf.ecore.impl.EFactoryImpl;
 
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
 
+import org.xtext.example.mydsl.jSchema.AbstractObject;
 import org.xtext.example.mydsl.jSchema.Array;
 import org.xtext.example.mydsl.jSchema.FormatTypes;
 import org.xtext.example.mydsl.jSchema.Includes;
@@ -79,6 +80,7 @@ public class JSchemaFactoryImpl extends EFactoryImpl implements JSchemaFactory
     {
       case JSchemaPackage.MODEL: return createModel();
       case JSchemaPackage.NUMBER: return createNumber();
+      case JSchemaPackage.ABSTRACT_OBJECT: return createAbstractObject();
       case JSchemaPackage.OBJECT: return createObject();
       case JSchemaPackage.PRIMITIVE_OBJECT: return createPrimitiveObject();
       case JSchemaPackage.TYPES: return createTypes();
@@ -149,6 +151,18 @@ public class JSchemaFactoryImpl extends EFactoryImpl implements JSchemaFactory
   {
     NumberImpl number = new NumberImpl();
     return number;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public AbstractObject createAbstractObject()
+  {
+    AbstractObjectImpl abstractObject = new AbstractObjectImpl();
+    return abstractObject;
   }
 
   /**

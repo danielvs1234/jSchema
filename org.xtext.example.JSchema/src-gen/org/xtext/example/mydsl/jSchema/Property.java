@@ -15,7 +15,7 @@ import org.eclipse.emf.ecore.EObject;
  * </p>
  * <ul>
  *   <li>{@link org.xtext.example.mydsl.jSchema.Property#getType <em>Type</em>}</li>
- *   <li>{@link org.xtext.example.mydsl.jSchema.Property#getName <em>Name</em>}</li>
+ *   <li>{@link org.xtext.example.mydsl.jSchema.Property#getObject <em>Object</em>}</li>
  * </ul>
  *
  * @see org.xtext.example.mydsl.jSchema.JSchemaPackage#getProperty()
@@ -47,25 +47,25 @@ public interface Property extends EObject
   void setType(Types value);
 
   /**
-   * Returns the value of the '<em><b>Name</b></em>' attribute.
+   * Returns the value of the '<em><b>Object</b></em>' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the value of the '<em>Name</em>' attribute.
-   * @see #setName(String)
-   * @see org.xtext.example.mydsl.jSchema.JSchemaPackage#getProperty_Name()
-   * @model
+   * @return the value of the '<em>Object</em>' containment reference.
+   * @see #setObject(org.xtext.example.mydsl.jSchema.Object)
+   * @see org.xtext.example.mydsl.jSchema.JSchemaPackage#getProperty_Object()
+   * @model containment="true"
    * @generated
    */
-  String getName();
+  org.xtext.example.mydsl.jSchema.Object getObject();
 
   /**
-   * Sets the value of the '{@link org.xtext.example.mydsl.jSchema.Property#getName <em>Name</em>}' attribute.
+   * Sets the value of the '{@link org.xtext.example.mydsl.jSchema.Property#getObject <em>Object</em>}' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Name</em>' attribute.
-   * @see #getName()
+   * @param value the new value of the '<em>Object</em>' containment reference.
+   * @see #getObject()
    * @generated
    */
-  void setName(String value);
+  void setObject(org.xtext.example.mydsl.jSchema.Object value);
 
 } // Property

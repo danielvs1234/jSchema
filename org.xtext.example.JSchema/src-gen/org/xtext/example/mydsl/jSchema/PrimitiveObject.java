@@ -22,7 +22,7 @@ import org.eclipse.emf.common.util.EList;
  * @model
  * @generated
  */
-public interface PrimitiveObject extends Model
+public interface PrimitiveObject extends AbstractObject
 {
   /**
    * Returns the value of the '<em><b>Type</b></em>' containment reference.

@@ -8,6 +8,7 @@ import org.eclipse.emf.ecore.EPackage;
 
 import org.eclipse.emf.ecore.util.Switch;
 
+import org.xtext.example.mydsl.jSchema.AbstractObject;
 import org.xtext.example.mydsl.jSchema.Array;
 import org.xtext.example.mydsl.jSchema.Includes;
 import org.xtext.example.mydsl.jSchema.JSchemaPackage;
@@ -96,11 +97,18 @@ public class JSchemaSwitch<T> extends Switch<T>
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
+      case JSchemaPackage.ABSTRACT_OBJECT:
+      {
+        AbstractObject abstractObject = (AbstractObject)theEObject;
+        T result = caseAbstractObject(abstractObject);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
       case JSchemaPackage.OBJECT:
       {
         org.xtext.example.mydsl.jSchema.Object object = (org.xtext.example.mydsl.jSchema.Object)theEObject;
         T result = caseObject(object);
-        if (result == null) result = caseModel(object);
+        if (result == null) result = caseAbstractObject(object);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -108,7 +116,7 @@ public class JSchemaSwitch<T> extends Switch<T>
       {
         PrimitiveObject primitiveObject = (PrimitiveObject)theEObject;
         T result = casePrimitiveObject(primitiveObject);
-        if (result == null) result = caseModel(primitiveObject);
+        if (result == null) result = caseAbstractObject(primitiveObject);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -151,7 +159,6 @@ public class JSchemaSwitch<T> extends Switch<T>
       {
         Array array = (Array)theEObject;
         T result = caseArray(array);
-        if (result == null) result = caseTypes(array);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -195,6 +202,22 @@ public class JSchemaSwitch<T> extends Switch<T>
    * @generated
    */
   public T caseNumber(org.xtext.example.mydsl.jSchema.Number object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Abstract Object</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Abstract Object</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseAbstractObject(AbstractObject object)
   {
     return null;
   }

@@ -14,6 +14,7 @@ import org.eclipse.emf.ecore.EObject;
  * The following features are supported:
  * </p>
  * <ul>
+ *   <li>{@link org.xtext.example.mydsl.jSchema.Types#getArray <em>Array</em>}</li>
  *   <li>{@link org.xtext.example.mydsl.jSchema.Types#getNumber <em>Number</em>}</li>
  * </ul>
  *
@@ -23,6 +24,28 @@ import org.eclipse.emf.ecore.EObject;
  */
 public interface Types extends EObject
 {
+  /**
+   * Returns the value of the '<em><b>Array</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the value of the '<em>Array</em>' containment reference.
+   * @see #setArray(Array)
+   * @see org.xtext.example.mydsl.jSchema.JSchemaPackage#getTypes_Array()
+   * @model containment="true"
+   * @generated
+   */
+  Array getArray();
+
+  /**
+   * Sets the value of the '{@link org.xtext.example.mydsl.jSchema.Types#getArray <em>Array</em>}' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @param value the new value of the '<em>Array</em>' containment reference.
+   * @see #getArray()
+   * @generated
+   */
+  void setArray(Array value);
+
   /**
    * Returns the value of the '<em><b>Number</b></em>' containment reference.
    * <!-- begin-user-doc -->

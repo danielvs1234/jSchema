@@ -25,7 +25,7 @@ import org.xtext.example.mydsl.jSchema.Types;
  * </p>
  * <ul>
  *   <li>{@link org.xtext.example.mydsl.jSchema.impl.PropertyImpl#getType <em>Type</em>}</li>
- *   <li>{@link org.xtext.example.mydsl.jSchema.impl.PropertyImpl#getName <em>Name</em>}</li>
+ *   <li>{@link org.xtext.example.mydsl.jSchema.impl.PropertyImpl#getObject <em>Object</em>}</li>
  * </ul>
  *
  * @generated
@@ -43,24 +43,14 @@ public class PropertyImpl extends MinimalEObjectImpl.Container implements Proper
   protected Types type;
 
   /**
-   * The default value of the '{@link #getName() <em>Name</em>}' attribute.
+   * The cached value of the '{@link #getObject() <em>Object</em>}' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getName()
+   * @see #getObject()
    * @generated
    * @ordered
    */
-  protected static final String NAME_EDEFAULT = null;
-
-  /**
-   * The cached value of the '{@link #getName() <em>Name</em>}' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #getName()
-   * @generated
-   * @ordered
-   */
-  protected String name = NAME_EDEFAULT;
+  protected org.xtext.example.mydsl.jSchema.Object object;
 
   /**
    * <!-- begin-user-doc -->
@@ -139,9 +129,26 @@ public class PropertyImpl extends MinimalEObjectImpl.Container implements Proper
    * @generated
    */
   @Override
-  public String getName()
+  public org.xtext.example.mydsl.jSchema.Object getObject()
   {
-    return name;
+    return object;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public NotificationChain basicSetObject(org.xtext.example.mydsl.jSchema.Object newObject, NotificationChain msgs)
+  {
+    org.xtext.example.mydsl.jSchema.Object oldObject = object;
+    object = newObject;
+    if (eNotificationRequired())
+    {
+      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, JSchemaPackage.PROPERTY__OBJECT, oldObject, newObject);
+      if (msgs == null) msgs = notification; else msgs.add(notification);
+    }
+    return msgs;
   }
 
   /**
@@ -150,12 +157,20 @@ public class PropertyImpl extends MinimalEObjectImpl.Container implements Proper
    * @generated
    */
   @Override
-  public void setName(String newName)
+  public void setObject(org.xtext.example.mydsl.jSchema.Object newObject)
   {
-    String oldName = name;
-    name = newName;
-    if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, JSchemaPackage.PROPERTY__NAME, oldName, name));
+    if (newObject != object)
+    {
+      NotificationChain msgs = null;
+      if (object != null)
+        msgs = ((InternalEObject)object).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - JSchemaPackage.PROPERTY__OBJECT, null, msgs);
+      if (newObject != null)
+        msgs = ((InternalEObject)newObject).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - JSchemaPackage.PROPERTY__OBJECT, null, msgs);
+      msgs = basicSetObject(newObject, msgs);
+      if (msgs != null) msgs.dispatch();
+    }
+    else if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, JSchemaPackage.PROPERTY__OBJECT, newObject, newObject));
   }
 
   /**
@@ -170,6 +185,8 @@ public class PropertyImpl extends MinimalEObjectImpl.Container implements Proper
     {
       case JSchemaPackage.PROPERTY__TYPE:
         return basicSetType(null, msgs);
+      case JSchemaPackage.PROPERTY__OBJECT:
+        return basicSetObject(null, msgs);
     }
     return super.eInverseRemove(otherEnd, featureID, msgs);
   }
@@ -186,8 +203,8 @@ public class PropertyImpl extends MinimalEObjectImpl.Container implements Proper
     {
       case JSchemaPackage.PROPERTY__TYPE:
         return getType();
-      case JSchemaPackage.PROPERTY__NAME:
-        return getName();
+      case JSchemaPackage.PROPERTY__OBJECT:
+        return getObject();
     }
     return super.eGet(featureID, resolve, coreType);
   }
@@ -205,8 +222,8 @@ public class PropertyImpl extends MinimalEObjectImpl.Container implements Proper
       case JSchemaPackage.PROPERTY__TYPE:
         setType((Types)newValue);
         return;
-      case JSchemaPackage.PROPERTY__NAME:
-        setName((String)newValue);
+      case JSchemaPackage.PROPERTY__OBJECT:
+        setObject((org.xtext.example.mydsl.jSchema.Object)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -225,8 +242,8 @@ public class PropertyImpl extends MinimalEObjectImpl.Container implements Proper
       case JSchemaPackage.PROPERTY__TYPE:
         setType((Types)null);
         return;
-      case JSchemaPackage.PROPERTY__NAME:
-        setName(NAME_EDEFAULT);
+      case JSchemaPackage.PROPERTY__OBJECT:
+        setObject((org.xtext.example.mydsl.jSchema.Object)null);
         return;
     }
     super.eUnset(featureID);
@@ -244,27 +261,10 @@ public class PropertyImpl extends MinimalEObjectImpl.Container implements Proper
     {
       case JSchemaPackage.PROPERTY__TYPE:
         return type != null;
-      case JSchemaPackage.PROPERTY__NAME:
-        return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
+      case JSchemaPackage.PROPERTY__OBJECT:
+        return object != null;
     }
     return super.eIsSet(featureID);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public String toString()
-  {
-    if (eIsProxy()) return super.toString();
-
-    StringBuilder result = new StringBuilder(super.toString());
-    result.append(" (name: ");
-    result.append(name);
-    result.append(')');
-    return result.toString();
   }
 
 } //PropertyImpl

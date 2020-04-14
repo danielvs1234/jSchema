@@ -252,3 +252,4 @@
 2020-04-02 11:24:42,579 [Worker-32: Building] INFO  o.e.m.c.i.l.LifecycleMappingFactory - Using NULL lifecycle mapping for MavenProject: org.xtext.json.schema:org.xtext.json.schema.parent:1.0.0-SNAPSHOT @ C:\Users\danie\JsonSchemaDSL\Jonas Repository\JSON-Schema-to-internal-DSL\org.xtext.json.schema.parent\pom.xml.
 2020-04-05 20:33:51,735 [Worker-1: Loading available Gradle versions] INFO  o.e.b.c.i.u.g.PublishedGradleVersions - Gradle version information cache is out-of-date. Trying to update.
 2020-04-13 20:09:06,895 [Worker-3: Loading available Gradle versions] INFO  o.e.b.c.i.u.g.PublishedGradleVersions - Gradle version information cache is out-of-date. Trying to update.
+2020-04-14 20:03:52,363 [Worker-2: Loading available Gradle versions] INFO  o.e.b.c.i.u.g.PublishedGradleVersions - Gradle version information cache is up-to-date. Trying to read.

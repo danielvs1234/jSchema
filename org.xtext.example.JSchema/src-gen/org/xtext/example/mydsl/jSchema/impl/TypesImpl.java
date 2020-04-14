@@ -12,6 +12,7 @@ import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
+import org.xtext.example.mydsl.jSchema.Array;
 import org.xtext.example.mydsl.jSchema.JSchemaPackage;
 import org.xtext.example.mydsl.jSchema.Types;
 
@@ -23,6 +24,7 @@ import org.xtext.example.mydsl.jSchema.Types;
  * The following features are implemented:
  * </p>
  * <ul>
+ *   <li>{@link org.xtext.example.mydsl.jSchema.impl.TypesImpl#getArray <em>Array</em>}</li>
  *   <li>{@link org.xtext.example.mydsl.jSchema.impl.TypesImpl#getNumber <em>Number</em>}</li>
  * </ul>
  *
@@ -30,6 +32,16 @@ import org.xtext.example.mydsl.jSchema.Types;
  */
 public class TypesImpl extends MinimalEObjectImpl.Container implements Types
 {
+  /**
+   * The cached value of the '{@link #getArray() <em>Array</em>}' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getArray()
+   * @generated
+   * @ordered
+   */
+  protected Array array;
+
   /**
    * The cached value of the '{@link #getNumber() <em>Number</em>}' containment reference.
    * <!-- begin-user-doc -->
@@ -59,6 +71,56 @@ public class TypesImpl extends MinimalEObjectImpl.Container implements Types
   protected EClass eStaticClass()
   {
     return JSchemaPackage.Literals.TYPES;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public Array getArray()
+  {
+    return array;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public NotificationChain basicSetArray(Array newArray, NotificationChain msgs)
+  {
+    Array oldArray = array;
+    array = newArray;
+    if (eNotificationRequired())
+    {
+      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, JSchemaPackage.TYPES__ARRAY, oldArray, newArray);
+      if (msgs == null) msgs = notification; else msgs.add(notification);
+    }
+    return msgs;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public void setArray(Array newArray)
+  {
+    if (newArray != array)
+    {
+      NotificationChain msgs = null;
+      if (array != null)
+        msgs = ((InternalEObject)array).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - JSchemaPackage.TYPES__ARRAY, null, msgs);
+      if (newArray != null)
+        msgs = ((InternalEObject)newArray).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - JSchemaPackage.TYPES__ARRAY, null, msgs);
+      msgs = basicSetArray(newArray, msgs);
+      if (msgs != null) msgs.dispatch();
+    }
+    else if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, JSchemaPackage.TYPES__ARRAY, newArray, newArray));
   }
 
   /**
@@ -121,6 +183,8 @@ public class TypesImpl extends MinimalEObjectImpl.Container implements Types
   {
     switch (featureID)
     {
+      case JSchemaPackage.TYPES__ARRAY:
+        return basicSetArray(null, msgs);
       case JSchemaPackage.TYPES__NUMBER:
         return basicSetNumber(null, msgs);
     }
@@ -137,6 +201,8 @@ public class TypesImpl extends MinimalEObjectImpl.Container implements Types
   {
     switch (featureID)
     {
+      case JSchemaPackage.TYPES__ARRAY:
+        return getArray();
       case JSchemaPackage.TYPES__NUMBER:
         return getNumber();
     }
@@ -153,6 +219,9 @@ public class TypesImpl extends MinimalEObjectImpl.Container implements Types
   {
     switch (featureID)
     {
+      case JSchemaPackage.TYPES__ARRAY:
+        setArray((Array)newValue);
+        return;
       case JSchemaPackage.TYPES__NUMBER:
         setNumber((org.xtext.example.mydsl.jSchema.Number)newValue);
         return;
@@ -170,6 +239,9 @@ public class TypesImpl extends MinimalEObjectImpl.Container implements Types
   {
     switch (featureID)
     {
+      case JSchemaPackage.TYPES__ARRAY:
+        setArray((Array)null);
+        return;
       case JSchemaPackage.TYPES__NUMBER:
         setNumber((org.xtext.example.mydsl.jSchema.Number)null);
         return;
@@ -187,6 +259,8 @@ public class TypesImpl extends MinimalEObjectImpl.Container implements Types
   {
     switch (featureID)
     {
+      case JSchemaPackage.TYPES__ARRAY:
+        return array != null;
       case JSchemaPackage.TYPES__NUMBER:
         return number != null;
     }

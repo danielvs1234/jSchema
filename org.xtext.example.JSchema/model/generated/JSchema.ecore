@@ -3,38 +3,46 @@
     xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="jSchema" nsURI="http://www.xtext.org/example/mydsl/JSchema"
     nsPrefix="jSchema">
   <eClassifiers xsi:type="ecore:EClass" name="Model">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="AbstractObject" upperBound="-1"
+        eType="#//AbstractObject" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Number">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="number" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="decimal" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Object" eSuperTypes="#//Model">
+  <eClassifiers xsi:type="ecore:EClass" name="AbstractObject"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Object" eSuperTypes="#//AbstractObject">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="objectName" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="includeObjects" eType="#//Includes"
         containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="properties" eType="#//hasProperties"
-        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="properties" upperBound="-1"
+        eType="#//hasProperties" containment="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="PrimitiveObject" eSuperTypes="#//Model">
+  <eClassifiers xsi:type="ecore:EClass" name="PrimitiveObject" eSuperTypes="#//AbstractObject">
     <eStructuralFeatures xsi:type="ecore:EReference" name="type" eType="#//Types"
         containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="primitiveProperties" upperBound="-1"
         eType="#//PrimitiveProperties" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Types">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="array" eType="#//Array"
+        containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="number" eType="#//Number"
         containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="hasProperties">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="properties" upperBound="-1"
-        eType="#//Property" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="properties" eType="#//Property"
+        containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Property">
     <eStructuralFeatures xsi:type="ecore:EReference" name="type" eType="#//Types"
         containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="object" eType="#//Object"
+        containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="PrimitiveProperties">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="stringLenght" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="patternString" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="stringFormat" eType="#//FormatTypes"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="FormatTypes">
@@ -59,10 +67,8 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="objectID" unique="false"
         upperBound="-1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Array" eSuperTypes="#//Types">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="array" eType="#//Array"
-        containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Array">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="arrayName" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="properties" upperBound="-1"
         eType="#//Property" containment="true"/>
   </eClassifiers>
