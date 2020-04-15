@@ -42,9 +42,6 @@ class JSchemaGenerator extends AbstractGenerator {
 		
 	}
 	
-	def compilePrimitiveObject(PrimitiveObject obj){
-	}
-	
 	def checkIfObjectContainsOtherObjects(MainObject obj){
 		if(obj.includeObjects != null){
 			return true

@@ -54,6 +54,10 @@ public class JSchemaGenerator extends AbstractGenerator {
     System.out.println(_plus);
   }
   
+  public Object compilePrimitiveObject(final PrimitiveObject obj) {
+    return null;
+  }
+  
   public boolean checkIfObjectContainsOtherObjects(final MainObject obj) {
     Includes _includeObjects = obj.getIncludeObjects();
     boolean _notEquals = (!Objects.equal(_includeObjects, null));
