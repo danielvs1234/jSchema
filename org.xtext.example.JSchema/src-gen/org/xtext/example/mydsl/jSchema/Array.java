@@ -18,6 +18,7 @@ import org.eclipse.emf.ecore.EObject;
  * <ul>
  *   <li>{@link org.xtext.example.mydsl.jSchema.Array#getArrayName <em>Array Name</em>}</li>
  *   <li>{@link org.xtext.example.mydsl.jSchema.Array#getProperties <em>Properties</em>}</li>
+ *   <li>{@link org.xtext.example.mydsl.jSchema.Array#getArrayType <em>Array Type</em>}</li>
  * </ul>
  *
  * @see org.xtext.example.mydsl.jSchema.JSchemaPackage#getArray()
@@ -59,5 +60,27 @@ public interface Array extends EObject
    * @generated
    */
   EList<Property> getProperties();
+
+  /**
+   * Returns the value of the '<em><b>Array Type</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the value of the '<em>Array Type</em>' attribute.
+   * @see #setArrayType(String)
+   * @see org.xtext.example.mydsl.jSchema.JSchemaPackage#getArray_ArrayType()
+   * @model
+   * @generated
+   */
+  String getArrayType();
+
+  /**
+   * Sets the value of the '{@link org.xtext.example.mydsl.jSchema.Array#getArrayType <em>Array Type</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @param value the new value of the '<em>Array Type</em>' attribute.
+   * @see #getArrayType()
+   * @generated
+   */
+  void setArrayType(String value);
 
 } // Array

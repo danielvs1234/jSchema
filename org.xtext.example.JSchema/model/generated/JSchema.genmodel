@@ -32,18 +32,19 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute JSchema.ecore#//Number/decimal"/>
     </genClasses>
     <genClasses ecoreClass="JSchema.ecore#//AbstractObject"/>
-    <genClasses ecoreClass="JSchema.ecore#//Object">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute JSchema.ecore#//Object/objectName"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference JSchema.ecore#//Object/includeObjects"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference JSchema.ecore#//Object/properties"/>
+    <genClasses ecoreClass="JSchema.ecore#//MainObject">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute JSchema.ecore#//MainObject/objectName"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute JSchema.ecore#//MainObject/root"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference JSchema.ecore#//MainObject/includeObjects"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference JSchema.ecore#//MainObject/properties"/>
     </genClasses>
     <genClasses ecoreClass="JSchema.ecore#//PrimitiveObject">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference JSchema.ecore#//PrimitiveObject/type"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference JSchema.ecore#//PrimitiveObject/primitiveProperties"/>
     </genClasses>
-    <genClasses ecoreClass="JSchema.ecore#//Types">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference JSchema.ecore#//Types/array"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference JSchema.ecore#//Types/number"/>
+    <genClasses ecoreClass="JSchema.ecore#//PrimitiveTypes">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference JSchema.ecore#//PrimitiveTypes/array"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference JSchema.ecore#//PrimitiveTypes/number"/>
     </genClasses>
     <genClasses ecoreClass="JSchema.ecore#//hasProperties">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference JSchema.ecore#//hasProperties/properties"/>
@@ -63,6 +64,7 @@
     <genClasses ecoreClass="JSchema.ecore#//Array">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute JSchema.ecore#//Array/arrayName"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference JSchema.ecore#//Array/properties"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute JSchema.ecore#//Array/arrayType"/>
     </genClasses>
     <genClasses ecoreClass="JSchema.ecore#//STRING">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute JSchema.ecore#//STRING/string"/>

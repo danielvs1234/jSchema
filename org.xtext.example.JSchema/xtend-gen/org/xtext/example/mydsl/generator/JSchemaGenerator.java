@@ -3,10 +3,23 @@
  */
 package org.xtext.example.mydsl.generator;
 
+import com.google.common.base.Objects;
+import com.google.common.collect.Iterables;
+import com.google.common.collect.Iterators;
+import java.util.Iterator;
+import javax.inject.Inject;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.xtext.generator.AbstractGenerator;
 import org.eclipse.xtext.generator.IFileSystemAccess2;
 import org.eclipse.xtext.generator.IGeneratorContext;
+import org.eclipse.xtext.naming.IQualifiedNameProvider;
+import org.eclipse.xtext.xbase.lib.Extension;
+import org.eclipse.xtext.xbase.lib.IteratorExtensions;
+import org.xtext.example.mydsl.jSchema.Includes;
+import org.xtext.example.mydsl.jSchema.MainObject;
+import org.xtext.example.mydsl.jSchema.Model;
+import org.xtext.example.mydsl.jSchema.PrimitiveObject;
 
 /**
  * Generates code from your model files on save.
@@ -15,7 +28,43 @@ import org.eclipse.xtext.generator.IGeneratorContext;
  */
 @SuppressWarnings("all")
 public class JSchemaGenerator extends AbstractGenerator {
+  @Inject
+  @Extension
+  private IQualifiedNameProvider _iQualifiedNameProvider;
+  
   @Override
   public void doGenerate(final Resource resource, final IFileSystemAccess2 fsa, final IGeneratorContext context) {
+    final Model abstractObjects = Iterators.<Model>filter(resource.getAllContents(), Model.class).next();
+    final Iterator<PrimitiveObject> primitiveObjects = Iterators.<PrimitiveObject>filter(resource.getAllContents(), PrimitiveObject.class);
+    Iterable<MainObject> _filter = Iterables.<MainObject>filter(IteratorExtensions.<EObject>toIterable(resource.getAllContents()), MainObject.class);
+    for (final MainObject obj : _filter) {
+      this.compileObject(obj);
+    }
+  }
+  
+  public void compileObject(final MainObject obj) {
+    String bool = "false";
+    boolean _checkIfObjectContainsOtherObjects = this.checkIfObjectContainsOtherObjects(obj);
+    boolean _equals = (_checkIfObjectContainsOtherObjects == true);
+    if (_equals) {
+      bool = "true";
+    }
+    String _string = obj.getObjectName().toString();
+    String _plus = ((("Contains other objects: " + bool) + "  ") + _string);
+    System.out.println(_plus);
+  }
+  
+  public boolean checkIfObjectContainsOtherObjects(final MainObject obj) {
+    Includes _includeObjects = obj.getIncludeObjects();
+    boolean _notEquals = (!Objects.equal(_includeObjects, null));
+    if (_notEquals) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+  
+  public Object stringBuilder(final String string) {
+    return null;
   }
 }

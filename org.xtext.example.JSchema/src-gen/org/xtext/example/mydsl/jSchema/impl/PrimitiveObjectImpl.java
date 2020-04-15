@@ -21,7 +21,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
 import org.xtext.example.mydsl.jSchema.JSchemaPackage;
 import org.xtext.example.mydsl.jSchema.PrimitiveObject;
 import org.xtext.example.mydsl.jSchema.PrimitiveProperties;
-import org.xtext.example.mydsl.jSchema.Types;
+import org.xtext.example.mydsl.jSchema.PrimitiveTypes;
 
 /**
  * <!-- begin-user-doc -->
@@ -47,7 +47,7 @@ public class PrimitiveObjectImpl extends AbstractObjectImpl implements Primitive
    * @generated
    * @ordered
    */
-  protected Types type;
+  protected PrimitiveTypes type;
 
   /**
    * The cached value of the '{@link #getPrimitiveProperties() <em>Primitive Properties</em>}' containment reference list.
@@ -86,7 +86,7 @@ public class PrimitiveObjectImpl extends AbstractObjectImpl implements Primitive
    * @generated
    */
   @Override
-  public Types getType()
+  public PrimitiveTypes getType()
   {
     return type;
   }
@@ -96,9 +96,9 @@ public class PrimitiveObjectImpl extends AbstractObjectImpl implements Primitive
    * <!-- end-user-doc -->
    * @generated
    */
-  public NotificationChain basicSetType(Types newType, NotificationChain msgs)
+  public NotificationChain basicSetType(PrimitiveTypes newType, NotificationChain msgs)
   {
-    Types oldType = type;
+    PrimitiveTypes oldType = type;
     type = newType;
     if (eNotificationRequired())
     {
@@ -114,7 +114,7 @@ public class PrimitiveObjectImpl extends AbstractObjectImpl implements Primitive
    * @generated
    */
   @Override
-  public void setType(Types newType)
+  public void setType(PrimitiveTypes newType)
   {
     if (newType != type)
     {
@@ -193,7 +193,7 @@ public class PrimitiveObjectImpl extends AbstractObjectImpl implements Primitive
     switch (featureID)
     {
       case JSchemaPackage.PRIMITIVE_OBJECT__TYPE:
-        setType((Types)newValue);
+        setType((PrimitiveTypes)newValue);
         return;
       case JSchemaPackage.PRIMITIVE_OBJECT__PRIMITIVE_PROPERTIES:
         getPrimitiveProperties().clear();
@@ -214,7 +214,7 @@ public class PrimitiveObjectImpl extends AbstractObjectImpl implements Primitive
     switch (featureID)
     {
       case JSchemaPackage.PRIMITIVE_OBJECT__TYPE:
-        setType((Types)null);
+        setType((PrimitiveTypes)null);
         return;
       case JSchemaPackage.PRIMITIVE_OBJECT__PRIMITIVE_PROPERTIES:
         getPrimitiveProperties().clear();

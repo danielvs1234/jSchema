@@ -25,7 +25,7 @@ import org.xtext.example.mydsl.jSchema.STRING;
  *
  * @generated
  */
-public class STRINGImpl extends TypesImpl implements STRING
+public class STRINGImpl extends PrimitiveTypesImpl implements STRING
 {
   /**
    * The default value of the '{@link #getString() <em>String</em>}' attribute.

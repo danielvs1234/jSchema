@@ -11,12 +11,12 @@ Number:
 ;
 
 AbstractObject:
-	Object | PrimitiveObject
+	MainObject | PrimitiveObject
 ;
 //(nestedObjectName=ID nestedObject=Object)
 
-Object:
- 	objectName=ID ('includes' includeObjects=Includes)? '{'  (properties+=hasProperties)? '}' 
+MainObject:
+ 	objectName=ID (root='root')? ('includes' includeObjects=Includes)? '{'  (properties+=hasProperties)? '}' 
 ;
 
 
@@ -38,7 +38,7 @@ hasProperties:
 ;
 
 Property:
- 	type=PrimitiveTypes | object=Object
+ 	type=PrimitiveTypes | object=MainObject
 ;
 
 PrimitiveProperties:
@@ -50,7 +50,7 @@ StringLength:
 ;
 
 enum FormatTypes:
-	date_time='"date-time"' | 
+	date_time='"date-time"' |
 	time='"time"' | 
 	date='"date"' | 
 	email='"email"' | 
@@ -74,9 +74,12 @@ Includes:
 
 //Types
 Array:
- 	arrayName=ID '[' (properties+=Property (',' properties+=Property)*)? ']'
+ 	arrayName=ID '[' (properties+=Property (',' properties+=Property)*)? (arrayType=ArrayType)? ']'
 ;
 
+ArrayType:
+	'String' | 'Int' | 'float' | 'double'
+;
 
 
 

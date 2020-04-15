@@ -29,12 +29,12 @@ public interface PrimitiveObject extends AbstractObject
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @return the value of the '<em>Type</em>' containment reference.
-   * @see #setType(Types)
+   * @see #setType(PrimitiveTypes)
    * @see org.xtext.example.mydsl.jSchema.JSchemaPackage#getPrimitiveObject_Type()
    * @model containment="true"
    * @generated
    */
-  Types getType();
+  PrimitiveTypes getType();
 
   /**
    * Sets the value of the '{@link org.xtext.example.mydsl.jSchema.PrimitiveObject#getType <em>Type</em>}' containment reference.
@@ -44,7 +44,7 @@ public interface PrimitiveObject extends AbstractObject
    * @see #getType()
    * @generated
    */
-  void setType(Types value);
+  void setType(PrimitiveTypes value);
 
   /**
    * Returns the value of the '<em><b>Primitive Properties</b></em>' containment reference list.

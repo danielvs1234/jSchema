@@ -18,12 +18,13 @@ import org.xtext.example.mydsl.jSchema.FormatTypes;
 import org.xtext.example.mydsl.jSchema.Includes;
 import org.xtext.example.mydsl.jSchema.JSchemaFactory;
 import org.xtext.example.mydsl.jSchema.JSchemaPackage;
+import org.xtext.example.mydsl.jSchema.MainObject;
 import org.xtext.example.mydsl.jSchema.Model;
 import org.xtext.example.mydsl.jSchema.PrimitiveObject;
 import org.xtext.example.mydsl.jSchema.PrimitiveProperties;
+import org.xtext.example.mydsl.jSchema.PrimitiveTypes;
 import org.xtext.example.mydsl.jSchema.Property;
 import org.xtext.example.mydsl.jSchema.STRING;
-import org.xtext.example.mydsl.jSchema.Types;
 import org.xtext.example.mydsl.jSchema.hasProperties;
 
 /**
@@ -81,9 +82,9 @@ public class JSchemaFactoryImpl extends EFactoryImpl implements JSchemaFactory
       case JSchemaPackage.MODEL: return createModel();
       case JSchemaPackage.NUMBER: return createNumber();
       case JSchemaPackage.ABSTRACT_OBJECT: return createAbstractObject();
-      case JSchemaPackage.OBJECT: return createObject();
+      case JSchemaPackage.MAIN_OBJECT: return createMainObject();
       case JSchemaPackage.PRIMITIVE_OBJECT: return createPrimitiveObject();
-      case JSchemaPackage.TYPES: return createTypes();
+      case JSchemaPackage.PRIMITIVE_TYPES: return createPrimitiveTypes();
       case JSchemaPackage.HAS_PROPERTIES: return createhasProperties();
       case JSchemaPackage.PROPERTY: return createProperty();
       case JSchemaPackage.PRIMITIVE_PROPERTIES: return createPrimitiveProperties();
@@ -171,10 +172,10 @@ public class JSchemaFactoryImpl extends EFactoryImpl implements JSchemaFactory
    * @generated
    */
   @Override
-  public org.xtext.example.mydsl.jSchema.Object createObject()
+  public MainObject createMainObject()
   {
-    ObjectImpl object = new ObjectImpl();
-    return object;
+    MainObjectImpl mainObject = new MainObjectImpl();
+    return mainObject;
   }
 
   /**
@@ -195,10 +196,10 @@ public class JSchemaFactoryImpl extends EFactoryImpl implements JSchemaFactory
    * @generated
    */
   @Override
-  public Types createTypes()
+  public PrimitiveTypes createPrimitiveTypes()
   {
-    TypesImpl types = new TypesImpl();
-    return types;
+    PrimitiveTypesImpl primitiveTypes = new PrimitiveTypesImpl();
+    return primitiveTypes;
   }
 
   /**

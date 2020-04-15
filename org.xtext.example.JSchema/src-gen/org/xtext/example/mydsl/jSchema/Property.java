@@ -29,12 +29,12 @@ public interface Property extends EObject
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @return the value of the '<em>Type</em>' containment reference.
-   * @see #setType(Types)
+   * @see #setType(PrimitiveTypes)
    * @see org.xtext.example.mydsl.jSchema.JSchemaPackage#getProperty_Type()
    * @model containment="true"
    * @generated
    */
-  Types getType();
+  PrimitiveTypes getType();
 
   /**
    * Sets the value of the '{@link org.xtext.example.mydsl.jSchema.Property#getType <em>Type</em>}' containment reference.
@@ -44,19 +44,19 @@ public interface Property extends EObject
    * @see #getType()
    * @generated
    */
-  void setType(Types value);
+  void setType(PrimitiveTypes value);
 
   /**
    * Returns the value of the '<em><b>Object</b></em>' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @return the value of the '<em>Object</em>' containment reference.
-   * @see #setObject(org.xtext.example.mydsl.jSchema.Object)
+   * @see #setObject(MainObject)
    * @see org.xtext.example.mydsl.jSchema.JSchemaPackage#getProperty_Object()
    * @model containment="true"
    * @generated
    */
-  org.xtext.example.mydsl.jSchema.Object getObject();
+  MainObject getObject();
 
   /**
    * Sets the value of the '{@link org.xtext.example.mydsl.jSchema.Property#getObject <em>Object</em>}' containment reference.
@@ -66,6 +66,6 @@ public interface Property extends EObject
    * @see #getObject()
    * @generated
    */
-  void setObject(org.xtext.example.mydsl.jSchema.Object value);
+  void setObject(MainObject value);
 
 } // Property

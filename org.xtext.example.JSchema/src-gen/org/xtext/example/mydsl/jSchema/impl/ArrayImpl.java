@@ -33,6 +33,7 @@ import org.xtext.example.mydsl.jSchema.Property;
  * <ul>
  *   <li>{@link org.xtext.example.mydsl.jSchema.impl.ArrayImpl#getArrayName <em>Array Name</em>}</li>
  *   <li>{@link org.xtext.example.mydsl.jSchema.impl.ArrayImpl#getProperties <em>Properties</em>}</li>
+ *   <li>{@link org.xtext.example.mydsl.jSchema.impl.ArrayImpl#getArrayType <em>Array Type</em>}</li>
  * </ul>
  *
  * @generated
@@ -68,6 +69,26 @@ public class ArrayImpl extends MinimalEObjectImpl.Container implements Array
    * @ordered
    */
   protected EList<Property> properties;
+
+  /**
+   * The default value of the '{@link #getArrayType() <em>Array Type</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getArrayType()
+   * @generated
+   * @ordered
+   */
+  protected static final String ARRAY_TYPE_EDEFAULT = null;
+
+  /**
+   * The cached value of the '{@link #getArrayType() <em>Array Type</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getArrayType()
+   * @generated
+   * @ordered
+   */
+  protected String arrayType = ARRAY_TYPE_EDEFAULT;
 
   /**
    * <!-- begin-user-doc -->
@@ -136,6 +157,31 @@ public class ArrayImpl extends MinimalEObjectImpl.Container implements Array
    * @generated
    */
   @Override
+  public String getArrayType()
+  {
+    return arrayType;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public void setArrayType(String newArrayType)
+  {
+    String oldArrayType = arrayType;
+    arrayType = newArrayType;
+    if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, JSchemaPackage.ARRAY__ARRAY_TYPE, oldArrayType, arrayType));
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
   public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
   {
     switch (featureID)
@@ -160,6 +206,8 @@ public class ArrayImpl extends MinimalEObjectImpl.Container implements Array
         return getArrayName();
       case JSchemaPackage.ARRAY__PROPERTIES:
         return getProperties();
+      case JSchemaPackage.ARRAY__ARRAY_TYPE:
+        return getArrayType();
     }
     return super.eGet(featureID, resolve, coreType);
   }
@@ -182,6 +230,9 @@ public class ArrayImpl extends MinimalEObjectImpl.Container implements Array
         getProperties().clear();
         getProperties().addAll((Collection<? extends Property>)newValue);
         return;
+      case JSchemaPackage.ARRAY__ARRAY_TYPE:
+        setArrayType((String)newValue);
+        return;
     }
     super.eSet(featureID, newValue);
   }
@@ -202,6 +253,9 @@ public class ArrayImpl extends MinimalEObjectImpl.Container implements Array
       case JSchemaPackage.ARRAY__PROPERTIES:
         getProperties().clear();
         return;
+      case JSchemaPackage.ARRAY__ARRAY_TYPE:
+        setArrayType(ARRAY_TYPE_EDEFAULT);
+        return;
     }
     super.eUnset(featureID);
   }
@@ -220,6 +274,8 @@ public class ArrayImpl extends MinimalEObjectImpl.Container implements Array
         return ARRAY_NAME_EDEFAULT == null ? arrayName != null : !ARRAY_NAME_EDEFAULT.equals(arrayName);
       case JSchemaPackage.ARRAY__PROPERTIES:
         return properties != null && !properties.isEmpty();
+      case JSchemaPackage.ARRAY__ARRAY_TYPE:
+        return ARRAY_TYPE_EDEFAULT == null ? arrayType != null : !ARRAY_TYPE_EDEFAULT.equals(arrayType);
     }
     return super.eIsSet(featureID);
   }
@@ -237,6 +293,8 @@ public class ArrayImpl extends MinimalEObjectImpl.Container implements Array
     StringBuilder result = new StringBuilder(super.toString());
     result.append(" (arrayName: ");
     result.append(arrayName);
+    result.append(", arrayType: ");
+    result.append(arrayType);
     result.append(')');
     return result.toString();
   }

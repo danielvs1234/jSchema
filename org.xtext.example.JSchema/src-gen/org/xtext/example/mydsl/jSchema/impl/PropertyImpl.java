@@ -13,8 +13,9 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
 import org.xtext.example.mydsl.jSchema.JSchemaPackage;
+import org.xtext.example.mydsl.jSchema.MainObject;
+import org.xtext.example.mydsl.jSchema.PrimitiveTypes;
 import org.xtext.example.mydsl.jSchema.Property;
-import org.xtext.example.mydsl.jSchema.Types;
 
 /**
  * <!-- begin-user-doc -->
@@ -40,7 +41,7 @@ public class PropertyImpl extends MinimalEObjectImpl.Container implements Proper
    * @generated
    * @ordered
    */
-  protected Types type;
+  protected PrimitiveTypes type;
 
   /**
    * The cached value of the '{@link #getObject() <em>Object</em>}' containment reference.
@@ -50,7 +51,7 @@ public class PropertyImpl extends MinimalEObjectImpl.Container implements Proper
    * @generated
    * @ordered
    */
-  protected org.xtext.example.mydsl.jSchema.Object object;
+  protected MainObject object;
 
   /**
    * <!-- begin-user-doc -->
@@ -79,7 +80,7 @@ public class PropertyImpl extends MinimalEObjectImpl.Container implements Proper
    * @generated
    */
   @Override
-  public Types getType()
+  public PrimitiveTypes getType()
   {
     return type;
   }
@@ -89,9 +90,9 @@ public class PropertyImpl extends MinimalEObjectImpl.Container implements Proper
    * <!-- end-user-doc -->
    * @generated
    */
-  public NotificationChain basicSetType(Types newType, NotificationChain msgs)
+  public NotificationChain basicSetType(PrimitiveTypes newType, NotificationChain msgs)
   {
-    Types oldType = type;
+    PrimitiveTypes oldType = type;
     type = newType;
     if (eNotificationRequired())
     {
@@ -107,7 +108,7 @@ public class PropertyImpl extends MinimalEObjectImpl.Container implements Proper
    * @generated
    */
   @Override
-  public void setType(Types newType)
+  public void setType(PrimitiveTypes newType)
   {
     if (newType != type)
     {
@@ -129,7 +130,7 @@ public class PropertyImpl extends MinimalEObjectImpl.Container implements Proper
    * @generated
    */
   @Override
-  public org.xtext.example.mydsl.jSchema.Object getObject()
+  public MainObject getObject()
   {
     return object;
   }
@@ -139,9 +140,9 @@ public class PropertyImpl extends MinimalEObjectImpl.Container implements Proper
    * <!-- end-user-doc -->
    * @generated
    */
-  public NotificationChain basicSetObject(org.xtext.example.mydsl.jSchema.Object newObject, NotificationChain msgs)
+  public NotificationChain basicSetObject(MainObject newObject, NotificationChain msgs)
   {
-    org.xtext.example.mydsl.jSchema.Object oldObject = object;
+    MainObject oldObject = object;
     object = newObject;
     if (eNotificationRequired())
     {
@@ -157,7 +158,7 @@ public class PropertyImpl extends MinimalEObjectImpl.Container implements Proper
    * @generated
    */
   @Override
-  public void setObject(org.xtext.example.mydsl.jSchema.Object newObject)
+  public void setObject(MainObject newObject)
   {
     if (newObject != object)
     {
@@ -220,10 +221,10 @@ public class PropertyImpl extends MinimalEObjectImpl.Container implements Proper
     switch (featureID)
     {
       case JSchemaPackage.PROPERTY__TYPE:
-        setType((Types)newValue);
+        setType((PrimitiveTypes)newValue);
         return;
       case JSchemaPackage.PROPERTY__OBJECT:
-        setObject((org.xtext.example.mydsl.jSchema.Object)newValue);
+        setObject((MainObject)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -240,10 +241,10 @@ public class PropertyImpl extends MinimalEObjectImpl.Container implements Proper
     switch (featureID)
     {
       case JSchemaPackage.PROPERTY__TYPE:
-        setType((Types)null);
+        setType((PrimitiveTypes)null);
         return;
       case JSchemaPackage.PROPERTY__OBJECT:
-        setObject((org.xtext.example.mydsl.jSchema.Object)null);
+        setObject((MainObject)null);
         return;
     }
     super.eUnset(featureID);

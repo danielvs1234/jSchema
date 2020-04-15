@@ -17,12 +17,13 @@ import org.eclipse.xtext.serializer.sequencer.ITransientValueService.ValueTransi
 import org.xtext.example.mydsl.jSchema.Array;
 import org.xtext.example.mydsl.jSchema.Includes;
 import org.xtext.example.mydsl.jSchema.JSchemaPackage;
+import org.xtext.example.mydsl.jSchema.MainObject;
 import org.xtext.example.mydsl.jSchema.Model;
 import org.xtext.example.mydsl.jSchema.PrimitiveObject;
 import org.xtext.example.mydsl.jSchema.PrimitiveProperties;
+import org.xtext.example.mydsl.jSchema.PrimitiveTypes;
 import org.xtext.example.mydsl.jSchema.Property;
 import org.xtext.example.mydsl.jSchema.STRING;
-import org.xtext.example.mydsl.jSchema.Types;
 import org.xtext.example.mydsl.jSchema.hasProperties;
 import org.xtext.example.mydsl.services.JSchemaGrammarAccess;
 
@@ -46,14 +47,14 @@ public class JSchemaSemanticSequencer extends AbstractDelegatingSemanticSequence
 			case JSchemaPackage.INCLUDES:
 				sequence_Includes(context, (Includes) semanticObject); 
 				return; 
+			case JSchemaPackage.MAIN_OBJECT:
+				sequence_MainObject(context, (MainObject) semanticObject); 
+				return; 
 			case JSchemaPackage.MODEL:
 				sequence_Model(context, (Model) semanticObject); 
 				return; 
 			case JSchemaPackage.NUMBER:
 				sequence_Number(context, (org.xtext.example.mydsl.jSchema.Number) semanticObject); 
-				return; 
-			case JSchemaPackage.OBJECT:
-				sequence_Object(context, (org.xtext.example.mydsl.jSchema.Object) semanticObject); 
 				return; 
 			case JSchemaPackage.PRIMITIVE_OBJECT:
 				sequence_PrimitiveObject(context, (PrimitiveObject) semanticObject); 
@@ -61,14 +62,14 @@ public class JSchemaSemanticSequencer extends AbstractDelegatingSemanticSequence
 			case JSchemaPackage.PRIMITIVE_PROPERTIES:
 				sequence_PrimitiveProperties(context, (PrimitiveProperties) semanticObject); 
 				return; 
+			case JSchemaPackage.PRIMITIVE_TYPES:
+				sequence_PrimitiveTypes(context, (PrimitiveTypes) semanticObject); 
+				return; 
 			case JSchemaPackage.PROPERTY:
 				sequence_Property(context, (Property) semanticObject); 
 				return; 
 			case JSchemaPackage.STRING:
-				sequence_Types(context, (STRING) semanticObject); 
-				return; 
-			case JSchemaPackage.TYPES:
-				sequence_Types(context, (Types) semanticObject); 
+				sequence_PrimitiveTypes(context, (STRING) semanticObject); 
 				return; 
 			case JSchemaPackage.HAS_PROPERTIES:
 				sequence_hasProperties(context, (hasProperties) semanticObject); 
@@ -83,7 +84,7 @@ public class JSchemaSemanticSequencer extends AbstractDelegatingSemanticSequence
 	 *     Array returns Array
 	 *
 	 * Constraint:
-	 *     (arrayName=ID (properties+=Property properties+=Property*)?)
+	 *     (arrayName=ID (properties+=Property properties+=Property*)? arrayType=ArrayType?)
 	 */
 	protected void sequence_Array(ISerializationContext context, Array semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -98,6 +99,19 @@ public class JSchemaSemanticSequencer extends AbstractDelegatingSemanticSequence
 	 *     (objectID+=STRING objectID+=STRING*)
 	 */
 	protected void sequence_Includes(ISerializationContext context, Includes semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Contexts:
+	 *     AbstractObject returns MainObject
+	 *     MainObject returns MainObject
+	 *
+	 * Constraint:
+	 *     (objectName=ID root='root'? includeObjects=Includes? properties+=hasProperties?)
+	 */
+	protected void sequence_MainObject(ISerializationContext context, MainObject semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	
@@ -128,24 +142,11 @@ public class JSchemaSemanticSequencer extends AbstractDelegatingSemanticSequence
 	
 	/**
 	 * Contexts:
-	 *     AbstractObject returns Object
-	 *     Object returns Object
-	 *
-	 * Constraint:
-	 *     (objectName=ID includeObjects=Includes? properties+=hasProperties?)
-	 */
-	protected void sequence_Object(ISerializationContext context, org.xtext.example.mydsl.jSchema.Object semanticObject) {
-		genericSequencer.createSequence(context, semanticObject);
-	}
-	
-	
-	/**
-	 * Contexts:
 	 *     AbstractObject returns PrimitiveObject
 	 *     PrimitiveObject returns PrimitiveObject
 	 *
 	 * Constraint:
-	 *     (type=Types (primitiveProperties+=PrimitiveProperties primitiveProperties+=PrimitiveProperties*)?)
+	 *     (type=PrimitiveTypes (primitiveProperties+=PrimitiveProperties primitiveProperties+=PrimitiveProperties*)?)
 	 */
 	protected void sequence_PrimitiveObject(ISerializationContext context, PrimitiveObject semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -166,42 +167,42 @@ public class JSchemaSemanticSequencer extends AbstractDelegatingSemanticSequence
 	
 	/**
 	 * Contexts:
-	 *     Property returns Property
+	 *     PrimitiveTypes returns PrimitiveTypes
 	 *
 	 * Constraint:
-	 *     (type=Types | object=Object)
+	 *     (array=Array | number=Number)
 	 */
-	protected void sequence_Property(ISerializationContext context, Property semanticObject) {
+	protected void sequence_PrimitiveTypes(ISerializationContext context, PrimitiveTypes semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	
 	
 	/**
 	 * Contexts:
-	 *     Types returns STRING
+	 *     PrimitiveTypes returns STRING
 	 *
 	 * Constraint:
 	 *     string=STRING
 	 */
-	protected void sequence_Types(ISerializationContext context, STRING semanticObject) {
+	protected void sequence_PrimitiveTypes(ISerializationContext context, STRING semanticObject) {
 		if (errorAcceptor != null) {
 			if (transientValues.isValueTransient(semanticObject, JSchemaPackage.Literals.STRING__STRING) == ValueTransient.YES)
 				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, JSchemaPackage.Literals.STRING__STRING));
 		}
 		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
-		feeder.accept(grammarAccess.getTypesAccess().getStringSTRINGTerminalRuleCall_0_2_0(), semanticObject.getString());
+		feeder.accept(grammarAccess.getPrimitiveTypesAccess().getStringSTRINGTerminalRuleCall_0_2_0(), semanticObject.getString());
 		feeder.finish();
 	}
 	
 	
 	/**
 	 * Contexts:
-	 *     Types returns Types
+	 *     Property returns Property
 	 *
 	 * Constraint:
-	 *     (array=Array | number=Number)
+	 *     (type=PrimitiveTypes | object=MainObject)
 	 */
-	protected void sequence_Types(ISerializationContext context, Types semanticObject) {
+	protected void sequence_Property(ISerializationContext context, Property semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	

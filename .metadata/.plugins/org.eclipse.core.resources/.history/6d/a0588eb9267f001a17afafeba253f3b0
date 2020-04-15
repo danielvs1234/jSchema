@@ -1,0 +1,91 @@
+grammar org.xtext.example.mydsl.JSchema with org.eclipse.xtext.common.Terminals
+
+generate jSchema "http://www.xtext.org/example/mydsl/JSchema"
+
+Model:
+	AbstractObject+=AbstractObject*
+;
+
+Number:
+    number=INT ('.' decimal=INT)?
+;
+
+AbstractObject:
+	Object | PrimitiveObject
+;
+//(nestedObjectName=ID nestedObject=Object)
+
+Object:
+ 	objectName=ID ('includes' includeObjects=Includes)? '{'  (properties+=hasProperties)? '}' 
+;
+
+
+PrimitiveObject:
+	type=PrimitiveTypes ('with' primitiveProperties+=PrimitiveProperties (',' primitiveProperties+=PrimitiveProperties)* ';' )? 
+;
+
+//ObjectRequireMinimumProperties:
+//	'require' (('minimum') | ('maximum')) INT 'properties' properties=hasProperties
+//;
+
+PrimitiveTypes:
+	({STRING} 'String' string=STRING) | array=Array | 'num' number=Number
+;
+
+
+hasProperties:
+	properties=Property
+;
+
+Property:
+ 	type=PrimitiveTypes | object=Object
+;
+
+PrimitiveProperties:
+	'length' stringLenght=StringLength | ('pattern' patternString=STRING ) | 'format' stringFormat=FormatTypes
+;
+
+StringLength:
+	INT '-' INT
+;
+
+enum FormatTypes:
+	date_time='"date-time"' |
+	time='"time"' | 
+	date='"date"' | 
+	email='"email"' | 
+	idn_email='"idn-email"' | 
+	hostname='"hostname"' | 
+	ipv4='"ipv4"' | 
+	ipv6='"ipv6"' | 
+	uri='"uri"' | 
+	uri_reference='"uri-reference"' | 
+	iri='"iri"' | 
+	iri_reference='"iri-reference"' | 
+	uri_template='"uri-template"' | 
+	json_pointer='"json-pointer"' | 
+	relative_json_pointer='"relative-json-pointer"' | 
+	regex='"regex"'
+;
+
+Includes:
+	objectID+=STRING (',' objectID+=STRING)*
+;
+
+//Types
+Array:
+ 	arrayName=ID '[' (properties+=Property (',' properties+=Property)*)? ']'
+;
+
+ArrayType:
+	'String' | 'Int' | 'float' | 'double'
+;
+
+
+
+
+
+
+
+
+

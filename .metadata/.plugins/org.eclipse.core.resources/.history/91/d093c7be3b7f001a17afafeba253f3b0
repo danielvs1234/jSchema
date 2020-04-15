@@ -1,0 +1,8 @@
+package org.xtext.example.mydsl.generator;
+import org.xtext.example.mydsl.jSchema.Object
+public class ObjectClass{
+	String name;
+	String[Object] includedObjects;
+	
+
+}

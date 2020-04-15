@@ -14,12 +14,13 @@ import org.xtext.example.mydsl.jSchema.AbstractObject;
 import org.xtext.example.mydsl.jSchema.Array;
 import org.xtext.example.mydsl.jSchema.Includes;
 import org.xtext.example.mydsl.jSchema.JSchemaPackage;
+import org.xtext.example.mydsl.jSchema.MainObject;
 import org.xtext.example.mydsl.jSchema.Model;
 import org.xtext.example.mydsl.jSchema.PrimitiveObject;
 import org.xtext.example.mydsl.jSchema.PrimitiveProperties;
+import org.xtext.example.mydsl.jSchema.PrimitiveTypes;
 import org.xtext.example.mydsl.jSchema.Property;
 import org.xtext.example.mydsl.jSchema.STRING;
-import org.xtext.example.mydsl.jSchema.Types;
 import org.xtext.example.mydsl.jSchema.hasProperties;
 
 /**
@@ -101,9 +102,9 @@ public class JSchemaAdapterFactory extends AdapterFactoryImpl
         return createAbstractObjectAdapter();
       }
       @Override
-      public Adapter caseObject(org.xtext.example.mydsl.jSchema.Object object)
+      public Adapter caseMainObject(MainObject object)
       {
-        return createObjectAdapter();
+        return createMainObjectAdapter();
       }
       @Override
       public Adapter casePrimitiveObject(PrimitiveObject object)
@@ -111,9 +112,9 @@ public class JSchemaAdapterFactory extends AdapterFactoryImpl
         return createPrimitiveObjectAdapter();
       }
       @Override
-      public Adapter caseTypes(Types object)
+      public Adapter casePrimitiveTypes(PrimitiveTypes object)
       {
-        return createTypesAdapter();
+        return createPrimitiveTypesAdapter();
       }
       @Override
       public Adapter casehasProperties(hasProperties object)
@@ -213,16 +214,16 @@ public class JSchemaAdapterFactory extends AdapterFactoryImpl
   }
 
   /**
-   * Creates a new adapter for an object of class '{@link org.xtext.example.mydsl.jSchema.Object <em>Object</em>}'.
+   * Creates a new adapter for an object of class '{@link org.xtext.example.mydsl.jSchema.MainObject <em>Main Object</em>}'.
    * <!-- begin-user-doc -->
    * This default implementation returns null so that we can easily ignore cases;
    * it's useful to ignore a case when inheritance will catch all the cases anyway.
    * <!-- end-user-doc -->
    * @return the new adapter.
-   * @see org.xtext.example.mydsl.jSchema.Object
+   * @see org.xtext.example.mydsl.jSchema.MainObject
    * @generated
    */
-  public Adapter createObjectAdapter()
+  public Adapter createMainObjectAdapter()
   {
     return null;
   }
@@ -243,16 +244,16 @@ public class JSchemaAdapterFactory extends AdapterFactoryImpl
   }
 
   /**
-   * Creates a new adapter for an object of class '{@link org.xtext.example.mydsl.jSchema.Types <em>Types</em>}'.
+   * Creates a new adapter for an object of class '{@link org.xtext.example.mydsl.jSchema.PrimitiveTypes <em>Primitive Types</em>}'.
    * <!-- begin-user-doc -->
    * This default implementation returns null so that we can easily ignore cases;
    * it's useful to ignore a case when inheritance will catch all the cases anyway.
    * <!-- end-user-doc -->
    * @return the new adapter.
-   * @see org.xtext.example.mydsl.jSchema.Types
+   * @see org.xtext.example.mydsl.jSchema.PrimitiveTypes
    * @generated
    */
-  public Adapter createTypesAdapter()
+  public Adapter createPrimitiveTypesAdapter()
   {
     return null;
   }

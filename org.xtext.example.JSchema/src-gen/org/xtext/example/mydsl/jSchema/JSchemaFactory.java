@@ -51,13 +51,13 @@ public interface JSchemaFactory extends EFactory
   AbstractObject createAbstractObject();
 
   /**
-   * Returns a new object of class '<em>Object</em>'.
+   * Returns a new object of class '<em>Main Object</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return a new object of class '<em>Object</em>'.
+   * @return a new object of class '<em>Main Object</em>'.
    * @generated
    */
-  Object createObject();
+  MainObject createMainObject();
 
   /**
    * Returns a new object of class '<em>Primitive Object</em>'.
@@ -69,13 +69,13 @@ public interface JSchemaFactory extends EFactory
   PrimitiveObject createPrimitiveObject();
 
   /**
-   * Returns a new object of class '<em>Types</em>'.
+   * Returns a new object of class '<em>Primitive Types</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return a new object of class '<em>Types</em>'.
+   * @return a new object of class '<em>Primitive Types</em>'.
    * @generated
    */
-  Types createTypes();
+  PrimitiveTypes createPrimitiveTypes();
 
   /**
    * Returns a new object of class '<em>has Properties</em>'.

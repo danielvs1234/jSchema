@@ -12,12 +12,13 @@ import org.xtext.example.mydsl.jSchema.AbstractObject;
 import org.xtext.example.mydsl.jSchema.Array;
 import org.xtext.example.mydsl.jSchema.Includes;
 import org.xtext.example.mydsl.jSchema.JSchemaPackage;
+import org.xtext.example.mydsl.jSchema.MainObject;
 import org.xtext.example.mydsl.jSchema.Model;
 import org.xtext.example.mydsl.jSchema.PrimitiveObject;
 import org.xtext.example.mydsl.jSchema.PrimitiveProperties;
+import org.xtext.example.mydsl.jSchema.PrimitiveTypes;
 import org.xtext.example.mydsl.jSchema.Property;
 import org.xtext.example.mydsl.jSchema.STRING;
-import org.xtext.example.mydsl.jSchema.Types;
 import org.xtext.example.mydsl.jSchema.hasProperties;
 
 /**
@@ -104,11 +105,11 @@ public class JSchemaSwitch<T> extends Switch<T>
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
-      case JSchemaPackage.OBJECT:
+      case JSchemaPackage.MAIN_OBJECT:
       {
-        org.xtext.example.mydsl.jSchema.Object object = (org.xtext.example.mydsl.jSchema.Object)theEObject;
-        T result = caseObject(object);
-        if (result == null) result = caseAbstractObject(object);
+        MainObject mainObject = (MainObject)theEObject;
+        T result = caseMainObject(mainObject);
+        if (result == null) result = caseAbstractObject(mainObject);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -120,10 +121,10 @@ public class JSchemaSwitch<T> extends Switch<T>
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
-      case JSchemaPackage.TYPES:
+      case JSchemaPackage.PRIMITIVE_TYPES:
       {
-        Types types = (Types)theEObject;
-        T result = caseTypes(types);
+        PrimitiveTypes primitiveTypes = (PrimitiveTypes)theEObject;
+        T result = casePrimitiveTypes(primitiveTypes);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -166,7 +167,7 @@ public class JSchemaSwitch<T> extends Switch<T>
       {
         STRING string = (STRING)theEObject;
         T result = caseSTRING(string);
-        if (result == null) result = caseTypes(string);
+        if (result == null) result = casePrimitiveTypes(string);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -223,17 +224,17 @@ public class JSchemaSwitch<T> extends Switch<T>
   }
 
   /**
-   * Returns the result of interpreting the object as an instance of '<em>Object</em>'.
+   * Returns the result of interpreting the object as an instance of '<em>Main Object</em>'.
    * <!-- begin-user-doc -->
    * This implementation returns null;
    * returning a non-null result will terminate the switch.
    * <!-- end-user-doc -->
    * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Object</em>'.
+   * @return the result of interpreting the object as an instance of '<em>Main Object</em>'.
    * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
    * @generated
    */
-  public T caseObject(org.xtext.example.mydsl.jSchema.Object object)
+  public T caseMainObject(MainObject object)
   {
     return null;
   }
@@ -255,17 +256,17 @@ public class JSchemaSwitch<T> extends Switch<T>
   }
 
   /**
-   * Returns the result of interpreting the object as an instance of '<em>Types</em>'.
+   * Returns the result of interpreting the object as an instance of '<em>Primitive Types</em>'.
    * <!-- begin-user-doc -->
    * This implementation returns null;
    * returning a non-null result will terminate the switch.
    * <!-- end-user-doc -->
    * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Types</em>'.
+   * @return the result of interpreting the object as an instance of '<em>Primitive Types</em>'.
    * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
    * @generated
    */
-  public T caseTypes(Types object)
+  public T casePrimitiveTypes(PrimitiveTypes object)
   {
     return null;
   }

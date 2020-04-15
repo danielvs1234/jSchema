@@ -79,42 +79,44 @@ public class JSchemaGrammarAccess extends AbstractGrammarElementFinder {
 	public class AbstractObjectElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.xtext.example.mydsl.JSchema.AbstractObject");
 		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
-		private final RuleCall cObjectParserRuleCall_0 = (RuleCall)cAlternatives.eContents().get(0);
+		private final RuleCall cMainObjectParserRuleCall_0 = (RuleCall)cAlternatives.eContents().get(0);
 		private final RuleCall cPrimitiveObjectParserRuleCall_1 = (RuleCall)cAlternatives.eContents().get(1);
 		
 		//AbstractObject:
-		//	Object | PrimitiveObject;
+		//	MainObject | PrimitiveObject;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//Object | PrimitiveObject
+		//MainObject | PrimitiveObject
 		public Alternatives getAlternatives() { return cAlternatives; }
 		
-		//Object
-		public RuleCall getObjectParserRuleCall_0() { return cObjectParserRuleCall_0; }
+		//MainObject
+		public RuleCall getMainObjectParserRuleCall_0() { return cMainObjectParserRuleCall_0; }
 		
 		//PrimitiveObject
 		public RuleCall getPrimitiveObjectParserRuleCall_1() { return cPrimitiveObjectParserRuleCall_1; }
 	}
-	public class ObjectElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.xtext.example.mydsl.JSchema.Object");
+	public class MainObjectElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.xtext.example.mydsl.JSchema.MainObject");
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final Assignment cObjectNameAssignment_0 = (Assignment)cGroup.eContents().get(0);
 		private final RuleCall cObjectNameIDTerminalRuleCall_0_0 = (RuleCall)cObjectNameAssignment_0.eContents().get(0);
-		private final Group cGroup_1 = (Group)cGroup.eContents().get(1);
-		private final Keyword cIncludesKeyword_1_0 = (Keyword)cGroup_1.eContents().get(0);
-		private final Assignment cIncludeObjectsAssignment_1_1 = (Assignment)cGroup_1.eContents().get(1);
-		private final RuleCall cIncludeObjectsIncludesParserRuleCall_1_1_0 = (RuleCall)cIncludeObjectsAssignment_1_1.eContents().get(0);
-		private final Keyword cLeftCurlyBracketKeyword_2 = (Keyword)cGroup.eContents().get(2);
-		private final Assignment cPropertiesAssignment_3 = (Assignment)cGroup.eContents().get(3);
-		private final RuleCall cPropertiesHasPropertiesParserRuleCall_3_0 = (RuleCall)cPropertiesAssignment_3.eContents().get(0);
-		private final Keyword cRightCurlyBracketKeyword_4 = (Keyword)cGroup.eContents().get(4);
+		private final Assignment cRootAssignment_1 = (Assignment)cGroup.eContents().get(1);
+		private final Keyword cRootRootKeyword_1_0 = (Keyword)cRootAssignment_1.eContents().get(0);
+		private final Group cGroup_2 = (Group)cGroup.eContents().get(2);
+		private final Keyword cIncludesKeyword_2_0 = (Keyword)cGroup_2.eContents().get(0);
+		private final Assignment cIncludeObjectsAssignment_2_1 = (Assignment)cGroup_2.eContents().get(1);
+		private final RuleCall cIncludeObjectsIncludesParserRuleCall_2_1_0 = (RuleCall)cIncludeObjectsAssignment_2_1.eContents().get(0);
+		private final Keyword cLeftCurlyBracketKeyword_3 = (Keyword)cGroup.eContents().get(3);
+		private final Assignment cPropertiesAssignment_4 = (Assignment)cGroup.eContents().get(4);
+		private final RuleCall cPropertiesHasPropertiesParserRuleCall_4_0 = (RuleCall)cPropertiesAssignment_4.eContents().get(0);
+		private final Keyword cRightCurlyBracketKeyword_5 = (Keyword)cGroup.eContents().get(5);
 		
 		////(nestedObjectName=ID nestedObject=Object)
-		//Object:
-		//	objectName=ID ('includes' includeObjects=Includes)? '{' properties+=hasProperties? '}';
+		//MainObject:
+		//	objectName=ID root='root'? ('includes' includeObjects=Includes)? '{' properties+=hasProperties? '}';
 		@Override public ParserRule getRule() { return rule; }
 		
-		//objectName=ID ('includes' includeObjects=Includes)? '{' properties+=hasProperties? '}'
+		//objectName=ID root='root'? ('includes' includeObjects=Includes)? '{' properties+=hasProperties? '}'
 		public Group getGroup() { return cGroup; }
 		
 		//objectName=ID
@@ -123,35 +125,41 @@ public class JSchemaGrammarAccess extends AbstractGrammarElementFinder {
 		//ID
 		public RuleCall getObjectNameIDTerminalRuleCall_0_0() { return cObjectNameIDTerminalRuleCall_0_0; }
 		
+		//root='root'?
+		public Assignment getRootAssignment_1() { return cRootAssignment_1; }
+		
+		//'root'
+		public Keyword getRootRootKeyword_1_0() { return cRootRootKeyword_1_0; }
+		
 		//('includes' includeObjects=Includes)?
-		public Group getGroup_1() { return cGroup_1; }
+		public Group getGroup_2() { return cGroup_2; }
 		
 		//'includes'
-		public Keyword getIncludesKeyword_1_0() { return cIncludesKeyword_1_0; }
+		public Keyword getIncludesKeyword_2_0() { return cIncludesKeyword_2_0; }
 		
 		//includeObjects=Includes
-		public Assignment getIncludeObjectsAssignment_1_1() { return cIncludeObjectsAssignment_1_1; }
+		public Assignment getIncludeObjectsAssignment_2_1() { return cIncludeObjectsAssignment_2_1; }
 		
 		//Includes
-		public RuleCall getIncludeObjectsIncludesParserRuleCall_1_1_0() { return cIncludeObjectsIncludesParserRuleCall_1_1_0; }
+		public RuleCall getIncludeObjectsIncludesParserRuleCall_2_1_0() { return cIncludeObjectsIncludesParserRuleCall_2_1_0; }
 		
 		//'{'
-		public Keyword getLeftCurlyBracketKeyword_2() { return cLeftCurlyBracketKeyword_2; }
+		public Keyword getLeftCurlyBracketKeyword_3() { return cLeftCurlyBracketKeyword_3; }
 		
 		//properties+=hasProperties?
-		public Assignment getPropertiesAssignment_3() { return cPropertiesAssignment_3; }
+		public Assignment getPropertiesAssignment_4() { return cPropertiesAssignment_4; }
 		
 		//hasProperties
-		public RuleCall getPropertiesHasPropertiesParserRuleCall_3_0() { return cPropertiesHasPropertiesParserRuleCall_3_0; }
+		public RuleCall getPropertiesHasPropertiesParserRuleCall_4_0() { return cPropertiesHasPropertiesParserRuleCall_4_0; }
 		
 		//'}'
-		public Keyword getRightCurlyBracketKeyword_4() { return cRightCurlyBracketKeyword_4; }
+		public Keyword getRightCurlyBracketKeyword_5() { return cRightCurlyBracketKeyword_5; }
 	}
 	public class PrimitiveObjectElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.xtext.example.mydsl.JSchema.PrimitiveObject");
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final Assignment cTypeAssignment_0 = (Assignment)cGroup.eContents().get(0);
-		private final RuleCall cTypeTypesParserRuleCall_0_0 = (RuleCall)cTypeAssignment_0.eContents().get(0);
+		private final RuleCall cTypePrimitiveTypesParserRuleCall_0_0 = (RuleCall)cTypeAssignment_0.eContents().get(0);
 		private final Group cGroup_1 = (Group)cGroup.eContents().get(1);
 		private final Keyword cWithKeyword_1_0 = (Keyword)cGroup_1.eContents().get(0);
 		private final Assignment cPrimitivePropertiesAssignment_1_1 = (Assignment)cGroup_1.eContents().get(1);
@@ -163,17 +171,19 @@ public class JSchemaGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cSemicolonKeyword_1_3 = (Keyword)cGroup_1.eContents().get(3);
 		
 		//PrimitiveObject:
-		//	type=Types ('with' primitiveProperties+=PrimitiveProperties (',' primitiveProperties+=PrimitiveProperties)* ';')?;
+		//	type=PrimitiveTypes ('with' primitiveProperties+=PrimitiveProperties (',' primitiveProperties+=PrimitiveProperties)*
+		//	';')?;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//type=Types ('with' primitiveProperties+=PrimitiveProperties (',' primitiveProperties+=PrimitiveProperties)* ';')?
+		//type=PrimitiveTypes ('with' primitiveProperties+=PrimitiveProperties (',' primitiveProperties+=PrimitiveProperties)*
+		//';')?
 		public Group getGroup() { return cGroup; }
 		
-		//type=Types
+		//type=PrimitiveTypes
 		public Assignment getTypeAssignment_0() { return cTypeAssignment_0; }
 		
-		//Types
-		public RuleCall getTypeTypesParserRuleCall_0_0() { return cTypeTypesParserRuleCall_0_0; }
+		//PrimitiveTypes
+		public RuleCall getTypePrimitiveTypesParserRuleCall_0_0() { return cTypePrimitiveTypesParserRuleCall_0_0; }
 		
 		//('with' primitiveProperties+=PrimitiveProperties (',' primitiveProperties+=PrimitiveProperties)* ';')?
 		public Group getGroup_1() { return cGroup_1; }
@@ -202,8 +212,8 @@ public class JSchemaGrammarAccess extends AbstractGrammarElementFinder {
 		//';'
 		public Keyword getSemicolonKeyword_1_3() { return cSemicolonKeyword_1_3; }
 	}
-	public class TypesElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.xtext.example.mydsl.JSchema.Types");
+	public class PrimitiveTypesElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.xtext.example.mydsl.JSchema.PrimitiveTypes");
 		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
 		private final Group cGroup_0 = (Group)cAlternatives.eContents().get(0);
 		private final Action cSTRINGAction_0_0 = (Action)cGroup_0.eContents().get(0);
@@ -220,7 +230,7 @@ public class JSchemaGrammarAccess extends AbstractGrammarElementFinder {
 		////ObjectRequireMinimumProperties:
 		////	'require' (('minimum') | ('maximum')) INT 'properties' properties=hasProperties
 		////;
-		//Types:
+		//PrimitiveTypes:
 		//	{STRING} 'String' string=STRING | array=Array | 'num' number=Number;
 		@Override public ParserRule getRule() { return rule; }
 		
@@ -279,28 +289,28 @@ public class JSchemaGrammarAccess extends AbstractGrammarElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.xtext.example.mydsl.JSchema.Property");
 		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
 		private final Assignment cTypeAssignment_0 = (Assignment)cAlternatives.eContents().get(0);
-		private final RuleCall cTypeTypesParserRuleCall_0_0 = (RuleCall)cTypeAssignment_0.eContents().get(0);
+		private final RuleCall cTypePrimitiveTypesParserRuleCall_0_0 = (RuleCall)cTypeAssignment_0.eContents().get(0);
 		private final Assignment cObjectAssignment_1 = (Assignment)cAlternatives.eContents().get(1);
-		private final RuleCall cObjectObjectParserRuleCall_1_0 = (RuleCall)cObjectAssignment_1.eContents().get(0);
+		private final RuleCall cObjectMainObjectParserRuleCall_1_0 = (RuleCall)cObjectAssignment_1.eContents().get(0);
 		
 		//Property:
-		//	type=Types | object=Object;
+		//	type=PrimitiveTypes | object=MainObject;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//type=Types | object=Object
+		//type=PrimitiveTypes | object=MainObject
 		public Alternatives getAlternatives() { return cAlternatives; }
 		
-		//type=Types
+		//type=PrimitiveTypes
 		public Assignment getTypeAssignment_0() { return cTypeAssignment_0; }
 		
-		//Types
-		public RuleCall getTypeTypesParserRuleCall_0_0() { return cTypeTypesParserRuleCall_0_0; }
+		//PrimitiveTypes
+		public RuleCall getTypePrimitiveTypesParserRuleCall_0_0() { return cTypePrimitiveTypesParserRuleCall_0_0; }
 		
-		//object=Object
+		//object=MainObject
 		public Assignment getObjectAssignment_1() { return cObjectAssignment_1; }
 		
-		//Object
-		public RuleCall getObjectObjectParserRuleCall_1_0() { return cObjectObjectParserRuleCall_1_0; }
+		//MainObject
+		public RuleCall getObjectMainObjectParserRuleCall_1_0() { return cObjectMainObjectParserRuleCall_1_0; }
 	}
 	public class PrimitivePropertiesElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.xtext.example.mydsl.JSchema.PrimitiveProperties");
@@ -432,14 +442,16 @@ public class JSchemaGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cCommaKeyword_2_1_0 = (Keyword)cGroup_2_1.eContents().get(0);
 		private final Assignment cPropertiesAssignment_2_1_1 = (Assignment)cGroup_2_1.eContents().get(1);
 		private final RuleCall cPropertiesPropertyParserRuleCall_2_1_1_0 = (RuleCall)cPropertiesAssignment_2_1_1.eContents().get(0);
-		private final Keyword cRightSquareBracketKeyword_3 = (Keyword)cGroup.eContents().get(3);
+		private final Assignment cArrayTypeAssignment_3 = (Assignment)cGroup.eContents().get(3);
+		private final RuleCall cArrayTypeArrayTypeParserRuleCall_3_0 = (RuleCall)cArrayTypeAssignment_3.eContents().get(0);
+		private final Keyword cRightSquareBracketKeyword_4 = (Keyword)cGroup.eContents().get(4);
 		
 		////Types
 		//Array:
-		//	arrayName=ID '[' (properties+=Property (',' properties+=Property)*)? ']';
+		//	arrayName=ID '[' (properties+=Property (',' properties+=Property)*)? arrayType=ArrayType? ']';
 		@Override public ParserRule getRule() { return rule; }
 		
-		//arrayName=ID '[' (properties+=Property (',' properties+=Property)*)? ']'
+		//arrayName=ID '[' (properties+=Property (',' properties+=Property)*)? arrayType=ArrayType? ']'
 		public Group getGroup() { return cGroup; }
 		
 		//arrayName=ID
@@ -472,8 +484,41 @@ public class JSchemaGrammarAccess extends AbstractGrammarElementFinder {
 		//Property
 		public RuleCall getPropertiesPropertyParserRuleCall_2_1_1_0() { return cPropertiesPropertyParserRuleCall_2_1_1_0; }
 		
+		//arrayType=ArrayType?
+		public Assignment getArrayTypeAssignment_3() { return cArrayTypeAssignment_3; }
+		
+		//ArrayType
+		public RuleCall getArrayTypeArrayTypeParserRuleCall_3_0() { return cArrayTypeArrayTypeParserRuleCall_3_0; }
+		
 		//']'
-		public Keyword getRightSquareBracketKeyword_3() { return cRightSquareBracketKeyword_3; }
+		public Keyword getRightSquareBracketKeyword_4() { return cRightSquareBracketKeyword_4; }
+	}
+	public class ArrayTypeElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.xtext.example.mydsl.JSchema.ArrayType");
+		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
+		private final Keyword cStringKeyword_0 = (Keyword)cAlternatives.eContents().get(0);
+		private final Keyword cIntKeyword_1 = (Keyword)cAlternatives.eContents().get(1);
+		private final Keyword cFloatKeyword_2 = (Keyword)cAlternatives.eContents().get(2);
+		private final Keyword cDoubleKeyword_3 = (Keyword)cAlternatives.eContents().get(3);
+		
+		//ArrayType:
+		//	'String' | 'Int' | 'float' | 'double';
+		@Override public ParserRule getRule() { return rule; }
+		
+		//'String' | 'Int' | 'float' | 'double'
+		public Alternatives getAlternatives() { return cAlternatives; }
+		
+		//'String'
+		public Keyword getStringKeyword_0() { return cStringKeyword_0; }
+		
+		//'Int'
+		public Keyword getIntKeyword_1() { return cIntKeyword_1; }
+		
+		//'float'
+		public Keyword getFloatKeyword_2() { return cFloatKeyword_2; }
+		
+		//'double'
+		public Keyword getDoubleKeyword_3() { return cDoubleKeyword_3; }
 	}
 	
 	public class FormatTypesElements extends AbstractEnumRuleElementFinder {
@@ -637,9 +682,9 @@ public class JSchemaGrammarAccess extends AbstractGrammarElementFinder {
 	private final ModelElements pModel;
 	private final NumberElements pNumber;
 	private final AbstractObjectElements pAbstractObject;
-	private final ObjectElements pObject;
+	private final MainObjectElements pMainObject;
 	private final PrimitiveObjectElements pPrimitiveObject;
-	private final TypesElements pTypes;
+	private final PrimitiveTypesElements pPrimitiveTypes;
 	private final HasPropertiesElements pHasProperties;
 	private final PropertyElements pProperty;
 	private final PrimitivePropertiesElements pPrimitiveProperties;
@@ -647,6 +692,7 @@ public class JSchemaGrammarAccess extends AbstractGrammarElementFinder {
 	private final FormatTypesElements eFormatTypes;
 	private final IncludesElements pIncludes;
 	private final ArrayElements pArray;
+	private final ArrayTypeElements pArrayType;
 	
 	private final Grammar grammar;
 	
@@ -660,9 +706,9 @@ public class JSchemaGrammarAccess extends AbstractGrammarElementFinder {
 		this.pModel = new ModelElements();
 		this.pNumber = new NumberElements();
 		this.pAbstractObject = new AbstractObjectElements();
-		this.pObject = new ObjectElements();
+		this.pMainObject = new MainObjectElements();
 		this.pPrimitiveObject = new PrimitiveObjectElements();
-		this.pTypes = new TypesElements();
+		this.pPrimitiveTypes = new PrimitiveTypesElements();
 		this.pHasProperties = new HasPropertiesElements();
 		this.pProperty = new PropertyElements();
 		this.pPrimitiveProperties = new PrimitivePropertiesElements();
@@ -670,6 +716,7 @@ public class JSchemaGrammarAccess extends AbstractGrammarElementFinder {
 		this.eFormatTypes = new FormatTypesElements();
 		this.pIncludes = new IncludesElements();
 		this.pArray = new ArrayElements();
+		this.pArrayType = new ArrayTypeElements();
 	}
 	
 	protected Grammar internalFindGrammar(GrammarProvider grammarProvider) {
@@ -720,7 +767,7 @@ public class JSchemaGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	//AbstractObject:
-	//	Object | PrimitiveObject;
+	//	MainObject | PrimitiveObject;
 	public AbstractObjectElements getAbstractObjectAccess() {
 		return pAbstractObject;
 	}
@@ -730,18 +777,19 @@ public class JSchemaGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	////(nestedObjectName=ID nestedObject=Object)
-	//Object:
-	//	objectName=ID ('includes' includeObjects=Includes)? '{' properties+=hasProperties? '}';
-	public ObjectElements getObjectAccess() {
-		return pObject;
+	//MainObject:
+	//	objectName=ID root='root'? ('includes' includeObjects=Includes)? '{' properties+=hasProperties? '}';
+	public MainObjectElements getMainObjectAccess() {
+		return pMainObject;
 	}
 	
-	public ParserRule getObjectRule() {
-		return getObjectAccess().getRule();
+	public ParserRule getMainObjectRule() {
+		return getMainObjectAccess().getRule();
 	}
 	
 	//PrimitiveObject:
-	//	type=Types ('with' primitiveProperties+=PrimitiveProperties (',' primitiveProperties+=PrimitiveProperties)* ';')?;
+	//	type=PrimitiveTypes ('with' primitiveProperties+=PrimitiveProperties (',' primitiveProperties+=PrimitiveProperties)*
+	//	';')?;
 	public PrimitiveObjectElements getPrimitiveObjectAccess() {
 		return pPrimitiveObject;
 	}
@@ -753,14 +801,14 @@ public class JSchemaGrammarAccess extends AbstractGrammarElementFinder {
 	////ObjectRequireMinimumProperties:
 	////	'require' (('minimum') | ('maximum')) INT 'properties' properties=hasProperties
 	////;
-	//Types:
+	//PrimitiveTypes:
 	//	{STRING} 'String' string=STRING | array=Array | 'num' number=Number;
-	public TypesElements getTypesAccess() {
-		return pTypes;
+	public PrimitiveTypesElements getPrimitiveTypesAccess() {
+		return pPrimitiveTypes;
 	}
 	
-	public ParserRule getTypesRule() {
-		return getTypesAccess().getRule();
+	public ParserRule getPrimitiveTypesRule() {
+		return getPrimitiveTypesAccess().getRule();
 	}
 	
 	//hasProperties:
@@ -774,7 +822,7 @@ public class JSchemaGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	//Property:
-	//	type=Types | object=Object;
+	//	type=PrimitiveTypes | object=MainObject;
 	public PropertyElements getPropertyAccess() {
 		return pProperty;
 	}
@@ -840,13 +888,23 @@ public class JSchemaGrammarAccess extends AbstractGrammarElementFinder {
 	
 	////Types
 	//Array:
-	//	arrayName=ID '[' (properties+=Property (',' properties+=Property)*)? ']';
+	//	arrayName=ID '[' (properties+=Property (',' properties+=Property)*)? arrayType=ArrayType? ']';
 	public ArrayElements getArrayAccess() {
 		return pArray;
 	}
 	
 	public ParserRule getArrayRule() {
 		return getArrayAccess().getRule();
+	}
+	
+	//ArrayType:
+	//	'String' | 'Int' | 'float' | 'double';
+	public ArrayTypeElements getArrayTypeAccess() {
+		return pArrayType;
+	}
+	
+	public ParserRule getArrayTypeRule() {
+		return getArrayTypeAccess().getRule();
 	}
 	
 	//terminal ID:

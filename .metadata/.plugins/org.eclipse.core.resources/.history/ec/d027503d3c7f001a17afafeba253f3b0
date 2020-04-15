@@ -1,0 +1,14 @@
+package org.xtext.example.mydsl.generator;
+import org.xtext.example.mydsl.jSchema.MainObject;
+public class ObjectClass{
+	String name;
+	ArrayList<MainObject> includedObjects;
+	
+	public ObjectClass(){
+		includedObjects = new ArrayList<MainObject>();
+	}
+
+	public void addObjectToObjectArray(MainObject obj) {
+		includedObjects.add(obj);
+	}
+}

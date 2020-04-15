@@ -20,7 +20,7 @@ package org.xtext.example.mydsl.jSchema;
  * @model
  * @generated
  */
-public interface STRING extends Types
+public interface STRING extends PrimitiveTypes
 {
   /**
    * Returns the value of the '<em><b>String</b></em>' attribute.
