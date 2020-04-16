@@ -78,6 +78,15 @@ public interface JSchemaFactory extends EFactory
   PrimitiveTypes createPrimitiveTypes();
 
   /**
+   * Returns a new object of class '<em>Is Root</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Is Root</em>'.
+   * @generated
+   */
+  IsRoot createIsRoot();
+
+  /**
    * Returns a new object of class '<em>has Properties</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->

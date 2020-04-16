@@ -162,7 +162,7 @@ public interface JSchemaPackage extends EPackage
   int MAIN_OBJECT__OBJECT_NAME = ABSTRACT_OBJECT_FEATURE_COUNT + 0;
 
   /**
-   * The feature id for the '<em><b>Root</b></em>' attribute.
+   * The feature id for the '<em><b>Root</b></em>' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
@@ -272,6 +272,34 @@ public interface JSchemaPackage extends EPackage
   int PRIMITIVE_TYPES_FEATURE_COUNT = 2;
 
   /**
+   * The meta object id for the '{@link org.xtext.example.mydsl.jSchema.impl.IsRootImpl <em>Is Root</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see org.xtext.example.mydsl.jSchema.impl.IsRootImpl
+   * @see org.xtext.example.mydsl.jSchema.impl.JSchemaPackageImpl#getIsRoot()
+   * @generated
+   */
+  int IS_ROOT = 6;
+
+  /**
+   * The feature id for the '<em><b>String</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int IS_ROOT__STRING = 0;
+
+  /**
+   * The number of structural features of the '<em>Is Root</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int IS_ROOT_FEATURE_COUNT = 1;
+
+  /**
    * The meta object id for the '{@link org.xtext.example.mydsl.jSchema.impl.hasPropertiesImpl <em>has Properties</em>}' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -279,7 +307,7 @@ public interface JSchemaPackage extends EPackage
    * @see org.xtext.example.mydsl.jSchema.impl.JSchemaPackageImpl#gethasProperties()
    * @generated
    */
-  int HAS_PROPERTIES = 6;
+  int HAS_PROPERTIES = 7;
 
   /**
    * The feature id for the '<em><b>Properties</b></em>' containment reference.
@@ -307,7 +335,7 @@ public interface JSchemaPackage extends EPackage
    * @see org.xtext.example.mydsl.jSchema.impl.JSchemaPackageImpl#getProperty()
    * @generated
    */
-  int PROPERTY = 7;
+  int PROPERTY = 8;
 
   /**
    * The feature id for the '<em><b>Type</b></em>' containment reference.
@@ -344,7 +372,7 @@ public interface JSchemaPackage extends EPackage
    * @see org.xtext.example.mydsl.jSchema.impl.JSchemaPackageImpl#getPrimitiveProperties()
    * @generated
    */
-  int PRIMITIVE_PROPERTIES = 8;
+  int PRIMITIVE_PROPERTIES = 9;
 
   /**
    * The feature id for the '<em><b>String Lenght</b></em>' attribute.
@@ -390,7 +418,7 @@ public interface JSchemaPackage extends EPackage
    * @see org.xtext.example.mydsl.jSchema.impl.JSchemaPackageImpl#getIncludes()
    * @generated
    */
-  int INCLUDES = 9;
+  int INCLUDES = 10;
 
   /**
    * The feature id for the '<em><b>Object ID</b></em>' attribute list.
@@ -418,7 +446,7 @@ public interface JSchemaPackage extends EPackage
    * @see org.xtext.example.mydsl.jSchema.impl.JSchemaPackageImpl#getArray()
    * @generated
    */
-  int ARRAY = 10;
+  int ARRAY = 11;
 
   /**
    * The feature id for the '<em><b>Array Name</b></em>' attribute.
@@ -464,7 +492,7 @@ public interface JSchemaPackage extends EPackage
    * @see org.xtext.example.mydsl.jSchema.impl.JSchemaPackageImpl#getSTRING()
    * @generated
    */
-  int STRING = 11;
+  int STRING = 12;
 
   /**
    * The feature id for the '<em><b>Array</b></em>' containment reference.
@@ -510,7 +538,7 @@ public interface JSchemaPackage extends EPackage
    * @see org.xtext.example.mydsl.jSchema.impl.JSchemaPackageImpl#getFormatTypes()
    * @generated
    */
-  int FORMAT_TYPES = 12;
+  int FORMAT_TYPES = 13;
 
 
   /**
@@ -598,15 +626,15 @@ public interface JSchemaPackage extends EPackage
   EAttribute getMainObject_ObjectName();
 
   /**
-   * Returns the meta object for the attribute '{@link org.xtext.example.mydsl.jSchema.MainObject#getRoot <em>Root</em>}'.
+   * Returns the meta object for the containment reference '{@link org.xtext.example.mydsl.jSchema.MainObject#getRoot <em>Root</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for the attribute '<em>Root</em>'.
+   * @return the meta object for the containment reference '<em>Root</em>'.
    * @see org.xtext.example.mydsl.jSchema.MainObject#getRoot()
    * @see #getMainObject()
    * @generated
    */
-  EAttribute getMainObject_Root();
+  EReference getMainObject_Root();
 
   /**
    * Returns the meta object for the containment reference '{@link org.xtext.example.mydsl.jSchema.MainObject#getIncludeObjects <em>Include Objects</em>}'.
@@ -693,6 +721,27 @@ public interface JSchemaPackage extends EPackage
    * @generated
    */
   EReference getPrimitiveTypes_Number();
+
+  /**
+   * Returns the meta object for class '{@link org.xtext.example.mydsl.jSchema.IsRoot <em>Is Root</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Is Root</em>'.
+   * @see org.xtext.example.mydsl.jSchema.IsRoot
+   * @generated
+   */
+  EClass getIsRoot();
+
+  /**
+   * Returns the meta object for the attribute '{@link org.xtext.example.mydsl.jSchema.IsRoot#getString <em>String</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>String</em>'.
+   * @see org.xtext.example.mydsl.jSchema.IsRoot#getString()
+   * @see #getIsRoot()
+   * @generated
+   */
+  EAttribute getIsRoot_String();
 
   /**
    * Returns the meta object for class '{@link org.xtext.example.mydsl.jSchema.hasProperties <em>has Properties</em>}'.
@@ -981,12 +1030,12 @@ public interface JSchemaPackage extends EPackage
     EAttribute MAIN_OBJECT__OBJECT_NAME = eINSTANCE.getMainObject_ObjectName();
 
     /**
-     * The meta object literal for the '<em><b>Root</b></em>' attribute feature.
+     * The meta object literal for the '<em><b>Root</b></em>' containment reference feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    EAttribute MAIN_OBJECT__ROOT = eINSTANCE.getMainObject_Root();
+    EReference MAIN_OBJECT__ROOT = eINSTANCE.getMainObject_Root();
 
     /**
      * The meta object literal for the '<em><b>Include Objects</b></em>' containment reference feature.
@@ -1055,6 +1104,24 @@ public interface JSchemaPackage extends EPackage
      * @generated
      */
     EReference PRIMITIVE_TYPES__NUMBER = eINSTANCE.getPrimitiveTypes_Number();
+
+    /**
+     * The meta object literal for the '{@link org.xtext.example.mydsl.jSchema.impl.IsRootImpl <em>Is Root</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.xtext.example.mydsl.jSchema.impl.IsRootImpl
+     * @see org.xtext.example.mydsl.jSchema.impl.JSchemaPackageImpl#getIsRoot()
+     * @generated
+     */
+    EClass IS_ROOT = eINSTANCE.getIsRoot();
+
+    /**
+     * The meta object literal for the '<em><b>String</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute IS_ROOT__STRING = eINSTANCE.getIsRoot_String();
 
     /**
      * The meta object literal for the '{@link org.xtext.example.mydsl.jSchema.impl.hasPropertiesImpl <em>has Properties</em>}' class.

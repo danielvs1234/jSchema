@@ -16,6 +16,7 @@ import org.eclipse.xtext.serializer.sequencer.AbstractDelegatingSemanticSequence
 import org.eclipse.xtext.serializer.sequencer.ITransientValueService.ValueTransient;
 import org.xtext.example.mydsl.jSchema.Array;
 import org.xtext.example.mydsl.jSchema.Includes;
+import org.xtext.example.mydsl.jSchema.IsRoot;
 import org.xtext.example.mydsl.jSchema.JSchemaPackage;
 import org.xtext.example.mydsl.jSchema.MainObject;
 import org.xtext.example.mydsl.jSchema.Model;
@@ -46,6 +47,9 @@ public class JSchemaSemanticSequencer extends AbstractDelegatingSemanticSequence
 				return; 
 			case JSchemaPackage.INCLUDES:
 				sequence_Includes(context, (Includes) semanticObject); 
+				return; 
+			case JSchemaPackage.IS_ROOT:
+				sequence_IsRoot(context, (IsRoot) semanticObject); 
 				return; 
 			case JSchemaPackage.MAIN_OBJECT:
 				sequence_MainObject(context, (MainObject) semanticObject); 
@@ -105,11 +109,29 @@ public class JSchemaSemanticSequencer extends AbstractDelegatingSemanticSequence
 	
 	/**
 	 * Contexts:
+	 *     IsRoot returns IsRoot
+	 *
+	 * Constraint:
+	 *     string='root'
+	 */
+	protected void sequence_IsRoot(ISerializationContext context, IsRoot semanticObject) {
+		if (errorAcceptor != null) {
+			if (transientValues.isValueTransient(semanticObject, JSchemaPackage.Literals.IS_ROOT__STRING) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, JSchemaPackage.Literals.IS_ROOT__STRING));
+		}
+		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
+		feeder.accept(grammarAccess.getIsRootAccess().getStringRootKeyword_0(), semanticObject.getString());
+		feeder.finish();
+	}
+	
+	
+	/**
+	 * Contexts:
 	 *     AbstractObject returns MainObject
 	 *     MainObject returns MainObject
 	 *
 	 * Constraint:
-	 *     (objectName=ID root='root'? includeObjects=Includes? properties+=hasProperties?)
+	 *     (objectName=ID root=IsRoot? includeObjects=Includes? (properties+=hasProperties properties+=hasProperties*)?)
 	 */
 	protected void sequence_MainObject(ISerializationContext context, MainObject semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);

@@ -16,6 +16,7 @@ import org.xtext.example.mydsl.jSchema.AbstractObject;
 import org.xtext.example.mydsl.jSchema.Array;
 import org.xtext.example.mydsl.jSchema.FormatTypes;
 import org.xtext.example.mydsl.jSchema.Includes;
+import org.xtext.example.mydsl.jSchema.IsRoot;
 import org.xtext.example.mydsl.jSchema.JSchemaFactory;
 import org.xtext.example.mydsl.jSchema.JSchemaPackage;
 import org.xtext.example.mydsl.jSchema.MainObject;
@@ -85,6 +86,7 @@ public class JSchemaFactoryImpl extends EFactoryImpl implements JSchemaFactory
       case JSchemaPackage.MAIN_OBJECT: return createMainObject();
       case JSchemaPackage.PRIMITIVE_OBJECT: return createPrimitiveObject();
       case JSchemaPackage.PRIMITIVE_TYPES: return createPrimitiveTypes();
+      case JSchemaPackage.IS_ROOT: return createIsRoot();
       case JSchemaPackage.HAS_PROPERTIES: return createhasProperties();
       case JSchemaPackage.PROPERTY: return createProperty();
       case JSchemaPackage.PRIMITIVE_PROPERTIES: return createPrimitiveProperties();
@@ -200,6 +202,18 @@ public class JSchemaFactoryImpl extends EFactoryImpl implements JSchemaFactory
   {
     PrimitiveTypesImpl primitiveTypes = new PrimitiveTypesImpl();
     return primitiveTypes;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public IsRoot createIsRoot()
+  {
+    IsRootImpl isRoot = new IsRootImpl();
+    return isRoot;
   }
 
   /**

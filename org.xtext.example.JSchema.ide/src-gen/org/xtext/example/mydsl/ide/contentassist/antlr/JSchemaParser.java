@@ -41,6 +41,8 @@ public class JSchemaParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getNumberAccess().getGroup_1(), "rule__Number__Group_1__0");
 			builder.put(grammarAccess.getMainObjectAccess().getGroup(), "rule__MainObject__Group__0");
 			builder.put(grammarAccess.getMainObjectAccess().getGroup_2(), "rule__MainObject__Group_2__0");
+			builder.put(grammarAccess.getMainObjectAccess().getGroup_4(), "rule__MainObject__Group_4__0");
+			builder.put(grammarAccess.getMainObjectAccess().getGroup_4_1(), "rule__MainObject__Group_4_1__0");
 			builder.put(grammarAccess.getPrimitiveObjectAccess().getGroup(), "rule__PrimitiveObject__Group__0");
 			builder.put(grammarAccess.getPrimitiveObjectAccess().getGroup_1(), "rule__PrimitiveObject__Group_1__0");
 			builder.put(grammarAccess.getPrimitiveObjectAccess().getGroup_1_2(), "rule__PrimitiveObject__Group_1_2__0");
@@ -61,13 +63,15 @@ public class JSchemaParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getMainObjectAccess().getObjectNameAssignment_0(), "rule__MainObject__ObjectNameAssignment_0");
 			builder.put(grammarAccess.getMainObjectAccess().getRootAssignment_1(), "rule__MainObject__RootAssignment_1");
 			builder.put(grammarAccess.getMainObjectAccess().getIncludeObjectsAssignment_2_1(), "rule__MainObject__IncludeObjectsAssignment_2_1");
-			builder.put(grammarAccess.getMainObjectAccess().getPropertiesAssignment_4(), "rule__MainObject__PropertiesAssignment_4");
+			builder.put(grammarAccess.getMainObjectAccess().getPropertiesAssignment_4_0(), "rule__MainObject__PropertiesAssignment_4_0");
+			builder.put(grammarAccess.getMainObjectAccess().getPropertiesAssignment_4_1_1(), "rule__MainObject__PropertiesAssignment_4_1_1");
 			builder.put(grammarAccess.getPrimitiveObjectAccess().getTypeAssignment_0(), "rule__PrimitiveObject__TypeAssignment_0");
 			builder.put(grammarAccess.getPrimitiveObjectAccess().getPrimitivePropertiesAssignment_1_1(), "rule__PrimitiveObject__PrimitivePropertiesAssignment_1_1");
 			builder.put(grammarAccess.getPrimitiveObjectAccess().getPrimitivePropertiesAssignment_1_2_1(), "rule__PrimitiveObject__PrimitivePropertiesAssignment_1_2_1");
 			builder.put(grammarAccess.getPrimitiveTypesAccess().getStringAssignment_0_2(), "rule__PrimitiveTypes__StringAssignment_0_2");
 			builder.put(grammarAccess.getPrimitiveTypesAccess().getArrayAssignment_1(), "rule__PrimitiveTypes__ArrayAssignment_1");
 			builder.put(grammarAccess.getPrimitiveTypesAccess().getNumberAssignment_2_1(), "rule__PrimitiveTypes__NumberAssignment_2_1");
+			builder.put(grammarAccess.getIsRootAccess().getStringAssignment(), "rule__IsRoot__StringAssignment");
 			builder.put(grammarAccess.getHasPropertiesAccess().getPropertiesAssignment(), "rule__HasProperties__PropertiesAssignment");
 			builder.put(grammarAccess.getPropertyAccess().getTypeAssignment_0(), "rule__Property__TypeAssignment_0");
 			builder.put(grammarAccess.getPropertyAccess().getObjectAssignment_1(), "rule__Property__ObjectAssignment_1");

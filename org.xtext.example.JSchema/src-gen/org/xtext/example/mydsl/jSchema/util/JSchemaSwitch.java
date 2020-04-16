@@ -11,6 +11,7 @@ import org.eclipse.emf.ecore.util.Switch;
 import org.xtext.example.mydsl.jSchema.AbstractObject;
 import org.xtext.example.mydsl.jSchema.Array;
 import org.xtext.example.mydsl.jSchema.Includes;
+import org.xtext.example.mydsl.jSchema.IsRoot;
 import org.xtext.example.mydsl.jSchema.JSchemaPackage;
 import org.xtext.example.mydsl.jSchema.MainObject;
 import org.xtext.example.mydsl.jSchema.Model;
@@ -125,6 +126,13 @@ public class JSchemaSwitch<T> extends Switch<T>
       {
         PrimitiveTypes primitiveTypes = (PrimitiveTypes)theEObject;
         T result = casePrimitiveTypes(primitiveTypes);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case JSchemaPackage.IS_ROOT:
+      {
+        IsRoot isRoot = (IsRoot)theEObject;
+        T result = caseIsRoot(isRoot);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -267,6 +275,22 @@ public class JSchemaSwitch<T> extends Switch<T>
    * @generated
    */
   public T casePrimitiveTypes(PrimitiveTypes object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Is Root</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Is Root</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseIsRoot(IsRoot object)
   {
     return null;
   }

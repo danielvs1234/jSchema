@@ -15,6 +15,7 @@ import org.xtext.example.mydsl.jSchema.AbstractObject;
 import org.xtext.example.mydsl.jSchema.Array;
 import org.xtext.example.mydsl.jSchema.FormatTypes;
 import org.xtext.example.mydsl.jSchema.Includes;
+import org.xtext.example.mydsl.jSchema.IsRoot;
 import org.xtext.example.mydsl.jSchema.JSchemaFactory;
 import org.xtext.example.mydsl.jSchema.JSchemaPackage;
 import org.xtext.example.mydsl.jSchema.MainObject;
@@ -74,6 +75,13 @@ public class JSchemaPackageImpl extends EPackageImpl implements JSchemaPackage
    * @generated
    */
   private EClass primitiveTypesEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass isRootEClass = null;
 
   /**
    * <!-- begin-user-doc -->
@@ -281,9 +289,9 @@ public class JSchemaPackageImpl extends EPackageImpl implements JSchemaPackage
    * @generated
    */
   @Override
-  public EAttribute getMainObject_Root()
+  public EReference getMainObject_Root()
   {
-    return (EAttribute)mainObjectEClass.getEStructuralFeatures().get(1);
+    return (EReference)mainObjectEClass.getEStructuralFeatures().get(1);
   }
 
   /**
@@ -372,6 +380,28 @@ public class JSchemaPackageImpl extends EPackageImpl implements JSchemaPackage
   public EReference getPrimitiveTypes_Number()
   {
     return (EReference)primitiveTypesEClass.getEStructuralFeatures().get(1);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EClass getIsRoot()
+  {
+    return isRootEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EAttribute getIsRoot_String()
+  {
+    return (EAttribute)isRootEClass.getEStructuralFeatures().get(0);
   }
 
   /**
@@ -614,7 +644,7 @@ public class JSchemaPackageImpl extends EPackageImpl implements JSchemaPackage
 
     mainObjectEClass = createEClass(MAIN_OBJECT);
     createEAttribute(mainObjectEClass, MAIN_OBJECT__OBJECT_NAME);
-    createEAttribute(mainObjectEClass, MAIN_OBJECT__ROOT);
+    createEReference(mainObjectEClass, MAIN_OBJECT__ROOT);
     createEReference(mainObjectEClass, MAIN_OBJECT__INCLUDE_OBJECTS);
     createEReference(mainObjectEClass, MAIN_OBJECT__PROPERTIES);
 
@@ -625,6 +655,9 @@ public class JSchemaPackageImpl extends EPackageImpl implements JSchemaPackage
     primitiveTypesEClass = createEClass(PRIMITIVE_TYPES);
     createEReference(primitiveTypesEClass, PRIMITIVE_TYPES__ARRAY);
     createEReference(primitiveTypesEClass, PRIMITIVE_TYPES__NUMBER);
+
+    isRootEClass = createEClass(IS_ROOT);
+    createEAttribute(isRootEClass, IS_ROOT__STRING);
 
     hasPropertiesEClass = createEClass(HAS_PROPERTIES);
     createEReference(hasPropertiesEClass, HAS_PROPERTIES__PROPERTIES);
@@ -698,7 +731,7 @@ public class JSchemaPackageImpl extends EPackageImpl implements JSchemaPackage
 
     initEClass(mainObjectEClass, MainObject.class, "MainObject", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEAttribute(getMainObject_ObjectName(), ecorePackage.getEString(), "objectName", null, 0, 1, MainObject.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEAttribute(getMainObject_Root(), ecorePackage.getEString(), "root", null, 0, 1, MainObject.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getMainObject_Root(), this.getIsRoot(), null, "root", null, 0, 1, MainObject.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getMainObject_IncludeObjects(), this.getIncludes(), null, "includeObjects", null, 0, 1, MainObject.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getMainObject_Properties(), this.gethasProperties(), null, "properties", null, 0, -1, MainObject.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
@@ -709,6 +742,9 @@ public class JSchemaPackageImpl extends EPackageImpl implements JSchemaPackage
     initEClass(primitiveTypesEClass, PrimitiveTypes.class, "PrimitiveTypes", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEReference(getPrimitiveTypes_Array(), this.getArray(), null, "array", null, 0, 1, PrimitiveTypes.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getPrimitiveTypes_Number(), this.getNumber(), null, "number", null, 0, 1, PrimitiveTypes.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(isRootEClass, IsRoot.class, "IsRoot", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEAttribute(getIsRoot_String(), ecorePackage.getEString(), "string", null, 0, 1, IsRoot.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(hasPropertiesEClass, hasProperties.class, "hasProperties", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEReference(gethasProperties_Properties(), this.getProperty(), null, "properties", null, 0, 1, hasProperties.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

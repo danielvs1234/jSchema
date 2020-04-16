@@ -230,15 +230,20 @@ ruleMainObject returns [EObject current=null]
 		)
 		(
 			(
-				lv_root_1_0='root'
 				{
-					newLeafNode(lv_root_1_0, grammarAccess.getMainObjectAccess().getRootRootKeyword_1_0());
+					newCompositeNode(grammarAccess.getMainObjectAccess().getRootIsRootParserRuleCall_1_0());
 				}
+				lv_root_1_0=ruleIsRoot
 				{
 					if ($current==null) {
-						$current = createModelElement(grammarAccess.getMainObjectRule());
+						$current = createModelElementForParent(grammarAccess.getMainObjectRule());
 					}
-					setWithLastConsumed($current, "root", lv_root_1_0, "root");
+					set(
+						$current,
+						"root",
+						lv_root_1_0,
+						"org.xtext.example.mydsl.JSchema.IsRoot");
+					afterParserOrEnumRuleCall();
 				}
 			)
 		)?
@@ -273,26 +278,53 @@ ruleMainObject returns [EObject current=null]
 		}
 		(
 			(
-				{
-					newCompositeNode(grammarAccess.getMainObjectAccess().getPropertiesHasPropertiesParserRuleCall_4_0());
-				}
-				lv_properties_5_0=rulehasProperties
-				{
-					if ($current==null) {
-						$current = createModelElementForParent(grammarAccess.getMainObjectRule());
+				(
+					{
+						newCompositeNode(grammarAccess.getMainObjectAccess().getPropertiesHasPropertiesParserRuleCall_4_0_0());
 					}
-					add(
-						$current,
-						"properties",
-						lv_properties_5_0,
-						"org.xtext.example.mydsl.JSchema.hasProperties");
-					afterParserOrEnumRuleCall();
-				}
+					lv_properties_5_0=rulehasProperties
+					{
+						if ($current==null) {
+							$current = createModelElementForParent(grammarAccess.getMainObjectRule());
+						}
+						add(
+							$current,
+							"properties",
+							lv_properties_5_0,
+							"org.xtext.example.mydsl.JSchema.hasProperties");
+						afterParserOrEnumRuleCall();
+					}
+				)
 			)
+			(
+				otherlv_6=','
+				{
+					newLeafNode(otherlv_6, grammarAccess.getMainObjectAccess().getCommaKeyword_4_1_0());
+				}
+				(
+					(
+						{
+							newCompositeNode(grammarAccess.getMainObjectAccess().getPropertiesHasPropertiesParserRuleCall_4_1_1_0());
+						}
+						lv_properties_7_0=rulehasProperties
+						{
+							if ($current==null) {
+								$current = createModelElementForParent(grammarAccess.getMainObjectRule());
+							}
+							add(
+								$current,
+								"properties",
+								lv_properties_7_0,
+								"org.xtext.example.mydsl.JSchema.hasProperties");
+							afterParserOrEnumRuleCall();
+						}
+					)
+				)
+			)*
 		)?
-		otherlv_6='}'
+		otherlv_8='}'
 		{
-			newLeafNode(otherlv_6, grammarAccess.getMainObjectAccess().getRightCurlyBracketKeyword_5());
+			newLeafNode(otherlv_8, grammarAccess.getMainObjectAccess().getRightCurlyBracketKeyword_5());
 		}
 	)
 ;
@@ -481,6 +513,37 @@ rulePrimitiveTypes returns [EObject current=null]
 					}
 				)
 			)
+		)
+	)
+;
+
+// Entry rule entryRuleIsRoot
+entryRuleIsRoot returns [EObject current=null]:
+	{ newCompositeNode(grammarAccess.getIsRootRule()); }
+	iv_ruleIsRoot=ruleIsRoot
+	{ $current=$iv_ruleIsRoot.current; }
+	EOF;
+
+// Rule IsRoot
+ruleIsRoot returns [EObject current=null]
+@init {
+	enterRule();
+}
+@after {
+	leaveRule();
+}:
+	(
+		(
+			lv_string_0_0='root'
+			{
+				newLeafNode(lv_string_0_0, grammarAccess.getIsRootAccess().getStringRootKeyword_0());
+			}
+			{
+				if ($current==null) {
+					$current = createModelElement(grammarAccess.getIsRootRule());
+				}
+				setWithLastConsumed($current, "string", lv_string_0_0, "root");
+			}
 		)
 	)
 ;
@@ -1063,6 +1126,8 @@ ruleFormatTypes returns [Enumerator current=null]
 		)
 	)
 ;
+
+RULE_NULL : 'null';
 
 RULE_ID : '^'? ('a'..'z'|'A'..'Z'|'_') ('a'..'z'|'A'..'Z'|'_'|'0'..'9')*;
 

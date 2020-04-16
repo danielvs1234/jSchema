@@ -13,6 +13,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.xtext.example.mydsl.jSchema.AbstractObject;
 import org.xtext.example.mydsl.jSchema.Array;
 import org.xtext.example.mydsl.jSchema.Includes;
+import org.xtext.example.mydsl.jSchema.IsRoot;
 import org.xtext.example.mydsl.jSchema.JSchemaPackage;
 import org.xtext.example.mydsl.jSchema.MainObject;
 import org.xtext.example.mydsl.jSchema.Model;
@@ -115,6 +116,11 @@ public class JSchemaAdapterFactory extends AdapterFactoryImpl
       public Adapter casePrimitiveTypes(PrimitiveTypes object)
       {
         return createPrimitiveTypesAdapter();
+      }
+      @Override
+      public Adapter caseIsRoot(IsRoot object)
+      {
+        return createIsRootAdapter();
       }
       @Override
       public Adapter casehasProperties(hasProperties object)
@@ -254,6 +260,21 @@ public class JSchemaAdapterFactory extends AdapterFactoryImpl
    * @generated
    */
   public Adapter createPrimitiveTypesAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link org.xtext.example.mydsl.jSchema.IsRoot <em>Is Root</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see org.xtext.example.mydsl.jSchema.IsRoot
+   * @generated
+   */
+  public Adapter createIsRootAdapter()
   {
     return null;
   }

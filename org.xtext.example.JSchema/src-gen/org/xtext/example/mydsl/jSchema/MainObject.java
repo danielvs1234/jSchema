@@ -49,26 +49,26 @@ public interface MainObject extends AbstractObject
   void setObjectName(String value);
 
   /**
-   * Returns the value of the '<em><b>Root</b></em>' attribute.
+   * Returns the value of the '<em><b>Root</b></em>' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the value of the '<em>Root</em>' attribute.
-   * @see #setRoot(String)
+   * @return the value of the '<em>Root</em>' containment reference.
+   * @see #setRoot(IsRoot)
    * @see org.xtext.example.mydsl.jSchema.JSchemaPackage#getMainObject_Root()
-   * @model
+   * @model containment="true"
    * @generated
    */
-  String getRoot();
+  IsRoot getRoot();
 
   /**
-   * Sets the value of the '{@link org.xtext.example.mydsl.jSchema.MainObject#getRoot <em>Root</em>}' attribute.
+   * Sets the value of the '{@link org.xtext.example.mydsl.jSchema.MainObject#getRoot <em>Root</em>}' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Root</em>' attribute.
+   * @param value the new value of the '<em>Root</em>' containment reference.
    * @see #getRoot()
    * @generated
    */
-  void setRoot(String value);
+  void setRoot(IsRoot value);
 
   /**
    * Returns the value of the '<em><b>Include Objects</b></em>' containment reference.
