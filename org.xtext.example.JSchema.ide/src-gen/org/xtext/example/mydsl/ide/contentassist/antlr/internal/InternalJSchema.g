@@ -469,15 +469,15 @@ rule__Property__Alternatives
 	}
 :
 	(
-		{ before(grammarAccess.getPropertyAccess().getTypeAssignment_0()); }
-		(rule__Property__TypeAssignment_0)
-		{ after(grammarAccess.getPropertyAccess().getTypeAssignment_0()); }
+		{ before(grammarAccess.getPropertyAccess().getPropPrimAssignment_0()); }
+		(rule__Property__PropPrimAssignment_0)
+		{ after(grammarAccess.getPropertyAccess().getPropPrimAssignment_0()); }
 	)
 	|
 	(
-		{ before(grammarAccess.getPropertyAccess().getObjectAssignment_1()); }
-		(rule__Property__ObjectAssignment_1)
-		{ after(grammarAccess.getPropertyAccess().getObjectAssignment_1()); }
+		{ before(grammarAccess.getPropertyAccess().getPropObjAssignment_1()); }
+		(rule__Property__PropObjAssignment_1)
+		{ after(grammarAccess.getPropertyAccess().getPropObjAssignment_1()); }
 	)
 ;
 finally {
@@ -1315,9 +1315,9 @@ rule__PrimitiveTypes__Group_0__0__Impl
 	}
 :
 (
-	{ before(grammarAccess.getPrimitiveTypesAccess().getSTRINGAction_0_0()); }
-	()
-	{ after(grammarAccess.getPrimitiveTypesAccess().getSTRINGAction_0_0()); }
+	{ before(grammarAccess.getPrimitiveTypesAccess().getStringKeyword_0_0()); }
+	'String'
+	{ after(grammarAccess.getPrimitiveTypesAccess().getStringKeyword_0_0()); }
 )
 ;
 finally {
@@ -1330,7 +1330,6 @@ rule__PrimitiveTypes__Group_0__1
 	}
 :
 	rule__PrimitiveTypes__Group_0__1__Impl
-	rule__PrimitiveTypes__Group_0__2
 ;
 finally {
 	restoreStackSize(stackSize);
@@ -1342,35 +1341,9 @@ rule__PrimitiveTypes__Group_0__1__Impl
 	}
 :
 (
-	{ before(grammarAccess.getPrimitiveTypesAccess().getStringKeyword_0_1()); }
-	'String'
-	{ after(grammarAccess.getPrimitiveTypesAccess().getStringKeyword_0_1()); }
-)
-;
-finally {
-	restoreStackSize(stackSize);
-}
-
-rule__PrimitiveTypes__Group_0__2
-	@init {
-		int stackSize = keepStackSize();
-	}
-:
-	rule__PrimitiveTypes__Group_0__2__Impl
-;
-finally {
-	restoreStackSize(stackSize);
-}
-
-rule__PrimitiveTypes__Group_0__2__Impl
-	@init {
-		int stackSize = keepStackSize();
-	}
-:
-(
-	{ before(grammarAccess.getPrimitiveTypesAccess().getStringAssignment_0_2()); }
-	(rule__PrimitiveTypes__StringAssignment_0_2)
-	{ after(grammarAccess.getPrimitiveTypesAccess().getStringAssignment_0_2()); }
+	{ before(grammarAccess.getPrimitiveTypesAccess().getStringAssignment_0_1()); }
+	(rule__PrimitiveTypes__StringAssignment_0_1)
+	{ after(grammarAccess.getPrimitiveTypesAccess().getStringAssignment_0_1()); }
 )
 ;
 finally {
@@ -1423,7 +1396,7 @@ rule__PrimitiveTypes__Group_2__1__Impl
 :
 (
 	{ before(grammarAccess.getPrimitiveTypesAccess().getNumberAssignment_2_1()); }
-	(rule__PrimitiveTypes__NumberAssignment_2_1)
+	(rule__PrimitiveTypes__NumberAssignment_2_1)?
 	{ after(grammarAccess.getPrimitiveTypesAccess().getNumberAssignment_2_1()); }
 )
 ;
@@ -2191,15 +2164,15 @@ finally {
 	restoreStackSize(stackSize);
 }
 
-rule__PrimitiveTypes__StringAssignment_0_2
+rule__PrimitiveTypes__StringAssignment_0_1
 	@init {
 		int stackSize = keepStackSize();
 	}
 :
 	(
-		{ before(grammarAccess.getPrimitiveTypesAccess().getStringSTRINGTerminalRuleCall_0_2_0()); }
+		{ before(grammarAccess.getPrimitiveTypesAccess().getStringSTRINGTerminalRuleCall_0_1_0()); }
 		RULE_STRING
-		{ after(grammarAccess.getPrimitiveTypesAccess().getStringSTRINGTerminalRuleCall_0_2_0()); }
+		{ after(grammarAccess.getPrimitiveTypesAccess().getStringSTRINGTerminalRuleCall_0_1_0()); }
 	)
 ;
 finally {
@@ -2270,30 +2243,30 @@ finally {
 	restoreStackSize(stackSize);
 }
 
-rule__Property__TypeAssignment_0
+rule__Property__PropPrimAssignment_0
 	@init {
 		int stackSize = keepStackSize();
 	}
 :
 	(
-		{ before(grammarAccess.getPropertyAccess().getTypePrimitiveTypesParserRuleCall_0_0()); }
-		rulePrimitiveTypes
-		{ after(grammarAccess.getPropertyAccess().getTypePrimitiveTypesParserRuleCall_0_0()); }
+		{ before(grammarAccess.getPropertyAccess().getPropPrimPrimitiveObjectParserRuleCall_0_0()); }
+		rulePrimitiveObject
+		{ after(grammarAccess.getPropertyAccess().getPropPrimPrimitiveObjectParserRuleCall_0_0()); }
 	)
 ;
 finally {
 	restoreStackSize(stackSize);
 }
 
-rule__Property__ObjectAssignment_1
+rule__Property__PropObjAssignment_1
 	@init {
 		int stackSize = keepStackSize();
 	}
 :
 	(
-		{ before(grammarAccess.getPropertyAccess().getObjectMainObjectParserRuleCall_1_0()); }
+		{ before(grammarAccess.getPropertyAccess().getPropObjMainObjectParserRuleCall_1_0()); }
 		ruleMainObject
-		{ after(grammarAccess.getPropertyAccess().getObjectMainObjectParserRuleCall_1_0()); }
+		{ after(grammarAccess.getPropertyAccess().getPropObjMainObjectParserRuleCall_1_0()); }
 	)
 ;
 finally {

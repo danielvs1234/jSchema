@@ -245,13 +245,22 @@ public interface JSchemaPackage extends EPackage
   int PRIMITIVE_TYPES = 5;
 
   /**
+   * The feature id for the '<em><b>String</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int PRIMITIVE_TYPES__STRING = 0;
+
+  /**
    * The feature id for the '<em><b>Array</b></em>' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int PRIMITIVE_TYPES__ARRAY = 0;
+  int PRIMITIVE_TYPES__ARRAY = 1;
 
   /**
    * The feature id for the '<em><b>Number</b></em>' containment reference.
@@ -260,7 +269,7 @@ public interface JSchemaPackage extends EPackage
    * @generated
    * @ordered
    */
-  int PRIMITIVE_TYPES__NUMBER = 1;
+  int PRIMITIVE_TYPES__NUMBER = 2;
 
   /**
    * The number of structural features of the '<em>Primitive Types</em>' class.
@@ -269,7 +278,7 @@ public interface JSchemaPackage extends EPackage
    * @generated
    * @ordered
    */
-  int PRIMITIVE_TYPES_FEATURE_COUNT = 2;
+  int PRIMITIVE_TYPES_FEATURE_COUNT = 3;
 
   /**
    * The meta object id for the '{@link org.xtext.example.mydsl.jSchema.impl.IsRootImpl <em>Is Root</em>}' class.
@@ -338,22 +347,22 @@ public interface JSchemaPackage extends EPackage
   int PROPERTY = 8;
 
   /**
-   * The feature id for the '<em><b>Type</b></em>' containment reference.
+   * The feature id for the '<em><b>Prop Prim</b></em>' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int PROPERTY__TYPE = 0;
+  int PROPERTY__PROP_PRIM = 0;
 
   /**
-   * The feature id for the '<em><b>Object</b></em>' containment reference.
+   * The feature id for the '<em><b>Prop Obj</b></em>' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int PROPERTY__OBJECT = 1;
+  int PROPERTY__PROP_OBJ = 1;
 
   /**
    * The number of structural features of the '<em>Property</em>' class.
@@ -485,52 +494,6 @@ public interface JSchemaPackage extends EPackage
   int ARRAY_FEATURE_COUNT = 3;
 
   /**
-   * The meta object id for the '{@link org.xtext.example.mydsl.jSchema.impl.STRINGImpl <em>STRING</em>}' class.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see org.xtext.example.mydsl.jSchema.impl.STRINGImpl
-   * @see org.xtext.example.mydsl.jSchema.impl.JSchemaPackageImpl#getSTRING()
-   * @generated
-   */
-  int STRING = 12;
-
-  /**
-   * The feature id for the '<em><b>Array</b></em>' containment reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int STRING__ARRAY = PRIMITIVE_TYPES__ARRAY;
-
-  /**
-   * The feature id for the '<em><b>Number</b></em>' containment reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int STRING__NUMBER = PRIMITIVE_TYPES__NUMBER;
-
-  /**
-   * The feature id for the '<em><b>String</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int STRING__STRING = PRIMITIVE_TYPES_FEATURE_COUNT + 0;
-
-  /**
-   * The number of structural features of the '<em>STRING</em>' class.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int STRING_FEATURE_COUNT = PRIMITIVE_TYPES_FEATURE_COUNT + 1;
-
-  /**
    * The meta object id for the '{@link org.xtext.example.mydsl.jSchema.FormatTypes <em>Format Types</em>}' enum.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -538,7 +501,7 @@ public interface JSchemaPackage extends EPackage
    * @see org.xtext.example.mydsl.jSchema.impl.JSchemaPackageImpl#getFormatTypes()
    * @generated
    */
-  int FORMAT_TYPES = 13;
+  int FORMAT_TYPES = 12;
 
 
   /**
@@ -701,6 +664,17 @@ public interface JSchemaPackage extends EPackage
   EClass getPrimitiveTypes();
 
   /**
+   * Returns the meta object for the attribute '{@link org.xtext.example.mydsl.jSchema.PrimitiveTypes#getString <em>String</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>String</em>'.
+   * @see org.xtext.example.mydsl.jSchema.PrimitiveTypes#getString()
+   * @see #getPrimitiveTypes()
+   * @generated
+   */
+  EAttribute getPrimitiveTypes_String();
+
+  /**
    * Returns the meta object for the containment reference '{@link org.xtext.example.mydsl.jSchema.PrimitiveTypes#getArray <em>Array</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -775,26 +749,26 @@ public interface JSchemaPackage extends EPackage
   EClass getProperty();
 
   /**
-   * Returns the meta object for the containment reference '{@link org.xtext.example.mydsl.jSchema.Property#getType <em>Type</em>}'.
+   * Returns the meta object for the containment reference '{@link org.xtext.example.mydsl.jSchema.Property#getPropPrim <em>Prop Prim</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for the containment reference '<em>Type</em>'.
-   * @see org.xtext.example.mydsl.jSchema.Property#getType()
+   * @return the meta object for the containment reference '<em>Prop Prim</em>'.
+   * @see org.xtext.example.mydsl.jSchema.Property#getPropPrim()
    * @see #getProperty()
    * @generated
    */
-  EReference getProperty_Type();
+  EReference getProperty_PropPrim();
 
   /**
-   * Returns the meta object for the containment reference '{@link org.xtext.example.mydsl.jSchema.Property#getObject <em>Object</em>}'.
+   * Returns the meta object for the containment reference '{@link org.xtext.example.mydsl.jSchema.Property#getPropObj <em>Prop Obj</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for the containment reference '<em>Object</em>'.
-   * @see org.xtext.example.mydsl.jSchema.Property#getObject()
+   * @return the meta object for the containment reference '<em>Prop Obj</em>'.
+   * @see org.xtext.example.mydsl.jSchema.Property#getPropObj()
    * @see #getProperty()
    * @generated
    */
-  EReference getProperty_Object();
+  EReference getProperty_PropObj();
 
   /**
    * Returns the meta object for class '{@link org.xtext.example.mydsl.jSchema.PrimitiveProperties <em>Primitive Properties</em>}'.
@@ -902,27 +876,6 @@ public interface JSchemaPackage extends EPackage
    * @generated
    */
   EAttribute getArray_ArrayType();
-
-  /**
-   * Returns the meta object for class '{@link org.xtext.example.mydsl.jSchema.STRING <em>STRING</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for class '<em>STRING</em>'.
-   * @see org.xtext.example.mydsl.jSchema.STRING
-   * @generated
-   */
-  EClass getSTRING();
-
-  /**
-   * Returns the meta object for the attribute '{@link org.xtext.example.mydsl.jSchema.STRING#getString <em>String</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the attribute '<em>String</em>'.
-   * @see org.xtext.example.mydsl.jSchema.STRING#getString()
-   * @see #getSTRING()
-   * @generated
-   */
-  EAttribute getSTRING_String();
 
   /**
    * Returns the meta object for enum '{@link org.xtext.example.mydsl.jSchema.FormatTypes <em>Format Types</em>}'.
@@ -1090,6 +1043,14 @@ public interface JSchemaPackage extends EPackage
     EClass PRIMITIVE_TYPES = eINSTANCE.getPrimitiveTypes();
 
     /**
+     * The meta object literal for the '<em><b>String</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute PRIMITIVE_TYPES__STRING = eINSTANCE.getPrimitiveTypes_String();
+
+    /**
      * The meta object literal for the '<em><b>Array</b></em>' containment reference feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -1152,20 +1113,20 @@ public interface JSchemaPackage extends EPackage
     EClass PROPERTY = eINSTANCE.getProperty();
 
     /**
-     * The meta object literal for the '<em><b>Type</b></em>' containment reference feature.
+     * The meta object literal for the '<em><b>Prop Prim</b></em>' containment reference feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    EReference PROPERTY__TYPE = eINSTANCE.getProperty_Type();
+    EReference PROPERTY__PROP_PRIM = eINSTANCE.getProperty_PropPrim();
 
     /**
-     * The meta object literal for the '<em><b>Object</b></em>' containment reference feature.
+     * The meta object literal for the '<em><b>Prop Obj</b></em>' containment reference feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    EReference PROPERTY__OBJECT = eINSTANCE.getProperty_Object();
+    EReference PROPERTY__PROP_OBJ = eINSTANCE.getProperty_PropObj();
 
     /**
      * The meta object literal for the '{@link org.xtext.example.mydsl.jSchema.impl.PrimitivePropertiesImpl <em>Primitive Properties</em>}' class.
@@ -1252,24 +1213,6 @@ public interface JSchemaPackage extends EPackage
      * @generated
      */
     EAttribute ARRAY__ARRAY_TYPE = eINSTANCE.getArray_ArrayType();
-
-    /**
-     * The meta object literal for the '{@link org.xtext.example.mydsl.jSchema.impl.STRINGImpl <em>STRING</em>}' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see org.xtext.example.mydsl.jSchema.impl.STRINGImpl
-     * @see org.xtext.example.mydsl.jSchema.impl.JSchemaPackageImpl#getSTRING()
-     * @generated
-     */
-    EClass STRING = eINSTANCE.getSTRING();
-
-    /**
-     * The meta object literal for the '<em><b>String</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute STRING__STRING = eINSTANCE.getSTRING_String();
 
     /**
      * The meta object literal for the '{@link org.xtext.example.mydsl.jSchema.FormatTypes <em>Format Types</em>}' enum.

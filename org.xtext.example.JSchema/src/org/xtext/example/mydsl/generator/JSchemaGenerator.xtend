@@ -27,21 +27,25 @@ class JSchemaGenerator extends AbstractGenerator {
 	  @Inject extension IQualifiedNameProvider
 	  ArrayList<PrimitiveObject> primitiveObjectList;
 	  ArrayList<MainObject>	mainObjectList;
+	  ArrayList<ObjectClass> compiledMainObjects;
+	  ArrayList<PrimitiveObjectClass> compiledPrimitiveObjects;
 
 	override void doGenerate(Resource resource, IFileSystemAccess2 fsa, IGeneratorContext context) {
 			primitiveObjectList = new ArrayList<PrimitiveObject>()
 			mainObjectList = new ArrayList<MainObject>()
-			
+			compiledPrimitiveObjects = new ArrayList<PrimitiveObjectClass>();
+			compiledMainObjects = new ArrayList<ObjectClass>();
 			val abstractObjects = resource.allContents.filter(Model).next
-			val primitiveObjects = resource.allContents.filter(PrimitiveObject)
+			
+			
+			System.out.println("Amount of primitive objects found: " + primitiveObjectList.size())
 			
 			for (primObj : resource.allContents.toIterable.filter(PrimitiveObject)){
+				//compile all primitive objects
 				compilePrimitiveObject(primObj)
 			}
-			System.out.println(primitiveObjectList.size())
 			
 			for (obj : resource.allContents.toIterable.filter(MainObject)){
-				mainObjectList.add(obj)
 				var bool = "false"
 				var rootBool = "false"
 				if(checkIfObjectContainsOtherObjects(obj) == true){
@@ -52,37 +56,77 @@ class JSchemaGenerator extends AbstractGenerator {
 				}
 				System.out.println("Contains other objects: " + bool + "  " +
 				obj.objectName.toString() + " PropertyListSize= " + getProperties(obj).size() + " isRoot: " + rootBool)
+				//Compile all main objects
+				compiledMainObjects.add(compileMainObject(obj));
 			}
 			
-			for (MainObject obj : mainObjectList){
-				compileObject(obj)
-			}
 			
+			
+	
+			
+	
 			
 			
 			
 	}
 			
-	def compileObject(MainObject obj){
+	def ObjectClass compileMainObject(MainObject obj){
 		var boolean isRoot = false
-		if (obj.root !== null)
-		val ObjectClass object = new Object
+		if (obj.root !== null){
+			isRoot = true;
+		}
+		val ObjectClass tempObject = new ObjectClass(obj.objectName, isRoot, obj)
+		
 		if(checkIfObjectContainsOtherObjects(obj) == true){
-			val ArrayList<String> includeList = new ArrayList<String>()
-			for(String str : obj.includeObjects.objectID){
-				includeList.add(str)
+			val ArrayList<String> includeNameList = new ArrayList<String>()
+			
+			if(obj.includeObjects !== null){
+				for(String str : obj.includeObjects.objectID){
+					includeNameList.add(str)
+				}
+			}
+			for(String includedName : includeNameList){
+				for(MainObject mainObj : mainObjectList){
+					if(mainObj.objectName.toString() == includedName){
+						tempObject.addMainObject(mainObj)
+					}
+				}
 			}
 		
+		for (hasProperties e : getProperties(obj)){
+			if(e.properties.propPrim !== null){
+				System.out.println("hasProperties = nested Primitive Object");
+				tempObject.addHasPrimObj(e.properties.propPrim);
+			} else if(e.properties.propObj !== null){
+				System.out.println("hasProperties = nested Main Object");
+				tempObject.addHasMainObj(compileMainObject(e.properties.propObj));
+			}
 		}
+		
+		}
+		
+		
+		
+	return tempObject
+		
 		
 	}
 	
 	def compilePrimitiveObject(PrimitiveObject obj){
+		var PrimitiveObjectClass temp;
+		if(obj.type.string !== null){
+			temp = new PrimitiveObjectClass(obj.type.string, obj, PrimitiveType.STRING, obj.type.string);
+		} else if(obj.type.array !== null){
+			temp = new PrimitiveObjectClass(obj.type.array.arrayName, obj, PrimitiveType.ARRAY);
+		} else if (obj.type.number !== null){
+			temp = new PrimitiveObjectClass("number", obj, PrimitiveType.NUMBER, obj.type.number.toString());
+		}
+		 
 		primitiveObjectList.add(obj)
 	}
 	
 	def checkIfObjectContainsOtherObjects(MainObject obj){
-		if(obj.includeObjects !== null){
+		if(obj.includeObjects !== null || obj.properties !== null){
 			return true
 		}else{
 			return false

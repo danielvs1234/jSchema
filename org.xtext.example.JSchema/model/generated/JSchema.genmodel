@@ -43,6 +43,7 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference JSchema.ecore#//PrimitiveObject/primitiveProperties"/>
     </genClasses>
     <genClasses ecoreClass="JSchema.ecore#//PrimitiveTypes">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute JSchema.ecore#//PrimitiveTypes/string"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference JSchema.ecore#//PrimitiveTypes/array"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference JSchema.ecore#//PrimitiveTypes/number"/>
     </genClasses>
@@ -53,8 +54,8 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference JSchema.ecore#//hasProperties/properties"/>
     </genClasses>
     <genClasses ecoreClass="JSchema.ecore#//Property">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference JSchema.ecore#//Property/type"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference JSchema.ecore#//Property/object"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference JSchema.ecore#//Property/propPrim"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference JSchema.ecore#//Property/propObj"/>
     </genClasses>
     <genClasses ecoreClass="JSchema.ecore#//PrimitiveProperties">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute JSchema.ecore#//PrimitiveProperties/stringLenght"/>
@@ -68,9 +69,6 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute JSchema.ecore#//Array/arrayName"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference JSchema.ecore#//Array/properties"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute JSchema.ecore#//Array/arrayType"/>
-    </genClasses>
-    <genClasses ecoreClass="JSchema.ecore#//STRING">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute JSchema.ecore#//STRING/string"/>
     </genClasses>
   </genPackages>
 </genmodel:GenModel>

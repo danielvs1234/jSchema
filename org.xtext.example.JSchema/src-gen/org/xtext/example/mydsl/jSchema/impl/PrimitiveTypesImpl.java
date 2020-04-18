@@ -24,6 +24,7 @@ import org.xtext.example.mydsl.jSchema.PrimitiveTypes;
  * The following features are implemented:
  * </p>
  * <ul>
+ *   <li>{@link org.xtext.example.mydsl.jSchema.impl.PrimitiveTypesImpl#getString <em>String</em>}</li>
  *   <li>{@link org.xtext.example.mydsl.jSchema.impl.PrimitiveTypesImpl#getArray <em>Array</em>}</li>
  *   <li>{@link org.xtext.example.mydsl.jSchema.impl.PrimitiveTypesImpl#getNumber <em>Number</em>}</li>
  * </ul>
@@ -32,6 +33,26 @@ import org.xtext.example.mydsl.jSchema.PrimitiveTypes;
  */
 public class PrimitiveTypesImpl extends MinimalEObjectImpl.Container implements PrimitiveTypes
 {
+  /**
+   * The default value of the '{@link #getString() <em>String</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getString()
+   * @generated
+   * @ordered
+   */
+  protected static final String STRING_EDEFAULT = null;
+
+  /**
+   * The cached value of the '{@link #getString() <em>String</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getString()
+   * @generated
+   * @ordered
+   */
+  protected String string = STRING_EDEFAULT;
+
   /**
    * The cached value of the '{@link #getArray() <em>Array</em>}' containment reference.
    * <!-- begin-user-doc -->
@@ -71,6 +92,31 @@ public class PrimitiveTypesImpl extends MinimalEObjectImpl.Container implements 
   protected EClass eStaticClass()
   {
     return JSchemaPackage.Literals.PRIMITIVE_TYPES;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public String getString()
+  {
+    return string;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public void setString(String newString)
+  {
+    String oldString = string;
+    string = newString;
+    if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, JSchemaPackage.PRIMITIVE_TYPES__STRING, oldString, string));
   }
 
   /**
@@ -201,6 +247,8 @@ public class PrimitiveTypesImpl extends MinimalEObjectImpl.Container implements 
   {
     switch (featureID)
     {
+      case JSchemaPackage.PRIMITIVE_TYPES__STRING:
+        return getString();
       case JSchemaPackage.PRIMITIVE_TYPES__ARRAY:
         return getArray();
       case JSchemaPackage.PRIMITIVE_TYPES__NUMBER:
@@ -219,6 +267,9 @@ public class PrimitiveTypesImpl extends MinimalEObjectImpl.Container implements 
   {
     switch (featureID)
     {
+      case JSchemaPackage.PRIMITIVE_TYPES__STRING:
+        setString((String)newValue);
+        return;
       case JSchemaPackage.PRIMITIVE_TYPES__ARRAY:
         setArray((Array)newValue);
         return;
@@ -239,6 +290,9 @@ public class PrimitiveTypesImpl extends MinimalEObjectImpl.Container implements 
   {
     switch (featureID)
     {
+      case JSchemaPackage.PRIMITIVE_TYPES__STRING:
+        setString(STRING_EDEFAULT);
+        return;
       case JSchemaPackage.PRIMITIVE_TYPES__ARRAY:
         setArray((Array)null);
         return;
@@ -259,12 +313,31 @@ public class PrimitiveTypesImpl extends MinimalEObjectImpl.Container implements 
   {
     switch (featureID)
     {
+      case JSchemaPackage.PRIMITIVE_TYPES__STRING:
+        return STRING_EDEFAULT == null ? string != null : !STRING_EDEFAULT.equals(string);
       case JSchemaPackage.PRIMITIVE_TYPES__ARRAY:
         return array != null;
       case JSchemaPackage.PRIMITIVE_TYPES__NUMBER:
         return number != null;
     }
     return super.eIsSet(featureID);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public String toString()
+  {
+    if (eIsProxy()) return super.toString();
+
+    StringBuilder result = new StringBuilder(super.toString());
+    result.append(" (string: ");
+    result.append(string);
+    result.append(')');
+    return result.toString();
   }
 
 } //PrimitiveTypesImpl

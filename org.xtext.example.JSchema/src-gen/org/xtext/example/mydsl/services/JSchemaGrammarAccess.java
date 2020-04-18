@@ -6,7 +6,6 @@ package org.xtext.example.mydsl.services;
 import com.google.inject.Inject;
 import com.google.inject.Singleton;
 import java.util.List;
-import org.eclipse.xtext.Action;
 import org.eclipse.xtext.Alternatives;
 import org.eclipse.xtext.Assignment;
 import org.eclipse.xtext.EnumLiteralDeclaration;
@@ -238,10 +237,9 @@ public class JSchemaGrammarAccess extends AbstractGrammarElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.xtext.example.mydsl.JSchema.PrimitiveTypes");
 		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
 		private final Group cGroup_0 = (Group)cAlternatives.eContents().get(0);
-		private final Action cSTRINGAction_0_0 = (Action)cGroup_0.eContents().get(0);
-		private final Keyword cStringKeyword_0_1 = (Keyword)cGroup_0.eContents().get(1);
-		private final Assignment cStringAssignment_0_2 = (Assignment)cGroup_0.eContents().get(2);
-		private final RuleCall cStringSTRINGTerminalRuleCall_0_2_0 = (RuleCall)cStringAssignment_0_2.eContents().get(0);
+		private final Keyword cStringKeyword_0_0 = (Keyword)cGroup_0.eContents().get(0);
+		private final Assignment cStringAssignment_0_1 = (Assignment)cGroup_0.eContents().get(1);
+		private final RuleCall cStringSTRINGTerminalRuleCall_0_1_0 = (RuleCall)cStringAssignment_0_1.eContents().get(0);
 		private final Assignment cArrayAssignment_1 = (Assignment)cAlternatives.eContents().get(1);
 		private final RuleCall cArrayArrayParserRuleCall_1_0 = (RuleCall)cArrayAssignment_1.eContents().get(0);
 		private final Group cGroup_2 = (Group)cAlternatives.eContents().get(2);
@@ -253,26 +251,23 @@ public class JSchemaGrammarAccess extends AbstractGrammarElementFinder {
 		////	'require' (('minimum') | ('maximum')) INT 'properties' properties=hasProperties
 		////;
 		//PrimitiveTypes:
-		//	{STRING} 'String' string=STRING | array=Array | 'num' number=Number;
+		//	'String' string=STRING | array=Array | 'num' number=Number?;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//{STRING} 'String' string=STRING | array=Array | 'num' number=Number
+		//'String' string=STRING | array=Array | 'num' number=Number?
 		public Alternatives getAlternatives() { return cAlternatives; }
 		
-		//{STRING} 'String' string=STRING
+		//'String' string=STRING
 		public Group getGroup_0() { return cGroup_0; }
 		
-		//{STRING}
-		public Action getSTRINGAction_0_0() { return cSTRINGAction_0_0; }
-		
 		//'String'
-		public Keyword getStringKeyword_0_1() { return cStringKeyword_0_1; }
+		public Keyword getStringKeyword_0_0() { return cStringKeyword_0_0; }
 		
 		//string=STRING
-		public Assignment getStringAssignment_0_2() { return cStringAssignment_0_2; }
+		public Assignment getStringAssignment_0_1() { return cStringAssignment_0_1; }
 		
 		//STRING
-		public RuleCall getStringSTRINGTerminalRuleCall_0_2_0() { return cStringSTRINGTerminalRuleCall_0_2_0; }
+		public RuleCall getStringSTRINGTerminalRuleCall_0_1_0() { return cStringSTRINGTerminalRuleCall_0_1_0; }
 		
 		//array=Array
 		public Assignment getArrayAssignment_1() { return cArrayAssignment_1; }
@@ -280,13 +275,13 @@ public class JSchemaGrammarAccess extends AbstractGrammarElementFinder {
 		//Array
 		public RuleCall getArrayArrayParserRuleCall_1_0() { return cArrayArrayParserRuleCall_1_0; }
 		
-		//'num' number=Number
+		//'num' number=Number?
 		public Group getGroup_2() { return cGroup_2; }
 		
 		//'num'
 		public Keyword getNumKeyword_2_0() { return cNumKeyword_2_0; }
 		
-		//number=Number
+		//number=Number?
 		public Assignment getNumberAssignment_2_1() { return cNumberAssignment_2_1; }
 		
 		//Number
@@ -325,29 +320,29 @@ public class JSchemaGrammarAccess extends AbstractGrammarElementFinder {
 	public class PropertyElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.xtext.example.mydsl.JSchema.Property");
 		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
-		private final Assignment cTypeAssignment_0 = (Assignment)cAlternatives.eContents().get(0);
-		private final RuleCall cTypePrimitiveTypesParserRuleCall_0_0 = (RuleCall)cTypeAssignment_0.eContents().get(0);
-		private final Assignment cObjectAssignment_1 = (Assignment)cAlternatives.eContents().get(1);
-		private final RuleCall cObjectMainObjectParserRuleCall_1_0 = (RuleCall)cObjectAssignment_1.eContents().get(0);
+		private final Assignment cPropPrimAssignment_0 = (Assignment)cAlternatives.eContents().get(0);
+		private final RuleCall cPropPrimPrimitiveObjectParserRuleCall_0_0 = (RuleCall)cPropPrimAssignment_0.eContents().get(0);
+		private final Assignment cPropObjAssignment_1 = (Assignment)cAlternatives.eContents().get(1);
+		private final RuleCall cPropObjMainObjectParserRuleCall_1_0 = (RuleCall)cPropObjAssignment_1.eContents().get(0);
 		
 		//Property:
-		//	type=PrimitiveTypes | object=MainObject;
+		//	propPrim=PrimitiveObject | propObj=MainObject;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//type=PrimitiveTypes | object=MainObject
+		//propPrim=PrimitiveObject | propObj=MainObject
 		public Alternatives getAlternatives() { return cAlternatives; }
 		
-		//type=PrimitiveTypes
-		public Assignment getTypeAssignment_0() { return cTypeAssignment_0; }
+		//propPrim=PrimitiveObject
+		public Assignment getPropPrimAssignment_0() { return cPropPrimAssignment_0; }
 		
-		//PrimitiveTypes
-		public RuleCall getTypePrimitiveTypesParserRuleCall_0_0() { return cTypePrimitiveTypesParserRuleCall_0_0; }
+		//PrimitiveObject
+		public RuleCall getPropPrimPrimitiveObjectParserRuleCall_0_0() { return cPropPrimPrimitiveObjectParserRuleCall_0_0; }
 		
-		//object=MainObject
-		public Assignment getObjectAssignment_1() { return cObjectAssignment_1; }
+		//propObj=MainObject
+		public Assignment getPropObjAssignment_1() { return cPropObjAssignment_1; }
 		
 		//MainObject
-		public RuleCall getObjectMainObjectParserRuleCall_1_0() { return cObjectMainObjectParserRuleCall_1_0; }
+		public RuleCall getPropObjMainObjectParserRuleCall_1_0() { return cPropObjMainObjectParserRuleCall_1_0; }
 	}
 	public class PrimitivePropertiesElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.xtext.example.mydsl.JSchema.PrimitiveProperties");
@@ -850,7 +845,7 @@ public class JSchemaGrammarAccess extends AbstractGrammarElementFinder {
 	////	'require' (('minimum') | ('maximum')) INT 'properties' properties=hasProperties
 	////;
 	//PrimitiveTypes:
-	//	{STRING} 'String' string=STRING | array=Array | 'num' number=Number;
+	//	'String' string=STRING | array=Array | 'num' number=Number?;
 	public PrimitiveTypesElements getPrimitiveTypesAccess() {
 		return pPrimitiveTypes;
 	}
@@ -880,7 +875,7 @@ public class JSchemaGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	//Property:
-	//	type=PrimitiveTypes | object=MainObject;
+	//	propPrim=PrimitiveObject | propObj=MainObject;
 	public PropertyElements getPropertyAccess() {
 		return pProperty;
 	}

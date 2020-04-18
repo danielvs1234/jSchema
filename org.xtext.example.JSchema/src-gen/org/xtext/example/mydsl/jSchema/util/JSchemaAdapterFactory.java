@@ -21,7 +21,6 @@ import org.xtext.example.mydsl.jSchema.PrimitiveObject;
 import org.xtext.example.mydsl.jSchema.PrimitiveProperties;
 import org.xtext.example.mydsl.jSchema.PrimitiveTypes;
 import org.xtext.example.mydsl.jSchema.Property;
-import org.xtext.example.mydsl.jSchema.STRING;
 import org.xtext.example.mydsl.jSchema.hasProperties;
 
 /**
@@ -146,11 +145,6 @@ public class JSchemaAdapterFactory extends AdapterFactoryImpl
       public Adapter caseArray(Array object)
       {
         return createArrayAdapter();
-      }
-      @Override
-      public Adapter caseSTRING(STRING object)
-      {
-        return createSTRINGAdapter();
       }
       @Override
       public Adapter defaultCase(EObject object)
@@ -350,21 +344,6 @@ public class JSchemaAdapterFactory extends AdapterFactoryImpl
    * @generated
    */
   public Adapter createArrayAdapter()
-  {
-    return null;
-  }
-
-  /**
-   * Creates a new adapter for an object of class '{@link org.xtext.example.mydsl.jSchema.STRING <em>STRING</em>}'.
-   * <!-- begin-user-doc -->
-   * This default implementation returns null so that we can easily ignore cases;
-   * it's useful to ignore a case when inheritance will catch all the cases anyway.
-   * <!-- end-user-doc -->
-   * @return the new adapter.
-   * @see org.xtext.example.mydsl.jSchema.STRING
-   * @generated
-   */
-  public Adapter createSTRINGAdapter()
   {
     return null;
   }

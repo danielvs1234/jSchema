@@ -25,7 +25,6 @@ import org.xtext.example.mydsl.jSchema.PrimitiveObject;
 import org.xtext.example.mydsl.jSchema.PrimitiveProperties;
 import org.xtext.example.mydsl.jSchema.PrimitiveTypes;
 import org.xtext.example.mydsl.jSchema.Property;
-import org.xtext.example.mydsl.jSchema.STRING;
 import org.xtext.example.mydsl.jSchema.hasProperties;
 
 /**
@@ -92,7 +91,6 @@ public class JSchemaFactoryImpl extends EFactoryImpl implements JSchemaFactory
       case JSchemaPackage.PRIMITIVE_PROPERTIES: return createPrimitiveProperties();
       case JSchemaPackage.INCLUDES: return createIncludes();
       case JSchemaPackage.ARRAY: return createArray();
-      case JSchemaPackage.STRING: return createSTRING();
       default:
         throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
     }
@@ -274,18 +272,6 @@ public class JSchemaFactoryImpl extends EFactoryImpl implements JSchemaFactory
   {
     ArrayImpl array = new ArrayImpl();
     return array;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public STRING createSTRING()
-  {
-    STRINGImpl string = new STRINGImpl();
-    return string;
   }
 
   /**

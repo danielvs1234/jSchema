@@ -14,8 +14,8 @@ import org.eclipse.emf.ecore.EObject;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link org.xtext.example.mydsl.jSchema.Property#getType <em>Type</em>}</li>
- *   <li>{@link org.xtext.example.mydsl.jSchema.Property#getObject <em>Object</em>}</li>
+ *   <li>{@link org.xtext.example.mydsl.jSchema.Property#getPropPrim <em>Prop Prim</em>}</li>
+ *   <li>{@link org.xtext.example.mydsl.jSchema.Property#getPropObj <em>Prop Obj</em>}</li>
  * </ul>
  *
  * @see org.xtext.example.mydsl.jSchema.JSchemaPackage#getProperty()
@@ -25,47 +25,47 @@ import org.eclipse.emf.ecore.EObject;
 public interface Property extends EObject
 {
   /**
-   * Returns the value of the '<em><b>Type</b></em>' containment reference.
+   * Returns the value of the '<em><b>Prop Prim</b></em>' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the value of the '<em>Type</em>' containment reference.
-   * @see #setType(PrimitiveTypes)
-   * @see org.xtext.example.mydsl.jSchema.JSchemaPackage#getProperty_Type()
+   * @return the value of the '<em>Prop Prim</em>' containment reference.
+   * @see #setPropPrim(PrimitiveObject)
+   * @see org.xtext.example.mydsl.jSchema.JSchemaPackage#getProperty_PropPrim()
    * @model containment="true"
    * @generated
    */
-  PrimitiveTypes getType();
+  PrimitiveObject getPropPrim();
 
   /**
-   * Sets the value of the '{@link org.xtext.example.mydsl.jSchema.Property#getType <em>Type</em>}' containment reference.
+   * Sets the value of the '{@link org.xtext.example.mydsl.jSchema.Property#getPropPrim <em>Prop Prim</em>}' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Type</em>' containment reference.
-   * @see #getType()
+   * @param value the new value of the '<em>Prop Prim</em>' containment reference.
+   * @see #getPropPrim()
    * @generated
    */
-  void setType(PrimitiveTypes value);
+  void setPropPrim(PrimitiveObject value);
 
   /**
-   * Returns the value of the '<em><b>Object</b></em>' containment reference.
+   * Returns the value of the '<em><b>Prop Obj</b></em>' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the value of the '<em>Object</em>' containment reference.
-   * @see #setObject(MainObject)
-   * @see org.xtext.example.mydsl.jSchema.JSchemaPackage#getProperty_Object()
+   * @return the value of the '<em>Prop Obj</em>' containment reference.
+   * @see #setPropObj(MainObject)
+   * @see org.xtext.example.mydsl.jSchema.JSchemaPackage#getProperty_PropObj()
    * @model containment="true"
    * @generated
    */
-  MainObject getObject();
+  MainObject getPropObj();
 
   /**
-   * Sets the value of the '{@link org.xtext.example.mydsl.jSchema.Property#getObject <em>Object</em>}' containment reference.
+   * Sets the value of the '{@link org.xtext.example.mydsl.jSchema.Property#getPropObj <em>Prop Obj</em>}' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Object</em>' containment reference.
-   * @see #getObject()
+   * @param value the new value of the '<em>Prop Obj</em>' containment reference.
+   * @see #getPropObj()
    * @generated
    */
-  void setObject(MainObject value);
+  void setPropObj(MainObject value);
 
 } // Property

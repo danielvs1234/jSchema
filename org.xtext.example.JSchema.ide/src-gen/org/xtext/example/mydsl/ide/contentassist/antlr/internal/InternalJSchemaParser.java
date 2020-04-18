@@ -1465,13 +1465,13 @@ public class InternalJSchemaParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Property__Alternatives"
-    // InternalJSchema.g:466:1: rule__Property__Alternatives : ( ( ( rule__Property__TypeAssignment_0 ) ) | ( ( rule__Property__ObjectAssignment_1 ) ) );
+    // InternalJSchema.g:466:1: rule__Property__Alternatives : ( ( ( rule__Property__PropPrimAssignment_0 ) ) | ( ( rule__Property__PropObjAssignment_1 ) ) );
     public final void rule__Property__Alternatives() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalJSchema.g:470:1: ( ( ( rule__Property__TypeAssignment_0 ) ) | ( ( rule__Property__ObjectAssignment_1 ) ) )
+            // InternalJSchema.g:470:1: ( ( ( rule__Property__PropPrimAssignment_0 ) ) | ( ( rule__Property__PropObjAssignment_1 ) ) )
             int alt4=2;
             int LA4_0 = input.LA(1);
 
@@ -1502,24 +1502,24 @@ public class InternalJSchemaParser extends AbstractInternalContentAssistParser {
             }
             switch (alt4) {
                 case 1 :
-                    // InternalJSchema.g:471:2: ( ( rule__Property__TypeAssignment_0 ) )
+                    // InternalJSchema.g:471:2: ( ( rule__Property__PropPrimAssignment_0 ) )
                     {
-                    // InternalJSchema.g:471:2: ( ( rule__Property__TypeAssignment_0 ) )
-                    // InternalJSchema.g:472:3: ( rule__Property__TypeAssignment_0 )
+                    // InternalJSchema.g:471:2: ( ( rule__Property__PropPrimAssignment_0 ) )
+                    // InternalJSchema.g:472:3: ( rule__Property__PropPrimAssignment_0 )
                     {
-                     before(grammarAccess.getPropertyAccess().getTypeAssignment_0()); 
-                    // InternalJSchema.g:473:3: ( rule__Property__TypeAssignment_0 )
-                    // InternalJSchema.g:473:4: rule__Property__TypeAssignment_0
+                     before(grammarAccess.getPropertyAccess().getPropPrimAssignment_0()); 
+                    // InternalJSchema.g:473:3: ( rule__Property__PropPrimAssignment_0 )
+                    // InternalJSchema.g:473:4: rule__Property__PropPrimAssignment_0
                     {
                     pushFollow(FOLLOW_2);
-                    rule__Property__TypeAssignment_0();
+                    rule__Property__PropPrimAssignment_0();
 
                     state._fsp--;
 
 
                     }
 
-                     after(grammarAccess.getPropertyAccess().getTypeAssignment_0()); 
+                     after(grammarAccess.getPropertyAccess().getPropPrimAssignment_0()); 
 
                     }
 
@@ -1527,24 +1527,24 @@ public class InternalJSchemaParser extends AbstractInternalContentAssistParser {
                     }
                     break;
                 case 2 :
-                    // InternalJSchema.g:477:2: ( ( rule__Property__ObjectAssignment_1 ) )
+                    // InternalJSchema.g:477:2: ( ( rule__Property__PropObjAssignment_1 ) )
                     {
-                    // InternalJSchema.g:477:2: ( ( rule__Property__ObjectAssignment_1 ) )
-                    // InternalJSchema.g:478:3: ( rule__Property__ObjectAssignment_1 )
+                    // InternalJSchema.g:477:2: ( ( rule__Property__PropObjAssignment_1 ) )
+                    // InternalJSchema.g:478:3: ( rule__Property__PropObjAssignment_1 )
                     {
-                     before(grammarAccess.getPropertyAccess().getObjectAssignment_1()); 
-                    // InternalJSchema.g:479:3: ( rule__Property__ObjectAssignment_1 )
-                    // InternalJSchema.g:479:4: rule__Property__ObjectAssignment_1
+                     before(grammarAccess.getPropertyAccess().getPropObjAssignment_1()); 
+                    // InternalJSchema.g:479:3: ( rule__Property__PropObjAssignment_1 )
+                    // InternalJSchema.g:479:4: rule__Property__PropObjAssignment_1
                     {
                     pushFollow(FOLLOW_2);
-                    rule__Property__ObjectAssignment_1();
+                    rule__Property__PropObjAssignment_1();
 
                     state._fsp--;
 
 
                     }
 
-                     after(grammarAccess.getPropertyAccess().getObjectAssignment_1()); 
+                     after(grammarAccess.getPropertyAccess().getPropObjAssignment_1()); 
 
                     }
 
@@ -4275,7 +4275,7 @@ public class InternalJSchemaParser extends AbstractInternalContentAssistParser {
             // InternalJSchema.g:1304:1: ( rule__PrimitiveTypes__Group_0__0__Impl rule__PrimitiveTypes__Group_0__1 )
             // InternalJSchema.g:1305:2: rule__PrimitiveTypes__Group_0__0__Impl rule__PrimitiveTypes__Group_0__1
             {
-            pushFollow(FOLLOW_15);
+            pushFollow(FOLLOW_8);
             rule__PrimitiveTypes__Group_0__0__Impl();
 
             state._fsp--;
@@ -4304,31 +4304,31 @@ public class InternalJSchemaParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__PrimitiveTypes__Group_0__0__Impl"
-    // InternalJSchema.g:1312:1: rule__PrimitiveTypes__Group_0__0__Impl : ( () ) ;
+    // InternalJSchema.g:1312:1: rule__PrimitiveTypes__Group_0__0__Impl : ( 'String' ) ;
     public final void rule__PrimitiveTypes__Group_0__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalJSchema.g:1316:1: ( ( () ) )
-            // InternalJSchema.g:1317:1: ( () )
+            // InternalJSchema.g:1316:1: ( ( 'String' ) )
+            // InternalJSchema.g:1317:1: ( 'String' )
             {
-            // InternalJSchema.g:1317:1: ( () )
-            // InternalJSchema.g:1318:2: ()
+            // InternalJSchema.g:1317:1: ( 'String' )
+            // InternalJSchema.g:1318:2: 'String'
             {
-             before(grammarAccess.getPrimitiveTypesAccess().getSTRINGAction_0_0()); 
-            // InternalJSchema.g:1319:2: ()
-            // InternalJSchema.g:1319:3: 
-            {
-            }
-
-             after(grammarAccess.getPrimitiveTypesAccess().getSTRINGAction_0_0()); 
+             before(grammarAccess.getPrimitiveTypesAccess().getStringKeyword_0_0()); 
+            match(input,12,FOLLOW_2); 
+             after(grammarAccess.getPrimitiveTypesAccess().getStringKeyword_0_0()); 
 
             }
 
 
             }
 
+        }
+        catch (RecognitionException re) {
+            reportError(re);
+            recover(input,re);
         }
         finally {
 
@@ -4341,22 +4341,17 @@ public class InternalJSchemaParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__PrimitiveTypes__Group_0__1"
-    // InternalJSchema.g:1327:1: rule__PrimitiveTypes__Group_0__1 : rule__PrimitiveTypes__Group_0__1__Impl rule__PrimitiveTypes__Group_0__2 ;
+    // InternalJSchema.g:1327:1: rule__PrimitiveTypes__Group_0__1 : rule__PrimitiveTypes__Group_0__1__Impl ;
     public final void rule__PrimitiveTypes__Group_0__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalJSchema.g:1331:1: ( rule__PrimitiveTypes__Group_0__1__Impl rule__PrimitiveTypes__Group_0__2 )
-            // InternalJSchema.g:1332:2: rule__PrimitiveTypes__Group_0__1__Impl rule__PrimitiveTypes__Group_0__2
+            // InternalJSchema.g:1331:1: ( rule__PrimitiveTypes__Group_0__1__Impl )
+            // InternalJSchema.g:1332:2: rule__PrimitiveTypes__Group_0__1__Impl
             {
-            pushFollow(FOLLOW_8);
-            rule__PrimitiveTypes__Group_0__1__Impl();
-
-            state._fsp--;
-
             pushFollow(FOLLOW_2);
-            rule__PrimitiveTypes__Group_0__2();
+            rule__PrimitiveTypes__Group_0__1__Impl();
 
             state._fsp--;
 
@@ -4379,21 +4374,31 @@ public class InternalJSchemaParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__PrimitiveTypes__Group_0__1__Impl"
-    // InternalJSchema.g:1339:1: rule__PrimitiveTypes__Group_0__1__Impl : ( 'String' ) ;
+    // InternalJSchema.g:1338:1: rule__PrimitiveTypes__Group_0__1__Impl : ( ( rule__PrimitiveTypes__StringAssignment_0_1 ) ) ;
     public final void rule__PrimitiveTypes__Group_0__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalJSchema.g:1343:1: ( ( 'String' ) )
-            // InternalJSchema.g:1344:1: ( 'String' )
+            // InternalJSchema.g:1342:1: ( ( ( rule__PrimitiveTypes__StringAssignment_0_1 ) ) )
+            // InternalJSchema.g:1343:1: ( ( rule__PrimitiveTypes__StringAssignment_0_1 ) )
             {
-            // InternalJSchema.g:1344:1: ( 'String' )
-            // InternalJSchema.g:1345:2: 'String'
+            // InternalJSchema.g:1343:1: ( ( rule__PrimitiveTypes__StringAssignment_0_1 ) )
+            // InternalJSchema.g:1344:2: ( rule__PrimitiveTypes__StringAssignment_0_1 )
             {
-             before(grammarAccess.getPrimitiveTypesAccess().getStringKeyword_0_1()); 
-            match(input,12,FOLLOW_2); 
-             after(grammarAccess.getPrimitiveTypesAccess().getStringKeyword_0_1()); 
+             before(grammarAccess.getPrimitiveTypesAccess().getStringAssignment_0_1()); 
+            // InternalJSchema.g:1345:2: ( rule__PrimitiveTypes__StringAssignment_0_1 )
+            // InternalJSchema.g:1345:3: rule__PrimitiveTypes__StringAssignment_0_1
+            {
+            pushFollow(FOLLOW_2);
+            rule__PrimitiveTypes__StringAssignment_0_1();
+
+            state._fsp--;
+
+
+            }
+
+             after(grammarAccess.getPrimitiveTypesAccess().getStringAssignment_0_1()); 
 
             }
 
@@ -4415,95 +4420,15 @@ public class InternalJSchemaParser extends AbstractInternalContentAssistParser {
     // $ANTLR end "rule__PrimitiveTypes__Group_0__1__Impl"
 
 
-    // $ANTLR start "rule__PrimitiveTypes__Group_0__2"
-    // InternalJSchema.g:1354:1: rule__PrimitiveTypes__Group_0__2 : rule__PrimitiveTypes__Group_0__2__Impl ;
-    public final void rule__PrimitiveTypes__Group_0__2() throws RecognitionException {
-
-        		int stackSize = keepStackSize();
-        	
-        try {
-            // InternalJSchema.g:1358:1: ( rule__PrimitiveTypes__Group_0__2__Impl )
-            // InternalJSchema.g:1359:2: rule__PrimitiveTypes__Group_0__2__Impl
-            {
-            pushFollow(FOLLOW_2);
-            rule__PrimitiveTypes__Group_0__2__Impl();
-
-            state._fsp--;
-
-
-            }
-
-        }
-        catch (RecognitionException re) {
-            reportError(re);
-            recover(input,re);
-        }
-        finally {
-
-            	restoreStackSize(stackSize);
-
-        }
-        return ;
-    }
-    // $ANTLR end "rule__PrimitiveTypes__Group_0__2"
-
-
-    // $ANTLR start "rule__PrimitiveTypes__Group_0__2__Impl"
-    // InternalJSchema.g:1365:1: rule__PrimitiveTypes__Group_0__2__Impl : ( ( rule__PrimitiveTypes__StringAssignment_0_2 ) ) ;
-    public final void rule__PrimitiveTypes__Group_0__2__Impl() throws RecognitionException {
-
-        		int stackSize = keepStackSize();
-        	
-        try {
-            // InternalJSchema.g:1369:1: ( ( ( rule__PrimitiveTypes__StringAssignment_0_2 ) ) )
-            // InternalJSchema.g:1370:1: ( ( rule__PrimitiveTypes__StringAssignment_0_2 ) )
-            {
-            // InternalJSchema.g:1370:1: ( ( rule__PrimitiveTypes__StringAssignment_0_2 ) )
-            // InternalJSchema.g:1371:2: ( rule__PrimitiveTypes__StringAssignment_0_2 )
-            {
-             before(grammarAccess.getPrimitiveTypesAccess().getStringAssignment_0_2()); 
-            // InternalJSchema.g:1372:2: ( rule__PrimitiveTypes__StringAssignment_0_2 )
-            // InternalJSchema.g:1372:3: rule__PrimitiveTypes__StringAssignment_0_2
-            {
-            pushFollow(FOLLOW_2);
-            rule__PrimitiveTypes__StringAssignment_0_2();
-
-            state._fsp--;
-
-
-            }
-
-             after(grammarAccess.getPrimitiveTypesAccess().getStringAssignment_0_2()); 
-
-            }
-
-
-            }
-
-        }
-        catch (RecognitionException re) {
-            reportError(re);
-            recover(input,re);
-        }
-        finally {
-
-            	restoreStackSize(stackSize);
-
-        }
-        return ;
-    }
-    // $ANTLR end "rule__PrimitiveTypes__Group_0__2__Impl"
-
-
     // $ANTLR start "rule__PrimitiveTypes__Group_2__0"
-    // InternalJSchema.g:1381:1: rule__PrimitiveTypes__Group_2__0 : rule__PrimitiveTypes__Group_2__0__Impl rule__PrimitiveTypes__Group_2__1 ;
+    // InternalJSchema.g:1354:1: rule__PrimitiveTypes__Group_2__0 : rule__PrimitiveTypes__Group_2__0__Impl rule__PrimitiveTypes__Group_2__1 ;
     public final void rule__PrimitiveTypes__Group_2__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalJSchema.g:1385:1: ( rule__PrimitiveTypes__Group_2__0__Impl rule__PrimitiveTypes__Group_2__1 )
-            // InternalJSchema.g:1386:2: rule__PrimitiveTypes__Group_2__0__Impl rule__PrimitiveTypes__Group_2__1
+            // InternalJSchema.g:1358:1: ( rule__PrimitiveTypes__Group_2__0__Impl rule__PrimitiveTypes__Group_2__1 )
+            // InternalJSchema.g:1359:2: rule__PrimitiveTypes__Group_2__0__Impl rule__PrimitiveTypes__Group_2__1
             {
             pushFollow(FOLLOW_5);
             rule__PrimitiveTypes__Group_2__0__Impl();
@@ -4534,17 +4459,17 @@ public class InternalJSchemaParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__PrimitiveTypes__Group_2__0__Impl"
-    // InternalJSchema.g:1393:1: rule__PrimitiveTypes__Group_2__0__Impl : ( 'num' ) ;
+    // InternalJSchema.g:1366:1: rule__PrimitiveTypes__Group_2__0__Impl : ( 'num' ) ;
     public final void rule__PrimitiveTypes__Group_2__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalJSchema.g:1397:1: ( ( 'num' ) )
-            // InternalJSchema.g:1398:1: ( 'num' )
+            // InternalJSchema.g:1370:1: ( ( 'num' ) )
+            // InternalJSchema.g:1371:1: ( 'num' )
             {
-            // InternalJSchema.g:1398:1: ( 'num' )
-            // InternalJSchema.g:1399:2: 'num'
+            // InternalJSchema.g:1371:1: ( 'num' )
+            // InternalJSchema.g:1372:2: 'num'
             {
              before(grammarAccess.getPrimitiveTypesAccess().getNumKeyword_2_0()); 
             match(input,39,FOLLOW_2); 
@@ -4571,14 +4496,14 @@ public class InternalJSchemaParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__PrimitiveTypes__Group_2__1"
-    // InternalJSchema.g:1408:1: rule__PrimitiveTypes__Group_2__1 : rule__PrimitiveTypes__Group_2__1__Impl ;
+    // InternalJSchema.g:1381:1: rule__PrimitiveTypes__Group_2__1 : rule__PrimitiveTypes__Group_2__1__Impl ;
     public final void rule__PrimitiveTypes__Group_2__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalJSchema.g:1412:1: ( rule__PrimitiveTypes__Group_2__1__Impl )
-            // InternalJSchema.g:1413:2: rule__PrimitiveTypes__Group_2__1__Impl
+            // InternalJSchema.g:1385:1: ( rule__PrimitiveTypes__Group_2__1__Impl )
+            // InternalJSchema.g:1386:2: rule__PrimitiveTypes__Group_2__1__Impl
             {
             pushFollow(FOLLOW_2);
             rule__PrimitiveTypes__Group_2__1__Impl();
@@ -4604,27 +4529,38 @@ public class InternalJSchemaParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__PrimitiveTypes__Group_2__1__Impl"
-    // InternalJSchema.g:1419:1: rule__PrimitiveTypes__Group_2__1__Impl : ( ( rule__PrimitiveTypes__NumberAssignment_2_1 ) ) ;
+    // InternalJSchema.g:1392:1: rule__PrimitiveTypes__Group_2__1__Impl : ( ( rule__PrimitiveTypes__NumberAssignment_2_1 )? ) ;
     public final void rule__PrimitiveTypes__Group_2__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalJSchema.g:1423:1: ( ( ( rule__PrimitiveTypes__NumberAssignment_2_1 ) ) )
-            // InternalJSchema.g:1424:1: ( ( rule__PrimitiveTypes__NumberAssignment_2_1 ) )
+            // InternalJSchema.g:1396:1: ( ( ( rule__PrimitiveTypes__NumberAssignment_2_1 )? ) )
+            // InternalJSchema.g:1397:1: ( ( rule__PrimitiveTypes__NumberAssignment_2_1 )? )
             {
-            // InternalJSchema.g:1424:1: ( ( rule__PrimitiveTypes__NumberAssignment_2_1 ) )
-            // InternalJSchema.g:1425:2: ( rule__PrimitiveTypes__NumberAssignment_2_1 )
+            // InternalJSchema.g:1397:1: ( ( rule__PrimitiveTypes__NumberAssignment_2_1 )? )
+            // InternalJSchema.g:1398:2: ( rule__PrimitiveTypes__NumberAssignment_2_1 )?
             {
              before(grammarAccess.getPrimitiveTypesAccess().getNumberAssignment_2_1()); 
-            // InternalJSchema.g:1426:2: ( rule__PrimitiveTypes__NumberAssignment_2_1 )
-            // InternalJSchema.g:1426:3: rule__PrimitiveTypes__NumberAssignment_2_1
-            {
-            pushFollow(FOLLOW_2);
-            rule__PrimitiveTypes__NumberAssignment_2_1();
+            // InternalJSchema.g:1399:2: ( rule__PrimitiveTypes__NumberAssignment_2_1 )?
+            int alt15=2;
+            int LA15_0 = input.LA(1);
 
-            state._fsp--;
+            if ( (LA15_0==RULE_INT) ) {
+                alt15=1;
+            }
+            switch (alt15) {
+                case 1 :
+                    // InternalJSchema.g:1399:3: rule__PrimitiveTypes__NumberAssignment_2_1
+                    {
+                    pushFollow(FOLLOW_2);
+                    rule__PrimitiveTypes__NumberAssignment_2_1();
 
+                    state._fsp--;
+
+
+                    }
+                    break;
 
             }
 
@@ -4651,14 +4587,14 @@ public class InternalJSchemaParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__PrimitiveProperties__Group_0__0"
-    // InternalJSchema.g:1435:1: rule__PrimitiveProperties__Group_0__0 : rule__PrimitiveProperties__Group_0__0__Impl rule__PrimitiveProperties__Group_0__1 ;
+    // InternalJSchema.g:1408:1: rule__PrimitiveProperties__Group_0__0 : rule__PrimitiveProperties__Group_0__0__Impl rule__PrimitiveProperties__Group_0__1 ;
     public final void rule__PrimitiveProperties__Group_0__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalJSchema.g:1439:1: ( rule__PrimitiveProperties__Group_0__0__Impl rule__PrimitiveProperties__Group_0__1 )
-            // InternalJSchema.g:1440:2: rule__PrimitiveProperties__Group_0__0__Impl rule__PrimitiveProperties__Group_0__1
+            // InternalJSchema.g:1412:1: ( rule__PrimitiveProperties__Group_0__0__Impl rule__PrimitiveProperties__Group_0__1 )
+            // InternalJSchema.g:1413:2: rule__PrimitiveProperties__Group_0__0__Impl rule__PrimitiveProperties__Group_0__1
             {
             pushFollow(FOLLOW_5);
             rule__PrimitiveProperties__Group_0__0__Impl();
@@ -4689,17 +4625,17 @@ public class InternalJSchemaParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__PrimitiveProperties__Group_0__0__Impl"
-    // InternalJSchema.g:1447:1: rule__PrimitiveProperties__Group_0__0__Impl : ( 'length' ) ;
+    // InternalJSchema.g:1420:1: rule__PrimitiveProperties__Group_0__0__Impl : ( 'length' ) ;
     public final void rule__PrimitiveProperties__Group_0__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalJSchema.g:1451:1: ( ( 'length' ) )
-            // InternalJSchema.g:1452:1: ( 'length' )
+            // InternalJSchema.g:1424:1: ( ( 'length' ) )
+            // InternalJSchema.g:1425:1: ( 'length' )
             {
-            // InternalJSchema.g:1452:1: ( 'length' )
-            // InternalJSchema.g:1453:2: 'length'
+            // InternalJSchema.g:1425:1: ( 'length' )
+            // InternalJSchema.g:1426:2: 'length'
             {
              before(grammarAccess.getPrimitivePropertiesAccess().getLengthKeyword_0_0()); 
             match(input,40,FOLLOW_2); 
@@ -4726,14 +4662,14 @@ public class InternalJSchemaParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__PrimitiveProperties__Group_0__1"
-    // InternalJSchema.g:1462:1: rule__PrimitiveProperties__Group_0__1 : rule__PrimitiveProperties__Group_0__1__Impl ;
+    // InternalJSchema.g:1435:1: rule__PrimitiveProperties__Group_0__1 : rule__PrimitiveProperties__Group_0__1__Impl ;
     public final void rule__PrimitiveProperties__Group_0__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalJSchema.g:1466:1: ( rule__PrimitiveProperties__Group_0__1__Impl )
-            // InternalJSchema.g:1467:2: rule__PrimitiveProperties__Group_0__1__Impl
+            // InternalJSchema.g:1439:1: ( rule__PrimitiveProperties__Group_0__1__Impl )
+            // InternalJSchema.g:1440:2: rule__PrimitiveProperties__Group_0__1__Impl
             {
             pushFollow(FOLLOW_2);
             rule__PrimitiveProperties__Group_0__1__Impl();
@@ -4759,21 +4695,21 @@ public class InternalJSchemaParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__PrimitiveProperties__Group_0__1__Impl"
-    // InternalJSchema.g:1473:1: rule__PrimitiveProperties__Group_0__1__Impl : ( ( rule__PrimitiveProperties__StringLenghtAssignment_0_1 ) ) ;
+    // InternalJSchema.g:1446:1: rule__PrimitiveProperties__Group_0__1__Impl : ( ( rule__PrimitiveProperties__StringLenghtAssignment_0_1 ) ) ;
     public final void rule__PrimitiveProperties__Group_0__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalJSchema.g:1477:1: ( ( ( rule__PrimitiveProperties__StringLenghtAssignment_0_1 ) ) )
-            // InternalJSchema.g:1478:1: ( ( rule__PrimitiveProperties__StringLenghtAssignment_0_1 ) )
+            // InternalJSchema.g:1450:1: ( ( ( rule__PrimitiveProperties__StringLenghtAssignment_0_1 ) ) )
+            // InternalJSchema.g:1451:1: ( ( rule__PrimitiveProperties__StringLenghtAssignment_0_1 ) )
             {
-            // InternalJSchema.g:1478:1: ( ( rule__PrimitiveProperties__StringLenghtAssignment_0_1 ) )
-            // InternalJSchema.g:1479:2: ( rule__PrimitiveProperties__StringLenghtAssignment_0_1 )
+            // InternalJSchema.g:1451:1: ( ( rule__PrimitiveProperties__StringLenghtAssignment_0_1 ) )
+            // InternalJSchema.g:1452:2: ( rule__PrimitiveProperties__StringLenghtAssignment_0_1 )
             {
              before(grammarAccess.getPrimitivePropertiesAccess().getStringLenghtAssignment_0_1()); 
-            // InternalJSchema.g:1480:2: ( rule__PrimitiveProperties__StringLenghtAssignment_0_1 )
-            // InternalJSchema.g:1480:3: rule__PrimitiveProperties__StringLenghtAssignment_0_1
+            // InternalJSchema.g:1453:2: ( rule__PrimitiveProperties__StringLenghtAssignment_0_1 )
+            // InternalJSchema.g:1453:3: rule__PrimitiveProperties__StringLenghtAssignment_0_1
             {
             pushFollow(FOLLOW_2);
             rule__PrimitiveProperties__StringLenghtAssignment_0_1();
@@ -4806,14 +4742,14 @@ public class InternalJSchemaParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__PrimitiveProperties__Group_1__0"
-    // InternalJSchema.g:1489:1: rule__PrimitiveProperties__Group_1__0 : rule__PrimitiveProperties__Group_1__0__Impl rule__PrimitiveProperties__Group_1__1 ;
+    // InternalJSchema.g:1462:1: rule__PrimitiveProperties__Group_1__0 : rule__PrimitiveProperties__Group_1__0__Impl rule__PrimitiveProperties__Group_1__1 ;
     public final void rule__PrimitiveProperties__Group_1__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalJSchema.g:1493:1: ( rule__PrimitiveProperties__Group_1__0__Impl rule__PrimitiveProperties__Group_1__1 )
-            // InternalJSchema.g:1494:2: rule__PrimitiveProperties__Group_1__0__Impl rule__PrimitiveProperties__Group_1__1
+            // InternalJSchema.g:1466:1: ( rule__PrimitiveProperties__Group_1__0__Impl rule__PrimitiveProperties__Group_1__1 )
+            // InternalJSchema.g:1467:2: rule__PrimitiveProperties__Group_1__0__Impl rule__PrimitiveProperties__Group_1__1
             {
             pushFollow(FOLLOW_8);
             rule__PrimitiveProperties__Group_1__0__Impl();
@@ -4844,17 +4780,17 @@ public class InternalJSchemaParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__PrimitiveProperties__Group_1__0__Impl"
-    // InternalJSchema.g:1501:1: rule__PrimitiveProperties__Group_1__0__Impl : ( 'pattern' ) ;
+    // InternalJSchema.g:1474:1: rule__PrimitiveProperties__Group_1__0__Impl : ( 'pattern' ) ;
     public final void rule__PrimitiveProperties__Group_1__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalJSchema.g:1505:1: ( ( 'pattern' ) )
-            // InternalJSchema.g:1506:1: ( 'pattern' )
+            // InternalJSchema.g:1478:1: ( ( 'pattern' ) )
+            // InternalJSchema.g:1479:1: ( 'pattern' )
             {
-            // InternalJSchema.g:1506:1: ( 'pattern' )
-            // InternalJSchema.g:1507:2: 'pattern'
+            // InternalJSchema.g:1479:1: ( 'pattern' )
+            // InternalJSchema.g:1480:2: 'pattern'
             {
              before(grammarAccess.getPrimitivePropertiesAccess().getPatternKeyword_1_0()); 
             match(input,41,FOLLOW_2); 
@@ -4881,14 +4817,14 @@ public class InternalJSchemaParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__PrimitiveProperties__Group_1__1"
-    // InternalJSchema.g:1516:1: rule__PrimitiveProperties__Group_1__1 : rule__PrimitiveProperties__Group_1__1__Impl ;
+    // InternalJSchema.g:1489:1: rule__PrimitiveProperties__Group_1__1 : rule__PrimitiveProperties__Group_1__1__Impl ;
     public final void rule__PrimitiveProperties__Group_1__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalJSchema.g:1520:1: ( rule__PrimitiveProperties__Group_1__1__Impl )
-            // InternalJSchema.g:1521:2: rule__PrimitiveProperties__Group_1__1__Impl
+            // InternalJSchema.g:1493:1: ( rule__PrimitiveProperties__Group_1__1__Impl )
+            // InternalJSchema.g:1494:2: rule__PrimitiveProperties__Group_1__1__Impl
             {
             pushFollow(FOLLOW_2);
             rule__PrimitiveProperties__Group_1__1__Impl();
@@ -4914,21 +4850,21 @@ public class InternalJSchemaParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__PrimitiveProperties__Group_1__1__Impl"
-    // InternalJSchema.g:1527:1: rule__PrimitiveProperties__Group_1__1__Impl : ( ( rule__PrimitiveProperties__PatternStringAssignment_1_1 ) ) ;
+    // InternalJSchema.g:1500:1: rule__PrimitiveProperties__Group_1__1__Impl : ( ( rule__PrimitiveProperties__PatternStringAssignment_1_1 ) ) ;
     public final void rule__PrimitiveProperties__Group_1__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalJSchema.g:1531:1: ( ( ( rule__PrimitiveProperties__PatternStringAssignment_1_1 ) ) )
-            // InternalJSchema.g:1532:1: ( ( rule__PrimitiveProperties__PatternStringAssignment_1_1 ) )
+            // InternalJSchema.g:1504:1: ( ( ( rule__PrimitiveProperties__PatternStringAssignment_1_1 ) ) )
+            // InternalJSchema.g:1505:1: ( ( rule__PrimitiveProperties__PatternStringAssignment_1_1 ) )
             {
-            // InternalJSchema.g:1532:1: ( ( rule__PrimitiveProperties__PatternStringAssignment_1_1 ) )
-            // InternalJSchema.g:1533:2: ( rule__PrimitiveProperties__PatternStringAssignment_1_1 )
+            // InternalJSchema.g:1505:1: ( ( rule__PrimitiveProperties__PatternStringAssignment_1_1 ) )
+            // InternalJSchema.g:1506:2: ( rule__PrimitiveProperties__PatternStringAssignment_1_1 )
             {
              before(grammarAccess.getPrimitivePropertiesAccess().getPatternStringAssignment_1_1()); 
-            // InternalJSchema.g:1534:2: ( rule__PrimitiveProperties__PatternStringAssignment_1_1 )
-            // InternalJSchema.g:1534:3: rule__PrimitiveProperties__PatternStringAssignment_1_1
+            // InternalJSchema.g:1507:2: ( rule__PrimitiveProperties__PatternStringAssignment_1_1 )
+            // InternalJSchema.g:1507:3: rule__PrimitiveProperties__PatternStringAssignment_1_1
             {
             pushFollow(FOLLOW_2);
             rule__PrimitiveProperties__PatternStringAssignment_1_1();
@@ -4961,16 +4897,16 @@ public class InternalJSchemaParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__PrimitiveProperties__Group_2__0"
-    // InternalJSchema.g:1543:1: rule__PrimitiveProperties__Group_2__0 : rule__PrimitiveProperties__Group_2__0__Impl rule__PrimitiveProperties__Group_2__1 ;
+    // InternalJSchema.g:1516:1: rule__PrimitiveProperties__Group_2__0 : rule__PrimitiveProperties__Group_2__0__Impl rule__PrimitiveProperties__Group_2__1 ;
     public final void rule__PrimitiveProperties__Group_2__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalJSchema.g:1547:1: ( rule__PrimitiveProperties__Group_2__0__Impl rule__PrimitiveProperties__Group_2__1 )
-            // InternalJSchema.g:1548:2: rule__PrimitiveProperties__Group_2__0__Impl rule__PrimitiveProperties__Group_2__1
+            // InternalJSchema.g:1520:1: ( rule__PrimitiveProperties__Group_2__0__Impl rule__PrimitiveProperties__Group_2__1 )
+            // InternalJSchema.g:1521:2: rule__PrimitiveProperties__Group_2__0__Impl rule__PrimitiveProperties__Group_2__1
             {
-            pushFollow(FOLLOW_16);
+            pushFollow(FOLLOW_15);
             rule__PrimitiveProperties__Group_2__0__Impl();
 
             state._fsp--;
@@ -4999,17 +4935,17 @@ public class InternalJSchemaParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__PrimitiveProperties__Group_2__0__Impl"
-    // InternalJSchema.g:1555:1: rule__PrimitiveProperties__Group_2__0__Impl : ( 'format' ) ;
+    // InternalJSchema.g:1528:1: rule__PrimitiveProperties__Group_2__0__Impl : ( 'format' ) ;
     public final void rule__PrimitiveProperties__Group_2__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalJSchema.g:1559:1: ( ( 'format' ) )
-            // InternalJSchema.g:1560:1: ( 'format' )
+            // InternalJSchema.g:1532:1: ( ( 'format' ) )
+            // InternalJSchema.g:1533:1: ( 'format' )
             {
-            // InternalJSchema.g:1560:1: ( 'format' )
-            // InternalJSchema.g:1561:2: 'format'
+            // InternalJSchema.g:1533:1: ( 'format' )
+            // InternalJSchema.g:1534:2: 'format'
             {
              before(grammarAccess.getPrimitivePropertiesAccess().getFormatKeyword_2_0()); 
             match(input,42,FOLLOW_2); 
@@ -5036,14 +4972,14 @@ public class InternalJSchemaParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__PrimitiveProperties__Group_2__1"
-    // InternalJSchema.g:1570:1: rule__PrimitiveProperties__Group_2__1 : rule__PrimitiveProperties__Group_2__1__Impl ;
+    // InternalJSchema.g:1543:1: rule__PrimitiveProperties__Group_2__1 : rule__PrimitiveProperties__Group_2__1__Impl ;
     public final void rule__PrimitiveProperties__Group_2__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalJSchema.g:1574:1: ( rule__PrimitiveProperties__Group_2__1__Impl )
-            // InternalJSchema.g:1575:2: rule__PrimitiveProperties__Group_2__1__Impl
+            // InternalJSchema.g:1547:1: ( rule__PrimitiveProperties__Group_2__1__Impl )
+            // InternalJSchema.g:1548:2: rule__PrimitiveProperties__Group_2__1__Impl
             {
             pushFollow(FOLLOW_2);
             rule__PrimitiveProperties__Group_2__1__Impl();
@@ -5069,21 +5005,21 @@ public class InternalJSchemaParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__PrimitiveProperties__Group_2__1__Impl"
-    // InternalJSchema.g:1581:1: rule__PrimitiveProperties__Group_2__1__Impl : ( ( rule__PrimitiveProperties__StringFormatAssignment_2_1 ) ) ;
+    // InternalJSchema.g:1554:1: rule__PrimitiveProperties__Group_2__1__Impl : ( ( rule__PrimitiveProperties__StringFormatAssignment_2_1 ) ) ;
     public final void rule__PrimitiveProperties__Group_2__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalJSchema.g:1585:1: ( ( ( rule__PrimitiveProperties__StringFormatAssignment_2_1 ) ) )
-            // InternalJSchema.g:1586:1: ( ( rule__PrimitiveProperties__StringFormatAssignment_2_1 ) )
+            // InternalJSchema.g:1558:1: ( ( ( rule__PrimitiveProperties__StringFormatAssignment_2_1 ) ) )
+            // InternalJSchema.g:1559:1: ( ( rule__PrimitiveProperties__StringFormatAssignment_2_1 ) )
             {
-            // InternalJSchema.g:1586:1: ( ( rule__PrimitiveProperties__StringFormatAssignment_2_1 ) )
-            // InternalJSchema.g:1587:2: ( rule__PrimitiveProperties__StringFormatAssignment_2_1 )
+            // InternalJSchema.g:1559:1: ( ( rule__PrimitiveProperties__StringFormatAssignment_2_1 ) )
+            // InternalJSchema.g:1560:2: ( rule__PrimitiveProperties__StringFormatAssignment_2_1 )
             {
              before(grammarAccess.getPrimitivePropertiesAccess().getStringFormatAssignment_2_1()); 
-            // InternalJSchema.g:1588:2: ( rule__PrimitiveProperties__StringFormatAssignment_2_1 )
-            // InternalJSchema.g:1588:3: rule__PrimitiveProperties__StringFormatAssignment_2_1
+            // InternalJSchema.g:1561:2: ( rule__PrimitiveProperties__StringFormatAssignment_2_1 )
+            // InternalJSchema.g:1561:3: rule__PrimitiveProperties__StringFormatAssignment_2_1
             {
             pushFollow(FOLLOW_2);
             rule__PrimitiveProperties__StringFormatAssignment_2_1();
@@ -5116,16 +5052,16 @@ public class InternalJSchemaParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__StringLength__Group__0"
-    // InternalJSchema.g:1597:1: rule__StringLength__Group__0 : rule__StringLength__Group__0__Impl rule__StringLength__Group__1 ;
+    // InternalJSchema.g:1570:1: rule__StringLength__Group__0 : rule__StringLength__Group__0__Impl rule__StringLength__Group__1 ;
     public final void rule__StringLength__Group__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalJSchema.g:1601:1: ( rule__StringLength__Group__0__Impl rule__StringLength__Group__1 )
-            // InternalJSchema.g:1602:2: rule__StringLength__Group__0__Impl rule__StringLength__Group__1
+            // InternalJSchema.g:1574:1: ( rule__StringLength__Group__0__Impl rule__StringLength__Group__1 )
+            // InternalJSchema.g:1575:2: rule__StringLength__Group__0__Impl rule__StringLength__Group__1
             {
-            pushFollow(FOLLOW_17);
+            pushFollow(FOLLOW_16);
             rule__StringLength__Group__0__Impl();
 
             state._fsp--;
@@ -5154,17 +5090,17 @@ public class InternalJSchemaParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__StringLength__Group__0__Impl"
-    // InternalJSchema.g:1609:1: rule__StringLength__Group__0__Impl : ( RULE_INT ) ;
+    // InternalJSchema.g:1582:1: rule__StringLength__Group__0__Impl : ( RULE_INT ) ;
     public final void rule__StringLength__Group__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalJSchema.g:1613:1: ( ( RULE_INT ) )
-            // InternalJSchema.g:1614:1: ( RULE_INT )
+            // InternalJSchema.g:1586:1: ( ( RULE_INT ) )
+            // InternalJSchema.g:1587:1: ( RULE_INT )
             {
-            // InternalJSchema.g:1614:1: ( RULE_INT )
-            // InternalJSchema.g:1615:2: RULE_INT
+            // InternalJSchema.g:1587:1: ( RULE_INT )
+            // InternalJSchema.g:1588:2: RULE_INT
             {
              before(grammarAccess.getStringLengthAccess().getINTTerminalRuleCall_0()); 
             match(input,RULE_INT,FOLLOW_2); 
@@ -5191,14 +5127,14 @@ public class InternalJSchemaParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__StringLength__Group__1"
-    // InternalJSchema.g:1624:1: rule__StringLength__Group__1 : rule__StringLength__Group__1__Impl rule__StringLength__Group__2 ;
+    // InternalJSchema.g:1597:1: rule__StringLength__Group__1 : rule__StringLength__Group__1__Impl rule__StringLength__Group__2 ;
     public final void rule__StringLength__Group__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalJSchema.g:1628:1: ( rule__StringLength__Group__1__Impl rule__StringLength__Group__2 )
-            // InternalJSchema.g:1629:2: rule__StringLength__Group__1__Impl rule__StringLength__Group__2
+            // InternalJSchema.g:1601:1: ( rule__StringLength__Group__1__Impl rule__StringLength__Group__2 )
+            // InternalJSchema.g:1602:2: rule__StringLength__Group__1__Impl rule__StringLength__Group__2
             {
             pushFollow(FOLLOW_5);
             rule__StringLength__Group__1__Impl();
@@ -5229,17 +5165,17 @@ public class InternalJSchemaParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__StringLength__Group__1__Impl"
-    // InternalJSchema.g:1636:1: rule__StringLength__Group__1__Impl : ( '-' ) ;
+    // InternalJSchema.g:1609:1: rule__StringLength__Group__1__Impl : ( '-' ) ;
     public final void rule__StringLength__Group__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalJSchema.g:1640:1: ( ( '-' ) )
-            // InternalJSchema.g:1641:1: ( '-' )
+            // InternalJSchema.g:1613:1: ( ( '-' ) )
+            // InternalJSchema.g:1614:1: ( '-' )
             {
-            // InternalJSchema.g:1641:1: ( '-' )
-            // InternalJSchema.g:1642:2: '-'
+            // InternalJSchema.g:1614:1: ( '-' )
+            // InternalJSchema.g:1615:2: '-'
             {
              before(grammarAccess.getStringLengthAccess().getHyphenMinusKeyword_1()); 
             match(input,43,FOLLOW_2); 
@@ -5266,14 +5202,14 @@ public class InternalJSchemaParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__StringLength__Group__2"
-    // InternalJSchema.g:1651:1: rule__StringLength__Group__2 : rule__StringLength__Group__2__Impl ;
+    // InternalJSchema.g:1624:1: rule__StringLength__Group__2 : rule__StringLength__Group__2__Impl ;
     public final void rule__StringLength__Group__2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalJSchema.g:1655:1: ( rule__StringLength__Group__2__Impl )
-            // InternalJSchema.g:1656:2: rule__StringLength__Group__2__Impl
+            // InternalJSchema.g:1628:1: ( rule__StringLength__Group__2__Impl )
+            // InternalJSchema.g:1629:2: rule__StringLength__Group__2__Impl
             {
             pushFollow(FOLLOW_2);
             rule__StringLength__Group__2__Impl();
@@ -5299,17 +5235,17 @@ public class InternalJSchemaParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__StringLength__Group__2__Impl"
-    // InternalJSchema.g:1662:1: rule__StringLength__Group__2__Impl : ( RULE_INT ) ;
+    // InternalJSchema.g:1635:1: rule__StringLength__Group__2__Impl : ( RULE_INT ) ;
     public final void rule__StringLength__Group__2__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalJSchema.g:1666:1: ( ( RULE_INT ) )
-            // InternalJSchema.g:1667:1: ( RULE_INT )
+            // InternalJSchema.g:1639:1: ( ( RULE_INT ) )
+            // InternalJSchema.g:1640:1: ( RULE_INT )
             {
-            // InternalJSchema.g:1667:1: ( RULE_INT )
-            // InternalJSchema.g:1668:2: RULE_INT
+            // InternalJSchema.g:1640:1: ( RULE_INT )
+            // InternalJSchema.g:1641:2: RULE_INT
             {
              before(grammarAccess.getStringLengthAccess().getINTTerminalRuleCall_2()); 
             match(input,RULE_INT,FOLLOW_2); 
@@ -5336,14 +5272,14 @@ public class InternalJSchemaParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Includes__Group__0"
-    // InternalJSchema.g:1678:1: rule__Includes__Group__0 : rule__Includes__Group__0__Impl rule__Includes__Group__1 ;
+    // InternalJSchema.g:1651:1: rule__Includes__Group__0 : rule__Includes__Group__0__Impl rule__Includes__Group__1 ;
     public final void rule__Includes__Group__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalJSchema.g:1682:1: ( rule__Includes__Group__0__Impl rule__Includes__Group__1 )
-            // InternalJSchema.g:1683:2: rule__Includes__Group__0__Impl rule__Includes__Group__1
+            // InternalJSchema.g:1655:1: ( rule__Includes__Group__0__Impl rule__Includes__Group__1 )
+            // InternalJSchema.g:1656:2: rule__Includes__Group__0__Impl rule__Includes__Group__1
             {
             pushFollow(FOLLOW_9);
             rule__Includes__Group__0__Impl();
@@ -5374,21 +5310,21 @@ public class InternalJSchemaParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Includes__Group__0__Impl"
-    // InternalJSchema.g:1690:1: rule__Includes__Group__0__Impl : ( ( rule__Includes__ObjectIDAssignment_0 ) ) ;
+    // InternalJSchema.g:1663:1: rule__Includes__Group__0__Impl : ( ( rule__Includes__ObjectIDAssignment_0 ) ) ;
     public final void rule__Includes__Group__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalJSchema.g:1694:1: ( ( ( rule__Includes__ObjectIDAssignment_0 ) ) )
-            // InternalJSchema.g:1695:1: ( ( rule__Includes__ObjectIDAssignment_0 ) )
+            // InternalJSchema.g:1667:1: ( ( ( rule__Includes__ObjectIDAssignment_0 ) ) )
+            // InternalJSchema.g:1668:1: ( ( rule__Includes__ObjectIDAssignment_0 ) )
             {
-            // InternalJSchema.g:1695:1: ( ( rule__Includes__ObjectIDAssignment_0 ) )
-            // InternalJSchema.g:1696:2: ( rule__Includes__ObjectIDAssignment_0 )
+            // InternalJSchema.g:1668:1: ( ( rule__Includes__ObjectIDAssignment_0 ) )
+            // InternalJSchema.g:1669:2: ( rule__Includes__ObjectIDAssignment_0 )
             {
              before(grammarAccess.getIncludesAccess().getObjectIDAssignment_0()); 
-            // InternalJSchema.g:1697:2: ( rule__Includes__ObjectIDAssignment_0 )
-            // InternalJSchema.g:1697:3: rule__Includes__ObjectIDAssignment_0
+            // InternalJSchema.g:1670:2: ( rule__Includes__ObjectIDAssignment_0 )
+            // InternalJSchema.g:1670:3: rule__Includes__ObjectIDAssignment_0
             {
             pushFollow(FOLLOW_2);
             rule__Includes__ObjectIDAssignment_0();
@@ -5421,14 +5357,14 @@ public class InternalJSchemaParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Includes__Group__1"
-    // InternalJSchema.g:1705:1: rule__Includes__Group__1 : rule__Includes__Group__1__Impl ;
+    // InternalJSchema.g:1678:1: rule__Includes__Group__1 : rule__Includes__Group__1__Impl ;
     public final void rule__Includes__Group__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalJSchema.g:1709:1: ( rule__Includes__Group__1__Impl )
-            // InternalJSchema.g:1710:2: rule__Includes__Group__1__Impl
+            // InternalJSchema.g:1682:1: ( rule__Includes__Group__1__Impl )
+            // InternalJSchema.g:1683:2: rule__Includes__Group__1__Impl
             {
             pushFollow(FOLLOW_2);
             rule__Includes__Group__1__Impl();
@@ -5454,33 +5390,33 @@ public class InternalJSchemaParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Includes__Group__1__Impl"
-    // InternalJSchema.g:1716:1: rule__Includes__Group__1__Impl : ( ( rule__Includes__Group_1__0 )* ) ;
+    // InternalJSchema.g:1689:1: rule__Includes__Group__1__Impl : ( ( rule__Includes__Group_1__0 )* ) ;
     public final void rule__Includes__Group__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalJSchema.g:1720:1: ( ( ( rule__Includes__Group_1__0 )* ) )
-            // InternalJSchema.g:1721:1: ( ( rule__Includes__Group_1__0 )* )
+            // InternalJSchema.g:1693:1: ( ( ( rule__Includes__Group_1__0 )* ) )
+            // InternalJSchema.g:1694:1: ( ( rule__Includes__Group_1__0 )* )
             {
-            // InternalJSchema.g:1721:1: ( ( rule__Includes__Group_1__0 )* )
-            // InternalJSchema.g:1722:2: ( rule__Includes__Group_1__0 )*
+            // InternalJSchema.g:1694:1: ( ( rule__Includes__Group_1__0 )* )
+            // InternalJSchema.g:1695:2: ( rule__Includes__Group_1__0 )*
             {
              before(grammarAccess.getIncludesAccess().getGroup_1()); 
-            // InternalJSchema.g:1723:2: ( rule__Includes__Group_1__0 )*
-            loop15:
+            // InternalJSchema.g:1696:2: ( rule__Includes__Group_1__0 )*
+            loop16:
             do {
-                int alt15=2;
-                int LA15_0 = input.LA(1);
+                int alt16=2;
+                int LA16_0 = input.LA(1);
 
-                if ( (LA15_0==36) ) {
-                    alt15=1;
+                if ( (LA16_0==36) ) {
+                    alt16=1;
                 }
 
 
-                switch (alt15) {
+                switch (alt16) {
             	case 1 :
-            	    // InternalJSchema.g:1723:3: rule__Includes__Group_1__0
+            	    // InternalJSchema.g:1696:3: rule__Includes__Group_1__0
             	    {
             	    pushFollow(FOLLOW_10);
             	    rule__Includes__Group_1__0();
@@ -5492,7 +5428,7 @@ public class InternalJSchemaParser extends AbstractInternalContentAssistParser {
             	    break;
 
             	default :
-            	    break loop15;
+            	    break loop16;
                 }
             } while (true);
 
@@ -5519,14 +5455,14 @@ public class InternalJSchemaParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Includes__Group_1__0"
-    // InternalJSchema.g:1732:1: rule__Includes__Group_1__0 : rule__Includes__Group_1__0__Impl rule__Includes__Group_1__1 ;
+    // InternalJSchema.g:1705:1: rule__Includes__Group_1__0 : rule__Includes__Group_1__0__Impl rule__Includes__Group_1__1 ;
     public final void rule__Includes__Group_1__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalJSchema.g:1736:1: ( rule__Includes__Group_1__0__Impl rule__Includes__Group_1__1 )
-            // InternalJSchema.g:1737:2: rule__Includes__Group_1__0__Impl rule__Includes__Group_1__1
+            // InternalJSchema.g:1709:1: ( rule__Includes__Group_1__0__Impl rule__Includes__Group_1__1 )
+            // InternalJSchema.g:1710:2: rule__Includes__Group_1__0__Impl rule__Includes__Group_1__1
             {
             pushFollow(FOLLOW_8);
             rule__Includes__Group_1__0__Impl();
@@ -5557,17 +5493,17 @@ public class InternalJSchemaParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Includes__Group_1__0__Impl"
-    // InternalJSchema.g:1744:1: rule__Includes__Group_1__0__Impl : ( ',' ) ;
+    // InternalJSchema.g:1717:1: rule__Includes__Group_1__0__Impl : ( ',' ) ;
     public final void rule__Includes__Group_1__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalJSchema.g:1748:1: ( ( ',' ) )
-            // InternalJSchema.g:1749:1: ( ',' )
+            // InternalJSchema.g:1721:1: ( ( ',' ) )
+            // InternalJSchema.g:1722:1: ( ',' )
             {
-            // InternalJSchema.g:1749:1: ( ',' )
-            // InternalJSchema.g:1750:2: ','
+            // InternalJSchema.g:1722:1: ( ',' )
+            // InternalJSchema.g:1723:2: ','
             {
              before(grammarAccess.getIncludesAccess().getCommaKeyword_1_0()); 
             match(input,36,FOLLOW_2); 
@@ -5594,14 +5530,14 @@ public class InternalJSchemaParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Includes__Group_1__1"
-    // InternalJSchema.g:1759:1: rule__Includes__Group_1__1 : rule__Includes__Group_1__1__Impl ;
+    // InternalJSchema.g:1732:1: rule__Includes__Group_1__1 : rule__Includes__Group_1__1__Impl ;
     public final void rule__Includes__Group_1__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalJSchema.g:1763:1: ( rule__Includes__Group_1__1__Impl )
-            // InternalJSchema.g:1764:2: rule__Includes__Group_1__1__Impl
+            // InternalJSchema.g:1736:1: ( rule__Includes__Group_1__1__Impl )
+            // InternalJSchema.g:1737:2: rule__Includes__Group_1__1__Impl
             {
             pushFollow(FOLLOW_2);
             rule__Includes__Group_1__1__Impl();
@@ -5627,21 +5563,21 @@ public class InternalJSchemaParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Includes__Group_1__1__Impl"
-    // InternalJSchema.g:1770:1: rule__Includes__Group_1__1__Impl : ( ( rule__Includes__ObjectIDAssignment_1_1 ) ) ;
+    // InternalJSchema.g:1743:1: rule__Includes__Group_1__1__Impl : ( ( rule__Includes__ObjectIDAssignment_1_1 ) ) ;
     public final void rule__Includes__Group_1__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalJSchema.g:1774:1: ( ( ( rule__Includes__ObjectIDAssignment_1_1 ) ) )
-            // InternalJSchema.g:1775:1: ( ( rule__Includes__ObjectIDAssignment_1_1 ) )
+            // InternalJSchema.g:1747:1: ( ( ( rule__Includes__ObjectIDAssignment_1_1 ) ) )
+            // InternalJSchema.g:1748:1: ( ( rule__Includes__ObjectIDAssignment_1_1 ) )
             {
-            // InternalJSchema.g:1775:1: ( ( rule__Includes__ObjectIDAssignment_1_1 ) )
-            // InternalJSchema.g:1776:2: ( rule__Includes__ObjectIDAssignment_1_1 )
+            // InternalJSchema.g:1748:1: ( ( rule__Includes__ObjectIDAssignment_1_1 ) )
+            // InternalJSchema.g:1749:2: ( rule__Includes__ObjectIDAssignment_1_1 )
             {
              before(grammarAccess.getIncludesAccess().getObjectIDAssignment_1_1()); 
-            // InternalJSchema.g:1777:2: ( rule__Includes__ObjectIDAssignment_1_1 )
-            // InternalJSchema.g:1777:3: rule__Includes__ObjectIDAssignment_1_1
+            // InternalJSchema.g:1750:2: ( rule__Includes__ObjectIDAssignment_1_1 )
+            // InternalJSchema.g:1750:3: rule__Includes__ObjectIDAssignment_1_1
             {
             pushFollow(FOLLOW_2);
             rule__Includes__ObjectIDAssignment_1_1();
@@ -5674,16 +5610,16 @@ public class InternalJSchemaParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Array__Group__0"
-    // InternalJSchema.g:1786:1: rule__Array__Group__0 : rule__Array__Group__0__Impl rule__Array__Group__1 ;
+    // InternalJSchema.g:1759:1: rule__Array__Group__0 : rule__Array__Group__0__Impl rule__Array__Group__1 ;
     public final void rule__Array__Group__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalJSchema.g:1790:1: ( rule__Array__Group__0__Impl rule__Array__Group__1 )
-            // InternalJSchema.g:1791:2: rule__Array__Group__0__Impl rule__Array__Group__1
+            // InternalJSchema.g:1763:1: ( rule__Array__Group__0__Impl rule__Array__Group__1 )
+            // InternalJSchema.g:1764:2: rule__Array__Group__0__Impl rule__Array__Group__1
             {
-            pushFollow(FOLLOW_18);
+            pushFollow(FOLLOW_17);
             rule__Array__Group__0__Impl();
 
             state._fsp--;
@@ -5712,21 +5648,21 @@ public class InternalJSchemaParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Array__Group__0__Impl"
-    // InternalJSchema.g:1798:1: rule__Array__Group__0__Impl : ( ( rule__Array__ArrayNameAssignment_0 ) ) ;
+    // InternalJSchema.g:1771:1: rule__Array__Group__0__Impl : ( ( rule__Array__ArrayNameAssignment_0 ) ) ;
     public final void rule__Array__Group__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalJSchema.g:1802:1: ( ( ( rule__Array__ArrayNameAssignment_0 ) ) )
-            // InternalJSchema.g:1803:1: ( ( rule__Array__ArrayNameAssignment_0 ) )
+            // InternalJSchema.g:1775:1: ( ( ( rule__Array__ArrayNameAssignment_0 ) ) )
+            // InternalJSchema.g:1776:1: ( ( rule__Array__ArrayNameAssignment_0 ) )
             {
-            // InternalJSchema.g:1803:1: ( ( rule__Array__ArrayNameAssignment_0 ) )
-            // InternalJSchema.g:1804:2: ( rule__Array__ArrayNameAssignment_0 )
+            // InternalJSchema.g:1776:1: ( ( rule__Array__ArrayNameAssignment_0 ) )
+            // InternalJSchema.g:1777:2: ( rule__Array__ArrayNameAssignment_0 )
             {
              before(grammarAccess.getArrayAccess().getArrayNameAssignment_0()); 
-            // InternalJSchema.g:1805:2: ( rule__Array__ArrayNameAssignment_0 )
-            // InternalJSchema.g:1805:3: rule__Array__ArrayNameAssignment_0
+            // InternalJSchema.g:1778:2: ( rule__Array__ArrayNameAssignment_0 )
+            // InternalJSchema.g:1778:3: rule__Array__ArrayNameAssignment_0
             {
             pushFollow(FOLLOW_2);
             rule__Array__ArrayNameAssignment_0();
@@ -5759,16 +5695,16 @@ public class InternalJSchemaParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Array__Group__1"
-    // InternalJSchema.g:1813:1: rule__Array__Group__1 : rule__Array__Group__1__Impl rule__Array__Group__2 ;
+    // InternalJSchema.g:1786:1: rule__Array__Group__1 : rule__Array__Group__1__Impl rule__Array__Group__2 ;
     public final void rule__Array__Group__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalJSchema.g:1817:1: ( rule__Array__Group__1__Impl rule__Array__Group__2 )
-            // InternalJSchema.g:1818:2: rule__Array__Group__1__Impl rule__Array__Group__2
+            // InternalJSchema.g:1790:1: ( rule__Array__Group__1__Impl rule__Array__Group__2 )
+            // InternalJSchema.g:1791:2: rule__Array__Group__1__Impl rule__Array__Group__2
             {
-            pushFollow(FOLLOW_19);
+            pushFollow(FOLLOW_18);
             rule__Array__Group__1__Impl();
 
             state._fsp--;
@@ -5797,17 +5733,17 @@ public class InternalJSchemaParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Array__Group__1__Impl"
-    // InternalJSchema.g:1825:1: rule__Array__Group__1__Impl : ( '[' ) ;
+    // InternalJSchema.g:1798:1: rule__Array__Group__1__Impl : ( '[' ) ;
     public final void rule__Array__Group__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalJSchema.g:1829:1: ( ( '[' ) )
-            // InternalJSchema.g:1830:1: ( '[' )
+            // InternalJSchema.g:1802:1: ( ( '[' ) )
+            // InternalJSchema.g:1803:1: ( '[' )
             {
-            // InternalJSchema.g:1830:1: ( '[' )
-            // InternalJSchema.g:1831:2: '['
+            // InternalJSchema.g:1803:1: ( '[' )
+            // InternalJSchema.g:1804:2: '['
             {
              before(grammarAccess.getArrayAccess().getLeftSquareBracketKeyword_1()); 
             match(input,44,FOLLOW_2); 
@@ -5834,16 +5770,16 @@ public class InternalJSchemaParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Array__Group__2"
-    // InternalJSchema.g:1840:1: rule__Array__Group__2 : rule__Array__Group__2__Impl rule__Array__Group__3 ;
+    // InternalJSchema.g:1813:1: rule__Array__Group__2 : rule__Array__Group__2__Impl rule__Array__Group__3 ;
     public final void rule__Array__Group__2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalJSchema.g:1844:1: ( rule__Array__Group__2__Impl rule__Array__Group__3 )
-            // InternalJSchema.g:1845:2: rule__Array__Group__2__Impl rule__Array__Group__3
+            // InternalJSchema.g:1817:1: ( rule__Array__Group__2__Impl rule__Array__Group__3 )
+            // InternalJSchema.g:1818:2: rule__Array__Group__2__Impl rule__Array__Group__3
             {
-            pushFollow(FOLLOW_19);
+            pushFollow(FOLLOW_18);
             rule__Array__Group__2__Impl();
 
             state._fsp--;
@@ -5872,36 +5808,36 @@ public class InternalJSchemaParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Array__Group__2__Impl"
-    // InternalJSchema.g:1852:1: rule__Array__Group__2__Impl : ( ( rule__Array__Group_2__0 )? ) ;
+    // InternalJSchema.g:1825:1: rule__Array__Group__2__Impl : ( ( rule__Array__Group_2__0 )? ) ;
     public final void rule__Array__Group__2__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalJSchema.g:1856:1: ( ( ( rule__Array__Group_2__0 )? ) )
-            // InternalJSchema.g:1857:1: ( ( rule__Array__Group_2__0 )? )
+            // InternalJSchema.g:1829:1: ( ( ( rule__Array__Group_2__0 )? ) )
+            // InternalJSchema.g:1830:1: ( ( rule__Array__Group_2__0 )? )
             {
-            // InternalJSchema.g:1857:1: ( ( rule__Array__Group_2__0 )? )
-            // InternalJSchema.g:1858:2: ( rule__Array__Group_2__0 )?
+            // InternalJSchema.g:1830:1: ( ( rule__Array__Group_2__0 )? )
+            // InternalJSchema.g:1831:2: ( rule__Array__Group_2__0 )?
             {
              before(grammarAccess.getArrayAccess().getGroup_2()); 
-            // InternalJSchema.g:1859:2: ( rule__Array__Group_2__0 )?
-            int alt16=2;
-            int LA16_0 = input.LA(1);
+            // InternalJSchema.g:1832:2: ( rule__Array__Group_2__0 )?
+            int alt17=2;
+            int LA17_0 = input.LA(1);
 
-            if ( (LA16_0==12) ) {
-                int LA16_1 = input.LA(2);
+            if ( (LA17_0==12) ) {
+                int LA17_1 = input.LA(2);
 
-                if ( (LA16_1==RULE_STRING) ) {
-                    alt16=1;
+                if ( (LA17_1==RULE_STRING) ) {
+                    alt17=1;
                 }
             }
-            else if ( (LA16_0==RULE_ID||LA16_0==39) ) {
-                alt16=1;
+            else if ( (LA17_0==RULE_ID||LA17_0==39) ) {
+                alt17=1;
             }
-            switch (alt16) {
+            switch (alt17) {
                 case 1 :
-                    // InternalJSchema.g:1859:3: rule__Array__Group_2__0
+                    // InternalJSchema.g:1832:3: rule__Array__Group_2__0
                     {
                     pushFollow(FOLLOW_2);
                     rule__Array__Group_2__0();
@@ -5937,16 +5873,16 @@ public class InternalJSchemaParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Array__Group__3"
-    // InternalJSchema.g:1867:1: rule__Array__Group__3 : rule__Array__Group__3__Impl rule__Array__Group__4 ;
+    // InternalJSchema.g:1840:1: rule__Array__Group__3 : rule__Array__Group__3__Impl rule__Array__Group__4 ;
     public final void rule__Array__Group__3() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalJSchema.g:1871:1: ( rule__Array__Group__3__Impl rule__Array__Group__4 )
-            // InternalJSchema.g:1872:2: rule__Array__Group__3__Impl rule__Array__Group__4
+            // InternalJSchema.g:1844:1: ( rule__Array__Group__3__Impl rule__Array__Group__4 )
+            // InternalJSchema.g:1845:2: rule__Array__Group__3__Impl rule__Array__Group__4
             {
-            pushFollow(FOLLOW_19);
+            pushFollow(FOLLOW_18);
             rule__Array__Group__3__Impl();
 
             state._fsp--;
@@ -5975,29 +5911,29 @@ public class InternalJSchemaParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Array__Group__3__Impl"
-    // InternalJSchema.g:1879:1: rule__Array__Group__3__Impl : ( ( rule__Array__ArrayTypeAssignment_3 )? ) ;
+    // InternalJSchema.g:1852:1: rule__Array__Group__3__Impl : ( ( rule__Array__ArrayTypeAssignment_3 )? ) ;
     public final void rule__Array__Group__3__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalJSchema.g:1883:1: ( ( ( rule__Array__ArrayTypeAssignment_3 )? ) )
-            // InternalJSchema.g:1884:1: ( ( rule__Array__ArrayTypeAssignment_3 )? )
+            // InternalJSchema.g:1856:1: ( ( ( rule__Array__ArrayTypeAssignment_3 )? ) )
+            // InternalJSchema.g:1857:1: ( ( rule__Array__ArrayTypeAssignment_3 )? )
             {
-            // InternalJSchema.g:1884:1: ( ( rule__Array__ArrayTypeAssignment_3 )? )
-            // InternalJSchema.g:1885:2: ( rule__Array__ArrayTypeAssignment_3 )?
+            // InternalJSchema.g:1857:1: ( ( rule__Array__ArrayTypeAssignment_3 )? )
+            // InternalJSchema.g:1858:2: ( rule__Array__ArrayTypeAssignment_3 )?
             {
              before(grammarAccess.getArrayAccess().getArrayTypeAssignment_3()); 
-            // InternalJSchema.g:1886:2: ( rule__Array__ArrayTypeAssignment_3 )?
-            int alt17=2;
-            int LA17_0 = input.LA(1);
+            // InternalJSchema.g:1859:2: ( rule__Array__ArrayTypeAssignment_3 )?
+            int alt18=2;
+            int LA18_0 = input.LA(1);
 
-            if ( ((LA17_0>=12 && LA17_0<=15)) ) {
-                alt17=1;
+            if ( ((LA18_0>=12 && LA18_0<=15)) ) {
+                alt18=1;
             }
-            switch (alt17) {
+            switch (alt18) {
                 case 1 :
-                    // InternalJSchema.g:1886:3: rule__Array__ArrayTypeAssignment_3
+                    // InternalJSchema.g:1859:3: rule__Array__ArrayTypeAssignment_3
                     {
                     pushFollow(FOLLOW_2);
                     rule__Array__ArrayTypeAssignment_3();
@@ -6033,14 +5969,14 @@ public class InternalJSchemaParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Array__Group__4"
-    // InternalJSchema.g:1894:1: rule__Array__Group__4 : rule__Array__Group__4__Impl ;
+    // InternalJSchema.g:1867:1: rule__Array__Group__4 : rule__Array__Group__4__Impl ;
     public final void rule__Array__Group__4() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalJSchema.g:1898:1: ( rule__Array__Group__4__Impl )
-            // InternalJSchema.g:1899:2: rule__Array__Group__4__Impl
+            // InternalJSchema.g:1871:1: ( rule__Array__Group__4__Impl )
+            // InternalJSchema.g:1872:2: rule__Array__Group__4__Impl
             {
             pushFollow(FOLLOW_2);
             rule__Array__Group__4__Impl();
@@ -6066,17 +6002,17 @@ public class InternalJSchemaParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Array__Group__4__Impl"
-    // InternalJSchema.g:1905:1: rule__Array__Group__4__Impl : ( ']' ) ;
+    // InternalJSchema.g:1878:1: rule__Array__Group__4__Impl : ( ']' ) ;
     public final void rule__Array__Group__4__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalJSchema.g:1909:1: ( ( ']' ) )
-            // InternalJSchema.g:1910:1: ( ']' )
+            // InternalJSchema.g:1882:1: ( ( ']' ) )
+            // InternalJSchema.g:1883:1: ( ']' )
             {
-            // InternalJSchema.g:1910:1: ( ']' )
-            // InternalJSchema.g:1911:2: ']'
+            // InternalJSchema.g:1883:1: ( ']' )
+            // InternalJSchema.g:1884:2: ']'
             {
              before(grammarAccess.getArrayAccess().getRightSquareBracketKeyword_4()); 
             match(input,45,FOLLOW_2); 
@@ -6103,14 +6039,14 @@ public class InternalJSchemaParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Array__Group_2__0"
-    // InternalJSchema.g:1921:1: rule__Array__Group_2__0 : rule__Array__Group_2__0__Impl rule__Array__Group_2__1 ;
+    // InternalJSchema.g:1894:1: rule__Array__Group_2__0 : rule__Array__Group_2__0__Impl rule__Array__Group_2__1 ;
     public final void rule__Array__Group_2__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalJSchema.g:1925:1: ( rule__Array__Group_2__0__Impl rule__Array__Group_2__1 )
-            // InternalJSchema.g:1926:2: rule__Array__Group_2__0__Impl rule__Array__Group_2__1
+            // InternalJSchema.g:1898:1: ( rule__Array__Group_2__0__Impl rule__Array__Group_2__1 )
+            // InternalJSchema.g:1899:2: rule__Array__Group_2__0__Impl rule__Array__Group_2__1
             {
             pushFollow(FOLLOW_9);
             rule__Array__Group_2__0__Impl();
@@ -6141,21 +6077,21 @@ public class InternalJSchemaParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Array__Group_2__0__Impl"
-    // InternalJSchema.g:1933:1: rule__Array__Group_2__0__Impl : ( ( rule__Array__PropertiesAssignment_2_0 ) ) ;
+    // InternalJSchema.g:1906:1: rule__Array__Group_2__0__Impl : ( ( rule__Array__PropertiesAssignment_2_0 ) ) ;
     public final void rule__Array__Group_2__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalJSchema.g:1937:1: ( ( ( rule__Array__PropertiesAssignment_2_0 ) ) )
-            // InternalJSchema.g:1938:1: ( ( rule__Array__PropertiesAssignment_2_0 ) )
+            // InternalJSchema.g:1910:1: ( ( ( rule__Array__PropertiesAssignment_2_0 ) ) )
+            // InternalJSchema.g:1911:1: ( ( rule__Array__PropertiesAssignment_2_0 ) )
             {
-            // InternalJSchema.g:1938:1: ( ( rule__Array__PropertiesAssignment_2_0 ) )
-            // InternalJSchema.g:1939:2: ( rule__Array__PropertiesAssignment_2_0 )
+            // InternalJSchema.g:1911:1: ( ( rule__Array__PropertiesAssignment_2_0 ) )
+            // InternalJSchema.g:1912:2: ( rule__Array__PropertiesAssignment_2_0 )
             {
              before(grammarAccess.getArrayAccess().getPropertiesAssignment_2_0()); 
-            // InternalJSchema.g:1940:2: ( rule__Array__PropertiesAssignment_2_0 )
-            // InternalJSchema.g:1940:3: rule__Array__PropertiesAssignment_2_0
+            // InternalJSchema.g:1913:2: ( rule__Array__PropertiesAssignment_2_0 )
+            // InternalJSchema.g:1913:3: rule__Array__PropertiesAssignment_2_0
             {
             pushFollow(FOLLOW_2);
             rule__Array__PropertiesAssignment_2_0();
@@ -6188,14 +6124,14 @@ public class InternalJSchemaParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Array__Group_2__1"
-    // InternalJSchema.g:1948:1: rule__Array__Group_2__1 : rule__Array__Group_2__1__Impl ;
+    // InternalJSchema.g:1921:1: rule__Array__Group_2__1 : rule__Array__Group_2__1__Impl ;
     public final void rule__Array__Group_2__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalJSchema.g:1952:1: ( rule__Array__Group_2__1__Impl )
-            // InternalJSchema.g:1953:2: rule__Array__Group_2__1__Impl
+            // InternalJSchema.g:1925:1: ( rule__Array__Group_2__1__Impl )
+            // InternalJSchema.g:1926:2: rule__Array__Group_2__1__Impl
             {
             pushFollow(FOLLOW_2);
             rule__Array__Group_2__1__Impl();
@@ -6221,33 +6157,33 @@ public class InternalJSchemaParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Array__Group_2__1__Impl"
-    // InternalJSchema.g:1959:1: rule__Array__Group_2__1__Impl : ( ( rule__Array__Group_2_1__0 )* ) ;
+    // InternalJSchema.g:1932:1: rule__Array__Group_2__1__Impl : ( ( rule__Array__Group_2_1__0 )* ) ;
     public final void rule__Array__Group_2__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalJSchema.g:1963:1: ( ( ( rule__Array__Group_2_1__0 )* ) )
-            // InternalJSchema.g:1964:1: ( ( rule__Array__Group_2_1__0 )* )
+            // InternalJSchema.g:1936:1: ( ( ( rule__Array__Group_2_1__0 )* ) )
+            // InternalJSchema.g:1937:1: ( ( rule__Array__Group_2_1__0 )* )
             {
-            // InternalJSchema.g:1964:1: ( ( rule__Array__Group_2_1__0 )* )
-            // InternalJSchema.g:1965:2: ( rule__Array__Group_2_1__0 )*
+            // InternalJSchema.g:1937:1: ( ( rule__Array__Group_2_1__0 )* )
+            // InternalJSchema.g:1938:2: ( rule__Array__Group_2_1__0 )*
             {
              before(grammarAccess.getArrayAccess().getGroup_2_1()); 
-            // InternalJSchema.g:1966:2: ( rule__Array__Group_2_1__0 )*
-            loop18:
+            // InternalJSchema.g:1939:2: ( rule__Array__Group_2_1__0 )*
+            loop19:
             do {
-                int alt18=2;
-                int LA18_0 = input.LA(1);
+                int alt19=2;
+                int LA19_0 = input.LA(1);
 
-                if ( (LA18_0==36) ) {
-                    alt18=1;
+                if ( (LA19_0==36) ) {
+                    alt19=1;
                 }
 
 
-                switch (alt18) {
+                switch (alt19) {
             	case 1 :
-            	    // InternalJSchema.g:1966:3: rule__Array__Group_2_1__0
+            	    // InternalJSchema.g:1939:3: rule__Array__Group_2_1__0
             	    {
             	    pushFollow(FOLLOW_10);
             	    rule__Array__Group_2_1__0();
@@ -6259,7 +6195,7 @@ public class InternalJSchemaParser extends AbstractInternalContentAssistParser {
             	    break;
 
             	default :
-            	    break loop18;
+            	    break loop19;
                 }
             } while (true);
 
@@ -6286,14 +6222,14 @@ public class InternalJSchemaParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Array__Group_2_1__0"
-    // InternalJSchema.g:1975:1: rule__Array__Group_2_1__0 : rule__Array__Group_2_1__0__Impl rule__Array__Group_2_1__1 ;
+    // InternalJSchema.g:1948:1: rule__Array__Group_2_1__0 : rule__Array__Group_2_1__0__Impl rule__Array__Group_2_1__1 ;
     public final void rule__Array__Group_2_1__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalJSchema.g:1979:1: ( rule__Array__Group_2_1__0__Impl rule__Array__Group_2_1__1 )
-            // InternalJSchema.g:1980:2: rule__Array__Group_2_1__0__Impl rule__Array__Group_2_1__1
+            // InternalJSchema.g:1952:1: ( rule__Array__Group_2_1__0__Impl rule__Array__Group_2_1__1 )
+            // InternalJSchema.g:1953:2: rule__Array__Group_2_1__0__Impl rule__Array__Group_2_1__1
             {
             pushFollow(FOLLOW_11);
             rule__Array__Group_2_1__0__Impl();
@@ -6324,17 +6260,17 @@ public class InternalJSchemaParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Array__Group_2_1__0__Impl"
-    // InternalJSchema.g:1987:1: rule__Array__Group_2_1__0__Impl : ( ',' ) ;
+    // InternalJSchema.g:1960:1: rule__Array__Group_2_1__0__Impl : ( ',' ) ;
     public final void rule__Array__Group_2_1__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalJSchema.g:1991:1: ( ( ',' ) )
-            // InternalJSchema.g:1992:1: ( ',' )
+            // InternalJSchema.g:1964:1: ( ( ',' ) )
+            // InternalJSchema.g:1965:1: ( ',' )
             {
-            // InternalJSchema.g:1992:1: ( ',' )
-            // InternalJSchema.g:1993:2: ','
+            // InternalJSchema.g:1965:1: ( ',' )
+            // InternalJSchema.g:1966:2: ','
             {
              before(grammarAccess.getArrayAccess().getCommaKeyword_2_1_0()); 
             match(input,36,FOLLOW_2); 
@@ -6361,14 +6297,14 @@ public class InternalJSchemaParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Array__Group_2_1__1"
-    // InternalJSchema.g:2002:1: rule__Array__Group_2_1__1 : rule__Array__Group_2_1__1__Impl ;
+    // InternalJSchema.g:1975:1: rule__Array__Group_2_1__1 : rule__Array__Group_2_1__1__Impl ;
     public final void rule__Array__Group_2_1__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalJSchema.g:2006:1: ( rule__Array__Group_2_1__1__Impl )
-            // InternalJSchema.g:2007:2: rule__Array__Group_2_1__1__Impl
+            // InternalJSchema.g:1979:1: ( rule__Array__Group_2_1__1__Impl )
+            // InternalJSchema.g:1980:2: rule__Array__Group_2_1__1__Impl
             {
             pushFollow(FOLLOW_2);
             rule__Array__Group_2_1__1__Impl();
@@ -6394,21 +6330,21 @@ public class InternalJSchemaParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Array__Group_2_1__1__Impl"
-    // InternalJSchema.g:2013:1: rule__Array__Group_2_1__1__Impl : ( ( rule__Array__PropertiesAssignment_2_1_1 ) ) ;
+    // InternalJSchema.g:1986:1: rule__Array__Group_2_1__1__Impl : ( ( rule__Array__PropertiesAssignment_2_1_1 ) ) ;
     public final void rule__Array__Group_2_1__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalJSchema.g:2017:1: ( ( ( rule__Array__PropertiesAssignment_2_1_1 ) ) )
-            // InternalJSchema.g:2018:1: ( ( rule__Array__PropertiesAssignment_2_1_1 ) )
+            // InternalJSchema.g:1990:1: ( ( ( rule__Array__PropertiesAssignment_2_1_1 ) ) )
+            // InternalJSchema.g:1991:1: ( ( rule__Array__PropertiesAssignment_2_1_1 ) )
             {
-            // InternalJSchema.g:2018:1: ( ( rule__Array__PropertiesAssignment_2_1_1 ) )
-            // InternalJSchema.g:2019:2: ( rule__Array__PropertiesAssignment_2_1_1 )
+            // InternalJSchema.g:1991:1: ( ( rule__Array__PropertiesAssignment_2_1_1 ) )
+            // InternalJSchema.g:1992:2: ( rule__Array__PropertiesAssignment_2_1_1 )
             {
              before(grammarAccess.getArrayAccess().getPropertiesAssignment_2_1_1()); 
-            // InternalJSchema.g:2020:2: ( rule__Array__PropertiesAssignment_2_1_1 )
-            // InternalJSchema.g:2020:3: rule__Array__PropertiesAssignment_2_1_1
+            // InternalJSchema.g:1993:2: ( rule__Array__PropertiesAssignment_2_1_1 )
+            // InternalJSchema.g:1993:3: rule__Array__PropertiesAssignment_2_1_1
             {
             pushFollow(FOLLOW_2);
             rule__Array__PropertiesAssignment_2_1_1();
@@ -6441,17 +6377,17 @@ public class InternalJSchemaParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Model__AbstractObjectAssignment"
-    // InternalJSchema.g:2029:1: rule__Model__AbstractObjectAssignment : ( ruleAbstractObject ) ;
+    // InternalJSchema.g:2002:1: rule__Model__AbstractObjectAssignment : ( ruleAbstractObject ) ;
     public final void rule__Model__AbstractObjectAssignment() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalJSchema.g:2033:1: ( ( ruleAbstractObject ) )
-            // InternalJSchema.g:2034:2: ( ruleAbstractObject )
+            // InternalJSchema.g:2006:1: ( ( ruleAbstractObject ) )
+            // InternalJSchema.g:2007:2: ( ruleAbstractObject )
             {
-            // InternalJSchema.g:2034:2: ( ruleAbstractObject )
-            // InternalJSchema.g:2035:3: ruleAbstractObject
+            // InternalJSchema.g:2007:2: ( ruleAbstractObject )
+            // InternalJSchema.g:2008:3: ruleAbstractObject
             {
              before(grammarAccess.getModelAccess().getAbstractObjectAbstractObjectParserRuleCall_0()); 
             pushFollow(FOLLOW_2);
@@ -6482,17 +6418,17 @@ public class InternalJSchemaParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Number__NumberAssignment_0"
-    // InternalJSchema.g:2044:1: rule__Number__NumberAssignment_0 : ( RULE_INT ) ;
+    // InternalJSchema.g:2017:1: rule__Number__NumberAssignment_0 : ( RULE_INT ) ;
     public final void rule__Number__NumberAssignment_0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalJSchema.g:2048:1: ( ( RULE_INT ) )
-            // InternalJSchema.g:2049:2: ( RULE_INT )
+            // InternalJSchema.g:2021:1: ( ( RULE_INT ) )
+            // InternalJSchema.g:2022:2: ( RULE_INT )
             {
-            // InternalJSchema.g:2049:2: ( RULE_INT )
-            // InternalJSchema.g:2050:3: RULE_INT
+            // InternalJSchema.g:2022:2: ( RULE_INT )
+            // InternalJSchema.g:2023:3: RULE_INT
             {
              before(grammarAccess.getNumberAccess().getNumberINTTerminalRuleCall_0_0()); 
             match(input,RULE_INT,FOLLOW_2); 
@@ -6519,17 +6455,17 @@ public class InternalJSchemaParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Number__DecimalAssignment_1_1"
-    // InternalJSchema.g:2059:1: rule__Number__DecimalAssignment_1_1 : ( RULE_INT ) ;
+    // InternalJSchema.g:2032:1: rule__Number__DecimalAssignment_1_1 : ( RULE_INT ) ;
     public final void rule__Number__DecimalAssignment_1_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalJSchema.g:2063:1: ( ( RULE_INT ) )
-            // InternalJSchema.g:2064:2: ( RULE_INT )
+            // InternalJSchema.g:2036:1: ( ( RULE_INT ) )
+            // InternalJSchema.g:2037:2: ( RULE_INT )
             {
-            // InternalJSchema.g:2064:2: ( RULE_INT )
-            // InternalJSchema.g:2065:3: RULE_INT
+            // InternalJSchema.g:2037:2: ( RULE_INT )
+            // InternalJSchema.g:2038:3: RULE_INT
             {
              before(grammarAccess.getNumberAccess().getDecimalINTTerminalRuleCall_1_1_0()); 
             match(input,RULE_INT,FOLLOW_2); 
@@ -6556,17 +6492,17 @@ public class InternalJSchemaParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__MainObject__ObjectNameAssignment_0"
-    // InternalJSchema.g:2074:1: rule__MainObject__ObjectNameAssignment_0 : ( RULE_ID ) ;
+    // InternalJSchema.g:2047:1: rule__MainObject__ObjectNameAssignment_0 : ( RULE_ID ) ;
     public final void rule__MainObject__ObjectNameAssignment_0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalJSchema.g:2078:1: ( ( RULE_ID ) )
-            // InternalJSchema.g:2079:2: ( RULE_ID )
+            // InternalJSchema.g:2051:1: ( ( RULE_ID ) )
+            // InternalJSchema.g:2052:2: ( RULE_ID )
             {
-            // InternalJSchema.g:2079:2: ( RULE_ID )
-            // InternalJSchema.g:2080:3: RULE_ID
+            // InternalJSchema.g:2052:2: ( RULE_ID )
+            // InternalJSchema.g:2053:3: RULE_ID
             {
              before(grammarAccess.getMainObjectAccess().getObjectNameIDTerminalRuleCall_0_0()); 
             match(input,RULE_ID,FOLLOW_2); 
@@ -6593,17 +6529,17 @@ public class InternalJSchemaParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__MainObject__RootAssignment_1"
-    // InternalJSchema.g:2089:1: rule__MainObject__RootAssignment_1 : ( ruleIsRoot ) ;
+    // InternalJSchema.g:2062:1: rule__MainObject__RootAssignment_1 : ( ruleIsRoot ) ;
     public final void rule__MainObject__RootAssignment_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalJSchema.g:2093:1: ( ( ruleIsRoot ) )
-            // InternalJSchema.g:2094:2: ( ruleIsRoot )
+            // InternalJSchema.g:2066:1: ( ( ruleIsRoot ) )
+            // InternalJSchema.g:2067:2: ( ruleIsRoot )
             {
-            // InternalJSchema.g:2094:2: ( ruleIsRoot )
-            // InternalJSchema.g:2095:3: ruleIsRoot
+            // InternalJSchema.g:2067:2: ( ruleIsRoot )
+            // InternalJSchema.g:2068:3: ruleIsRoot
             {
              before(grammarAccess.getMainObjectAccess().getRootIsRootParserRuleCall_1_0()); 
             pushFollow(FOLLOW_2);
@@ -6634,17 +6570,17 @@ public class InternalJSchemaParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__MainObject__IncludeObjectsAssignment_2_1"
-    // InternalJSchema.g:2104:1: rule__MainObject__IncludeObjectsAssignment_2_1 : ( ruleIncludes ) ;
+    // InternalJSchema.g:2077:1: rule__MainObject__IncludeObjectsAssignment_2_1 : ( ruleIncludes ) ;
     public final void rule__MainObject__IncludeObjectsAssignment_2_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalJSchema.g:2108:1: ( ( ruleIncludes ) )
-            // InternalJSchema.g:2109:2: ( ruleIncludes )
+            // InternalJSchema.g:2081:1: ( ( ruleIncludes ) )
+            // InternalJSchema.g:2082:2: ( ruleIncludes )
             {
-            // InternalJSchema.g:2109:2: ( ruleIncludes )
-            // InternalJSchema.g:2110:3: ruleIncludes
+            // InternalJSchema.g:2082:2: ( ruleIncludes )
+            // InternalJSchema.g:2083:3: ruleIncludes
             {
              before(grammarAccess.getMainObjectAccess().getIncludeObjectsIncludesParserRuleCall_2_1_0()); 
             pushFollow(FOLLOW_2);
@@ -6675,17 +6611,17 @@ public class InternalJSchemaParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__MainObject__PropertiesAssignment_4_0"
-    // InternalJSchema.g:2119:1: rule__MainObject__PropertiesAssignment_4_0 : ( rulehasProperties ) ;
+    // InternalJSchema.g:2092:1: rule__MainObject__PropertiesAssignment_4_0 : ( rulehasProperties ) ;
     public final void rule__MainObject__PropertiesAssignment_4_0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalJSchema.g:2123:1: ( ( rulehasProperties ) )
-            // InternalJSchema.g:2124:2: ( rulehasProperties )
+            // InternalJSchema.g:2096:1: ( ( rulehasProperties ) )
+            // InternalJSchema.g:2097:2: ( rulehasProperties )
             {
-            // InternalJSchema.g:2124:2: ( rulehasProperties )
-            // InternalJSchema.g:2125:3: rulehasProperties
+            // InternalJSchema.g:2097:2: ( rulehasProperties )
+            // InternalJSchema.g:2098:3: rulehasProperties
             {
              before(grammarAccess.getMainObjectAccess().getPropertiesHasPropertiesParserRuleCall_4_0_0()); 
             pushFollow(FOLLOW_2);
@@ -6716,17 +6652,17 @@ public class InternalJSchemaParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__MainObject__PropertiesAssignment_4_1_1"
-    // InternalJSchema.g:2134:1: rule__MainObject__PropertiesAssignment_4_1_1 : ( rulehasProperties ) ;
+    // InternalJSchema.g:2107:1: rule__MainObject__PropertiesAssignment_4_1_1 : ( rulehasProperties ) ;
     public final void rule__MainObject__PropertiesAssignment_4_1_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalJSchema.g:2138:1: ( ( rulehasProperties ) )
-            // InternalJSchema.g:2139:2: ( rulehasProperties )
+            // InternalJSchema.g:2111:1: ( ( rulehasProperties ) )
+            // InternalJSchema.g:2112:2: ( rulehasProperties )
             {
-            // InternalJSchema.g:2139:2: ( rulehasProperties )
-            // InternalJSchema.g:2140:3: rulehasProperties
+            // InternalJSchema.g:2112:2: ( rulehasProperties )
+            // InternalJSchema.g:2113:3: rulehasProperties
             {
              before(grammarAccess.getMainObjectAccess().getPropertiesHasPropertiesParserRuleCall_4_1_1_0()); 
             pushFollow(FOLLOW_2);
@@ -6757,17 +6693,17 @@ public class InternalJSchemaParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__PrimitiveObject__TypeAssignment_0"
-    // InternalJSchema.g:2149:1: rule__PrimitiveObject__TypeAssignment_0 : ( rulePrimitiveTypes ) ;
+    // InternalJSchema.g:2122:1: rule__PrimitiveObject__TypeAssignment_0 : ( rulePrimitiveTypes ) ;
     public final void rule__PrimitiveObject__TypeAssignment_0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalJSchema.g:2153:1: ( ( rulePrimitiveTypes ) )
-            // InternalJSchema.g:2154:2: ( rulePrimitiveTypes )
+            // InternalJSchema.g:2126:1: ( ( rulePrimitiveTypes ) )
+            // InternalJSchema.g:2127:2: ( rulePrimitiveTypes )
             {
-            // InternalJSchema.g:2154:2: ( rulePrimitiveTypes )
-            // InternalJSchema.g:2155:3: rulePrimitiveTypes
+            // InternalJSchema.g:2127:2: ( rulePrimitiveTypes )
+            // InternalJSchema.g:2128:3: rulePrimitiveTypes
             {
              before(grammarAccess.getPrimitiveObjectAccess().getTypePrimitiveTypesParserRuleCall_0_0()); 
             pushFollow(FOLLOW_2);
@@ -6798,17 +6734,17 @@ public class InternalJSchemaParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__PrimitiveObject__PrimitivePropertiesAssignment_1_1"
-    // InternalJSchema.g:2164:1: rule__PrimitiveObject__PrimitivePropertiesAssignment_1_1 : ( rulePrimitiveProperties ) ;
+    // InternalJSchema.g:2137:1: rule__PrimitiveObject__PrimitivePropertiesAssignment_1_1 : ( rulePrimitiveProperties ) ;
     public final void rule__PrimitiveObject__PrimitivePropertiesAssignment_1_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalJSchema.g:2168:1: ( ( rulePrimitiveProperties ) )
-            // InternalJSchema.g:2169:2: ( rulePrimitiveProperties )
+            // InternalJSchema.g:2141:1: ( ( rulePrimitiveProperties ) )
+            // InternalJSchema.g:2142:2: ( rulePrimitiveProperties )
             {
-            // InternalJSchema.g:2169:2: ( rulePrimitiveProperties )
-            // InternalJSchema.g:2170:3: rulePrimitiveProperties
+            // InternalJSchema.g:2142:2: ( rulePrimitiveProperties )
+            // InternalJSchema.g:2143:3: rulePrimitiveProperties
             {
              before(grammarAccess.getPrimitiveObjectAccess().getPrimitivePropertiesPrimitivePropertiesParserRuleCall_1_1_0()); 
             pushFollow(FOLLOW_2);
@@ -6839,17 +6775,17 @@ public class InternalJSchemaParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__PrimitiveObject__PrimitivePropertiesAssignment_1_2_1"
-    // InternalJSchema.g:2179:1: rule__PrimitiveObject__PrimitivePropertiesAssignment_1_2_1 : ( rulePrimitiveProperties ) ;
+    // InternalJSchema.g:2152:1: rule__PrimitiveObject__PrimitivePropertiesAssignment_1_2_1 : ( rulePrimitiveProperties ) ;
     public final void rule__PrimitiveObject__PrimitivePropertiesAssignment_1_2_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalJSchema.g:2183:1: ( ( rulePrimitiveProperties ) )
-            // InternalJSchema.g:2184:2: ( rulePrimitiveProperties )
+            // InternalJSchema.g:2156:1: ( ( rulePrimitiveProperties ) )
+            // InternalJSchema.g:2157:2: ( rulePrimitiveProperties )
             {
-            // InternalJSchema.g:2184:2: ( rulePrimitiveProperties )
-            // InternalJSchema.g:2185:3: rulePrimitiveProperties
+            // InternalJSchema.g:2157:2: ( rulePrimitiveProperties )
+            // InternalJSchema.g:2158:3: rulePrimitiveProperties
             {
              before(grammarAccess.getPrimitiveObjectAccess().getPrimitivePropertiesPrimitivePropertiesParserRuleCall_1_2_1_0()); 
             pushFollow(FOLLOW_2);
@@ -6879,22 +6815,22 @@ public class InternalJSchemaParser extends AbstractInternalContentAssistParser {
     // $ANTLR end "rule__PrimitiveObject__PrimitivePropertiesAssignment_1_2_1"
 
 
-    // $ANTLR start "rule__PrimitiveTypes__StringAssignment_0_2"
-    // InternalJSchema.g:2194:1: rule__PrimitiveTypes__StringAssignment_0_2 : ( RULE_STRING ) ;
-    public final void rule__PrimitiveTypes__StringAssignment_0_2() throws RecognitionException {
+    // $ANTLR start "rule__PrimitiveTypes__StringAssignment_0_1"
+    // InternalJSchema.g:2167:1: rule__PrimitiveTypes__StringAssignment_0_1 : ( RULE_STRING ) ;
+    public final void rule__PrimitiveTypes__StringAssignment_0_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalJSchema.g:2198:1: ( ( RULE_STRING ) )
-            // InternalJSchema.g:2199:2: ( RULE_STRING )
+            // InternalJSchema.g:2171:1: ( ( RULE_STRING ) )
+            // InternalJSchema.g:2172:2: ( RULE_STRING )
             {
-            // InternalJSchema.g:2199:2: ( RULE_STRING )
-            // InternalJSchema.g:2200:3: RULE_STRING
+            // InternalJSchema.g:2172:2: ( RULE_STRING )
+            // InternalJSchema.g:2173:3: RULE_STRING
             {
-             before(grammarAccess.getPrimitiveTypesAccess().getStringSTRINGTerminalRuleCall_0_2_0()); 
+             before(grammarAccess.getPrimitiveTypesAccess().getStringSTRINGTerminalRuleCall_0_1_0()); 
             match(input,RULE_STRING,FOLLOW_2); 
-             after(grammarAccess.getPrimitiveTypesAccess().getStringSTRINGTerminalRuleCall_0_2_0()); 
+             after(grammarAccess.getPrimitiveTypesAccess().getStringSTRINGTerminalRuleCall_0_1_0()); 
 
             }
 
@@ -6913,21 +6849,21 @@ public class InternalJSchemaParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end "rule__PrimitiveTypes__StringAssignment_0_2"
+    // $ANTLR end "rule__PrimitiveTypes__StringAssignment_0_1"
 
 
     // $ANTLR start "rule__PrimitiveTypes__ArrayAssignment_1"
-    // InternalJSchema.g:2209:1: rule__PrimitiveTypes__ArrayAssignment_1 : ( ruleArray ) ;
+    // InternalJSchema.g:2182:1: rule__PrimitiveTypes__ArrayAssignment_1 : ( ruleArray ) ;
     public final void rule__PrimitiveTypes__ArrayAssignment_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalJSchema.g:2213:1: ( ( ruleArray ) )
-            // InternalJSchema.g:2214:2: ( ruleArray )
+            // InternalJSchema.g:2186:1: ( ( ruleArray ) )
+            // InternalJSchema.g:2187:2: ( ruleArray )
             {
-            // InternalJSchema.g:2214:2: ( ruleArray )
-            // InternalJSchema.g:2215:3: ruleArray
+            // InternalJSchema.g:2187:2: ( ruleArray )
+            // InternalJSchema.g:2188:3: ruleArray
             {
              before(grammarAccess.getPrimitiveTypesAccess().getArrayArrayParserRuleCall_1_0()); 
             pushFollow(FOLLOW_2);
@@ -6958,17 +6894,17 @@ public class InternalJSchemaParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__PrimitiveTypes__NumberAssignment_2_1"
-    // InternalJSchema.g:2224:1: rule__PrimitiveTypes__NumberAssignment_2_1 : ( ruleNumber ) ;
+    // InternalJSchema.g:2197:1: rule__PrimitiveTypes__NumberAssignment_2_1 : ( ruleNumber ) ;
     public final void rule__PrimitiveTypes__NumberAssignment_2_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalJSchema.g:2228:1: ( ( ruleNumber ) )
-            // InternalJSchema.g:2229:2: ( ruleNumber )
+            // InternalJSchema.g:2201:1: ( ( ruleNumber ) )
+            // InternalJSchema.g:2202:2: ( ruleNumber )
             {
-            // InternalJSchema.g:2229:2: ( ruleNumber )
-            // InternalJSchema.g:2230:3: ruleNumber
+            // InternalJSchema.g:2202:2: ( ruleNumber )
+            // InternalJSchema.g:2203:3: ruleNumber
             {
              before(grammarAccess.getPrimitiveTypesAccess().getNumberNumberParserRuleCall_2_1_0()); 
             pushFollow(FOLLOW_2);
@@ -6999,21 +6935,21 @@ public class InternalJSchemaParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__IsRoot__StringAssignment"
-    // InternalJSchema.g:2239:1: rule__IsRoot__StringAssignment : ( ( 'root' ) ) ;
+    // InternalJSchema.g:2212:1: rule__IsRoot__StringAssignment : ( ( 'root' ) ) ;
     public final void rule__IsRoot__StringAssignment() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalJSchema.g:2243:1: ( ( ( 'root' ) ) )
-            // InternalJSchema.g:2244:2: ( ( 'root' ) )
+            // InternalJSchema.g:2216:1: ( ( ( 'root' ) ) )
+            // InternalJSchema.g:2217:2: ( ( 'root' ) )
             {
-            // InternalJSchema.g:2244:2: ( ( 'root' ) )
-            // InternalJSchema.g:2245:3: ( 'root' )
+            // InternalJSchema.g:2217:2: ( ( 'root' ) )
+            // InternalJSchema.g:2218:3: ( 'root' )
             {
              before(grammarAccess.getIsRootAccess().getStringRootKeyword_0()); 
-            // InternalJSchema.g:2246:3: ( 'root' )
-            // InternalJSchema.g:2247:4: 'root'
+            // InternalJSchema.g:2219:3: ( 'root' )
+            // InternalJSchema.g:2220:4: 'root'
             {
              before(grammarAccess.getIsRootAccess().getStringRootKeyword_0()); 
             match(input,46,FOLLOW_2); 
@@ -7044,17 +6980,17 @@ public class InternalJSchemaParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__HasProperties__PropertiesAssignment"
-    // InternalJSchema.g:2258:1: rule__HasProperties__PropertiesAssignment : ( ruleProperty ) ;
+    // InternalJSchema.g:2231:1: rule__HasProperties__PropertiesAssignment : ( ruleProperty ) ;
     public final void rule__HasProperties__PropertiesAssignment() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalJSchema.g:2262:1: ( ( ruleProperty ) )
-            // InternalJSchema.g:2263:2: ( ruleProperty )
+            // InternalJSchema.g:2235:1: ( ( ruleProperty ) )
+            // InternalJSchema.g:2236:2: ( ruleProperty )
             {
-            // InternalJSchema.g:2263:2: ( ruleProperty )
-            // InternalJSchema.g:2264:3: ruleProperty
+            // InternalJSchema.g:2236:2: ( ruleProperty )
+            // InternalJSchema.g:2237:3: ruleProperty
             {
              before(grammarAccess.getHasPropertiesAccess().getPropertiesPropertyParserRuleCall_0()); 
             pushFollow(FOLLOW_2);
@@ -7084,26 +7020,26 @@ public class InternalJSchemaParser extends AbstractInternalContentAssistParser {
     // $ANTLR end "rule__HasProperties__PropertiesAssignment"
 
 
-    // $ANTLR start "rule__Property__TypeAssignment_0"
-    // InternalJSchema.g:2273:1: rule__Property__TypeAssignment_0 : ( rulePrimitiveTypes ) ;
-    public final void rule__Property__TypeAssignment_0() throws RecognitionException {
+    // $ANTLR start "rule__Property__PropPrimAssignment_0"
+    // InternalJSchema.g:2246:1: rule__Property__PropPrimAssignment_0 : ( rulePrimitiveObject ) ;
+    public final void rule__Property__PropPrimAssignment_0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalJSchema.g:2277:1: ( ( rulePrimitiveTypes ) )
-            // InternalJSchema.g:2278:2: ( rulePrimitiveTypes )
+            // InternalJSchema.g:2250:1: ( ( rulePrimitiveObject ) )
+            // InternalJSchema.g:2251:2: ( rulePrimitiveObject )
             {
-            // InternalJSchema.g:2278:2: ( rulePrimitiveTypes )
-            // InternalJSchema.g:2279:3: rulePrimitiveTypes
+            // InternalJSchema.g:2251:2: ( rulePrimitiveObject )
+            // InternalJSchema.g:2252:3: rulePrimitiveObject
             {
-             before(grammarAccess.getPropertyAccess().getTypePrimitiveTypesParserRuleCall_0_0()); 
+             before(grammarAccess.getPropertyAccess().getPropPrimPrimitiveObjectParserRuleCall_0_0()); 
             pushFollow(FOLLOW_2);
-            rulePrimitiveTypes();
+            rulePrimitiveObject();
 
             state._fsp--;
 
-             after(grammarAccess.getPropertyAccess().getTypePrimitiveTypesParserRuleCall_0_0()); 
+             after(grammarAccess.getPropertyAccess().getPropPrimPrimitiveObjectParserRuleCall_0_0()); 
 
             }
 
@@ -7122,29 +7058,29 @@ public class InternalJSchemaParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end "rule__Property__TypeAssignment_0"
+    // $ANTLR end "rule__Property__PropPrimAssignment_0"
 
 
-    // $ANTLR start "rule__Property__ObjectAssignment_1"
-    // InternalJSchema.g:2288:1: rule__Property__ObjectAssignment_1 : ( ruleMainObject ) ;
-    public final void rule__Property__ObjectAssignment_1() throws RecognitionException {
+    // $ANTLR start "rule__Property__PropObjAssignment_1"
+    // InternalJSchema.g:2261:1: rule__Property__PropObjAssignment_1 : ( ruleMainObject ) ;
+    public final void rule__Property__PropObjAssignment_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalJSchema.g:2292:1: ( ( ruleMainObject ) )
-            // InternalJSchema.g:2293:2: ( ruleMainObject )
+            // InternalJSchema.g:2265:1: ( ( ruleMainObject ) )
+            // InternalJSchema.g:2266:2: ( ruleMainObject )
             {
-            // InternalJSchema.g:2293:2: ( ruleMainObject )
-            // InternalJSchema.g:2294:3: ruleMainObject
+            // InternalJSchema.g:2266:2: ( ruleMainObject )
+            // InternalJSchema.g:2267:3: ruleMainObject
             {
-             before(grammarAccess.getPropertyAccess().getObjectMainObjectParserRuleCall_1_0()); 
+             before(grammarAccess.getPropertyAccess().getPropObjMainObjectParserRuleCall_1_0()); 
             pushFollow(FOLLOW_2);
             ruleMainObject();
 
             state._fsp--;
 
-             after(grammarAccess.getPropertyAccess().getObjectMainObjectParserRuleCall_1_0()); 
+             after(grammarAccess.getPropertyAccess().getPropObjMainObjectParserRuleCall_1_0()); 
 
             }
 
@@ -7163,21 +7099,21 @@ public class InternalJSchemaParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end "rule__Property__ObjectAssignment_1"
+    // $ANTLR end "rule__Property__PropObjAssignment_1"
 
 
     // $ANTLR start "rule__PrimitiveProperties__StringLenghtAssignment_0_1"
-    // InternalJSchema.g:2303:1: rule__PrimitiveProperties__StringLenghtAssignment_0_1 : ( ruleStringLength ) ;
+    // InternalJSchema.g:2276:1: rule__PrimitiveProperties__StringLenghtAssignment_0_1 : ( ruleStringLength ) ;
     public final void rule__PrimitiveProperties__StringLenghtAssignment_0_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalJSchema.g:2307:1: ( ( ruleStringLength ) )
-            // InternalJSchema.g:2308:2: ( ruleStringLength )
+            // InternalJSchema.g:2280:1: ( ( ruleStringLength ) )
+            // InternalJSchema.g:2281:2: ( ruleStringLength )
             {
-            // InternalJSchema.g:2308:2: ( ruleStringLength )
-            // InternalJSchema.g:2309:3: ruleStringLength
+            // InternalJSchema.g:2281:2: ( ruleStringLength )
+            // InternalJSchema.g:2282:3: ruleStringLength
             {
              before(grammarAccess.getPrimitivePropertiesAccess().getStringLenghtStringLengthParserRuleCall_0_1_0()); 
             pushFollow(FOLLOW_2);
@@ -7208,17 +7144,17 @@ public class InternalJSchemaParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__PrimitiveProperties__PatternStringAssignment_1_1"
-    // InternalJSchema.g:2318:1: rule__PrimitiveProperties__PatternStringAssignment_1_1 : ( RULE_STRING ) ;
+    // InternalJSchema.g:2291:1: rule__PrimitiveProperties__PatternStringAssignment_1_1 : ( RULE_STRING ) ;
     public final void rule__PrimitiveProperties__PatternStringAssignment_1_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalJSchema.g:2322:1: ( ( RULE_STRING ) )
-            // InternalJSchema.g:2323:2: ( RULE_STRING )
+            // InternalJSchema.g:2295:1: ( ( RULE_STRING ) )
+            // InternalJSchema.g:2296:2: ( RULE_STRING )
             {
-            // InternalJSchema.g:2323:2: ( RULE_STRING )
-            // InternalJSchema.g:2324:3: RULE_STRING
+            // InternalJSchema.g:2296:2: ( RULE_STRING )
+            // InternalJSchema.g:2297:3: RULE_STRING
             {
              before(grammarAccess.getPrimitivePropertiesAccess().getPatternStringSTRINGTerminalRuleCall_1_1_0()); 
             match(input,RULE_STRING,FOLLOW_2); 
@@ -7245,17 +7181,17 @@ public class InternalJSchemaParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__PrimitiveProperties__StringFormatAssignment_2_1"
-    // InternalJSchema.g:2333:1: rule__PrimitiveProperties__StringFormatAssignment_2_1 : ( ruleFormatTypes ) ;
+    // InternalJSchema.g:2306:1: rule__PrimitiveProperties__StringFormatAssignment_2_1 : ( ruleFormatTypes ) ;
     public final void rule__PrimitiveProperties__StringFormatAssignment_2_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalJSchema.g:2337:1: ( ( ruleFormatTypes ) )
-            // InternalJSchema.g:2338:2: ( ruleFormatTypes )
+            // InternalJSchema.g:2310:1: ( ( ruleFormatTypes ) )
+            // InternalJSchema.g:2311:2: ( ruleFormatTypes )
             {
-            // InternalJSchema.g:2338:2: ( ruleFormatTypes )
-            // InternalJSchema.g:2339:3: ruleFormatTypes
+            // InternalJSchema.g:2311:2: ( ruleFormatTypes )
+            // InternalJSchema.g:2312:3: ruleFormatTypes
             {
              before(grammarAccess.getPrimitivePropertiesAccess().getStringFormatFormatTypesEnumRuleCall_2_1_0()); 
             pushFollow(FOLLOW_2);
@@ -7286,17 +7222,17 @@ public class InternalJSchemaParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Includes__ObjectIDAssignment_0"
-    // InternalJSchema.g:2348:1: rule__Includes__ObjectIDAssignment_0 : ( RULE_STRING ) ;
+    // InternalJSchema.g:2321:1: rule__Includes__ObjectIDAssignment_0 : ( RULE_STRING ) ;
     public final void rule__Includes__ObjectIDAssignment_0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalJSchema.g:2352:1: ( ( RULE_STRING ) )
-            // InternalJSchema.g:2353:2: ( RULE_STRING )
+            // InternalJSchema.g:2325:1: ( ( RULE_STRING ) )
+            // InternalJSchema.g:2326:2: ( RULE_STRING )
             {
-            // InternalJSchema.g:2353:2: ( RULE_STRING )
-            // InternalJSchema.g:2354:3: RULE_STRING
+            // InternalJSchema.g:2326:2: ( RULE_STRING )
+            // InternalJSchema.g:2327:3: RULE_STRING
             {
              before(grammarAccess.getIncludesAccess().getObjectIDSTRINGTerminalRuleCall_0_0()); 
             match(input,RULE_STRING,FOLLOW_2); 
@@ -7323,17 +7259,17 @@ public class InternalJSchemaParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Includes__ObjectIDAssignment_1_1"
-    // InternalJSchema.g:2363:1: rule__Includes__ObjectIDAssignment_1_1 : ( RULE_STRING ) ;
+    // InternalJSchema.g:2336:1: rule__Includes__ObjectIDAssignment_1_1 : ( RULE_STRING ) ;
     public final void rule__Includes__ObjectIDAssignment_1_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalJSchema.g:2367:1: ( ( RULE_STRING ) )
-            // InternalJSchema.g:2368:2: ( RULE_STRING )
+            // InternalJSchema.g:2340:1: ( ( RULE_STRING ) )
+            // InternalJSchema.g:2341:2: ( RULE_STRING )
             {
-            // InternalJSchema.g:2368:2: ( RULE_STRING )
-            // InternalJSchema.g:2369:3: RULE_STRING
+            // InternalJSchema.g:2341:2: ( RULE_STRING )
+            // InternalJSchema.g:2342:3: RULE_STRING
             {
              before(grammarAccess.getIncludesAccess().getObjectIDSTRINGTerminalRuleCall_1_1_0()); 
             match(input,RULE_STRING,FOLLOW_2); 
@@ -7360,17 +7296,17 @@ public class InternalJSchemaParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Array__ArrayNameAssignment_0"
-    // InternalJSchema.g:2378:1: rule__Array__ArrayNameAssignment_0 : ( RULE_ID ) ;
+    // InternalJSchema.g:2351:1: rule__Array__ArrayNameAssignment_0 : ( RULE_ID ) ;
     public final void rule__Array__ArrayNameAssignment_0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalJSchema.g:2382:1: ( ( RULE_ID ) )
-            // InternalJSchema.g:2383:2: ( RULE_ID )
+            // InternalJSchema.g:2355:1: ( ( RULE_ID ) )
+            // InternalJSchema.g:2356:2: ( RULE_ID )
             {
-            // InternalJSchema.g:2383:2: ( RULE_ID )
-            // InternalJSchema.g:2384:3: RULE_ID
+            // InternalJSchema.g:2356:2: ( RULE_ID )
+            // InternalJSchema.g:2357:3: RULE_ID
             {
              before(grammarAccess.getArrayAccess().getArrayNameIDTerminalRuleCall_0_0()); 
             match(input,RULE_ID,FOLLOW_2); 
@@ -7397,17 +7333,17 @@ public class InternalJSchemaParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Array__PropertiesAssignment_2_0"
-    // InternalJSchema.g:2393:1: rule__Array__PropertiesAssignment_2_0 : ( ruleProperty ) ;
+    // InternalJSchema.g:2366:1: rule__Array__PropertiesAssignment_2_0 : ( ruleProperty ) ;
     public final void rule__Array__PropertiesAssignment_2_0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalJSchema.g:2397:1: ( ( ruleProperty ) )
-            // InternalJSchema.g:2398:2: ( ruleProperty )
+            // InternalJSchema.g:2370:1: ( ( ruleProperty ) )
+            // InternalJSchema.g:2371:2: ( ruleProperty )
             {
-            // InternalJSchema.g:2398:2: ( ruleProperty )
-            // InternalJSchema.g:2399:3: ruleProperty
+            // InternalJSchema.g:2371:2: ( ruleProperty )
+            // InternalJSchema.g:2372:3: ruleProperty
             {
              before(grammarAccess.getArrayAccess().getPropertiesPropertyParserRuleCall_2_0_0()); 
             pushFollow(FOLLOW_2);
@@ -7438,17 +7374,17 @@ public class InternalJSchemaParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Array__PropertiesAssignment_2_1_1"
-    // InternalJSchema.g:2408:1: rule__Array__PropertiesAssignment_2_1_1 : ( ruleProperty ) ;
+    // InternalJSchema.g:2381:1: rule__Array__PropertiesAssignment_2_1_1 : ( ruleProperty ) ;
     public final void rule__Array__PropertiesAssignment_2_1_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalJSchema.g:2412:1: ( ( ruleProperty ) )
-            // InternalJSchema.g:2413:2: ( ruleProperty )
+            // InternalJSchema.g:2385:1: ( ( ruleProperty ) )
+            // InternalJSchema.g:2386:2: ( ruleProperty )
             {
-            // InternalJSchema.g:2413:2: ( ruleProperty )
-            // InternalJSchema.g:2414:3: ruleProperty
+            // InternalJSchema.g:2386:2: ( ruleProperty )
+            // InternalJSchema.g:2387:3: ruleProperty
             {
              before(grammarAccess.getArrayAccess().getPropertiesPropertyParserRuleCall_2_1_1_0()); 
             pushFollow(FOLLOW_2);
@@ -7479,17 +7415,17 @@ public class InternalJSchemaParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Array__ArrayTypeAssignment_3"
-    // InternalJSchema.g:2423:1: rule__Array__ArrayTypeAssignment_3 : ( ruleArrayType ) ;
+    // InternalJSchema.g:2396:1: rule__Array__ArrayTypeAssignment_3 : ( ruleArrayType ) ;
     public final void rule__Array__ArrayTypeAssignment_3() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalJSchema.g:2427:1: ( ( ruleArrayType ) )
-            // InternalJSchema.g:2428:2: ( ruleArrayType )
+            // InternalJSchema.g:2400:1: ( ( ruleArrayType ) )
+            // InternalJSchema.g:2401:2: ( ruleArrayType )
             {
-            // InternalJSchema.g:2428:2: ( ruleArrayType )
-            // InternalJSchema.g:2429:3: ruleArrayType
+            // InternalJSchema.g:2401:2: ( ruleArrayType )
+            // InternalJSchema.g:2402:3: ruleArrayType
             {
              before(grammarAccess.getArrayAccess().getArrayTypeArrayTypeParserRuleCall_3_0()); 
             pushFollow(FOLLOW_2);
@@ -7537,10 +7473,9 @@ public class InternalJSchemaParser extends AbstractInternalContentAssistParser {
     public static final BitSet FOLLOW_12 = new BitSet(new long[]{0x0000002000000000L});
     public static final BitSet FOLLOW_13 = new BitSet(new long[]{0x0000070000000000L});
     public static final BitSet FOLLOW_14 = new BitSet(new long[]{0x0000005000000000L});
-    public static final BitSet FOLLOW_15 = new BitSet(new long[]{0x0000000000001000L});
-    public static final BitSet FOLLOW_16 = new BitSet(new long[]{0x00000000FFFF0000L});
-    public static final BitSet FOLLOW_17 = new BitSet(new long[]{0x0000080000000000L});
-    public static final BitSet FOLLOW_18 = new BitSet(new long[]{0x0000100000000000L});
-    public static final BitSet FOLLOW_19 = new BitSet(new long[]{0x000020800000F020L});
+    public static final BitSet FOLLOW_15 = new BitSet(new long[]{0x00000000FFFF0000L});
+    public static final BitSet FOLLOW_16 = new BitSet(new long[]{0x0000080000000000L});
+    public static final BitSet FOLLOW_17 = new BitSet(new long[]{0x0000100000000000L});
+    public static final BitSet FOLLOW_18 = new BitSet(new long[]{0x000020800000F020L});
 
 }

@@ -14,6 +14,7 @@ import org.eclipse.emf.ecore.EObject;
  * The following features are supported:
  * </p>
  * <ul>
+ *   <li>{@link org.xtext.example.mydsl.jSchema.PrimitiveTypes#getString <em>String</em>}</li>
  *   <li>{@link org.xtext.example.mydsl.jSchema.PrimitiveTypes#getArray <em>Array</em>}</li>
  *   <li>{@link org.xtext.example.mydsl.jSchema.PrimitiveTypes#getNumber <em>Number</em>}</li>
  * </ul>
@@ -24,6 +25,28 @@ import org.eclipse.emf.ecore.EObject;
  */
 public interface PrimitiveTypes extends EObject
 {
+  /**
+   * Returns the value of the '<em><b>String</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the value of the '<em>String</em>' attribute.
+   * @see #setString(String)
+   * @see org.xtext.example.mydsl.jSchema.JSchemaPackage#getPrimitiveTypes_String()
+   * @model
+   * @generated
+   */
+  String getString();
+
+  /**
+   * Sets the value of the '{@link org.xtext.example.mydsl.jSchema.PrimitiveTypes#getString <em>String</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @param value the new value of the '<em>String</em>' attribute.
+   * @see #getString()
+   * @generated
+   */
+  void setString(String value);
+
   /**
    * Returns the value of the '<em><b>Array</b></em>' containment reference.
    * <!-- begin-user-doc -->

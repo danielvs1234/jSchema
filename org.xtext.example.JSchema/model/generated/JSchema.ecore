@@ -27,6 +27,7 @@
         eType="#//PrimitiveProperties" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="PrimitiveTypes">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="string" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="array" eType="#//Array"
         containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="number" eType="#//Number"
@@ -40,9 +41,9 @@
         containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Property">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="type" eType="#//PrimitiveTypes"
+    <eStructuralFeatures xsi:type="ecore:EReference" name="propPrim" eType="#//PrimitiveObject"
         containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="object" eType="#//MainObject"
+    <eStructuralFeatures xsi:type="ecore:EReference" name="propObj" eType="#//MainObject"
         containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="PrimitiveProperties">
@@ -77,8 +78,5 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="properties" upperBound="-1"
         eType="#//Property" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="arrayType" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="STRING" eSuperTypes="#//PrimitiveTypes">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="string" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
 </ecore:EPackage>

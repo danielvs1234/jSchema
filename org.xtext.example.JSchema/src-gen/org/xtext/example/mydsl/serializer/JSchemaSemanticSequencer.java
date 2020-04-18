@@ -24,7 +24,6 @@ import org.xtext.example.mydsl.jSchema.PrimitiveObject;
 import org.xtext.example.mydsl.jSchema.PrimitiveProperties;
 import org.xtext.example.mydsl.jSchema.PrimitiveTypes;
 import org.xtext.example.mydsl.jSchema.Property;
-import org.xtext.example.mydsl.jSchema.STRING;
 import org.xtext.example.mydsl.jSchema.hasProperties;
 import org.xtext.example.mydsl.services.JSchemaGrammarAccess;
 
@@ -71,9 +70,6 @@ public class JSchemaSemanticSequencer extends AbstractDelegatingSemanticSequence
 				return; 
 			case JSchemaPackage.PROPERTY:
 				sequence_Property(context, (Property) semanticObject); 
-				return; 
-			case JSchemaPackage.STRING:
-				sequence_PrimitiveTypes(context, (STRING) semanticObject); 
 				return; 
 			case JSchemaPackage.HAS_PROPERTIES:
 				sequence_hasProperties(context, (hasProperties) semanticObject); 
@@ -192,7 +188,7 @@ public class JSchemaSemanticSequencer extends AbstractDelegatingSemanticSequence
 	 *     PrimitiveTypes returns PrimitiveTypes
 	 *
 	 * Constraint:
-	 *     (array=Array | number=Number)
+	 *     (string=STRING | array=Array | number=Number)
 	 */
 	protected void sequence_PrimitiveTypes(ISerializationContext context, PrimitiveTypes semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -201,28 +197,10 @@ public class JSchemaSemanticSequencer extends AbstractDelegatingSemanticSequence
 	
 	/**
 	 * Contexts:
-	 *     PrimitiveTypes returns STRING
-	 *
-	 * Constraint:
-	 *     string=STRING
-	 */
-	protected void sequence_PrimitiveTypes(ISerializationContext context, STRING semanticObject) {
-		if (errorAcceptor != null) {
-			if (transientValues.isValueTransient(semanticObject, JSchemaPackage.Literals.STRING__STRING) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, JSchemaPackage.Literals.STRING__STRING));
-		}
-		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
-		feeder.accept(grammarAccess.getPrimitiveTypesAccess().getStringSTRINGTerminalRuleCall_0_2_0(), semanticObject.getString());
-		feeder.finish();
-	}
-	
-	
-	/**
-	 * Contexts:
 	 *     Property returns Property
 	 *
 	 * Constraint:
-	 *     (type=PrimitiveTypes | object=MainObject)
+	 *     (propPrim=PrimitiveObject | propObj=MainObject)
 	 */
 	protected void sequence_Property(ISerializationContext context, Property semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);

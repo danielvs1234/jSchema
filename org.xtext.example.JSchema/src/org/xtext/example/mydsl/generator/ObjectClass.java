@@ -1,20 +1,32 @@
 package org.xtext.example.mydsl.generator;
 import java.util.ArrayList;
+
+import org.xtext.example.mydsl.jSchema.AbstractObject;
 import org.xtext.example.mydsl.jSchema.MainObject;
 import org.xtext.example.mydsl.jSchema.PrimitiveObject;
+import org.xtext.example.mydsl.jSchema.Property;
 
 public class ObjectClass{
 	String name;
 	ArrayList<MainObject> includedMainObjects;
 	ArrayList<PrimitiveObject> includedPrimitiveObjects;
-	boolean isRoot;
+	ArrayList<ObjectClass> hasMainObjectPropertiesList;
+	ArrayList<PrimitiveObjectClass> hasPrimtiveObjectPropertiesList;
 	
-	public ObjectClass(String name, boolean isRoot){
-		includedMainObjects = new ArrayList<MainObject>();
-		includedPrimitiveObjects = new ArrayList<PrimitiveObject>();
+	boolean isRoot;
+	MainObject mainObject;
+	
+	public ObjectClass(String name, boolean isRoot, MainObject obj){
+		includedMainObjects = new ArrayList<>();
+		includedPrimitiveObjects = new ArrayList<>();
+		hasMainObjectPropertiesList = new ArrayList<>();
+		hasPrimtiveObjectPropertiesList = new ArrayList<>();
+		
+		mainObject = obj;
 		this.name = name;
 		this.isRoot = isRoot;
 	}
+
 
 	public void addMainObject(MainObject obj) {
 		includedMainObjects.add(obj);
@@ -22,6 +34,14 @@ public class ObjectClass{
 	
 	public void addPrimitiveObject(PrimitiveObject primObj) {
 		includedPrimitiveObjects.add(primObj);
+	}
+	
+	public void addHasPrimObj(PrimitiveObjectClass primObj) {
+		hasPrimtiveObjectPropertiesList.add(primObj);
+	}
+	
+	public void addHasMainObj(ObjectClass mainObj) {
+		hasMainObjectPropertiesList.add(mainObj);
 	}
 	
 	public ArrayList<MainObject> getMainObjects() {
@@ -53,14 +73,40 @@ public class ObjectClass{
 		if (isRoot == true) {
 			string.append("\"$id\":\"" + this.name + ",\n");
 		} else {
-			string.append("\"" + this.name + "\":{");
+			string.append("\"" + this.name + "\":{\n");
+			string.append("\"$id\":\"" + this.name + ",\n");
 		}
-	
+		string.append( "\"type\":\"object\",\n");
 		
+		if(hasMainObjectPropertiesList.size() > 0) {
+			string.append("\"properties\":{\n");
+			for(ObjectClass property : hasMainObjectPropertiesList) {
+				string.append(property.getObjectJSchemaString());
+			}
+			
+		}
+		if (hasPrimtiveObjectPropertiesList.size () > 0) {
+			for(PrimitiveObjectClass primObject : hasPrimtiveObjectPropertiesList) {
+				string.append("\"properties\":{\n");
+				string.append("\"" + primObject
+			}
+			
+		}
 		
-		string.append( "\"type\":\"object\",\n"
-						+ "");
+		if(includedPrimitiveObjects.size() > 0 || includedMainObjects.size() > 0) {
+			string.append("\"properties\":{");
+		}
 		
+		//if(mainObj.)
+		
+		if(includedPrimitiveObjects.size() > 0) {
+			
+			for(PrimitiveObject primObj : includedPrimitiveObjects) {
+			//	string.append
+			}
+		}
+		
+		string.append("}");
 		return string.toString();
 	}
 

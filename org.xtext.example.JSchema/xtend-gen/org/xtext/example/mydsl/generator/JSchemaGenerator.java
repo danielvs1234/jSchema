@@ -7,7 +7,6 @@ import com.google.common.base.Objects;
 import com.google.common.collect.Iterables;
 import com.google.common.collect.Iterators;
 import java.util.ArrayList;
-import java.util.Iterator;
 import javax.inject.Inject;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
@@ -18,7 +17,10 @@ import org.eclipse.xtext.generator.IGeneratorContext;
 import org.eclipse.xtext.naming.IQualifiedNameProvider;
 import org.eclipse.xtext.xbase.lib.Extension;
 import org.eclipse.xtext.xbase.lib.IteratorExtensions;
-import org.xtext.example.mydsl.jSchema.Includes;
+import org.xtext.example.mydsl.generator.ObjectClass;
+import org.xtext.example.mydsl.generator.PrimitiveObjectClass;
+import org.xtext.example.mydsl.generator.PrimitiveType;
+import org.xtext.example.mydsl.jSchema.Array;
 import org.xtext.example.mydsl.jSchema.IsRoot;
 import org.xtext.example.mydsl.jSchema.MainObject;
 import org.xtext.example.mydsl.jSchema.Model;
@@ -40,23 +42,31 @@ public class JSchemaGenerator extends AbstractGenerator {
   
   private ArrayList<MainObject> mainObjectList;
   
+  private ArrayList<ObjectClass> compiledMainObjects;
+  
+  private ArrayList<PrimitiveObjectClass> compiledPrimitiveObjects;
+  
   @Override
   public void doGenerate(final Resource resource, final IFileSystemAccess2 fsa, final IGeneratorContext context) {
     ArrayList<PrimitiveObject> _arrayList = new ArrayList<PrimitiveObject>();
     this.primitiveObjectList = _arrayList;
     ArrayList<MainObject> _arrayList_1 = new ArrayList<MainObject>();
     this.mainObjectList = _arrayList_1;
+    ArrayList<PrimitiveObjectClass> _arrayList_2 = new ArrayList<PrimitiveObjectClass>();
+    this.compiledPrimitiveObjects = _arrayList_2;
+    ArrayList<ObjectClass> _arrayList_3 = new ArrayList<ObjectClass>();
+    this.compiledMainObjects = _arrayList_3;
     final Model abstractObjects = Iterators.<Model>filter(resource.getAllContents(), Model.class).next();
-    final Iterator<PrimitiveObject> primitiveObjects = Iterators.<PrimitiveObject>filter(resource.getAllContents(), PrimitiveObject.class);
+    int _size = this.primitiveObjectList.size();
+    String _plus = ("Amount of primitive objects found: " + Integer.valueOf(_size));
+    System.out.println(_plus);
     Iterable<PrimitiveObject> _filter = Iterables.<PrimitiveObject>filter(IteratorExtensions.<EObject>toIterable(resource.getAllContents()), PrimitiveObject.class);
     for (final PrimitiveObject primObj : _filter) {
       this.compilePrimitiveObject(primObj);
     }
-    System.out.println(this.primitiveObjectList.size());
     Iterable<MainObject> _filter_1 = Iterables.<MainObject>filter(IteratorExtensions.<EObject>toIterable(resource.getAllContents()), MainObject.class);
     for (final MainObject obj : _filter_1) {
       {
-        this.mainObjectList.add(obj);
         String bool = "false";
         String rootBool = "false";
         boolean _checkIfObjectContainsOtherObjects = this.checkIfObjectContainsOtherObjects(obj);
@@ -70,45 +80,58 @@ public class JSchemaGenerator extends AbstractGenerator {
           rootBool = "true";
         }
         String _string = obj.getObjectName().toString();
-        String _plus = ((("Contains other objects: " + bool) + "  ") + _string);
-        String _plus_1 = (_plus + " PropertyListSize= ");
-        int _size = this.getProperties(obj).size();
-        String _plus_2 = (_plus_1 + Integer.valueOf(_size));
-        String _plus_3 = (_plus_2 + " isRoot: ");
-        String _plus_4 = (_plus_3 + rootBool);
-        System.out.println(_plus_4);
+        String _plus_1 = ((("Contains other objects: " + bool) + "  ") + _string);
+        String _plus_2 = (_plus_1 + " PropertyListSize= ");
+        int _size_1 = this.getProperties(obj).size();
+        String _plus_3 = (_plus_2 + Integer.valueOf(_size_1));
+        String _plus_4 = (_plus_3 + " isRoot: ");
+        String _plus_5 = (_plus_4 + rootBool);
+        System.out.println(_plus_5);
+        this.compiledMainObjects.add(this.compileMainObject(obj));
       }
-    }
-    for (final MainObject obj_1 : this.mainObjectList) {
-      this.compileObject(obj_1);
     }
   }
   
-  public void compileObject(final MainObject obj) {
-    boolean isRoot = false;
-    IsRoot _root = obj.getRoot();
-    boolean _tripleNotEquals = (_root != null);
-    if (_tripleNotEquals) {
-      boolean _checkIfObjectContainsOtherObjects = this.checkIfObjectContainsOtherObjects(obj);
-      boolean _equals = (_checkIfObjectContainsOtherObjects == true);
-      if (_equals) {
-        final ArrayList<String> includeList = new ArrayList<String>();
-        EList<String> _objectID = obj.getIncludeObjects().getObjectID();
-        for (final String str : _objectID) {
-          includeList.add(str);
-        }
-      }
-    }
+  public ObjectClass compileMainObject(final MainObject obj) {
+    throw new Error("Unresolved compilation problems:"
+      + "\nType mismatch: cannot convert from PrimitiveObject to PrimitiveObjectClass");
   }
   
   public boolean compilePrimitiveObject(final PrimitiveObject obj) {
-    return this.primitiveObjectList.add(obj);
+    boolean _xblockexpression = false;
+    {
+      PrimitiveObjectClass temp = null;
+      String _string = obj.getType().getString();
+      boolean _tripleNotEquals = (_string != null);
+      if (_tripleNotEquals) {
+        String _string_1 = obj.getType().getString();
+        String _string_2 = obj.getType().getString();
+        PrimitiveObjectClass _primitiveObjectClass = new PrimitiveObjectClass(_string_1, obj, PrimitiveType.STRING, _string_2);
+        temp = _primitiveObjectClass;
+      } else {
+        Array _array = obj.getType().getArray();
+        boolean _tripleNotEquals_1 = (_array != null);
+        if (_tripleNotEquals_1) {
+          String _arrayName = obj.getType().getArray().getArrayName();
+          PrimitiveObjectClass _primitiveObjectClass_1 = new PrimitiveObjectClass(_arrayName, obj, PrimitiveType.ARRAY);
+          temp = _primitiveObjectClass_1;
+        } else {
+          org.xtext.example.mydsl.jSchema.Number _number = obj.getType().getNumber();
+          boolean _tripleNotEquals_2 = (_number != null);
+          if (_tripleNotEquals_2) {
+            String _string_3 = obj.getType().getNumber().toString();
+            PrimitiveObjectClass _primitiveObjectClass_2 = new PrimitiveObjectClass("number", obj, PrimitiveType.NUMBER, _string_3);
+            temp = _primitiveObjectClass_2;
+          }
+        }
+      }
+      _xblockexpression = this.primitiveObjectList.add(obj);
+    }
+    return _xblockexpression;
   }
   
   public boolean checkIfObjectContainsOtherObjects(final MainObject obj) {
-    Includes _includeObjects = obj.getIncludeObjects();
-    boolean _tripleNotEquals = (_includeObjects != null);
-    if (_tripleNotEquals) {
+    if (((obj.getIncludeObjects() != null) || (obj.getProperties() != null))) {
       return true;
     } else {
       return false;

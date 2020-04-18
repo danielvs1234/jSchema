@@ -1,2 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<qualifiedTypeNameHistroy/>
+<qualifiedTypeNameHistroy>
+    <fullyQualifiedTypeName name="org.xtext.example.mydsl.jSchema.hasProperties"/>
+    <fullyQualifiedTypeName name="org.xtext.example.mydsl.jSchema.AbstractObject"/>
+    <fullyQualifiedTypeName name="org.xtext.example.mydsl.jSchema.Property"/>
+    <fullyQualifiedTypeName name="org.xtext.example.mydsl.jSchema.PrimitiveObject"/>
+    <fullyQualifiedTypeName name="org.xtext.example.mydsl.jSchema.PrimitiveProperties"/>
+    <fullyQualifiedTypeName name="java.lang.StringBuilder"/>
+    <fullyQualifiedTypeName name="org.xtext.example.mydsl.generator.PrimitiveType"/>
+</qualifiedTypeNameHistroy>

@@ -132,15 +132,6 @@ public interface JSchemaFactory extends EFactory
   Array createArray();
 
   /**
-   * Returns a new object of class '<em>STRING</em>'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return a new object of class '<em>STRING</em>'.
-   * @generated
-   */
-  STRING createSTRING();
-
-  /**
    * Returns the package supported by this factory.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->

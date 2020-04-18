@@ -34,7 +34,7 @@ PrimitiveObject:
 //;
 
 PrimitiveTypes:
-	({STRING} 'String' string=STRING) | array=Array | 'num' number=Number
+	'String' string=STRING | array=Array | 'num' (number=Number)?
 ;
 
 IsRoot:
@@ -46,7 +46,7 @@ hasProperties:
 ;
 
 Property:
- 	type=PrimitiveTypes | object=MainObject
+ 	propPrim=PrimitiveObject | propObj=MainObject
 ;
 
 PrimitiveProperties:

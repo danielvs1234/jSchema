@@ -14,7 +14,7 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
 import org.xtext.example.mydsl.jSchema.JSchemaPackage;
 import org.xtext.example.mydsl.jSchema.MainObject;
-import org.xtext.example.mydsl.jSchema.PrimitiveTypes;
+import org.xtext.example.mydsl.jSchema.PrimitiveObject;
 import org.xtext.example.mydsl.jSchema.Property;
 
 /**
@@ -25,8 +25,8 @@ import org.xtext.example.mydsl.jSchema.Property;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link org.xtext.example.mydsl.jSchema.impl.PropertyImpl#getType <em>Type</em>}</li>
- *   <li>{@link org.xtext.example.mydsl.jSchema.impl.PropertyImpl#getObject <em>Object</em>}</li>
+ *   <li>{@link org.xtext.example.mydsl.jSchema.impl.PropertyImpl#getPropPrim <em>Prop Prim</em>}</li>
+ *   <li>{@link org.xtext.example.mydsl.jSchema.impl.PropertyImpl#getPropObj <em>Prop Obj</em>}</li>
  * </ul>
  *
  * @generated
@@ -34,24 +34,24 @@ import org.xtext.example.mydsl.jSchema.Property;
 public class PropertyImpl extends MinimalEObjectImpl.Container implements Property
 {
   /**
-   * The cached value of the '{@link #getType() <em>Type</em>}' containment reference.
+   * The cached value of the '{@link #getPropPrim() <em>Prop Prim</em>}' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getType()
+   * @see #getPropPrim()
    * @generated
    * @ordered
    */
-  protected PrimitiveTypes type;
+  protected PrimitiveObject propPrim;
 
   /**
-   * The cached value of the '{@link #getObject() <em>Object</em>}' containment reference.
+   * The cached value of the '{@link #getPropObj() <em>Prop Obj</em>}' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getObject()
+   * @see #getPropObj()
    * @generated
    * @ordered
    */
-  protected MainObject object;
+  protected MainObject propObj;
 
   /**
    * <!-- begin-user-doc -->
@@ -80,9 +80,9 @@ public class PropertyImpl extends MinimalEObjectImpl.Container implements Proper
    * @generated
    */
   @Override
-  public PrimitiveTypes getType()
+  public PrimitiveObject getPropPrim()
   {
-    return type;
+    return propPrim;
   }
 
   /**
@@ -90,13 +90,13 @@ public class PropertyImpl extends MinimalEObjectImpl.Container implements Proper
    * <!-- end-user-doc -->
    * @generated
    */
-  public NotificationChain basicSetType(PrimitiveTypes newType, NotificationChain msgs)
+  public NotificationChain basicSetPropPrim(PrimitiveObject newPropPrim, NotificationChain msgs)
   {
-    PrimitiveTypes oldType = type;
-    type = newType;
+    PrimitiveObject oldPropPrim = propPrim;
+    propPrim = newPropPrim;
     if (eNotificationRequired())
     {
-      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, JSchemaPackage.PROPERTY__TYPE, oldType, newType);
+      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, JSchemaPackage.PROPERTY__PROP_PRIM, oldPropPrim, newPropPrim);
       if (msgs == null) msgs = notification; else msgs.add(notification);
     }
     return msgs;
@@ -108,20 +108,20 @@ public class PropertyImpl extends MinimalEObjectImpl.Container implements Proper
    * @generated
    */
   @Override
-  public void setType(PrimitiveTypes newType)
+  public void setPropPrim(PrimitiveObject newPropPrim)
   {
-    if (newType != type)
+    if (newPropPrim != propPrim)
     {
       NotificationChain msgs = null;
-      if (type != null)
-        msgs = ((InternalEObject)type).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - JSchemaPackage.PROPERTY__TYPE, null, msgs);
-      if (newType != null)
-        msgs = ((InternalEObject)newType).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - JSchemaPackage.PROPERTY__TYPE, null, msgs);
-      msgs = basicSetType(newType, msgs);
+      if (propPrim != null)
+        msgs = ((InternalEObject)propPrim).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - JSchemaPackage.PROPERTY__PROP_PRIM, null, msgs);
+      if (newPropPrim != null)
+        msgs = ((InternalEObject)newPropPrim).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - JSchemaPackage.PROPERTY__PROP_PRIM, null, msgs);
+      msgs = basicSetPropPrim(newPropPrim, msgs);
       if (msgs != null) msgs.dispatch();
     }
     else if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, JSchemaPackage.PROPERTY__TYPE, newType, newType));
+      eNotify(new ENotificationImpl(this, Notification.SET, JSchemaPackage.PROPERTY__PROP_PRIM, newPropPrim, newPropPrim));
   }
 
   /**
@@ -130,9 +130,9 @@ public class PropertyImpl extends MinimalEObjectImpl.Container implements Proper
    * @generated
    */
   @Override
-  public MainObject getObject()
+  public MainObject getPropObj()
   {
-    return object;
+    return propObj;
   }
 
   /**
@@ -140,13 +140,13 @@ public class PropertyImpl extends MinimalEObjectImpl.Container implements Proper
    * <!-- end-user-doc -->
    * @generated
    */
-  public NotificationChain basicSetObject(MainObject newObject, NotificationChain msgs)
+  public NotificationChain basicSetPropObj(MainObject newPropObj, NotificationChain msgs)
   {
-    MainObject oldObject = object;
-    object = newObject;
+    MainObject oldPropObj = propObj;
+    propObj = newPropObj;
     if (eNotificationRequired())
     {
-      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, JSchemaPackage.PROPERTY__OBJECT, oldObject, newObject);
+      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, JSchemaPackage.PROPERTY__PROP_OBJ, oldPropObj, newPropObj);
       if (msgs == null) msgs = notification; else msgs.add(notification);
     }
     return msgs;
@@ -158,20 +158,20 @@ public class PropertyImpl extends MinimalEObjectImpl.Container implements Proper
    * @generated
    */
   @Override
-  public void setObject(MainObject newObject)
+  public void setPropObj(MainObject newPropObj)
   {
-    if (newObject != object)
+    if (newPropObj != propObj)
     {
       NotificationChain msgs = null;
-      if (object != null)
-        msgs = ((InternalEObject)object).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - JSchemaPackage.PROPERTY__OBJECT, null, msgs);
-      if (newObject != null)
-        msgs = ((InternalEObject)newObject).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - JSchemaPackage.PROPERTY__OBJECT, null, msgs);
-      msgs = basicSetObject(newObject, msgs);
+      if (propObj != null)
+        msgs = ((InternalEObject)propObj).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - JSchemaPackage.PROPERTY__PROP_OBJ, null, msgs);
+      if (newPropObj != null)
+        msgs = ((InternalEObject)newPropObj).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - JSchemaPackage.PROPERTY__PROP_OBJ, null, msgs);
+      msgs = basicSetPropObj(newPropObj, msgs);
       if (msgs != null) msgs.dispatch();
     }
     else if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, JSchemaPackage.PROPERTY__OBJECT, newObject, newObject));
+      eNotify(new ENotificationImpl(this, Notification.SET, JSchemaPackage.PROPERTY__PROP_OBJ, newPropObj, newPropObj));
   }
 
   /**
@@ -184,10 +184,10 @@ public class PropertyImpl extends MinimalEObjectImpl.Container implements Proper
   {
     switch (featureID)
     {
-      case JSchemaPackage.PROPERTY__TYPE:
-        return basicSetType(null, msgs);
-      case JSchemaPackage.PROPERTY__OBJECT:
-        return basicSetObject(null, msgs);
+      case JSchemaPackage.PROPERTY__PROP_PRIM:
+        return basicSetPropPrim(null, msgs);
+      case JSchemaPackage.PROPERTY__PROP_OBJ:
+        return basicSetPropObj(null, msgs);
     }
     return super.eInverseRemove(otherEnd, featureID, msgs);
   }
@@ -202,10 +202,10 @@ public class PropertyImpl extends MinimalEObjectImpl.Container implements Proper
   {
     switch (featureID)
     {
-      case JSchemaPackage.PROPERTY__TYPE:
-        return getType();
-      case JSchemaPackage.PROPERTY__OBJECT:
-        return getObject();
+      case JSchemaPackage.PROPERTY__PROP_PRIM:
+        return getPropPrim();
+      case JSchemaPackage.PROPERTY__PROP_OBJ:
+        return getPropObj();
     }
     return super.eGet(featureID, resolve, coreType);
   }
@@ -220,11 +220,11 @@ public class PropertyImpl extends MinimalEObjectImpl.Container implements Proper
   {
     switch (featureID)
     {
-      case JSchemaPackage.PROPERTY__TYPE:
-        setType((PrimitiveTypes)newValue);
+      case JSchemaPackage.PROPERTY__PROP_PRIM:
+        setPropPrim((PrimitiveObject)newValue);
         return;
-      case JSchemaPackage.PROPERTY__OBJECT:
-        setObject((MainObject)newValue);
+      case JSchemaPackage.PROPERTY__PROP_OBJ:
+        setPropObj((MainObject)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -240,11 +240,11 @@ public class PropertyImpl extends MinimalEObjectImpl.Container implements Proper
   {
     switch (featureID)
     {
-      case JSchemaPackage.PROPERTY__TYPE:
-        setType((PrimitiveTypes)null);
+      case JSchemaPackage.PROPERTY__PROP_PRIM:
+        setPropPrim((PrimitiveObject)null);
         return;
-      case JSchemaPackage.PROPERTY__OBJECT:
-        setObject((MainObject)null);
+      case JSchemaPackage.PROPERTY__PROP_OBJ:
+        setPropObj((MainObject)null);
         return;
     }
     super.eUnset(featureID);
@@ -260,10 +260,10 @@ public class PropertyImpl extends MinimalEObjectImpl.Container implements Proper
   {
     switch (featureID)
     {
-      case JSchemaPackage.PROPERTY__TYPE:
-        return type != null;
-      case JSchemaPackage.PROPERTY__OBJECT:
-        return object != null;
+      case JSchemaPackage.PROPERTY__PROP_PRIM:
+        return propPrim != null;
+      case JSchemaPackage.PROPERTY__PROP_OBJ:
+        return propObj != null;
     }
     return super.eIsSet(featureID);
   }

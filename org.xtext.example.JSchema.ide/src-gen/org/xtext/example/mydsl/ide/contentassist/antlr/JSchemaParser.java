@@ -68,13 +68,13 @@ public class JSchemaParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getPrimitiveObjectAccess().getTypeAssignment_0(), "rule__PrimitiveObject__TypeAssignment_0");
 			builder.put(grammarAccess.getPrimitiveObjectAccess().getPrimitivePropertiesAssignment_1_1(), "rule__PrimitiveObject__PrimitivePropertiesAssignment_1_1");
 			builder.put(grammarAccess.getPrimitiveObjectAccess().getPrimitivePropertiesAssignment_1_2_1(), "rule__PrimitiveObject__PrimitivePropertiesAssignment_1_2_1");
-			builder.put(grammarAccess.getPrimitiveTypesAccess().getStringAssignment_0_2(), "rule__PrimitiveTypes__StringAssignment_0_2");
+			builder.put(grammarAccess.getPrimitiveTypesAccess().getStringAssignment_0_1(), "rule__PrimitiveTypes__StringAssignment_0_1");
 			builder.put(grammarAccess.getPrimitiveTypesAccess().getArrayAssignment_1(), "rule__PrimitiveTypes__ArrayAssignment_1");
 			builder.put(grammarAccess.getPrimitiveTypesAccess().getNumberAssignment_2_1(), "rule__PrimitiveTypes__NumberAssignment_2_1");
 			builder.put(grammarAccess.getIsRootAccess().getStringAssignment(), "rule__IsRoot__StringAssignment");
 			builder.put(grammarAccess.getHasPropertiesAccess().getPropertiesAssignment(), "rule__HasProperties__PropertiesAssignment");
-			builder.put(grammarAccess.getPropertyAccess().getTypeAssignment_0(), "rule__Property__TypeAssignment_0");
-			builder.put(grammarAccess.getPropertyAccess().getObjectAssignment_1(), "rule__Property__ObjectAssignment_1");
+			builder.put(grammarAccess.getPropertyAccess().getPropPrimAssignment_0(), "rule__Property__PropPrimAssignment_0");
+			builder.put(grammarAccess.getPropertyAccess().getPropObjAssignment_1(), "rule__Property__PropObjAssignment_1");
 			builder.put(grammarAccess.getPrimitivePropertiesAccess().getStringLenghtAssignment_0_1(), "rule__PrimitiveProperties__StringLenghtAssignment_0_1");
 			builder.put(grammarAccess.getPrimitivePropertiesAccess().getPatternStringAssignment_1_1(), "rule__PrimitiveProperties__PatternStringAssignment_1_1");
 			builder.put(grammarAccess.getPrimitivePropertiesAccess().getStringFormatAssignment_2_1(), "rule__PrimitiveProperties__StringFormatAssignment_2_1");

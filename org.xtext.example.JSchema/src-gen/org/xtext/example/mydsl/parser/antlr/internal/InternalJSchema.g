@@ -438,22 +438,15 @@ rulePrimitiveTypes returns [EObject current=null]
 }:
 	(
 		(
-			(
-				{
-					$current = forceCreateModelElement(
-						grammarAccess.getPrimitiveTypesAccess().getSTRINGAction_0_0(),
-						$current);
-				}
-			)
-			otherlv_1='String'
+			otherlv_0='String'
 			{
-				newLeafNode(otherlv_1, grammarAccess.getPrimitiveTypesAccess().getStringKeyword_0_1());
+				newLeafNode(otherlv_0, grammarAccess.getPrimitiveTypesAccess().getStringKeyword_0_0());
 			}
 			(
 				(
-					lv_string_2_0=RULE_STRING
+					lv_string_1_0=RULE_STRING
 					{
-						newLeafNode(lv_string_2_0, grammarAccess.getPrimitiveTypesAccess().getStringSTRINGTerminalRuleCall_0_2_0());
+						newLeafNode(lv_string_1_0, grammarAccess.getPrimitiveTypesAccess().getStringSTRINGTerminalRuleCall_0_1_0());
 					}
 					{
 						if ($current==null) {
@@ -462,7 +455,7 @@ rulePrimitiveTypes returns [EObject current=null]
 						setWithLastConsumed(
 							$current,
 							"string",
-							lv_string_2_0,
+							lv_string_1_0,
 							"org.eclipse.xtext.common.Terminals.STRING");
 					}
 				)
@@ -474,7 +467,7 @@ rulePrimitiveTypes returns [EObject current=null]
 				{
 					newCompositeNode(grammarAccess.getPrimitiveTypesAccess().getArrayArrayParserRuleCall_1_0());
 				}
-				lv_array_3_0=ruleArray
+				lv_array_2_0=ruleArray
 				{
 					if ($current==null) {
 						$current = createModelElementForParent(grammarAccess.getPrimitiveTypesRule());
@@ -482,7 +475,7 @@ rulePrimitiveTypes returns [EObject current=null]
 					set(
 						$current,
 						"array",
-						lv_array_3_0,
+						lv_array_2_0,
 						"org.xtext.example.mydsl.JSchema.Array");
 					afterParserOrEnumRuleCall();
 				}
@@ -490,16 +483,16 @@ rulePrimitiveTypes returns [EObject current=null]
 		)
 		    |
 		(
-			otherlv_4='num'
+			otherlv_3='num'
 			{
-				newLeafNode(otherlv_4, grammarAccess.getPrimitiveTypesAccess().getNumKeyword_2_0());
+				newLeafNode(otherlv_3, grammarAccess.getPrimitiveTypesAccess().getNumKeyword_2_0());
 			}
 			(
 				(
 					{
 						newCompositeNode(grammarAccess.getPrimitiveTypesAccess().getNumberNumberParserRuleCall_2_1_0());
 					}
-					lv_number_5_0=ruleNumber
+					lv_number_4_0=ruleNumber
 					{
 						if ($current==null) {
 							$current = createModelElementForParent(grammarAccess.getPrimitiveTypesRule());
@@ -507,12 +500,12 @@ rulePrimitiveTypes returns [EObject current=null]
 						set(
 							$current,
 							"number",
-							lv_number_5_0,
+							lv_number_4_0,
 							"org.xtext.example.mydsl.JSchema.Number");
 						afterParserOrEnumRuleCall();
 					}
 				)
-			)
+			)?
 		)
 	)
 ;
@@ -603,18 +596,18 @@ ruleProperty returns [EObject current=null]
 		(
 			(
 				{
-					newCompositeNode(grammarAccess.getPropertyAccess().getTypePrimitiveTypesParserRuleCall_0_0());
+					newCompositeNode(grammarAccess.getPropertyAccess().getPropPrimPrimitiveObjectParserRuleCall_0_0());
 				}
-				lv_type_0_0=rulePrimitiveTypes
+				lv_propPrim_0_0=rulePrimitiveObject
 				{
 					if ($current==null) {
 						$current = createModelElementForParent(grammarAccess.getPropertyRule());
 					}
 					set(
 						$current,
-						"type",
-						lv_type_0_0,
-						"org.xtext.example.mydsl.JSchema.PrimitiveTypes");
+						"propPrim",
+						lv_propPrim_0_0,
+						"org.xtext.example.mydsl.JSchema.PrimitiveObject");
 					afterParserOrEnumRuleCall();
 				}
 			)
@@ -623,17 +616,17 @@ ruleProperty returns [EObject current=null]
 		(
 			(
 				{
-					newCompositeNode(grammarAccess.getPropertyAccess().getObjectMainObjectParserRuleCall_1_0());
+					newCompositeNode(grammarAccess.getPropertyAccess().getPropObjMainObjectParserRuleCall_1_0());
 				}
-				lv_object_1_0=ruleMainObject
+				lv_propObj_1_0=ruleMainObject
 				{
 					if ($current==null) {
 						$current = createModelElementForParent(grammarAccess.getPropertyRule());
 					}
 					set(
 						$current,
-						"object",
-						lv_object_1_0,
+						"propObj",
+						lv_propObj_1_0,
 						"org.xtext.example.mydsl.JSchema.MainObject");
 					afterParserOrEnumRuleCall();
 				}

@@ -19,7 +19,6 @@ import org.xtext.example.mydsl.jSchema.PrimitiveObject;
 import org.xtext.example.mydsl.jSchema.PrimitiveProperties;
 import org.xtext.example.mydsl.jSchema.PrimitiveTypes;
 import org.xtext.example.mydsl.jSchema.Property;
-import org.xtext.example.mydsl.jSchema.STRING;
 import org.xtext.example.mydsl.jSchema.hasProperties;
 
 /**
@@ -168,14 +167,6 @@ public class JSchemaSwitch<T> extends Switch<T>
       {
         Array array = (Array)theEObject;
         T result = caseArray(array);
-        if (result == null) result = defaultCase(theEObject);
-        return result;
-      }
-      case JSchemaPackage.STRING:
-      {
-        STRING string = (STRING)theEObject;
-        T result = caseSTRING(string);
-        if (result == null) result = casePrimitiveTypes(string);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -371,22 +362,6 @@ public class JSchemaSwitch<T> extends Switch<T>
    * @generated
    */
   public T caseArray(Array object)
-  {
-    return null;
-  }
-
-  /**
-   * Returns the result of interpreting the object as an instance of '<em>STRING</em>'.
-   * <!-- begin-user-doc -->
-   * This implementation returns null;
-   * returning a non-null result will terminate the switch.
-   * <!-- end-user-doc -->
-   * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>STRING</em>'.
-   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-   * @generated
-   */
-  public T caseSTRING(STRING object)
   {
     return null;
   }
