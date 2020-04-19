@@ -7,4 +7,7 @@
     <fullyQualifiedTypeName name="org.xtext.example.mydsl.jSchema.PrimitiveProperties"/>
     <fullyQualifiedTypeName name="java.lang.StringBuilder"/>
     <fullyQualifiedTypeName name="org.xtext.example.mydsl.generator.PrimitiveType"/>
+    <fullyQualifiedTypeName name="java.util.ArrayList"/>
+    <fullyQualifiedTypeName name="org.eclipse.emf.ecore.EObject"/>
+    <fullyQualifiedTypeName name="java.lang.String"/>
 </qualifiedTypeNameHistroy>

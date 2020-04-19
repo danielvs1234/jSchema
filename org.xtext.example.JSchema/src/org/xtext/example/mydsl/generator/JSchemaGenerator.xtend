@@ -63,7 +63,9 @@ class JSchemaGenerator extends AbstractGenerator {
 			
 			for (ObjectClass compiledObject : compiledMainObjects){
 			if(compiledObject.isRoot == true){
+				System.out.println("{")
 				System.out.println(compiledObject.objectJSchemaString);
+				System.out.println("}")
 				}
 			}
 				
@@ -133,11 +135,21 @@ class JSchemaGenerator extends AbstractGenerator {
 		var PrimitiveObjectClass temp;
 		if(obj.type.string !== null){
 			temp = new PrimitiveObjectClass(obj.type.string, obj, PrimitiveType.STRING, obj.type.string);
-		} else if(obj.type.array !== null){
+		} 
+		
+		else if(obj.type.array !== null){
 			val ArrayList<Object> arrayContent = new ArrayList<Object>();
-			var String arrayType = null;
+			var ArrayType arrayType = null;
 			if(obj.type.array.arrayType !== null){
-				arrayType = obj.type.array.arrayType
+				if(ArrayType.DOUBLE.toString == obj.type.array.arrayType){
+					arrayType = ArrayType.DOUBLE;
+				}else if(ArrayType.FLOAT.toString == obj.type.array.arrayType){
+					arrayType = ArrayType.FLOAT;
+				}else if(ArrayType.INT.toString == obj.type.array.arrayType){
+					arrayType = ArrayType.INT;
+				}else if(ArrayType.STRING.toString == obj.type.array.arrayType){
+					arrayType = ArrayType.STRING;
+				}	
 			}
 			if(obj.type.array.properties.size() > 0){
 				for(Property p : obj.type.array.properties){
@@ -148,10 +160,23 @@ class JSchemaGenerator extends AbstractGenerator {
 					}
 				}
 			}
-			//for(obj.type.array.properties)
 			temp = new PrimitiveObjectClass(obj.type.array.arrayName.toString(), obj, PrimitiveType.ARRAY, arrayType, arrayContent);
-		} else if (obj.type.number !== null){
-			temp = new PrimitiveObjectClass("number", obj, PrimitiveType.NUMBER, obj.type.number.toString());
+		} 
+		
+		else if (obj.type.number !== null){
+			var float number;
+			var float firstNumber;
+			var float decimal;
+			var String numberString;
+		if(obj.type.number.decimal <= 0){
+			number = obj.type.number.number
+			numberString = "" + number
+			}else{
+				firstNumber = (obj.type.number.number as float)
+				decimal = (obj.type.number.decimal as float)
+				numberString = firstNumber + "." + decimal
+			}
+			temp = new PrimitiveObjectClass("number", obj, PrimitiveType.NUMBER, numberString);
 		}
 		return temp;
 	}

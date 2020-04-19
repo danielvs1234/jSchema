@@ -34,7 +34,8 @@ public class PrimitiveObjectClass {
 		this.name = name;
 		if(primType.equals(PrimitiveType.NUMBER)) {
 			this.valNumber = optValue;
-		} else if(primType.equals(PrimitiveType.STRING)) {
+		}
+		if(primType.equals(PrimitiveType.STRING)) {
 			this.valString = optValue;
 		}
 			
@@ -117,12 +118,13 @@ public class PrimitiveObjectClass {
 		
 		else if(type.equals(PrimitiveType.NUMBER)) {
 			if(valNumber != null) {
+				string.append("{\n");
 				string.append("\"type\":\"number\",\n");
 				string.append("\"value\":\"" + valNumber + "\"\n");
 			} else {
 				string.append("\"type\":\"number\"\n");
 			}
-			string.append("\n}");
+			string.append("}");
 		}
 		
 		else if(type.equals(PrimitiveType.ARRAY)) {
@@ -151,7 +153,7 @@ public class PrimitiveObjectClass {
 						} else if (e instanceof PrimitiveObjectClass) {
 							string.append(((PrimitiveObjectClass) e).getPrimitiveObjectString());
 						}
-						if(arrayContent.get(i+1) != null) {
+						if(i+1 <= arrayContent.size()) {
 							string.append(",\n");
 						} else {
 							string.append("\n");

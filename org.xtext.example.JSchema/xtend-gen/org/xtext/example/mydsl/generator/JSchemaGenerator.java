@@ -17,13 +17,17 @@ import org.eclipse.xtext.generator.IGeneratorContext;
 import org.eclipse.xtext.naming.IQualifiedNameProvider;
 import org.eclipse.xtext.xbase.lib.Extension;
 import org.eclipse.xtext.xbase.lib.IteratorExtensions;
+import org.xtext.example.mydsl.generator.ArrayType;
 import org.xtext.example.mydsl.generator.ObjectClass;
 import org.xtext.example.mydsl.generator.PrimitiveObjectClass;
+import org.xtext.example.mydsl.generator.PrimitiveType;
+import org.xtext.example.mydsl.jSchema.Array;
 import org.xtext.example.mydsl.jSchema.Includes;
 import org.xtext.example.mydsl.jSchema.IsRoot;
 import org.xtext.example.mydsl.jSchema.MainObject;
 import org.xtext.example.mydsl.jSchema.Model;
 import org.xtext.example.mydsl.jSchema.PrimitiveObject;
+import org.xtext.example.mydsl.jSchema.Property;
 import org.xtext.example.mydsl.jSchema.hasProperties;
 
 /**
@@ -91,7 +95,9 @@ public class JSchemaGenerator extends AbstractGenerator {
     }
     for (final ObjectClass compiledObject : this.compiledMainObjects) {
       if ((compiledObject.isRoot == true)) {
+        System.out.println("{");
         System.out.println(compiledObject.getObjectJSchemaString());
+        System.out.println("}");
       }
     }
   }
@@ -158,8 +164,100 @@ public class JSchemaGenerator extends AbstractGenerator {
   }
   
   public PrimitiveObjectClass compilePrimitiveObject(final PrimitiveObject obj) {
-    throw new Error("Unresolved compilation problems:"
-      + "\nType mismatch: cannot convert from ArrayList<Object> to PrimitiveProperties");
+    PrimitiveObjectClass temp = null;
+    String _string = obj.getType().getString();
+    boolean _tripleNotEquals = (_string != null);
+    if (_tripleNotEquals) {
+      String _string_1 = obj.getType().getString();
+      String _string_2 = obj.getType().getString();
+      PrimitiveObjectClass _primitiveObjectClass = new PrimitiveObjectClass(_string_1, obj, PrimitiveType.STRING, _string_2);
+      temp = _primitiveObjectClass;
+    } else {
+      Array _array = obj.getType().getArray();
+      boolean _tripleNotEquals_1 = (_array != null);
+      if (_tripleNotEquals_1) {
+        final ArrayList<Object> arrayContent = new ArrayList<Object>();
+        ArrayType arrayType = null;
+        String _arrayType = obj.getType().getArray().getArrayType();
+        boolean _tripleNotEquals_2 = (_arrayType != null);
+        if (_tripleNotEquals_2) {
+          String _string_3 = ArrayType.DOUBLE.toString();
+          String _arrayType_1 = obj.getType().getArray().getArrayType();
+          boolean _equals = Objects.equal(_string_3, _arrayType_1);
+          if (_equals) {
+            arrayType = ArrayType.DOUBLE;
+          } else {
+            String _string_4 = ArrayType.FLOAT.toString();
+            String _arrayType_2 = obj.getType().getArray().getArrayType();
+            boolean _equals_1 = Objects.equal(_string_4, _arrayType_2);
+            if (_equals_1) {
+              arrayType = ArrayType.FLOAT;
+            } else {
+              String _string_5 = ArrayType.INT.toString();
+              String _arrayType_3 = obj.getType().getArray().getArrayType();
+              boolean _equals_2 = Objects.equal(_string_5, _arrayType_3);
+              if (_equals_2) {
+                arrayType = ArrayType.INT;
+              } else {
+                String _string_6 = ArrayType.STRING.toString();
+                String _arrayType_4 = obj.getType().getArray().getArrayType();
+                boolean _equals_3 = Objects.equal(_string_6, _arrayType_4);
+                if (_equals_3) {
+                  arrayType = ArrayType.STRING;
+                }
+              }
+            }
+          }
+        }
+        int _size = obj.getType().getArray().getProperties().size();
+        boolean _greaterThan = (_size > 0);
+        if (_greaterThan) {
+          EList<Property> _properties = obj.getType().getArray().getProperties();
+          for (final Property p : _properties) {
+            MainObject _propObj = p.getPropObj();
+            boolean _tripleNotEquals_3 = (_propObj != null);
+            if (_tripleNotEquals_3) {
+              arrayContent.add(this.compileMainObject(p.getPropObj()));
+            } else {
+              PrimitiveObject _propPrim = p.getPropPrim();
+              boolean _tripleNotEquals_4 = (_propPrim != null);
+              if (_tripleNotEquals_4) {
+                arrayContent.add(this.compilePrimitiveObject(p.getPropPrim()));
+              }
+            }
+          }
+        }
+        String _string_7 = obj.getType().getArray().getArrayName().toString();
+        PrimitiveObjectClass _primitiveObjectClass_1 = new PrimitiveObjectClass(_string_7, obj, PrimitiveType.ARRAY, arrayType, arrayContent);
+        temp = _primitiveObjectClass_1;
+      } else {
+        org.xtext.example.mydsl.jSchema.Number _number = obj.getType().getNumber();
+        boolean _tripleNotEquals_5 = (_number != null);
+        if (_tripleNotEquals_5) {
+          float number = 0;
+          float firstNumber = 0;
+          float decimal = 0;
+          String numberString = null;
+          int _decimal = obj.getType().getNumber().getDecimal();
+          boolean _lessEqualsThan = (_decimal <= 0);
+          if (_lessEqualsThan) {
+            number = obj.getType().getNumber().getNumber();
+            numberString = ("" + Float.valueOf(number));
+          } else {
+            int _number_1 = obj.getType().getNumber().getNumber();
+            firstNumber = ((float) _number_1);
+            int _decimal_1 = obj.getType().getNumber().getDecimal();
+            decimal = ((float) _decimal_1);
+            String _plus = (Float.valueOf(firstNumber) + ".");
+            String _plus_1 = (_plus + Float.valueOf(decimal));
+            numberString = _plus_1;
+          }
+          PrimitiveObjectClass _primitiveObjectClass_2 = new PrimitiveObjectClass("number", obj, PrimitiveType.NUMBER, numberString);
+          temp = _primitiveObjectClass_2;
+        }
+      }
+    }
+    return temp;
   }
   
   public boolean checkIfObjectContainsOtherObjects(final MainObject obj) {
