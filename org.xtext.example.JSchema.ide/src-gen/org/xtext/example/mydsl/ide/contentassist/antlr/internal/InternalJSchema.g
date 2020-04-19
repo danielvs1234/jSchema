@@ -518,14 +518,14 @@ rule__ArrayType__Alternatives
 :
 	(
 		{ before(grammarAccess.getArrayTypeAccess().getStringKeyword_0()); }
-		'String'
+		'string'
 		{ after(grammarAccess.getArrayTypeAccess().getStringKeyword_0()); }
 	)
 	|
 	(
-		{ before(grammarAccess.getArrayTypeAccess().getIntKeyword_1()); }
-		'Int'
-		{ after(grammarAccess.getArrayTypeAccess().getIntKeyword_1()); }
+		{ before(grammarAccess.getArrayTypeAccess().getIntegerKeyword_1()); }
+		'integer'
+		{ after(grammarAccess.getArrayTypeAccess().getIntegerKeyword_1()); }
 	)
 	|
 	(

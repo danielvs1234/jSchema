@@ -22,7 +22,7 @@ import java.util.ArrayList;
 @SuppressWarnings("all")
 public class InternalJSchemaParser extends AbstractInternalContentAssistParser {
     public static final String[] tokenNames = new String[] {
-        "<invalid>", "<EOR>", "<DOWN>", "<UP>", "RULE_INT", "RULE_ID", "RULE_STRING", "RULE_NULL", "RULE_ML_COMMENT", "RULE_SL_COMMENT", "RULE_WS", "RULE_ANY_OTHER", "'String'", "'Int'", "'float'", "'double'", "'\"date-time\"'", "'\"time\"'", "'\"date\"'", "'\"email\"'", "'\"idn-email\"'", "'\"hostname\"'", "'\"ipv4\"'", "'\"ipv6\"'", "'\"uri\"'", "'\"uri-reference\"'", "'\"iri\"'", "'\"iri-reference\"'", "'\"uri-template\"'", "'\"json-pointer\"'", "'\"relative-json-pointer\"'", "'\"regex\"'", "'.'", "'{'", "'}'", "'includes'", "','", "'with'", "';'", "'num'", "'length'", "'pattern'", "'format'", "'-'", "'['", "']'", "'root'"
+        "<invalid>", "<EOR>", "<DOWN>", "<UP>", "RULE_INT", "RULE_ID", "RULE_STRING", "RULE_NULL", "RULE_ML_COMMENT", "RULE_SL_COMMENT", "RULE_WS", "RULE_ANY_OTHER", "'string'", "'integer'", "'float'", "'double'", "'\"date-time\"'", "'\"time\"'", "'\"date\"'", "'\"email\"'", "'\"idn-email\"'", "'\"hostname\"'", "'\"ipv4\"'", "'\"ipv6\"'", "'\"uri\"'", "'\"uri-reference\"'", "'\"iri\"'", "'\"iri-reference\"'", "'\"uri-template\"'", "'\"json-pointer\"'", "'\"relative-json-pointer\"'", "'\"regex\"'", "'.'", "'{'", "'}'", "'includes'", "','", "'with'", "';'", "'String'", "'num'", "'length'", "'pattern'", "'format'", "'-'", "'['", "']'", "'root'"
     };
     public static final int T__19=19;
     public static final int T__15=15;
@@ -64,6 +64,7 @@ public class InternalJSchemaParser extends AbstractInternalContentAssistParser {
     public static final int T__44=44;
     public static final int T__45=45;
     public static final int T__46=46;
+    public static final int T__47=47;
     public static final int T__40=40;
     public static final int T__41=41;
     public static final int T__42=42;
@@ -154,7 +155,7 @@ public class InternalJSchemaParser extends AbstractInternalContentAssistParser {
                 int alt1=2;
                 int LA1_0 = input.LA(1);
 
-                if ( (LA1_0==RULE_ID||LA1_0==12||LA1_0==39) ) {
+                if ( (LA1_0==RULE_ID||(LA1_0>=39 && LA1_0<=40)) ) {
                     alt1=1;
                 }
 
@@ -1261,10 +1262,10 @@ public class InternalJSchemaParser extends AbstractInternalContentAssistParser {
             if ( (LA2_0==RULE_ID) ) {
                 int LA2_1 = input.LA(2);
 
-                if ( (LA2_1==33||LA2_1==35||LA2_1==46) ) {
+                if ( (LA2_1==33||LA2_1==35||LA2_1==47) ) {
                     alt2=1;
                 }
-                else if ( (LA2_1==44) ) {
+                else if ( (LA2_1==45) ) {
                     alt2=2;
                 }
                 else {
@@ -1274,7 +1275,7 @@ public class InternalJSchemaParser extends AbstractInternalContentAssistParser {
                     throw nvae;
                 }
             }
-            else if ( (LA2_0==12||LA2_0==39) ) {
+            else if ( ((LA2_0>=39 && LA2_0<=40)) ) {
                 alt2=2;
             }
             else {
@@ -1349,7 +1350,7 @@ public class InternalJSchemaParser extends AbstractInternalContentAssistParser {
             // InternalJSchema.g:443:1: ( ( ( rule__PrimitiveTypes__Group_0__0 ) ) | ( ( rule__PrimitiveTypes__ArrayAssignment_1 ) ) | ( ( rule__PrimitiveTypes__Group_2__0 ) ) )
             int alt3=3;
             switch ( input.LA(1) ) {
-            case 12:
+            case 39:
                 {
                 alt3=1;
                 }
@@ -1359,7 +1360,7 @@ public class InternalJSchemaParser extends AbstractInternalContentAssistParser {
                 alt3=2;
                 }
                 break;
-            case 39:
+            case 40:
                 {
                 alt3=3;
                 }
@@ -1475,16 +1476,16 @@ public class InternalJSchemaParser extends AbstractInternalContentAssistParser {
             int alt4=2;
             int LA4_0 = input.LA(1);
 
-            if ( (LA4_0==12||LA4_0==39) ) {
+            if ( ((LA4_0>=39 && LA4_0<=40)) ) {
                 alt4=1;
             }
             else if ( (LA4_0==RULE_ID) ) {
                 int LA4_2 = input.LA(2);
 
-                if ( (LA4_2==44) ) {
+                if ( (LA4_2==45) ) {
                     alt4=1;
                 }
-                else if ( (LA4_2==33||LA4_2==35||LA4_2==46) ) {
+                else if ( (LA4_2==33||LA4_2==35||LA4_2==47) ) {
                     alt4=2;
                 }
                 else {
@@ -1578,17 +1579,17 @@ public class InternalJSchemaParser extends AbstractInternalContentAssistParser {
             // InternalJSchema.g:491:1: ( ( ( rule__PrimitiveProperties__Group_0__0 ) ) | ( ( rule__PrimitiveProperties__Group_1__0 ) ) | ( ( rule__PrimitiveProperties__Group_2__0 ) ) )
             int alt5=3;
             switch ( input.LA(1) ) {
-            case 40:
+            case 41:
                 {
                 alt5=1;
                 }
                 break;
-            case 41:
+            case 42:
                 {
                 alt5=2;
                 }
                 break;
-            case 42:
+            case 43:
                 {
                 alt5=3;
                 }
@@ -1694,13 +1695,13 @@ public class InternalJSchemaParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__ArrayType__Alternatives"
-    // InternalJSchema.g:514:1: rule__ArrayType__Alternatives : ( ( 'String' ) | ( 'Int' ) | ( 'float' ) | ( 'double' ) );
+    // InternalJSchema.g:514:1: rule__ArrayType__Alternatives : ( ( 'string' ) | ( 'integer' ) | ( 'float' ) | ( 'double' ) );
     public final void rule__ArrayType__Alternatives() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalJSchema.g:518:1: ( ( 'String' ) | ( 'Int' ) | ( 'float' ) | ( 'double' ) )
+            // InternalJSchema.g:518:1: ( ( 'string' ) | ( 'integer' ) | ( 'float' ) | ( 'double' ) )
             int alt6=4;
             switch ( input.LA(1) ) {
             case 12:
@@ -1732,10 +1733,10 @@ public class InternalJSchemaParser extends AbstractInternalContentAssistParser {
 
             switch (alt6) {
                 case 1 :
-                    // InternalJSchema.g:519:2: ( 'String' )
+                    // InternalJSchema.g:519:2: ( 'string' )
                     {
-                    // InternalJSchema.g:519:2: ( 'String' )
-                    // InternalJSchema.g:520:3: 'String'
+                    // InternalJSchema.g:519:2: ( 'string' )
+                    // InternalJSchema.g:520:3: 'string'
                     {
                      before(grammarAccess.getArrayTypeAccess().getStringKeyword_0()); 
                     match(input,12,FOLLOW_2); 
@@ -1747,14 +1748,14 @@ public class InternalJSchemaParser extends AbstractInternalContentAssistParser {
                     }
                     break;
                 case 2 :
-                    // InternalJSchema.g:525:2: ( 'Int' )
+                    // InternalJSchema.g:525:2: ( 'integer' )
                     {
-                    // InternalJSchema.g:525:2: ( 'Int' )
-                    // InternalJSchema.g:526:3: 'Int'
+                    // InternalJSchema.g:525:2: ( 'integer' )
+                    // InternalJSchema.g:526:3: 'integer'
                     {
-                     before(grammarAccess.getArrayTypeAccess().getIntKeyword_1()); 
+                     before(grammarAccess.getArrayTypeAccess().getIntegerKeyword_1()); 
                     match(input,13,FOLLOW_2); 
-                     after(grammarAccess.getArrayTypeAccess().getIntKeyword_1()); 
+                     after(grammarAccess.getArrayTypeAccess().getIntegerKeyword_1()); 
 
                     }
 
@@ -2731,7 +2732,7 @@ public class InternalJSchemaParser extends AbstractInternalContentAssistParser {
             int alt9=2;
             int LA9_0 = input.LA(1);
 
-            if ( (LA9_0==46) ) {
+            if ( (LA9_0==47) ) {
                 alt9=1;
             }
             switch (alt9) {
@@ -2998,7 +2999,7 @@ public class InternalJSchemaParser extends AbstractInternalContentAssistParser {
             int alt11=2;
             int LA11_0 = input.LA(1);
 
-            if ( (LA11_0==RULE_ID||LA11_0==12||LA11_0==39) ) {
+            if ( (LA11_0==RULE_ID||(LA11_0>=39 && LA11_0<=40)) ) {
                 alt11=1;
             }
             switch (alt11) {
@@ -4317,7 +4318,7 @@ public class InternalJSchemaParser extends AbstractInternalContentAssistParser {
             // InternalJSchema.g:1318:2: 'String'
             {
              before(grammarAccess.getPrimitiveTypesAccess().getStringKeyword_0_0()); 
-            match(input,12,FOLLOW_2); 
+            match(input,39,FOLLOW_2); 
              after(grammarAccess.getPrimitiveTypesAccess().getStringKeyword_0_0()); 
 
             }
@@ -4472,7 +4473,7 @@ public class InternalJSchemaParser extends AbstractInternalContentAssistParser {
             // InternalJSchema.g:1372:2: 'num'
             {
              before(grammarAccess.getPrimitiveTypesAccess().getNumKeyword_2_0()); 
-            match(input,39,FOLLOW_2); 
+            match(input,40,FOLLOW_2); 
              after(grammarAccess.getPrimitiveTypesAccess().getNumKeyword_2_0()); 
 
             }
@@ -4638,7 +4639,7 @@ public class InternalJSchemaParser extends AbstractInternalContentAssistParser {
             // InternalJSchema.g:1426:2: 'length'
             {
              before(grammarAccess.getPrimitivePropertiesAccess().getLengthKeyword_0_0()); 
-            match(input,40,FOLLOW_2); 
+            match(input,41,FOLLOW_2); 
              after(grammarAccess.getPrimitivePropertiesAccess().getLengthKeyword_0_0()); 
 
             }
@@ -4793,7 +4794,7 @@ public class InternalJSchemaParser extends AbstractInternalContentAssistParser {
             // InternalJSchema.g:1480:2: 'pattern'
             {
              before(grammarAccess.getPrimitivePropertiesAccess().getPatternKeyword_1_0()); 
-            match(input,41,FOLLOW_2); 
+            match(input,42,FOLLOW_2); 
              after(grammarAccess.getPrimitivePropertiesAccess().getPatternKeyword_1_0()); 
 
             }
@@ -4948,7 +4949,7 @@ public class InternalJSchemaParser extends AbstractInternalContentAssistParser {
             // InternalJSchema.g:1534:2: 'format'
             {
              before(grammarAccess.getPrimitivePropertiesAccess().getFormatKeyword_2_0()); 
-            match(input,42,FOLLOW_2); 
+            match(input,43,FOLLOW_2); 
              after(grammarAccess.getPrimitivePropertiesAccess().getFormatKeyword_2_0()); 
 
             }
@@ -5178,7 +5179,7 @@ public class InternalJSchemaParser extends AbstractInternalContentAssistParser {
             // InternalJSchema.g:1615:2: '-'
             {
              before(grammarAccess.getStringLengthAccess().getHyphenMinusKeyword_1()); 
-            match(input,43,FOLLOW_2); 
+            match(input,44,FOLLOW_2); 
              after(grammarAccess.getStringLengthAccess().getHyphenMinusKeyword_1()); 
 
             }
@@ -5746,7 +5747,7 @@ public class InternalJSchemaParser extends AbstractInternalContentAssistParser {
             // InternalJSchema.g:1804:2: '['
             {
              before(grammarAccess.getArrayAccess().getLeftSquareBracketKeyword_1()); 
-            match(input,44,FOLLOW_2); 
+            match(input,45,FOLLOW_2); 
              after(grammarAccess.getArrayAccess().getLeftSquareBracketKeyword_1()); 
 
             }
@@ -5825,14 +5826,7 @@ public class InternalJSchemaParser extends AbstractInternalContentAssistParser {
             int alt17=2;
             int LA17_0 = input.LA(1);
 
-            if ( (LA17_0==12) ) {
-                int LA17_1 = input.LA(2);
-
-                if ( (LA17_1==RULE_STRING) ) {
-                    alt17=1;
-                }
-            }
-            else if ( (LA17_0==RULE_ID||LA17_0==39) ) {
+            if ( (LA17_0==RULE_ID||(LA17_0>=39 && LA17_0<=40)) ) {
                 alt17=1;
             }
             switch (alt17) {
@@ -6015,7 +6009,7 @@ public class InternalJSchemaParser extends AbstractInternalContentAssistParser {
             // InternalJSchema.g:1884:2: ']'
             {
              before(grammarAccess.getArrayAccess().getRightSquareBracketKeyword_4()); 
-            match(input,45,FOLLOW_2); 
+            match(input,46,FOLLOW_2); 
              after(grammarAccess.getArrayAccess().getRightSquareBracketKeyword_4()); 
 
             }
@@ -6952,7 +6946,7 @@ public class InternalJSchemaParser extends AbstractInternalContentAssistParser {
             // InternalJSchema.g:2220:4: 'root'
             {
              before(grammarAccess.getIsRootAccess().getStringRootKeyword_0()); 
-            match(input,46,FOLLOW_2); 
+            match(input,47,FOLLOW_2); 
              after(grammarAccess.getIsRootAccess().getStringRootKeyword_0()); 
 
             }
@@ -7461,21 +7455,21 @@ public class InternalJSchemaParser extends AbstractInternalContentAssistParser {
 
     public static final BitSet FOLLOW_1 = new BitSet(new long[]{0x0000000000000000L});
     public static final BitSet FOLLOW_2 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_3 = new BitSet(new long[]{0x0000008000001022L});
+    public static final BitSet FOLLOW_3 = new BitSet(new long[]{0x0000018000000022L});
     public static final BitSet FOLLOW_4 = new BitSet(new long[]{0x0000000100000000L});
     public static final BitSet FOLLOW_5 = new BitSet(new long[]{0x0000000000000010L});
-    public static final BitSet FOLLOW_6 = new BitSet(new long[]{0x0000400A00000000L});
-    public static final BitSet FOLLOW_7 = new BitSet(new long[]{0x0000008400001020L});
+    public static final BitSet FOLLOW_6 = new BitSet(new long[]{0x0000800A00000000L});
+    public static final BitSet FOLLOW_7 = new BitSet(new long[]{0x0000018400000020L});
     public static final BitSet FOLLOW_8 = new BitSet(new long[]{0x0000000000000040L});
     public static final BitSet FOLLOW_9 = new BitSet(new long[]{0x0000001000000000L});
     public static final BitSet FOLLOW_10 = new BitSet(new long[]{0x0000001000000002L});
-    public static final BitSet FOLLOW_11 = new BitSet(new long[]{0x0000008000001020L});
+    public static final BitSet FOLLOW_11 = new BitSet(new long[]{0x0000018000000020L});
     public static final BitSet FOLLOW_12 = new BitSet(new long[]{0x0000002000000000L});
-    public static final BitSet FOLLOW_13 = new BitSet(new long[]{0x0000070000000000L});
+    public static final BitSet FOLLOW_13 = new BitSet(new long[]{0x00000E0000000000L});
     public static final BitSet FOLLOW_14 = new BitSet(new long[]{0x0000005000000000L});
     public static final BitSet FOLLOW_15 = new BitSet(new long[]{0x00000000FFFF0000L});
-    public static final BitSet FOLLOW_16 = new BitSet(new long[]{0x0000080000000000L});
-    public static final BitSet FOLLOW_17 = new BitSet(new long[]{0x0000100000000000L});
-    public static final BitSet FOLLOW_18 = new BitSet(new long[]{0x000020800000F020L});
+    public static final BitSet FOLLOW_16 = new BitSet(new long[]{0x0000100000000000L});
+    public static final BitSet FOLLOW_17 = new BitSet(new long[]{0x0000200000000000L});
+    public static final BitSet FOLLOW_18 = new BitSet(new long[]{0x000041800000F020L});
 
 }

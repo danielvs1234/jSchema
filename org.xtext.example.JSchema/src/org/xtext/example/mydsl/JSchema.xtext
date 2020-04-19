@@ -86,7 +86,7 @@ Array:
 ;
 
 ArrayType:
-	'String' | 'Int' | 'float' | 'double'
+	'string' | 'integer' | 'float' | 'double'
 ;
 
 

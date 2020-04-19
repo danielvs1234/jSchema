@@ -3,6 +3,11 @@ package org.xtext.example.mydsl.generator;
 import org.xtext.example.mydsl.jSchema.PrimitiveObject;
 import org.xtext.example.mydsl.jSchema.PrimitiveProperties;
 
+import java.util.ArrayList;
+
+import org.eclipse.emf.ecore.EObject;
+import org.xtext.example.mydsl.generator.ObjectClass;
+
 
 public class PrimitiveObjectClass {
 
@@ -12,9 +17,10 @@ public class PrimitiveObjectClass {
 	
 	String valNumber;
 	String valString;
-	
 	PrimitiveProperties stringProperties;
 	
+	ArrayType optArrayType;
+	ArrayList<Object> arrayContent;
 	
 	public PrimitiveObjectClass(String name, PrimitiveObject primObj, PrimitiveType primType) {
 		primitiveObject = primObj;
@@ -41,9 +47,25 @@ public class PrimitiveObjectClass {
 			this.valString = optValue;
 			this.stringProperties = stringProperties;
 		}
-		
-			
 	}
+	
+	public PrimitiveObjectClass(String name, PrimitiveObject primObj, PrimitiveType primType, ArrayType optArrayType, ArrayList<Object> arrayContent) {
+		primitiveObject = primObj;
+		this.type = primType;
+		this.name = name;
+		if(primType.equals(PrimitiveType.ARRAY)) {
+			
+		}
+		if(optArrayType != null) {
+			this.optArrayType = optArrayType;
+		}
+		if(arrayContent.size() > 0) {
+			this.arrayContent = arrayContent;
+		}
+	}
+	
+			
+	
 	
 	
 	public void compileArray(ArrayType arrayType) {
@@ -94,7 +116,6 @@ public class PrimitiveObjectClass {
 		}
 		
 		else if(type.equals(PrimitiveType.NUMBER)) {
-			string.append("{\n");
 			if(valNumber != null) {
 				string.append("\"type\":\"number\",\n");
 				string.append("\"value\":\"" + valNumber + "\"\n");
@@ -107,10 +128,43 @@ public class PrimitiveObjectClass {
 		else if(type.equals(PrimitiveType.ARRAY)) {
 			string.append("\"" + this.name + "\":{\n");
 			string.append("\"type\":\"array\",\n");
-			if(primitiveObject.getType().getArray().getProperties() > 0) {
+			string.append("\"$id\":\"" + this.name + "\",\n");
+			
+			if((arrayContent != null && arrayContent.size() > 0) || optArrayType != null) {
+				string.append("\"items\":[\n");
+				
+				if(optArrayType != null) {
+					string.append("{\n");
+					string.append("\"type\":\"" + ("\"") + primitiveObject.getType().getArray().getArrayType() + "\"");
+					string.append("}\n");
+					string.append("]\n");
+					string.append("}");
+					
+					return string.toString();
+				} else if(arrayContent.size() > 0) {
+					string.append("{\n");
+					
+					for(int i = 0 ; i < arrayContent.size() ; i++) {
+						Object e = arrayContent.get(i);
+						if(e instanceof ObjectClass) {
+							string.append(((ObjectClass) e).getObjectJSchemaString());
+						} else if (e instanceof PrimitiveObjectClass) {
+							string.append(((PrimitiveObjectClass) e).getPrimitiveObjectString());
+						}
+						if(arrayContent.get(i+1) != null) {
+							string.append(",\n");
+						} else {
+							string.append("\n");
+						}
+					}
+					
+					string.append("}\n");
+					string.append("]\n");
+					string.append("}");
+					
+				}
 				
 			}
-			string.append("\"$id\":\"" + this.name + "\"")
 		}
 	
 		return string.toString();

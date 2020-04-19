@@ -19,8 +19,7 @@ import org.eclipse.xtext.xbase.lib.Extension;
 import org.eclipse.xtext.xbase.lib.IteratorExtensions;
 import org.xtext.example.mydsl.generator.ObjectClass;
 import org.xtext.example.mydsl.generator.PrimitiveObjectClass;
-import org.xtext.example.mydsl.generator.PrimitiveType;
-import org.xtext.example.mydsl.jSchema.Array;
+import org.xtext.example.mydsl.jSchema.Includes;
 import org.xtext.example.mydsl.jSchema.IsRoot;
 import org.xtext.example.mydsl.jSchema.MainObject;
 import org.xtext.example.mydsl.jSchema.Model;
@@ -62,7 +61,7 @@ public class JSchemaGenerator extends AbstractGenerator {
     System.out.println(_plus);
     Iterable<PrimitiveObject> _filter = Iterables.<PrimitiveObject>filter(IteratorExtensions.<EObject>toIterable(resource.getAllContents()), PrimitiveObject.class);
     for (final PrimitiveObject primObj : _filter) {
-      this.compilePrimitiveObject(primObj);
+      this.compiledPrimitiveObjects.add(this.compilePrimitiveObject(primObj));
     }
     Iterable<MainObject> _filter_1 = Iterables.<MainObject>filter(IteratorExtensions.<EObject>toIterable(resource.getAllContents()), MainObject.class);
     for (final MainObject obj : _filter_1) {
@@ -90,44 +89,77 @@ public class JSchemaGenerator extends AbstractGenerator {
         this.compiledMainObjects.add(this.compileMainObject(obj));
       }
     }
+    for (final ObjectClass compiledObject : this.compiledMainObjects) {
+      if ((compiledObject.isRoot == true)) {
+        System.out.println(compiledObject.getObjectJSchemaString());
+      }
+    }
   }
   
   public ObjectClass compileMainObject(final MainObject obj) {
-    throw new Error("Unresolved compilation problems:"
-      + "\nType mismatch: cannot convert from PrimitiveObject to PrimitiveObjectClass");
-  }
-  
-  public boolean compilePrimitiveObject(final PrimitiveObject obj) {
-    boolean _xblockexpression = false;
-    {
-      PrimitiveObjectClass temp = null;
-      String _string = obj.getType().getString();
-      boolean _tripleNotEquals = (_string != null);
-      if (_tripleNotEquals) {
-        String _string_1 = obj.getType().getString();
-        String _string_2 = obj.getType().getString();
-        PrimitiveObjectClass _primitiveObjectClass = new PrimitiveObjectClass(_string_1, obj, PrimitiveType.STRING, _string_2);
-        temp = _primitiveObjectClass;
-      } else {
-        Array _array = obj.getType().getArray();
-        boolean _tripleNotEquals_1 = (_array != null);
-        if (_tripleNotEquals_1) {
-          String _arrayName = obj.getType().getArray().getArrayName();
-          PrimitiveObjectClass _primitiveObjectClass_1 = new PrimitiveObjectClass(_arrayName, obj, PrimitiveType.ARRAY);
-          temp = _primitiveObjectClass_1;
-        } else {
-          org.xtext.example.mydsl.jSchema.Number _number = obj.getType().getNumber();
-          boolean _tripleNotEquals_2 = (_number != null);
-          if (_tripleNotEquals_2) {
-            String _string_3 = obj.getType().getNumber().toString();
-            PrimitiveObjectClass _primitiveObjectClass_2 = new PrimitiveObjectClass("number", obj, PrimitiveType.NUMBER, _string_3);
-            temp = _primitiveObjectClass_2;
+    boolean isRoot = false;
+    IsRoot _root = obj.getRoot();
+    boolean _tripleNotEquals = (_root != null);
+    if (_tripleNotEquals) {
+      isRoot = true;
+    }
+    String _objectName = obj.getObjectName();
+    final ObjectClass tempObject = new ObjectClass(_objectName, isRoot, obj);
+    boolean _checkIfObjectContainsOtherObjects = this.checkIfObjectContainsOtherObjects(obj);
+    boolean _equals = (_checkIfObjectContainsOtherObjects == true);
+    if (_equals) {
+      final ArrayList<String> includeNameList = new ArrayList<String>();
+      Includes _includeObjects = obj.getIncludeObjects();
+      boolean _tripleNotEquals_1 = (_includeObjects != null);
+      if (_tripleNotEquals_1) {
+        EList<String> _objectID = obj.getIncludeObjects().getObjectID();
+        for (final String str : _objectID) {
+          includeNameList.add(str);
+        }
+      }
+      for (final String includedName : includeNameList) {
+        {
+          for (final MainObject mainObj : this.mainObjectList) {
+            String _string = mainObj.getObjectName().toString();
+            boolean _equals_1 = Objects.equal(_string, includedName);
+            if (_equals_1) {
+              tempObject.addMainObject(this.compileMainObject(mainObj));
+            }
+          }
+          for (final PrimitiveObjectClass compPrimObj : this.compiledPrimitiveObjects) {
+            boolean _notEquals = (!Objects.equal(compPrimObj.name, null));
+            if (_notEquals) {
+              boolean _equals_2 = Objects.equal(compPrimObj.name, includedName);
+              if (_equals_2) {
+                tempObject.addPrimitiveObject(compPrimObj);
+              }
+            }
           }
         }
       }
-      _xblockexpression = this.primitiveObjectList.add(obj);
+      ArrayList<hasProperties> _properties = this.getProperties(obj);
+      for (final hasProperties e : _properties) {
+        PrimitiveObject _propPrim = e.getProperties().getPropPrim();
+        boolean _tripleNotEquals_2 = (_propPrim != null);
+        if (_tripleNotEquals_2) {
+          System.out.println("hasProperties = nested Primitive Object");
+          tempObject.addHasPrimObj(this.compilePrimitiveObject(e.getProperties().getPropPrim()));
+        } else {
+          MainObject _propObj = e.getProperties().getPropObj();
+          boolean _tripleNotEquals_3 = (_propObj != null);
+          if (_tripleNotEquals_3) {
+            System.out.println("hasProperties = nested Main Object");
+            tempObject.addHasMainObj(this.compileMainObject(e.getProperties().getPropObj()));
+          }
+        }
+      }
     }
-    return _xblockexpression;
+    return tempObject;
+  }
+  
+  public PrimitiveObjectClass compilePrimitiveObject(final PrimitiveObject obj) {
+    throw new Error("Unresolved compilation problems:"
+      + "\nType mismatch: cannot convert from ArrayList<Object> to PrimitiveProperties");
   }
   
   public boolean checkIfObjectContainsOtherObjects(final MainObject obj) {

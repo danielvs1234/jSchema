@@ -42,7 +42,7 @@ class JSchemaGenerator extends AbstractGenerator {
 			
 			for (primObj : resource.allContents.toIterable.filter(PrimitiveObject)){
 				//compile all primitive objects
-				compilePrimitiveObject(primObj)
+				compiledPrimitiveObjects.add(compilePrimitiveObject(primObj));
 			}
 			
 			for (obj : resource.allContents.toIterable.filter(MainObject)){
@@ -58,6 +58,15 @@ class JSchemaGenerator extends AbstractGenerator {
 				obj.objectName.toString() + " PropertyListSize= " + getProperties(obj).size() + " isRoot: " + rootBool)
 				//Compile all main objects
 				compiledMainObjects.add(compileMainObject(obj));
+				
+			}
+			
+			for (ObjectClass compiledObject : compiledMainObjects){
+			if(compiledObject.isRoot == true){
+				System.out.println(compiledObject.objectJSchemaString);
+				}
+			}
+				
 			}
 			
 			
@@ -68,7 +77,7 @@ class JSchemaGenerator extends AbstractGenerator {
 			
 			
 			
-	}
+	
 			
 	def ObjectClass compileMainObject(MainObject obj){
 		var boolean isRoot = false
@@ -88,7 +97,14 @@ class JSchemaGenerator extends AbstractGenerator {
 			for(String includedName : includeNameList){
 				for(MainObject mainObj : mainObjectList){
 					if(mainObj.objectName.toString() == includedName){
-						tempObject.addMainObject(mainObj)
+						tempObject.addMainObject(compileMainObject(mainObj));
+					}
+				}
+				for(PrimitiveObjectClass compPrimObj : compiledPrimitiveObjects){
+					if(compPrimObj.name != null){
+						if(compPrimObj.name == includedName){
+							tempObject.addPrimitiveObject(compPrimObj);
+						}
 					}
 				}
 			}
@@ -96,7 +112,7 @@ class JSchemaGenerator extends AbstractGenerator {
 		for (hasProperties e : getProperties(obj)){
 			if(e.properties.propPrim !== null){
 				System.out.println("hasProperties = nested Primitive Object");
-				tempObject.addHasPrimObj(e.properties.propPrim);
+				tempObject.addHasPrimObj(compilePrimitiveObject(e.properties.propPrim));
 			} else if(e.properties.propObj !== null){
 				System.out.println("hasProperties = nested Main Object");
 				tempObject.addHasMainObj(compileMainObject(e.properties.propObj));
@@ -112,17 +128,32 @@ class JSchemaGenerator extends AbstractGenerator {
 		
 	}
 	
-	def compilePrimitiveObject(PrimitiveObject obj){
+	def PrimitiveObjectClass compilePrimitiveObject(PrimitiveObject obj){
+		
 		var PrimitiveObjectClass temp;
 		if(obj.type.string !== null){
 			temp = new PrimitiveObjectClass(obj.type.string, obj, PrimitiveType.STRING, obj.type.string);
 		} else if(obj.type.array !== null){
-			temp = new PrimitiveObjectClass(obj.type.array.arrayName, obj, PrimitiveType.ARRAY);
+			val ArrayList<Object> arrayContent = new ArrayList<Object>();
+			var String arrayType = null;
+			if(obj.type.array.arrayType !== null){
+				arrayType = obj.type.array.arrayType
+			}
+			if(obj.type.array.properties.size() > 0){
+				for(Property p : obj.type.array.properties){
+					if(p.propObj !== null){
+						arrayContent.add(compileMainObject(p.propObj))
+					} else if(p.propPrim !== null){
+						arrayContent.add(compilePrimitiveObject(p.propPrim));
+					}
+				}
+			}
+			//for(obj.type.array.properties)
+			temp = new PrimitiveObjectClass(obj.type.array.arrayName.toString(), obj, PrimitiveType.ARRAY, arrayType, arrayContent);
 		} else if (obj.type.number !== null){
 			temp = new PrimitiveObjectClass("number", obj, PrimitiveType.NUMBER, obj.type.number.toString());
 		}
-		 
-		primitiveObjectList.add(obj)
+		return temp;
 	}
 	
 	def checkIfObjectContainsOtherObjects(MainObject obj){

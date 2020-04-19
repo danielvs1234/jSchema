@@ -529,22 +529,22 @@ public class JSchemaGrammarAccess extends AbstractGrammarElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.xtext.example.mydsl.JSchema.ArrayType");
 		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
 		private final Keyword cStringKeyword_0 = (Keyword)cAlternatives.eContents().get(0);
-		private final Keyword cIntKeyword_1 = (Keyword)cAlternatives.eContents().get(1);
+		private final Keyword cIntegerKeyword_1 = (Keyword)cAlternatives.eContents().get(1);
 		private final Keyword cFloatKeyword_2 = (Keyword)cAlternatives.eContents().get(2);
 		private final Keyword cDoubleKeyword_3 = (Keyword)cAlternatives.eContents().get(3);
 		
 		//ArrayType:
-		//	'String' | 'Int' | 'float' | 'double';
+		//	'string' | 'integer' | 'float' | 'double';
 		@Override public ParserRule getRule() { return rule; }
 		
-		//'String' | 'Int' | 'float' | 'double'
+		//'string' | 'integer' | 'float' | 'double'
 		public Alternatives getAlternatives() { return cAlternatives; }
 		
-		//'String'
+		//'string'
 		public Keyword getStringKeyword_0() { return cStringKeyword_0; }
 		
-		//'Int'
-		public Keyword getIntKeyword_1() { return cIntKeyword_1; }
+		//'integer'
+		public Keyword getIntegerKeyword_1() { return cIntegerKeyword_1; }
 		
 		//'float'
 		public Keyword getFloatKeyword_2() { return cFloatKeyword_2; }
@@ -951,7 +951,7 @@ public class JSchemaGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	//ArrayType:
-	//	'String' | 'Int' | 'float' | 'double';
+	//	'string' | 'integer' | 'float' | 'double';
 	public ArrayTypeElements getArrayTypeAccess() {
 		return pArrayType;
 	}

@@ -955,16 +955,16 @@ ruleArrayType returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleToken
 	leaveRule();
 }:
 	(
-		kw='String'
+		kw='string'
 		{
 			$current.merge(kw);
 			newLeafNode(kw, grammarAccess.getArrayTypeAccess().getStringKeyword_0());
 		}
 		    |
-		kw='Int'
+		kw='integer'
 		{
 			$current.merge(kw);
-			newLeafNode(kw, grammarAccess.getArrayTypeAccess().getIntKeyword_1());
+			newLeafNode(kw, grammarAccess.getArrayTypeAccess().getIntegerKeyword_1());
 		}
 		    |
 		kw='float'

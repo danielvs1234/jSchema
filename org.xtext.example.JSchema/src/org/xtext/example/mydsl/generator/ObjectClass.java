@@ -8,8 +8,8 @@ import org.xtext.example.mydsl.jSchema.Property;
 
 public class ObjectClass{
 	String name;
-	ArrayList<MainObject> includedMainObjects;
-	ArrayList<PrimitiveObject> includedPrimitiveObjects;
+	ArrayList<ObjectClass> includedMainObjects;
+	ArrayList<PrimitiveObjectClass> includedPrimitiveObjects;
 	ArrayList<ObjectClass> hasMainObjectPropertiesList;
 	ArrayList<PrimitiveObjectClass> hasPrimtiveObjectPropertiesList;
 	
@@ -28,11 +28,11 @@ public class ObjectClass{
 	}
 
 
-	public void addMainObject(MainObject obj) {
+	public void addMainObject(ObjectClass obj) {
 		includedMainObjects.add(obj);
 	}
 	
-	public void addPrimitiveObject(PrimitiveObject primObj) {
+	public void addPrimitiveObject(PrimitiveObjectClass primObj) {
 		includedPrimitiveObjects.add(primObj);
 	}
 	
@@ -44,11 +44,11 @@ public class ObjectClass{
 		hasMainObjectPropertiesList.add(mainObj);
 	}
 	
-	public ArrayList<MainObject> getMainObjects() {
+	public ArrayList<ObjectClass> getMainObjects() {
 		return this.includedMainObjects;
 	}
 	
-	public ArrayList<PrimitiveObject> getPrimitiveObjects(){
+	public ArrayList<PrimitiveObjectClass> getPrimitiveObjects(){
 		return this.includedPrimitiveObjects;
 	}
 	
@@ -83,27 +83,54 @@ public class ObjectClass{
 			for(ObjectClass property : hasMainObjectPropertiesList) {
 				string.append(property.getObjectJSchemaString());
 			}
-			
+			if(hasPrimtiveObjectPropertiesList.size() > 0) {
+				string.append(",\n");
+			}
+				
 		}
 		if (hasPrimtiveObjectPropertiesList.size () > 0) {
+			string.append("\"properties\":{\n");
 			for(PrimitiveObjectClass primObject : hasPrimtiveObjectPropertiesList) {
-				string.append("\"properties\":{\n");
-				string.append("\"" + primObject
+				string.append(primObject.getPrimitiveObjectString());
 			}
 			
+			if(includedPrimitiveObjects.size() > 0 || includedMainObjects.size() > 0) {
+				string.append(",\n");
+			}
 		}
 		
 		if(includedPrimitiveObjects.size() > 0 || includedMainObjects.size() > 0) {
-			string.append("\"properties\":{");
+			string.append("\"allOf\":[\n");
+			
+			
+		
+		if(includedMainObjects.size() > 0) {
+			for(int i=0 ; i < includedMainObjects.size() ; i++) {
+				ObjectClass mainObj = includedMainObjects.get(i);
+				string.append("{\n");
+				string.append("\"properties\":{\n");
+				string.append(mainObj.getObjectJSchemaString());
+				if(i+1 <= includedMainObjects.size()) {
+					string.append(",\n");
+				}
+			}
+			if(includedPrimitiveObjects.size() > 0) {
+				string.append(",\n");
+			}
+		}
+		if(includedPrimitiveObjects.size() > 0) {
+			for(int i=0 ; i < includedPrimitiveObjects.size(); i++) {
+				PrimitiveObjectClass primObj = includedPrimitiveObjects.get(i);
+				string.append("{\n");
+				string.append("\"properties\":{\n");
+				string.append(primObj.getPrimitiveObjectString());
+				if(i+1 <= includedPrimitiveObjects.size()) {
+					string.append(",\n");
+				}
+			}
 		}
 		
-		//if(mainObj.)
-		
-		if(includedPrimitiveObjects.size() > 0) {
-			
-			for(PrimitiveObject primObj : includedPrimitiveObjects) {
-			//	string.append
-			}
+		string.append("]\n");
 		}
 		
 		string.append("}");
