@@ -210,7 +210,7 @@ class JSchemaGenerator extends AbstractGenerator {
 		
 	}
 	
-	
+
 			
 	
 }
