@@ -550,99 +550,105 @@ rule__FormatTypes__Alternatives
 	}
 :
 	(
-		{ before(grammarAccess.getFormatTypesAccess().getDate_timeEnumLiteralDeclaration_0()); }
-		('"date-time"')
-		{ after(grammarAccess.getFormatTypesAccess().getDate_timeEnumLiteralDeclaration_0()); }
+		{ before(grammarAccess.getFormatTypesAccess().getDefaultEnumLiteralDeclaration_0()); }
+		('null')
+		{ after(grammarAccess.getFormatTypesAccess().getDefaultEnumLiteralDeclaration_0()); }
 	)
 	|
 	(
-		{ before(grammarAccess.getFormatTypesAccess().getTimeEnumLiteralDeclaration_1()); }
-		('"time"')
-		{ after(grammarAccess.getFormatTypesAccess().getTimeEnumLiteralDeclaration_1()); }
+		{ before(grammarAccess.getFormatTypesAccess().getDate_timeEnumLiteralDeclaration_1()); }
+		('date-time')
+		{ after(grammarAccess.getFormatTypesAccess().getDate_timeEnumLiteralDeclaration_1()); }
 	)
 	|
 	(
-		{ before(grammarAccess.getFormatTypesAccess().getDateEnumLiteralDeclaration_2()); }
-		('"date"')
-		{ after(grammarAccess.getFormatTypesAccess().getDateEnumLiteralDeclaration_2()); }
+		{ before(grammarAccess.getFormatTypesAccess().getTimeEnumLiteralDeclaration_2()); }
+		('time')
+		{ after(grammarAccess.getFormatTypesAccess().getTimeEnumLiteralDeclaration_2()); }
 	)
 	|
 	(
-		{ before(grammarAccess.getFormatTypesAccess().getEmailEnumLiteralDeclaration_3()); }
-		('"email"')
-		{ after(grammarAccess.getFormatTypesAccess().getEmailEnumLiteralDeclaration_3()); }
+		{ before(grammarAccess.getFormatTypesAccess().getDateEnumLiteralDeclaration_3()); }
+		('date')
+		{ after(grammarAccess.getFormatTypesAccess().getDateEnumLiteralDeclaration_3()); }
 	)
 	|
 	(
-		{ before(grammarAccess.getFormatTypesAccess().getIdn_emailEnumLiteralDeclaration_4()); }
-		('"idn-email"')
-		{ after(grammarAccess.getFormatTypesAccess().getIdn_emailEnumLiteralDeclaration_4()); }
+		{ before(grammarAccess.getFormatTypesAccess().getEmailEnumLiteralDeclaration_4()); }
+		('email')
+		{ after(grammarAccess.getFormatTypesAccess().getEmailEnumLiteralDeclaration_4()); }
 	)
 	|
 	(
-		{ before(grammarAccess.getFormatTypesAccess().getHostnameEnumLiteralDeclaration_5()); }
-		('"hostname"')
-		{ after(grammarAccess.getFormatTypesAccess().getHostnameEnumLiteralDeclaration_5()); }
+		{ before(grammarAccess.getFormatTypesAccess().getIdn_emailEnumLiteralDeclaration_5()); }
+		('idn-email')
+		{ after(grammarAccess.getFormatTypesAccess().getIdn_emailEnumLiteralDeclaration_5()); }
 	)
 	|
 	(
-		{ before(grammarAccess.getFormatTypesAccess().getIpv4EnumLiteralDeclaration_6()); }
-		('"ipv4"')
-		{ after(grammarAccess.getFormatTypesAccess().getIpv4EnumLiteralDeclaration_6()); }
+		{ before(grammarAccess.getFormatTypesAccess().getHostnameEnumLiteralDeclaration_6()); }
+		('hostname')
+		{ after(grammarAccess.getFormatTypesAccess().getHostnameEnumLiteralDeclaration_6()); }
 	)
 	|
 	(
-		{ before(grammarAccess.getFormatTypesAccess().getIpv6EnumLiteralDeclaration_7()); }
-		('"ipv6"')
-		{ after(grammarAccess.getFormatTypesAccess().getIpv6EnumLiteralDeclaration_7()); }
+		{ before(grammarAccess.getFormatTypesAccess().getIpv4EnumLiteralDeclaration_7()); }
+		('ipv4')
+		{ after(grammarAccess.getFormatTypesAccess().getIpv4EnumLiteralDeclaration_7()); }
 	)
 	|
 	(
-		{ before(grammarAccess.getFormatTypesAccess().getUriEnumLiteralDeclaration_8()); }
-		('"uri"')
-		{ after(grammarAccess.getFormatTypesAccess().getUriEnumLiteralDeclaration_8()); }
+		{ before(grammarAccess.getFormatTypesAccess().getIpv6EnumLiteralDeclaration_8()); }
+		('ipv6')
+		{ after(grammarAccess.getFormatTypesAccess().getIpv6EnumLiteralDeclaration_8()); }
 	)
 	|
 	(
-		{ before(grammarAccess.getFormatTypesAccess().getUri_referenceEnumLiteralDeclaration_9()); }
-		('"uri-reference"')
-		{ after(grammarAccess.getFormatTypesAccess().getUri_referenceEnumLiteralDeclaration_9()); }
+		{ before(grammarAccess.getFormatTypesAccess().getUriEnumLiteralDeclaration_9()); }
+		('uri')
+		{ after(grammarAccess.getFormatTypesAccess().getUriEnumLiteralDeclaration_9()); }
 	)
 	|
 	(
-		{ before(grammarAccess.getFormatTypesAccess().getIriEnumLiteralDeclaration_10()); }
-		('"iri"')
-		{ after(grammarAccess.getFormatTypesAccess().getIriEnumLiteralDeclaration_10()); }
+		{ before(grammarAccess.getFormatTypesAccess().getUri_referenceEnumLiteralDeclaration_10()); }
+		('uri-reference')
+		{ after(grammarAccess.getFormatTypesAccess().getUri_referenceEnumLiteralDeclaration_10()); }
 	)
 	|
 	(
-		{ before(grammarAccess.getFormatTypesAccess().getIri_referenceEnumLiteralDeclaration_11()); }
-		('"iri-reference"')
-		{ after(grammarAccess.getFormatTypesAccess().getIri_referenceEnumLiteralDeclaration_11()); }
+		{ before(grammarAccess.getFormatTypesAccess().getIriEnumLiteralDeclaration_11()); }
+		('iri')
+		{ after(grammarAccess.getFormatTypesAccess().getIriEnumLiteralDeclaration_11()); }
 	)
 	|
 	(
-		{ before(grammarAccess.getFormatTypesAccess().getUri_templateEnumLiteralDeclaration_12()); }
-		('"uri-template"')
-		{ after(grammarAccess.getFormatTypesAccess().getUri_templateEnumLiteralDeclaration_12()); }
+		{ before(grammarAccess.getFormatTypesAccess().getIri_referenceEnumLiteralDeclaration_12()); }
+		('iri-reference')
+		{ after(grammarAccess.getFormatTypesAccess().getIri_referenceEnumLiteralDeclaration_12()); }
 	)
 	|
 	(
-		{ before(grammarAccess.getFormatTypesAccess().getJson_pointerEnumLiteralDeclaration_13()); }
-		('"json-pointer"')
-		{ after(grammarAccess.getFormatTypesAccess().getJson_pointerEnumLiteralDeclaration_13()); }
+		{ before(grammarAccess.getFormatTypesAccess().getUri_templateEnumLiteralDeclaration_13()); }
+		('uri-template')
+		{ after(grammarAccess.getFormatTypesAccess().getUri_templateEnumLiteralDeclaration_13()); }
 	)
 	|
 	(
-		{ before(grammarAccess.getFormatTypesAccess().getRelative_json_pointerEnumLiteralDeclaration_14()); }
-		('"relative-json-pointer"')
-		{ after(grammarAccess.getFormatTypesAccess().getRelative_json_pointerEnumLiteralDeclaration_14()); }
+		{ before(grammarAccess.getFormatTypesAccess().getJson_pointerEnumLiteralDeclaration_14()); }
+		('json-pointer')
+		{ after(grammarAccess.getFormatTypesAccess().getJson_pointerEnumLiteralDeclaration_14()); }
 	)
 	|
 	(
-		{ before(grammarAccess.getFormatTypesAccess().getRegexEnumLiteralDeclaration_15()); }
-		('"regex"')
-		{ after(grammarAccess.getFormatTypesAccess().getRegexEnumLiteralDeclaration_15()); }
+		{ before(grammarAccess.getFormatTypesAccess().getRelative_json_pointerEnumLiteralDeclaration_15()); }
+		('relative-json-pointer')
+		{ after(grammarAccess.getFormatTypesAccess().getRelative_json_pointerEnumLiteralDeclaration_15()); }
+	)
+	|
+	(
+		{ before(grammarAccess.getFormatTypesAccess().getRegexEnumLiteralDeclaration_16()); }
+		('regex')
+		{ after(grammarAccess.getFormatTypesAccess().getRegexEnumLiteralDeclaration_16()); }
 	)
 ;
 finally {
@@ -1449,9 +1455,9 @@ rule__PrimitiveProperties__Group_0__1__Impl
 	}
 :
 (
-	{ before(grammarAccess.getPrimitivePropertiesAccess().getStringLenghtAssignment_0_1()); }
-	(rule__PrimitiveProperties__StringLenghtAssignment_0_1)
-	{ after(grammarAccess.getPrimitivePropertiesAccess().getStringLenghtAssignment_0_1()); }
+	{ before(grammarAccess.getPrimitivePropertiesAccess().getStringLengthAssignment_0_1()); }
+	(rule__PrimitiveProperties__StringLengthAssignment_0_1)
+	{ after(grammarAccess.getPrimitivePropertiesAccess().getStringLengthAssignment_0_1()); }
 )
 ;
 finally {
@@ -2273,15 +2279,15 @@ finally {
 	restoreStackSize(stackSize);
 }
 
-rule__PrimitiveProperties__StringLenghtAssignment_0_1
+rule__PrimitiveProperties__StringLengthAssignment_0_1
 	@init {
 		int stackSize = keepStackSize();
 	}
 :
 	(
-		{ before(grammarAccess.getPrimitivePropertiesAccess().getStringLenghtStringLengthParserRuleCall_0_1_0()); }
+		{ before(grammarAccess.getPrimitivePropertiesAccess().getStringLengthStringLengthParserRuleCall_0_1_0()); }
 		ruleStringLength
-		{ after(grammarAccess.getPrimitivePropertiesAccess().getStringLenghtStringLengthParserRuleCall_0_1_0()); }
+		{ after(grammarAccess.getPrimitivePropertiesAccess().getStringLengthStringLengthParserRuleCall_0_1_0()); }
 	)
 ;
 finally {
@@ -2407,8 +2413,6 @@ rule__Array__ArrayTypeAssignment_3
 finally {
 	restoreStackSize(stackSize);
 }
-
-RULE_NULL : 'null';
 
 RULE_ID : '^'? ('a'..'z'|'A'..'Z'|'_') ('a'..'z'|'A'..'Z'|'_'|'0'..'9')*;
 

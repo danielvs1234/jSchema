@@ -14,7 +14,7 @@ import org.eclipse.emf.ecore.EObject;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link org.xtext.example.mydsl.jSchema.PrimitiveProperties#getStringLenght <em>String Lenght</em>}</li>
+ *   <li>{@link org.xtext.example.mydsl.jSchema.PrimitiveProperties#getStringLength <em>String Length</em>}</li>
  *   <li>{@link org.xtext.example.mydsl.jSchema.PrimitiveProperties#getPatternString <em>Pattern String</em>}</li>
  *   <li>{@link org.xtext.example.mydsl.jSchema.PrimitiveProperties#getStringFormat <em>String Format</em>}</li>
  * </ul>
@@ -26,26 +26,26 @@ import org.eclipse.emf.ecore.EObject;
 public interface PrimitiveProperties extends EObject
 {
   /**
-   * Returns the value of the '<em><b>String Lenght</b></em>' attribute.
+   * Returns the value of the '<em><b>String Length</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the value of the '<em>String Lenght</em>' attribute.
-   * @see #setStringLenght(String)
-   * @see org.xtext.example.mydsl.jSchema.JSchemaPackage#getPrimitiveProperties_StringLenght()
+   * @return the value of the '<em>String Length</em>' attribute.
+   * @see #setStringLength(String)
+   * @see org.xtext.example.mydsl.jSchema.JSchemaPackage#getPrimitiveProperties_StringLength()
    * @model
    * @generated
    */
-  String getStringLenght();
+  String getStringLength();
 
   /**
-   * Sets the value of the '{@link org.xtext.example.mydsl.jSchema.PrimitiveProperties#getStringLenght <em>String Lenght</em>}' attribute.
+   * Sets the value of the '{@link org.xtext.example.mydsl.jSchema.PrimitiveProperties#getStringLength <em>String Length</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @param value the new value of the '<em>String Lenght</em>' attribute.
-   * @see #getStringLenght()
+   * @param value the new value of the '<em>String Length</em>' attribute.
+   * @see #getStringLength()
    * @generated
    */
-  void setStringLenght(String value);
+  void setStringLength(String value);
 
   /**
    * Returns the value of the '<em><b>Pattern String</b></em>' attribute.

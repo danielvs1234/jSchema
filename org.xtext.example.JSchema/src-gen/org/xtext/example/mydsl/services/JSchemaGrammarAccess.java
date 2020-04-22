@@ -349,8 +349,8 @@ public class JSchemaGrammarAccess extends AbstractGrammarElementFinder {
 		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
 		private final Group cGroup_0 = (Group)cAlternatives.eContents().get(0);
 		private final Keyword cLengthKeyword_0_0 = (Keyword)cGroup_0.eContents().get(0);
-		private final Assignment cStringLenghtAssignment_0_1 = (Assignment)cGroup_0.eContents().get(1);
-		private final RuleCall cStringLenghtStringLengthParserRuleCall_0_1_0 = (RuleCall)cStringLenghtAssignment_0_1.eContents().get(0);
+		private final Assignment cStringLengthAssignment_0_1 = (Assignment)cGroup_0.eContents().get(1);
+		private final RuleCall cStringLengthStringLengthParserRuleCall_0_1_0 = (RuleCall)cStringLengthAssignment_0_1.eContents().get(0);
 		private final Group cGroup_1 = (Group)cAlternatives.eContents().get(1);
 		private final Keyword cPatternKeyword_1_0 = (Keyword)cGroup_1.eContents().get(0);
 		private final Assignment cPatternStringAssignment_1_1 = (Assignment)cGroup_1.eContents().get(1);
@@ -361,23 +361,23 @@ public class JSchemaGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cStringFormatFormatTypesEnumRuleCall_2_1_0 = (RuleCall)cStringFormatAssignment_2_1.eContents().get(0);
 		
 		//PrimitiveProperties:
-		//	'length' stringLenght=StringLength | 'pattern' patternString=STRING | 'format' stringFormat=FormatTypes;
+		//	'length' stringLength=StringLength | 'pattern' patternString=STRING | 'format' stringFormat=FormatTypes;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//'length' stringLenght=StringLength | 'pattern' patternString=STRING | 'format' stringFormat=FormatTypes
+		//'length' stringLength=StringLength | 'pattern' patternString=STRING | 'format' stringFormat=FormatTypes
 		public Alternatives getAlternatives() { return cAlternatives; }
 		
-		//'length' stringLenght=StringLength
+		//'length' stringLength=StringLength
 		public Group getGroup_0() { return cGroup_0; }
 		
 		//'length'
 		public Keyword getLengthKeyword_0_0() { return cLengthKeyword_0_0; }
 		
-		//stringLenght=StringLength
-		public Assignment getStringLenghtAssignment_0_1() { return cStringLenghtAssignment_0_1; }
+		//stringLength=StringLength
+		public Assignment getStringLengthAssignment_0_1() { return cStringLengthAssignment_0_1; }
 		
 		//StringLength
-		public RuleCall getStringLenghtStringLengthParserRuleCall_0_1_0() { return cStringLenghtStringLengthParserRuleCall_0_1_0; }
+		public RuleCall getStringLengthStringLengthParserRuleCall_0_1_0() { return cStringLengthStringLengthParserRuleCall_0_1_0; }
 		
 		//'pattern' patternString=STRING
 		public Group getGroup_1() { return cGroup_1; }
@@ -556,163 +556,170 @@ public class JSchemaGrammarAccess extends AbstractGrammarElementFinder {
 	public class FormatTypesElements extends AbstractEnumRuleElementFinder {
 		private final EnumRule rule = (EnumRule) GrammarUtil.findRuleForName(getGrammar(), "org.xtext.example.mydsl.JSchema.FormatTypes");
 		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
-		private final EnumLiteralDeclaration cDate_timeEnumLiteralDeclaration_0 = (EnumLiteralDeclaration)cAlternatives.eContents().get(0);
-		private final Keyword cDate_timeDateTimeKeyword_0_0 = (Keyword)cDate_timeEnumLiteralDeclaration_0.eContents().get(0);
-		private final EnumLiteralDeclaration cTimeEnumLiteralDeclaration_1 = (EnumLiteralDeclaration)cAlternatives.eContents().get(1);
-		private final Keyword cTimeTimeKeyword_1_0 = (Keyword)cTimeEnumLiteralDeclaration_1.eContents().get(0);
-		private final EnumLiteralDeclaration cDateEnumLiteralDeclaration_2 = (EnumLiteralDeclaration)cAlternatives.eContents().get(2);
-		private final Keyword cDateDateKeyword_2_0 = (Keyword)cDateEnumLiteralDeclaration_2.eContents().get(0);
-		private final EnumLiteralDeclaration cEmailEnumLiteralDeclaration_3 = (EnumLiteralDeclaration)cAlternatives.eContents().get(3);
-		private final Keyword cEmailEmailKeyword_3_0 = (Keyword)cEmailEnumLiteralDeclaration_3.eContents().get(0);
-		private final EnumLiteralDeclaration cIdn_emailEnumLiteralDeclaration_4 = (EnumLiteralDeclaration)cAlternatives.eContents().get(4);
-		private final Keyword cIdn_emailIdnEmailKeyword_4_0 = (Keyword)cIdn_emailEnumLiteralDeclaration_4.eContents().get(0);
-		private final EnumLiteralDeclaration cHostnameEnumLiteralDeclaration_5 = (EnumLiteralDeclaration)cAlternatives.eContents().get(5);
-		private final Keyword cHostnameHostnameKeyword_5_0 = (Keyword)cHostnameEnumLiteralDeclaration_5.eContents().get(0);
-		private final EnumLiteralDeclaration cIpv4EnumLiteralDeclaration_6 = (EnumLiteralDeclaration)cAlternatives.eContents().get(6);
-		private final Keyword cIpv4Ipv4Keyword_6_0 = (Keyword)cIpv4EnumLiteralDeclaration_6.eContents().get(0);
-		private final EnumLiteralDeclaration cIpv6EnumLiteralDeclaration_7 = (EnumLiteralDeclaration)cAlternatives.eContents().get(7);
-		private final Keyword cIpv6Ipv6Keyword_7_0 = (Keyword)cIpv6EnumLiteralDeclaration_7.eContents().get(0);
-		private final EnumLiteralDeclaration cUriEnumLiteralDeclaration_8 = (EnumLiteralDeclaration)cAlternatives.eContents().get(8);
-		private final Keyword cUriUriKeyword_8_0 = (Keyword)cUriEnumLiteralDeclaration_8.eContents().get(0);
-		private final EnumLiteralDeclaration cUri_referenceEnumLiteralDeclaration_9 = (EnumLiteralDeclaration)cAlternatives.eContents().get(9);
-		private final Keyword cUri_referenceUriReferenceKeyword_9_0 = (Keyword)cUri_referenceEnumLiteralDeclaration_9.eContents().get(0);
-		private final EnumLiteralDeclaration cIriEnumLiteralDeclaration_10 = (EnumLiteralDeclaration)cAlternatives.eContents().get(10);
-		private final Keyword cIriIriKeyword_10_0 = (Keyword)cIriEnumLiteralDeclaration_10.eContents().get(0);
-		private final EnumLiteralDeclaration cIri_referenceEnumLiteralDeclaration_11 = (EnumLiteralDeclaration)cAlternatives.eContents().get(11);
-		private final Keyword cIri_referenceIriReferenceKeyword_11_0 = (Keyword)cIri_referenceEnumLiteralDeclaration_11.eContents().get(0);
-		private final EnumLiteralDeclaration cUri_templateEnumLiteralDeclaration_12 = (EnumLiteralDeclaration)cAlternatives.eContents().get(12);
-		private final Keyword cUri_templateUriTemplateKeyword_12_0 = (Keyword)cUri_templateEnumLiteralDeclaration_12.eContents().get(0);
-		private final EnumLiteralDeclaration cJson_pointerEnumLiteralDeclaration_13 = (EnumLiteralDeclaration)cAlternatives.eContents().get(13);
-		private final Keyword cJson_pointerJsonPointerKeyword_13_0 = (Keyword)cJson_pointerEnumLiteralDeclaration_13.eContents().get(0);
-		private final EnumLiteralDeclaration cRelative_json_pointerEnumLiteralDeclaration_14 = (EnumLiteralDeclaration)cAlternatives.eContents().get(14);
-		private final Keyword cRelative_json_pointerRelativeJsonPointerKeyword_14_0 = (Keyword)cRelative_json_pointerEnumLiteralDeclaration_14.eContents().get(0);
-		private final EnumLiteralDeclaration cRegexEnumLiteralDeclaration_15 = (EnumLiteralDeclaration)cAlternatives.eContents().get(15);
-		private final Keyword cRegexRegexKeyword_15_0 = (Keyword)cRegexEnumLiteralDeclaration_15.eContents().get(0);
+		private final EnumLiteralDeclaration cDefaultEnumLiteralDeclaration_0 = (EnumLiteralDeclaration)cAlternatives.eContents().get(0);
+		private final Keyword cDefaultNullKeyword_0_0 = (Keyword)cDefaultEnumLiteralDeclaration_0.eContents().get(0);
+		private final EnumLiteralDeclaration cDate_timeEnumLiteralDeclaration_1 = (EnumLiteralDeclaration)cAlternatives.eContents().get(1);
+		private final Keyword cDate_timeDateTimeKeyword_1_0 = (Keyword)cDate_timeEnumLiteralDeclaration_1.eContents().get(0);
+		private final EnumLiteralDeclaration cTimeEnumLiteralDeclaration_2 = (EnumLiteralDeclaration)cAlternatives.eContents().get(2);
+		private final Keyword cTimeTimeKeyword_2_0 = (Keyword)cTimeEnumLiteralDeclaration_2.eContents().get(0);
+		private final EnumLiteralDeclaration cDateEnumLiteralDeclaration_3 = (EnumLiteralDeclaration)cAlternatives.eContents().get(3);
+		private final Keyword cDateDateKeyword_3_0 = (Keyword)cDateEnumLiteralDeclaration_3.eContents().get(0);
+		private final EnumLiteralDeclaration cEmailEnumLiteralDeclaration_4 = (EnumLiteralDeclaration)cAlternatives.eContents().get(4);
+		private final Keyword cEmailEmailKeyword_4_0 = (Keyword)cEmailEnumLiteralDeclaration_4.eContents().get(0);
+		private final EnumLiteralDeclaration cIdn_emailEnumLiteralDeclaration_5 = (EnumLiteralDeclaration)cAlternatives.eContents().get(5);
+		private final Keyword cIdn_emailIdnEmailKeyword_5_0 = (Keyword)cIdn_emailEnumLiteralDeclaration_5.eContents().get(0);
+		private final EnumLiteralDeclaration cHostnameEnumLiteralDeclaration_6 = (EnumLiteralDeclaration)cAlternatives.eContents().get(6);
+		private final Keyword cHostnameHostnameKeyword_6_0 = (Keyword)cHostnameEnumLiteralDeclaration_6.eContents().get(0);
+		private final EnumLiteralDeclaration cIpv4EnumLiteralDeclaration_7 = (EnumLiteralDeclaration)cAlternatives.eContents().get(7);
+		private final Keyword cIpv4Ipv4Keyword_7_0 = (Keyword)cIpv4EnumLiteralDeclaration_7.eContents().get(0);
+		private final EnumLiteralDeclaration cIpv6EnumLiteralDeclaration_8 = (EnumLiteralDeclaration)cAlternatives.eContents().get(8);
+		private final Keyword cIpv6Ipv6Keyword_8_0 = (Keyword)cIpv6EnumLiteralDeclaration_8.eContents().get(0);
+		private final EnumLiteralDeclaration cUriEnumLiteralDeclaration_9 = (EnumLiteralDeclaration)cAlternatives.eContents().get(9);
+		private final Keyword cUriUriKeyword_9_0 = (Keyword)cUriEnumLiteralDeclaration_9.eContents().get(0);
+		private final EnumLiteralDeclaration cUri_referenceEnumLiteralDeclaration_10 = (EnumLiteralDeclaration)cAlternatives.eContents().get(10);
+		private final Keyword cUri_referenceUriReferenceKeyword_10_0 = (Keyword)cUri_referenceEnumLiteralDeclaration_10.eContents().get(0);
+		private final EnumLiteralDeclaration cIriEnumLiteralDeclaration_11 = (EnumLiteralDeclaration)cAlternatives.eContents().get(11);
+		private final Keyword cIriIriKeyword_11_0 = (Keyword)cIriEnumLiteralDeclaration_11.eContents().get(0);
+		private final EnumLiteralDeclaration cIri_referenceEnumLiteralDeclaration_12 = (EnumLiteralDeclaration)cAlternatives.eContents().get(12);
+		private final Keyword cIri_referenceIriReferenceKeyword_12_0 = (Keyword)cIri_referenceEnumLiteralDeclaration_12.eContents().get(0);
+		private final EnumLiteralDeclaration cUri_templateEnumLiteralDeclaration_13 = (EnumLiteralDeclaration)cAlternatives.eContents().get(13);
+		private final Keyword cUri_templateUriTemplateKeyword_13_0 = (Keyword)cUri_templateEnumLiteralDeclaration_13.eContents().get(0);
+		private final EnumLiteralDeclaration cJson_pointerEnumLiteralDeclaration_14 = (EnumLiteralDeclaration)cAlternatives.eContents().get(14);
+		private final Keyword cJson_pointerJsonPointerKeyword_14_0 = (Keyword)cJson_pointerEnumLiteralDeclaration_14.eContents().get(0);
+		private final EnumLiteralDeclaration cRelative_json_pointerEnumLiteralDeclaration_15 = (EnumLiteralDeclaration)cAlternatives.eContents().get(15);
+		private final Keyword cRelative_json_pointerRelativeJsonPointerKeyword_15_0 = (Keyword)cRelative_json_pointerEnumLiteralDeclaration_15.eContents().get(0);
+		private final EnumLiteralDeclaration cRegexEnumLiteralDeclaration_16 = (EnumLiteralDeclaration)cAlternatives.eContents().get(16);
+		private final Keyword cRegexRegexKeyword_16_0 = (Keyword)cRegexEnumLiteralDeclaration_16.eContents().get(0);
 		
 		//enum FormatTypes:
-		//	date_time='"date-time"' |
-		//	time='"time"' |
-		//	date='"date"' |
-		//	email='"email"' |
-		//	idn_email='"idn-email"' |
-		//	hostname='"hostname"' |
-		//	ipv4='"ipv4"' |
-		//	ipv6='"ipv6"' |
-		//	uri='"uri"' |
-		//	uri_reference='"uri-reference"' |
-		//	iri='"iri"' |
-		//	iri_reference='"iri-reference"' |
-		//	uri_template='"uri-template"' |
-		//	json_pointer='"json-pointer"' |
-		//	relative_json_pointer='"relative-json-pointer"' |
-		//	regex='"regex"';
+		//	default='null' |
+		//	date_time='date-time' |
+		//	time |
+		//	date |
+		//	email |
+		//	idn_email='idn-email' |
+		//	hostname |
+		//	ipv4 |
+		//	ipv6 |
+		//	uri |
+		//	uri_reference='uri-reference' |
+		//	iri |
+		//	iri_reference='iri-reference' |
+		//	uri_template='uri-template' |
+		//	json_pointer='json-pointer' |
+		//	relative_json_pointer='relative-json-pointer' |
+		//	regex;
 		public EnumRule getRule() { return rule; }
 		
-		//date_time='"date-time"' | time='"time"' | date='"date"' | email='"email"' | idn_email='"idn-email"' |
-		//hostname='"hostname"' | ipv4='"ipv4"' | ipv6='"ipv6"' | uri='"uri"' | uri_reference='"uri-reference"' | iri='"iri"' |
-		//iri_reference='"iri-reference"' | uri_template='"uri-template"' | json_pointer='"json-pointer"' |
-		//relative_json_pointer='"relative-json-pointer"' | regex='"regex"'
+		//default='null' | date_time='date-time' | time | date | email | idn_email='idn-email' | hostname | ipv4 | ipv6 | uri |
+		//uri_reference='uri-reference' | iri | iri_reference='iri-reference' | uri_template='uri-template' |
+		//json_pointer='json-pointer' | relative_json_pointer='relative-json-pointer' | regex
 		public Alternatives getAlternatives() { return cAlternatives; }
 		
-		//date_time='"date-time"'
-		public EnumLiteralDeclaration getDate_timeEnumLiteralDeclaration_0() { return cDate_timeEnumLiteralDeclaration_0; }
+		//default='null'
+		public EnumLiteralDeclaration getDefaultEnumLiteralDeclaration_0() { return cDefaultEnumLiteralDeclaration_0; }
 		
-		//'"date-time"'
-		public Keyword getDate_timeDateTimeKeyword_0_0() { return cDate_timeDateTimeKeyword_0_0; }
+		//'null'
+		public Keyword getDefaultNullKeyword_0_0() { return cDefaultNullKeyword_0_0; }
 		
-		//time='"time"'
-		public EnumLiteralDeclaration getTimeEnumLiteralDeclaration_1() { return cTimeEnumLiteralDeclaration_1; }
+		//date_time='date-time'
+		public EnumLiteralDeclaration getDate_timeEnumLiteralDeclaration_1() { return cDate_timeEnumLiteralDeclaration_1; }
 		
-		//'"time"'
-		public Keyword getTimeTimeKeyword_1_0() { return cTimeTimeKeyword_1_0; }
+		//'date-time'
+		public Keyword getDate_timeDateTimeKeyword_1_0() { return cDate_timeDateTimeKeyword_1_0; }
 		
-		//date='"date"'
-		public EnumLiteralDeclaration getDateEnumLiteralDeclaration_2() { return cDateEnumLiteralDeclaration_2; }
+		//time
+		public EnumLiteralDeclaration getTimeEnumLiteralDeclaration_2() { return cTimeEnumLiteralDeclaration_2; }
 		
-		//'"date"'
-		public Keyword getDateDateKeyword_2_0() { return cDateDateKeyword_2_0; }
+		//'time'
+		public Keyword getTimeTimeKeyword_2_0() { return cTimeTimeKeyword_2_0; }
 		
-		//email='"email"'
-		public EnumLiteralDeclaration getEmailEnumLiteralDeclaration_3() { return cEmailEnumLiteralDeclaration_3; }
+		//date
+		public EnumLiteralDeclaration getDateEnumLiteralDeclaration_3() { return cDateEnumLiteralDeclaration_3; }
 		
-		//'"email"'
-		public Keyword getEmailEmailKeyword_3_0() { return cEmailEmailKeyword_3_0; }
+		//'date'
+		public Keyword getDateDateKeyword_3_0() { return cDateDateKeyword_3_0; }
 		
-		//idn_email='"idn-email"'
-		public EnumLiteralDeclaration getIdn_emailEnumLiteralDeclaration_4() { return cIdn_emailEnumLiteralDeclaration_4; }
+		//email
+		public EnumLiteralDeclaration getEmailEnumLiteralDeclaration_4() { return cEmailEnumLiteralDeclaration_4; }
 		
-		//'"idn-email"'
-		public Keyword getIdn_emailIdnEmailKeyword_4_0() { return cIdn_emailIdnEmailKeyword_4_0; }
+		//'email'
+		public Keyword getEmailEmailKeyword_4_0() { return cEmailEmailKeyword_4_0; }
 		
-		//hostname='"hostname"'
-		public EnumLiteralDeclaration getHostnameEnumLiteralDeclaration_5() { return cHostnameEnumLiteralDeclaration_5; }
+		//idn_email='idn-email'
+		public EnumLiteralDeclaration getIdn_emailEnumLiteralDeclaration_5() { return cIdn_emailEnumLiteralDeclaration_5; }
 		
-		//'"hostname"'
-		public Keyword getHostnameHostnameKeyword_5_0() { return cHostnameHostnameKeyword_5_0; }
+		//'idn-email'
+		public Keyword getIdn_emailIdnEmailKeyword_5_0() { return cIdn_emailIdnEmailKeyword_5_0; }
 		
-		//ipv4='"ipv4"'
-		public EnumLiteralDeclaration getIpv4EnumLiteralDeclaration_6() { return cIpv4EnumLiteralDeclaration_6; }
+		//hostname
+		public EnumLiteralDeclaration getHostnameEnumLiteralDeclaration_6() { return cHostnameEnumLiteralDeclaration_6; }
 		
-		//'"ipv4"'
-		public Keyword getIpv4Ipv4Keyword_6_0() { return cIpv4Ipv4Keyword_6_0; }
+		//'hostname'
+		public Keyword getHostnameHostnameKeyword_6_0() { return cHostnameHostnameKeyword_6_0; }
 		
-		//ipv6='"ipv6"'
-		public EnumLiteralDeclaration getIpv6EnumLiteralDeclaration_7() { return cIpv6EnumLiteralDeclaration_7; }
+		//ipv4
+		public EnumLiteralDeclaration getIpv4EnumLiteralDeclaration_7() { return cIpv4EnumLiteralDeclaration_7; }
 		
-		//'"ipv6"'
-		public Keyword getIpv6Ipv6Keyword_7_0() { return cIpv6Ipv6Keyword_7_0; }
+		//'ipv4'
+		public Keyword getIpv4Ipv4Keyword_7_0() { return cIpv4Ipv4Keyword_7_0; }
 		
-		//uri='"uri"'
-		public EnumLiteralDeclaration getUriEnumLiteralDeclaration_8() { return cUriEnumLiteralDeclaration_8; }
+		//ipv6
+		public EnumLiteralDeclaration getIpv6EnumLiteralDeclaration_8() { return cIpv6EnumLiteralDeclaration_8; }
 		
-		//'"uri"'
-		public Keyword getUriUriKeyword_8_0() { return cUriUriKeyword_8_0; }
+		//'ipv6'
+		public Keyword getIpv6Ipv6Keyword_8_0() { return cIpv6Ipv6Keyword_8_0; }
 		
-		//uri_reference='"uri-reference"'
-		public EnumLiteralDeclaration getUri_referenceEnumLiteralDeclaration_9() { return cUri_referenceEnumLiteralDeclaration_9; }
+		//uri
+		public EnumLiteralDeclaration getUriEnumLiteralDeclaration_9() { return cUriEnumLiteralDeclaration_9; }
 		
-		//'"uri-reference"'
-		public Keyword getUri_referenceUriReferenceKeyword_9_0() { return cUri_referenceUriReferenceKeyword_9_0; }
+		//'uri'
+		public Keyword getUriUriKeyword_9_0() { return cUriUriKeyword_9_0; }
 		
-		//iri='"iri"'
-		public EnumLiteralDeclaration getIriEnumLiteralDeclaration_10() { return cIriEnumLiteralDeclaration_10; }
+		//uri_reference='uri-reference'
+		public EnumLiteralDeclaration getUri_referenceEnumLiteralDeclaration_10() { return cUri_referenceEnumLiteralDeclaration_10; }
 		
-		//'"iri"'
-		public Keyword getIriIriKeyword_10_0() { return cIriIriKeyword_10_0; }
+		//'uri-reference'
+		public Keyword getUri_referenceUriReferenceKeyword_10_0() { return cUri_referenceUriReferenceKeyword_10_0; }
 		
-		//iri_reference='"iri-reference"'
-		public EnumLiteralDeclaration getIri_referenceEnumLiteralDeclaration_11() { return cIri_referenceEnumLiteralDeclaration_11; }
+		//iri
+		public EnumLiteralDeclaration getIriEnumLiteralDeclaration_11() { return cIriEnumLiteralDeclaration_11; }
 		
-		//'"iri-reference"'
-		public Keyword getIri_referenceIriReferenceKeyword_11_0() { return cIri_referenceIriReferenceKeyword_11_0; }
+		//'iri'
+		public Keyword getIriIriKeyword_11_0() { return cIriIriKeyword_11_0; }
 		
-		//uri_template='"uri-template"'
-		public EnumLiteralDeclaration getUri_templateEnumLiteralDeclaration_12() { return cUri_templateEnumLiteralDeclaration_12; }
+		//iri_reference='iri-reference'
+		public EnumLiteralDeclaration getIri_referenceEnumLiteralDeclaration_12() { return cIri_referenceEnumLiteralDeclaration_12; }
 		
-		//'"uri-template"'
-		public Keyword getUri_templateUriTemplateKeyword_12_0() { return cUri_templateUriTemplateKeyword_12_0; }
+		//'iri-reference'
+		public Keyword getIri_referenceIriReferenceKeyword_12_0() { return cIri_referenceIriReferenceKeyword_12_0; }
 		
-		//json_pointer='"json-pointer"'
-		public EnumLiteralDeclaration getJson_pointerEnumLiteralDeclaration_13() { return cJson_pointerEnumLiteralDeclaration_13; }
+		//uri_template='uri-template'
+		public EnumLiteralDeclaration getUri_templateEnumLiteralDeclaration_13() { return cUri_templateEnumLiteralDeclaration_13; }
 		
-		//'"json-pointer"'
-		public Keyword getJson_pointerJsonPointerKeyword_13_0() { return cJson_pointerJsonPointerKeyword_13_0; }
+		//'uri-template'
+		public Keyword getUri_templateUriTemplateKeyword_13_0() { return cUri_templateUriTemplateKeyword_13_0; }
 		
-		//relative_json_pointer='"relative-json-pointer"'
-		public EnumLiteralDeclaration getRelative_json_pointerEnumLiteralDeclaration_14() { return cRelative_json_pointerEnumLiteralDeclaration_14; }
+		//json_pointer='json-pointer'
+		public EnumLiteralDeclaration getJson_pointerEnumLiteralDeclaration_14() { return cJson_pointerEnumLiteralDeclaration_14; }
 		
-		//'"relative-json-pointer"'
-		public Keyword getRelative_json_pointerRelativeJsonPointerKeyword_14_0() { return cRelative_json_pointerRelativeJsonPointerKeyword_14_0; }
+		//'json-pointer'
+		public Keyword getJson_pointerJsonPointerKeyword_14_0() { return cJson_pointerJsonPointerKeyword_14_0; }
 		
-		//regex='"regex"'
-		public EnumLiteralDeclaration getRegexEnumLiteralDeclaration_15() { return cRegexEnumLiteralDeclaration_15; }
+		//relative_json_pointer='relative-json-pointer'
+		public EnumLiteralDeclaration getRelative_json_pointerEnumLiteralDeclaration_15() { return cRelative_json_pointerEnumLiteralDeclaration_15; }
 		
-		//'"regex"'
-		public Keyword getRegexRegexKeyword_15_0() { return cRegexRegexKeyword_15_0; }
+		//'relative-json-pointer'
+		public Keyword getRelative_json_pointerRelativeJsonPointerKeyword_15_0() { return cRelative_json_pointerRelativeJsonPointerKeyword_15_0; }
+		
+		//regex
+		public EnumLiteralDeclaration getRegexEnumLiteralDeclaration_16() { return cRegexEnumLiteralDeclaration_16; }
+		
+		//'regex'
+		public Keyword getRegexRegexKeyword_16_0() { return cRegexRegexKeyword_16_0; }
 	}
 	
 	private final ModelElements pModel;
-	private final TerminalRule tNULL;
 	private final NumberElements pNumber;
 	private final AbstractObjectElements pAbstractObject;
 	private final MainObjectElements pMainObject;
@@ -738,7 +745,6 @@ public class JSchemaGrammarAccess extends AbstractGrammarElementFinder {
 		this.grammar = internalFindGrammar(grammarProvider);
 		this.gaTerminals = gaTerminals;
 		this.pModel = new ModelElements();
-		this.tNULL = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "org.xtext.example.mydsl.JSchema.NULL");
 		this.pNumber = new NumberElements();
 		this.pAbstractObject = new AbstractObjectElements();
 		this.pMainObject = new MainObjectElements();
@@ -790,12 +796,6 @@ public class JSchemaGrammarAccess extends AbstractGrammarElementFinder {
 	
 	public ParserRule getModelRule() {
 		return getModelAccess().getRule();
-	}
-	
-	//terminal NULL:
-	//	'null';
-	public TerminalRule getNULLRule() {
-		return tNULL;
 	}
 	
 	//Number:
@@ -885,7 +885,7 @@ public class JSchemaGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	//PrimitiveProperties:
-	//	'length' stringLenght=StringLength | 'pattern' patternString=STRING | 'format' stringFormat=FormatTypes;
+	//	'length' stringLength=StringLength | 'pattern' patternString=STRING | 'format' stringFormat=FormatTypes;
 	public PrimitivePropertiesElements getPrimitivePropertiesAccess() {
 		return pPrimitiveProperties;
 	}
@@ -905,22 +905,23 @@ public class JSchemaGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	//enum FormatTypes:
-	//	date_time='"date-time"' |
-	//	time='"time"' |
-	//	date='"date"' |
-	//	email='"email"' |
-	//	idn_email='"idn-email"' |
-	//	hostname='"hostname"' |
-	//	ipv4='"ipv4"' |
-	//	ipv6='"ipv6"' |
-	//	uri='"uri"' |
-	//	uri_reference='"uri-reference"' |
-	//	iri='"iri"' |
-	//	iri_reference='"iri-reference"' |
-	//	uri_template='"uri-template"' |
-	//	json_pointer='"json-pointer"' |
-	//	relative_json_pointer='"relative-json-pointer"' |
-	//	regex='"regex"';
+	//	default='null' |
+	//	date_time='date-time' |
+	//	time |
+	//	date |
+	//	email |
+	//	idn_email='idn-email' |
+	//	hostname |
+	//	ipv4 |
+	//	ipv6 |
+	//	uri |
+	//	uri_reference='uri-reference' |
+	//	iri |
+	//	iri_reference='iri-reference' |
+	//	uri_template='uri-template' |
+	//	json_pointer='json-pointer' |
+	//	relative_json_pointer='relative-json-pointer' |
+	//	regex;
 	public FormatTypesElements getFormatTypesAccess() {
 		return eFormatTypes;
 	}

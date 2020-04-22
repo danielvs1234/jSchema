@@ -21,6 +21,16 @@ import org.eclipse.emf.common.util.Enumerator;
 public enum FormatTypes implements Enumerator
 {
   /**
+   * The '<em><b>Default</b></em>' literal object.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #DEFAULT_VALUE
+   * @generated
+   * @ordered
+   */
+  DEFAULT(0, "default", "null"),
+
+  /**
    * The '<em><b>Date time</b></em>' literal object.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -28,7 +38,7 @@ public enum FormatTypes implements Enumerator
    * @generated
    * @ordered
    */
-  DATE_TIME(0, "date_time", "\"date-time\""),
+  DATE_TIME(1, "date_time", "date-time"),
 
   /**
    * The '<em><b>Time</b></em>' literal object.
@@ -38,7 +48,7 @@ public enum FormatTypes implements Enumerator
    * @generated
    * @ordered
    */
-  TIME(1, "time", "\"time\""),
+  TIME(2, "time", "time"),
 
   /**
    * The '<em><b>Date</b></em>' literal object.
@@ -48,7 +58,7 @@ public enum FormatTypes implements Enumerator
    * @generated
    * @ordered
    */
-  DATE(2, "date", "\"date\""),
+  DATE(3, "date", "date"),
 
   /**
    * The '<em><b>Email</b></em>' literal object.
@@ -58,7 +68,7 @@ public enum FormatTypes implements Enumerator
    * @generated
    * @ordered
    */
-  EMAIL(3, "email", "\"email\""),
+  EMAIL(4, "email", "email"),
 
   /**
    * The '<em><b>Idn email</b></em>' literal object.
@@ -68,7 +78,7 @@ public enum FormatTypes implements Enumerator
    * @generated
    * @ordered
    */
-  IDN_EMAIL(4, "idn_email", "\"idn-email\""),
+  IDN_EMAIL(5, "idn_email", "idn-email"),
 
   /**
    * The '<em><b>Hostname</b></em>' literal object.
@@ -78,7 +88,7 @@ public enum FormatTypes implements Enumerator
    * @generated
    * @ordered
    */
-  HOSTNAME(5, "hostname", "\"hostname\""),
+  HOSTNAME(6, "hostname", "hostname"),
 
   /**
    * The '<em><b>Ipv4</b></em>' literal object.
@@ -88,7 +98,7 @@ public enum FormatTypes implements Enumerator
    * @generated
    * @ordered
    */
-  IPV4(6, "ipv4", "\"ipv4\""),
+  IPV4(7, "ipv4", "ipv4"),
 
   /**
    * The '<em><b>Ipv6</b></em>' literal object.
@@ -98,7 +108,7 @@ public enum FormatTypes implements Enumerator
    * @generated
    * @ordered
    */
-  IPV6(7, "ipv6", "\"ipv6\""),
+  IPV6(8, "ipv6", "ipv6"),
 
   /**
    * The '<em><b>Uri</b></em>' literal object.
@@ -108,7 +118,7 @@ public enum FormatTypes implements Enumerator
    * @generated
    * @ordered
    */
-  URI(8, "uri", "\"uri\""),
+  URI(9, "uri", "uri"),
 
   /**
    * The '<em><b>Uri reference</b></em>' literal object.
@@ -118,7 +128,7 @@ public enum FormatTypes implements Enumerator
    * @generated
    * @ordered
    */
-  URI_REFERENCE(9, "uri_reference", "\"uri-reference\""),
+  URI_REFERENCE(10, "uri_reference", "uri-reference"),
 
   /**
    * The '<em><b>Iri</b></em>' literal object.
@@ -128,7 +138,7 @@ public enum FormatTypes implements Enumerator
    * @generated
    * @ordered
    */
-  IRI(10, "iri", "\"iri\""),
+  IRI(11, "iri", "iri"),
 
   /**
    * The '<em><b>Iri reference</b></em>' literal object.
@@ -138,7 +148,7 @@ public enum FormatTypes implements Enumerator
    * @generated
    * @ordered
    */
-  IRI_REFERENCE(11, "iri_reference", "\"iri-reference\""),
+  IRI_REFERENCE(12, "iri_reference", "iri-reference"),
 
   /**
    * The '<em><b>Uri template</b></em>' literal object.
@@ -148,7 +158,7 @@ public enum FormatTypes implements Enumerator
    * @generated
    * @ordered
    */
-  URI_TEMPLATE(12, "uri_template", "\"uri-template\""),
+  URI_TEMPLATE(13, "uri_template", "uri-template"),
 
   /**
    * The '<em><b>Json pointer</b></em>' literal object.
@@ -158,7 +168,7 @@ public enum FormatTypes implements Enumerator
    * @generated
    * @ordered
    */
-  JSON_POINTER(13, "json_pointer", "\"json-pointer\""),
+  JSON_POINTER(14, "json_pointer", "json-pointer"),
 
   /**
    * The '<em><b>Relative json pointer</b></em>' literal object.
@@ -168,7 +178,7 @@ public enum FormatTypes implements Enumerator
    * @generated
    * @ordered
    */
-  RELATIVE_JSON_POINTER(14, "relative_json_pointer", "\"relative-json-pointer\""),
+  RELATIVE_JSON_POINTER(15, "relative_json_pointer", "relative-json-pointer"),
 
   /**
    * The '<em><b>Regex</b></em>' literal object.
@@ -178,183 +188,194 @@ public enum FormatTypes implements Enumerator
    * @generated
    * @ordered
    */
-  REGEX(15, "regex", "\"regex\"");
+  REGEX(16, "regex", "regex");
+
+  /**
+   * The '<em><b>Default</b></em>' literal value.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #DEFAULT
+   * @model name="default" literal="null"
+   * @generated
+   * @ordered
+   */
+  public static final int DEFAULT_VALUE = 0;
 
   /**
    * The '<em><b>Date time</b></em>' literal value.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @see #DATE_TIME
-   * @model name="date_time" literal="\"date-time\""
+   * @model name="date_time" literal="date-time"
    * @generated
    * @ordered
    */
-  public static final int DATE_TIME_VALUE = 0;
+  public static final int DATE_TIME_VALUE = 1;
 
   /**
    * The '<em><b>Time</b></em>' literal value.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @see #TIME
-   * @model name="time" literal="\"time\""
+   * @model name="time"
    * @generated
    * @ordered
    */
-  public static final int TIME_VALUE = 1;
+  public static final int TIME_VALUE = 2;
 
   /**
    * The '<em><b>Date</b></em>' literal value.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @see #DATE
-   * @model name="date" literal="\"date\""
+   * @model name="date"
    * @generated
    * @ordered
    */
-  public static final int DATE_VALUE = 2;
+  public static final int DATE_VALUE = 3;
 
   /**
    * The '<em><b>Email</b></em>' literal value.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @see #EMAIL
-   * @model name="email" literal="\"email\""
+   * @model name="email"
    * @generated
    * @ordered
    */
-  public static final int EMAIL_VALUE = 3;
+  public static final int EMAIL_VALUE = 4;
 
   /**
    * The '<em><b>Idn email</b></em>' literal value.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @see #IDN_EMAIL
-   * @model name="idn_email" literal="\"idn-email\""
+   * @model name="idn_email" literal="idn-email"
    * @generated
    * @ordered
    */
-  public static final int IDN_EMAIL_VALUE = 4;
+  public static final int IDN_EMAIL_VALUE = 5;
 
   /**
    * The '<em><b>Hostname</b></em>' literal value.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @see #HOSTNAME
-   * @model name="hostname" literal="\"hostname\""
+   * @model name="hostname"
    * @generated
    * @ordered
    */
-  public static final int HOSTNAME_VALUE = 5;
+  public static final int HOSTNAME_VALUE = 6;
 
   /**
    * The '<em><b>Ipv4</b></em>' literal value.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @see #IPV4
-   * @model name="ipv4" literal="\"ipv4\""
+   * @model name="ipv4"
    * @generated
    * @ordered
    */
-  public static final int IPV4_VALUE = 6;
+  public static final int IPV4_VALUE = 7;
 
   /**
    * The '<em><b>Ipv6</b></em>' literal value.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @see #IPV6
-   * @model name="ipv6" literal="\"ipv6\""
+   * @model name="ipv6"
    * @generated
    * @ordered
    */
-  public static final int IPV6_VALUE = 7;
+  public static final int IPV6_VALUE = 8;
 
   /**
    * The '<em><b>Uri</b></em>' literal value.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @see #URI
-   * @model name="uri" literal="\"uri\""
+   * @model name="uri"
    * @generated
    * @ordered
    */
-  public static final int URI_VALUE = 8;
+  public static final int URI_VALUE = 9;
 
   /**
    * The '<em><b>Uri reference</b></em>' literal value.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @see #URI_REFERENCE
-   * @model name="uri_reference" literal="\"uri-reference\""
+   * @model name="uri_reference" literal="uri-reference"
    * @generated
    * @ordered
    */
-  public static final int URI_REFERENCE_VALUE = 9;
+  public static final int URI_REFERENCE_VALUE = 10;
 
   /**
    * The '<em><b>Iri</b></em>' literal value.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @see #IRI
-   * @model name="iri" literal="\"iri\""
+   * @model name="iri"
    * @generated
    * @ordered
    */
-  public static final int IRI_VALUE = 10;
+  public static final int IRI_VALUE = 11;
 
   /**
    * The '<em><b>Iri reference</b></em>' literal value.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @see #IRI_REFERENCE
-   * @model name="iri_reference" literal="\"iri-reference\""
+   * @model name="iri_reference" literal="iri-reference"
    * @generated
    * @ordered
    */
-  public static final int IRI_REFERENCE_VALUE = 11;
+  public static final int IRI_REFERENCE_VALUE = 12;
 
   /**
    * The '<em><b>Uri template</b></em>' literal value.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @see #URI_TEMPLATE
-   * @model name="uri_template" literal="\"uri-template\""
+   * @model name="uri_template" literal="uri-template"
    * @generated
    * @ordered
    */
-  public static final int URI_TEMPLATE_VALUE = 12;
+  public static final int URI_TEMPLATE_VALUE = 13;
 
   /**
    * The '<em><b>Json pointer</b></em>' literal value.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @see #JSON_POINTER
-   * @model name="json_pointer" literal="\"json-pointer\""
+   * @model name="json_pointer" literal="json-pointer"
    * @generated
    * @ordered
    */
-  public static final int JSON_POINTER_VALUE = 13;
+  public static final int JSON_POINTER_VALUE = 14;
 
   /**
    * The '<em><b>Relative json pointer</b></em>' literal value.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @see #RELATIVE_JSON_POINTER
-   * @model name="relative_json_pointer" literal="\"relative-json-pointer\""
+   * @model name="relative_json_pointer" literal="relative-json-pointer"
    * @generated
    * @ordered
    */
-  public static final int RELATIVE_JSON_POINTER_VALUE = 14;
+  public static final int RELATIVE_JSON_POINTER_VALUE = 15;
 
   /**
    * The '<em><b>Regex</b></em>' literal value.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @see #REGEX
-   * @model name="regex" literal="\"regex\""
+   * @model name="regex"
    * @generated
    * @ordered
    */
-  public static final int REGEX_VALUE = 15;
+  public static final int REGEX_VALUE = 16;
 
   /**
    * An array of all the '<em><b>Format Types</b></em>' enumerators.
@@ -365,6 +386,7 @@ public enum FormatTypes implements Enumerator
   private static final FormatTypes[] VALUES_ARRAY =
     new FormatTypes[]
     {
+      DEFAULT,
       DATE_TIME,
       TIME,
       DATE,
@@ -445,6 +467,7 @@ public enum FormatTypes implements Enumerator
   {
     switch (value)
     {
+      case DEFAULT_VALUE: return DEFAULT;
       case DATE_TIME_VALUE: return DATE_TIME;
       case TIME_VALUE: return TIME;
       case DATE_VALUE: return DATE;

@@ -27,6 +27,7 @@ import org.xtext.example.mydsl.jSchema.IsRoot;
 import org.xtext.example.mydsl.jSchema.MainObject;
 import org.xtext.example.mydsl.jSchema.Model;
 import org.xtext.example.mydsl.jSchema.PrimitiveObject;
+import org.xtext.example.mydsl.jSchema.PrimitiveProperties;
 import org.xtext.example.mydsl.jSchema.Property;
 import org.xtext.example.mydsl.jSchema.hasProperties;
 
@@ -125,11 +126,10 @@ public class JSchemaGenerator extends AbstractGenerator {
       }
       for (final String includedName : includeNameList) {
         {
-          for (final MainObject mainObj : this.mainObjectList) {
-            String _string = mainObj.getObjectName().toString();
-            boolean _equals_1 = Objects.equal(_string, includedName);
+          for (final ObjectClass mainObj : this.compiledMainObjects) {
+            boolean _equals_1 = Objects.equal(mainObj.name, includedName);
             if (_equals_1) {
-              tempObject.addMainObject(this.compileMainObject(mainObj));
+              tempObject.addMainObject(mainObj);
             }
           }
           for (final PrimitiveObjectClass compPrimObj : this.compiledPrimitiveObjects) {
@@ -168,9 +168,17 @@ public class JSchemaGenerator extends AbstractGenerator {
     String _string = obj.getType().getString();
     boolean _tripleNotEquals = (_string != null);
     if (_tripleNotEquals) {
+      ArrayList<PrimitiveProperties> primitiveProperties = new ArrayList<PrimitiveProperties>();
+      EList<PrimitiveProperties> _primitiveProperties = obj.getPrimitiveProperties();
+      for (final PrimitiveProperties primProp : _primitiveProperties) {
+        {
+          primitiveProperties.add(primProp);
+          System.out.println(primProp.toString());
+        }
+      }
       String _string_1 = obj.getType().getString();
       String _string_2 = obj.getType().getString();
-      PrimitiveObjectClass _primitiveObjectClass = new PrimitiveObjectClass(_string_1, obj, PrimitiveType.STRING, _string_2);
+      PrimitiveObjectClass _primitiveObjectClass = new PrimitiveObjectClass(_string_1, obj, PrimitiveType.STRING, _string_2, primitiveProperties);
       temp = _primitiveObjectClass;
     } else {
       Array _array = obj.getType().getArray();

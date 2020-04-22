@@ -659,17 +659,17 @@ rulePrimitiveProperties returns [EObject current=null]
 			(
 				(
 					{
-						newCompositeNode(grammarAccess.getPrimitivePropertiesAccess().getStringLenghtStringLengthParserRuleCall_0_1_0());
+						newCompositeNode(grammarAccess.getPrimitivePropertiesAccess().getStringLengthStringLengthParserRuleCall_0_1_0());
 					}
-					lv_stringLenght_1_0=ruleStringLength
+					lv_stringLength_1_0=ruleStringLength
 					{
 						if ($current==null) {
 							$current = createModelElementForParent(grammarAccess.getPrimitivePropertiesRule());
 						}
 						set(
 							$current,
-							"stringLenght",
-							lv_stringLenght_1_0,
+							"stringLength",
+							lv_stringLength_1_0,
 							"org.xtext.example.mydsl.JSchema.StringLength");
 						afterParserOrEnumRuleCall();
 					}
@@ -991,136 +991,142 @@ ruleFormatTypes returns [Enumerator current=null]
 }:
 	(
 		(
-			enumLiteral_0='"date-time"'
+			enumLiteral_0='null'
 			{
-				$current = grammarAccess.getFormatTypesAccess().getDate_timeEnumLiteralDeclaration_0().getEnumLiteral().getInstance();
-				newLeafNode(enumLiteral_0, grammarAccess.getFormatTypesAccess().getDate_timeEnumLiteralDeclaration_0());
+				$current = grammarAccess.getFormatTypesAccess().getDefaultEnumLiteralDeclaration_0().getEnumLiteral().getInstance();
+				newLeafNode(enumLiteral_0, grammarAccess.getFormatTypesAccess().getDefaultEnumLiteralDeclaration_0());
 			}
 		)
 		    |
 		(
-			enumLiteral_1='"time"'
+			enumLiteral_1='date-time'
 			{
-				$current = grammarAccess.getFormatTypesAccess().getTimeEnumLiteralDeclaration_1().getEnumLiteral().getInstance();
-				newLeafNode(enumLiteral_1, grammarAccess.getFormatTypesAccess().getTimeEnumLiteralDeclaration_1());
+				$current = grammarAccess.getFormatTypesAccess().getDate_timeEnumLiteralDeclaration_1().getEnumLiteral().getInstance();
+				newLeafNode(enumLiteral_1, grammarAccess.getFormatTypesAccess().getDate_timeEnumLiteralDeclaration_1());
 			}
 		)
 		    |
 		(
-			enumLiteral_2='"date"'
+			enumLiteral_2='time'
 			{
-				$current = grammarAccess.getFormatTypesAccess().getDateEnumLiteralDeclaration_2().getEnumLiteral().getInstance();
-				newLeafNode(enumLiteral_2, grammarAccess.getFormatTypesAccess().getDateEnumLiteralDeclaration_2());
+				$current = grammarAccess.getFormatTypesAccess().getTimeEnumLiteralDeclaration_2().getEnumLiteral().getInstance();
+				newLeafNode(enumLiteral_2, grammarAccess.getFormatTypesAccess().getTimeEnumLiteralDeclaration_2());
 			}
 		)
 		    |
 		(
-			enumLiteral_3='"email"'
+			enumLiteral_3='date'
 			{
-				$current = grammarAccess.getFormatTypesAccess().getEmailEnumLiteralDeclaration_3().getEnumLiteral().getInstance();
-				newLeafNode(enumLiteral_3, grammarAccess.getFormatTypesAccess().getEmailEnumLiteralDeclaration_3());
+				$current = grammarAccess.getFormatTypesAccess().getDateEnumLiteralDeclaration_3().getEnumLiteral().getInstance();
+				newLeafNode(enumLiteral_3, grammarAccess.getFormatTypesAccess().getDateEnumLiteralDeclaration_3());
 			}
 		)
 		    |
 		(
-			enumLiteral_4='"idn-email"'
+			enumLiteral_4='email'
 			{
-				$current = grammarAccess.getFormatTypesAccess().getIdn_emailEnumLiteralDeclaration_4().getEnumLiteral().getInstance();
-				newLeafNode(enumLiteral_4, grammarAccess.getFormatTypesAccess().getIdn_emailEnumLiteralDeclaration_4());
+				$current = grammarAccess.getFormatTypesAccess().getEmailEnumLiteralDeclaration_4().getEnumLiteral().getInstance();
+				newLeafNode(enumLiteral_4, grammarAccess.getFormatTypesAccess().getEmailEnumLiteralDeclaration_4());
 			}
 		)
 		    |
 		(
-			enumLiteral_5='"hostname"'
+			enumLiteral_5='idn-email'
 			{
-				$current = grammarAccess.getFormatTypesAccess().getHostnameEnumLiteralDeclaration_5().getEnumLiteral().getInstance();
-				newLeafNode(enumLiteral_5, grammarAccess.getFormatTypesAccess().getHostnameEnumLiteralDeclaration_5());
+				$current = grammarAccess.getFormatTypesAccess().getIdn_emailEnumLiteralDeclaration_5().getEnumLiteral().getInstance();
+				newLeafNode(enumLiteral_5, grammarAccess.getFormatTypesAccess().getIdn_emailEnumLiteralDeclaration_5());
 			}
 		)
 		    |
 		(
-			enumLiteral_6='"ipv4"'
+			enumLiteral_6='hostname'
 			{
-				$current = grammarAccess.getFormatTypesAccess().getIpv4EnumLiteralDeclaration_6().getEnumLiteral().getInstance();
-				newLeafNode(enumLiteral_6, grammarAccess.getFormatTypesAccess().getIpv4EnumLiteralDeclaration_6());
+				$current = grammarAccess.getFormatTypesAccess().getHostnameEnumLiteralDeclaration_6().getEnumLiteral().getInstance();
+				newLeafNode(enumLiteral_6, grammarAccess.getFormatTypesAccess().getHostnameEnumLiteralDeclaration_6());
 			}
 		)
 		    |
 		(
-			enumLiteral_7='"ipv6"'
+			enumLiteral_7='ipv4'
 			{
-				$current = grammarAccess.getFormatTypesAccess().getIpv6EnumLiteralDeclaration_7().getEnumLiteral().getInstance();
-				newLeafNode(enumLiteral_7, grammarAccess.getFormatTypesAccess().getIpv6EnumLiteralDeclaration_7());
+				$current = grammarAccess.getFormatTypesAccess().getIpv4EnumLiteralDeclaration_7().getEnumLiteral().getInstance();
+				newLeafNode(enumLiteral_7, grammarAccess.getFormatTypesAccess().getIpv4EnumLiteralDeclaration_7());
 			}
 		)
 		    |
 		(
-			enumLiteral_8='"uri"'
+			enumLiteral_8='ipv6'
 			{
-				$current = grammarAccess.getFormatTypesAccess().getUriEnumLiteralDeclaration_8().getEnumLiteral().getInstance();
-				newLeafNode(enumLiteral_8, grammarAccess.getFormatTypesAccess().getUriEnumLiteralDeclaration_8());
+				$current = grammarAccess.getFormatTypesAccess().getIpv6EnumLiteralDeclaration_8().getEnumLiteral().getInstance();
+				newLeafNode(enumLiteral_8, grammarAccess.getFormatTypesAccess().getIpv6EnumLiteralDeclaration_8());
 			}
 		)
 		    |
 		(
-			enumLiteral_9='"uri-reference"'
+			enumLiteral_9='uri'
 			{
-				$current = grammarAccess.getFormatTypesAccess().getUri_referenceEnumLiteralDeclaration_9().getEnumLiteral().getInstance();
-				newLeafNode(enumLiteral_9, grammarAccess.getFormatTypesAccess().getUri_referenceEnumLiteralDeclaration_9());
+				$current = grammarAccess.getFormatTypesAccess().getUriEnumLiteralDeclaration_9().getEnumLiteral().getInstance();
+				newLeafNode(enumLiteral_9, grammarAccess.getFormatTypesAccess().getUriEnumLiteralDeclaration_9());
 			}
 		)
 		    |
 		(
-			enumLiteral_10='"iri"'
+			enumLiteral_10='uri-reference'
 			{
-				$current = grammarAccess.getFormatTypesAccess().getIriEnumLiteralDeclaration_10().getEnumLiteral().getInstance();
-				newLeafNode(enumLiteral_10, grammarAccess.getFormatTypesAccess().getIriEnumLiteralDeclaration_10());
+				$current = grammarAccess.getFormatTypesAccess().getUri_referenceEnumLiteralDeclaration_10().getEnumLiteral().getInstance();
+				newLeafNode(enumLiteral_10, grammarAccess.getFormatTypesAccess().getUri_referenceEnumLiteralDeclaration_10());
 			}
 		)
 		    |
 		(
-			enumLiteral_11='"iri-reference"'
+			enumLiteral_11='iri'
 			{
-				$current = grammarAccess.getFormatTypesAccess().getIri_referenceEnumLiteralDeclaration_11().getEnumLiteral().getInstance();
-				newLeafNode(enumLiteral_11, grammarAccess.getFormatTypesAccess().getIri_referenceEnumLiteralDeclaration_11());
+				$current = grammarAccess.getFormatTypesAccess().getIriEnumLiteralDeclaration_11().getEnumLiteral().getInstance();
+				newLeafNode(enumLiteral_11, grammarAccess.getFormatTypesAccess().getIriEnumLiteralDeclaration_11());
 			}
 		)
 		    |
 		(
-			enumLiteral_12='"uri-template"'
+			enumLiteral_12='iri-reference'
 			{
-				$current = grammarAccess.getFormatTypesAccess().getUri_templateEnumLiteralDeclaration_12().getEnumLiteral().getInstance();
-				newLeafNode(enumLiteral_12, grammarAccess.getFormatTypesAccess().getUri_templateEnumLiteralDeclaration_12());
+				$current = grammarAccess.getFormatTypesAccess().getIri_referenceEnumLiteralDeclaration_12().getEnumLiteral().getInstance();
+				newLeafNode(enumLiteral_12, grammarAccess.getFormatTypesAccess().getIri_referenceEnumLiteralDeclaration_12());
 			}
 		)
 		    |
 		(
-			enumLiteral_13='"json-pointer"'
+			enumLiteral_13='uri-template'
 			{
-				$current = grammarAccess.getFormatTypesAccess().getJson_pointerEnumLiteralDeclaration_13().getEnumLiteral().getInstance();
-				newLeafNode(enumLiteral_13, grammarAccess.getFormatTypesAccess().getJson_pointerEnumLiteralDeclaration_13());
+				$current = grammarAccess.getFormatTypesAccess().getUri_templateEnumLiteralDeclaration_13().getEnumLiteral().getInstance();
+				newLeafNode(enumLiteral_13, grammarAccess.getFormatTypesAccess().getUri_templateEnumLiteralDeclaration_13());
 			}
 		)
 		    |
 		(
-			enumLiteral_14='"relative-json-pointer"'
+			enumLiteral_14='json-pointer'
 			{
-				$current = grammarAccess.getFormatTypesAccess().getRelative_json_pointerEnumLiteralDeclaration_14().getEnumLiteral().getInstance();
-				newLeafNode(enumLiteral_14, grammarAccess.getFormatTypesAccess().getRelative_json_pointerEnumLiteralDeclaration_14());
+				$current = grammarAccess.getFormatTypesAccess().getJson_pointerEnumLiteralDeclaration_14().getEnumLiteral().getInstance();
+				newLeafNode(enumLiteral_14, grammarAccess.getFormatTypesAccess().getJson_pointerEnumLiteralDeclaration_14());
 			}
 		)
 		    |
 		(
-			enumLiteral_15='"regex"'
+			enumLiteral_15='relative-json-pointer'
 			{
-				$current = grammarAccess.getFormatTypesAccess().getRegexEnumLiteralDeclaration_15().getEnumLiteral().getInstance();
-				newLeafNode(enumLiteral_15, grammarAccess.getFormatTypesAccess().getRegexEnumLiteralDeclaration_15());
+				$current = grammarAccess.getFormatTypesAccess().getRelative_json_pointerEnumLiteralDeclaration_15().getEnumLiteral().getInstance();
+				newLeafNode(enumLiteral_15, grammarAccess.getFormatTypesAccess().getRelative_json_pointerEnumLiteralDeclaration_15());
+			}
+		)
+		    |
+		(
+			enumLiteral_16='regex'
+			{
+				$current = grammarAccess.getFormatTypesAccess().getRegexEnumLiteralDeclaration_16().getEnumLiteral().getInstance();
+				newLeafNode(enumLiteral_16, grammarAccess.getFormatTypesAccess().getRegexEnumLiteralDeclaration_16());
 			}
 		)
 	)
 ;
-
-RULE_NULL : 'null';
 
 RULE_ID : '^'? ('a'..'z'|'A'..'Z'|'_') ('a'..'z'|'A'..'Z'|'_'|'0'..'9')*;
 

@@ -16,6 +16,7 @@ import org.eclipse.xtext.naming.IQualifiedNameProvider
 import java.util.ArrayList
 import org.xtext.example.mydsl.jSchema.hasProperties
 import org.xtext.example.mydsl.generator.ObjectClass
+import org.xtext.example.mydsl.jSchema.PrimitiveProperties
 
 /**
  * Generates code from your model files on save.
@@ -97,9 +98,9 @@ class JSchemaGenerator extends AbstractGenerator {
 				}
 			}
 			for(String includedName : includeNameList){
-				for(MainObject mainObj : mainObjectList){
-					if(mainObj.objectName.toString() == includedName){
-						tempObject.addMainObject(compileMainObject(mainObj));
+				for(ObjectClass mainObj : compiledMainObjects){
+					if(mainObj.name == includedName){
+						tempObject.addMainObject(mainObj);
 					}
 				}
 				for(PrimitiveObjectClass compPrimObj : compiledPrimitiveObjects){
@@ -134,7 +135,13 @@ class JSchemaGenerator extends AbstractGenerator {
 		
 		var PrimitiveObjectClass temp;
 		if(obj.type.string !== null){
-			temp = new PrimitiveObjectClass(obj.type.string, obj, PrimitiveType.STRING, obj.type.string);
+			var ArrayList<PrimitiveProperties> primitiveProperties = new ArrayList<PrimitiveProperties>();
+			for(PrimitiveProperties primProp : obj.primitiveProperties){
+				primitiveProperties.add(primProp)
+				System.out.println(primProp.toString)
+			}
+			
+			temp = new PrimitiveObjectClass(obj.type.string, obj, PrimitiveType.STRING, obj.type.string, primitiveProperties);
 		} 
 		
 		else if(obj.type.array !== null){

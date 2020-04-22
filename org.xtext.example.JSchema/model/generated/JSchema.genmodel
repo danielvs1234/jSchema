@@ -7,6 +7,7 @@
   <genPackages prefix="JSchema" basePackage="org.xtext.example.mydsl" disposableProviderFactory="true"
       fileExtensions="jsc" ecorePackage="JSchema.ecore#/">
     <genEnums typeSafeEnumCompatible="false" ecoreEnum="JSchema.ecore#//FormatTypes">
+      <genEnumLiterals ecoreEnumLiteral="JSchema.ecore#//FormatTypes/default"/>
       <genEnumLiterals ecoreEnumLiteral="JSchema.ecore#//FormatTypes/date_time"/>
       <genEnumLiterals ecoreEnumLiteral="JSchema.ecore#//FormatTypes/time"/>
       <genEnumLiterals ecoreEnumLiteral="JSchema.ecore#//FormatTypes/date"/>
@@ -58,7 +59,7 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference JSchema.ecore#//Property/propObj"/>
     </genClasses>
     <genClasses ecoreClass="JSchema.ecore#//PrimitiveProperties">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute JSchema.ecore#//PrimitiveProperties/stringLenght"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute JSchema.ecore#//PrimitiveProperties/stringLength"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute JSchema.ecore#//PrimitiveProperties/patternString"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute JSchema.ecore#//PrimitiveProperties/stringFormat"/>
     </genClasses>

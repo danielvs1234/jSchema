@@ -75,7 +75,7 @@ public class JSchemaParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getHasPropertiesAccess().getPropertiesAssignment(), "rule__HasProperties__PropertiesAssignment");
 			builder.put(grammarAccess.getPropertyAccess().getPropPrimAssignment_0(), "rule__Property__PropPrimAssignment_0");
 			builder.put(grammarAccess.getPropertyAccess().getPropObjAssignment_1(), "rule__Property__PropObjAssignment_1");
-			builder.put(grammarAccess.getPrimitivePropertiesAccess().getStringLenghtAssignment_0_1(), "rule__PrimitiveProperties__StringLenghtAssignment_0_1");
+			builder.put(grammarAccess.getPrimitivePropertiesAccess().getStringLengthAssignment_0_1(), "rule__PrimitiveProperties__StringLengthAssignment_0_1");
 			builder.put(grammarAccess.getPrimitivePropertiesAccess().getPatternStringAssignment_1_1(), "rule__PrimitiveProperties__PatternStringAssignment_1_1");
 			builder.put(grammarAccess.getPrimitivePropertiesAccess().getStringFormatAssignment_2_1(), "rule__PrimitiveProperties__StringFormatAssignment_2_1");
 			builder.put(grammarAccess.getIncludesAccess().getObjectIDAssignment_0(), "rule__Includes__ObjectIDAssignment_0");

@@ -176,7 +176,7 @@ public class JSchemaSemanticSequencer extends AbstractDelegatingSemanticSequence
 	 *     PrimitiveProperties returns PrimitiveProperties
 	 *
 	 * Constraint:
-	 *     (stringLenght=StringLength | patternString=STRING | stringFormat=FormatTypes)
+	 *     (stringLength=StringLength | patternString=STRING | stringFormat=FormatTypes)
 	 */
 	protected void sequence_PrimitiveProperties(ISerializationContext context, PrimitiveProperties semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);

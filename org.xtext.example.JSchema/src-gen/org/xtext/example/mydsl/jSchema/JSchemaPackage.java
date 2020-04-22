@@ -384,13 +384,13 @@ public interface JSchemaPackage extends EPackage
   int PRIMITIVE_PROPERTIES = 9;
 
   /**
-   * The feature id for the '<em><b>String Lenght</b></em>' attribute.
+   * The feature id for the '<em><b>String Length</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int PRIMITIVE_PROPERTIES__STRING_LENGHT = 0;
+  int PRIMITIVE_PROPERTIES__STRING_LENGTH = 0;
 
   /**
    * The feature id for the '<em><b>Pattern String</b></em>' attribute.
@@ -781,15 +781,15 @@ public interface JSchemaPackage extends EPackage
   EClass getPrimitiveProperties();
 
   /**
-   * Returns the meta object for the attribute '{@link org.xtext.example.mydsl.jSchema.PrimitiveProperties#getStringLenght <em>String Lenght</em>}'.
+   * Returns the meta object for the attribute '{@link org.xtext.example.mydsl.jSchema.PrimitiveProperties#getStringLength <em>String Length</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for the attribute '<em>String Lenght</em>'.
-   * @see org.xtext.example.mydsl.jSchema.PrimitiveProperties#getStringLenght()
+   * @return the meta object for the attribute '<em>String Length</em>'.
+   * @see org.xtext.example.mydsl.jSchema.PrimitiveProperties#getStringLength()
    * @see #getPrimitiveProperties()
    * @generated
    */
-  EAttribute getPrimitiveProperties_StringLenght();
+  EAttribute getPrimitiveProperties_StringLength();
 
   /**
    * Returns the meta object for the attribute '{@link org.xtext.example.mydsl.jSchema.PrimitiveProperties#getPatternString <em>Pattern String</em>}'.
@@ -1139,12 +1139,12 @@ public interface JSchemaPackage extends EPackage
     EClass PRIMITIVE_PROPERTIES = eINSTANCE.getPrimitiveProperties();
 
     /**
-     * The meta object literal for the '<em><b>String Lenght</b></em>' attribute feature.
+     * The meta object literal for the '<em><b>String Length</b></em>' attribute feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    EAttribute PRIMITIVE_PROPERTIES__STRING_LENGHT = eINSTANCE.getPrimitiveProperties_StringLenght();
+    EAttribute PRIMITIVE_PROPERTIES__STRING_LENGTH = eINSTANCE.getPrimitiveProperties_StringLength();
 
     /**
      * The meta object literal for the '<em><b>Pattern String</b></em>' attribute feature.

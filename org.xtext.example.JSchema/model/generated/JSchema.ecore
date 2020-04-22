@@ -47,27 +47,28 @@
         containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="PrimitiveProperties">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="stringLenght" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="stringLength" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="patternString" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="stringFormat" eType="#//FormatTypes"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="FormatTypes">
-    <eLiterals name="date_time" literal="&quot;date-time&quot;"/>
-    <eLiterals name="time" value="1" literal="&quot;time&quot;"/>
-    <eLiterals name="date" value="2" literal="&quot;date&quot;"/>
-    <eLiterals name="email" value="3" literal="&quot;email&quot;"/>
-    <eLiterals name="idn_email" value="4" literal="&quot;idn-email&quot;"/>
-    <eLiterals name="hostname" value="5" literal="&quot;hostname&quot;"/>
-    <eLiterals name="ipv4" value="6" literal="&quot;ipv4&quot;"/>
-    <eLiterals name="ipv6" value="7" literal="&quot;ipv6&quot;"/>
-    <eLiterals name="uri" value="8" literal="&quot;uri&quot;"/>
-    <eLiterals name="uri_reference" value="9" literal="&quot;uri-reference&quot;"/>
-    <eLiterals name="iri" value="10" literal="&quot;iri&quot;"/>
-    <eLiterals name="iri_reference" value="11" literal="&quot;iri-reference&quot;"/>
-    <eLiterals name="uri_template" value="12" literal="&quot;uri-template&quot;"/>
-    <eLiterals name="json_pointer" value="13" literal="&quot;json-pointer&quot;"/>
-    <eLiterals name="relative_json_pointer" value="14" literal="&quot;relative-json-pointer&quot;"/>
-    <eLiterals name="regex" value="15" literal="&quot;regex&quot;"/>
+    <eLiterals name="default" literal="null"/>
+    <eLiterals name="date_time" value="1" literal="date-time"/>
+    <eLiterals name="time" value="2" literal="time"/>
+    <eLiterals name="date" value="3" literal="date"/>
+    <eLiterals name="email" value="4" literal="email"/>
+    <eLiterals name="idn_email" value="5" literal="idn-email"/>
+    <eLiterals name="hostname" value="6" literal="hostname"/>
+    <eLiterals name="ipv4" value="7" literal="ipv4"/>
+    <eLiterals name="ipv6" value="8" literal="ipv6"/>
+    <eLiterals name="uri" value="9" literal="uri"/>
+    <eLiterals name="uri_reference" value="10" literal="uri-reference"/>
+    <eLiterals name="iri" value="11" literal="iri"/>
+    <eLiterals name="iri_reference" value="12" literal="iri-reference"/>
+    <eLiterals name="uri_template" value="13" literal="uri-template"/>
+    <eLiterals name="json_pointer" value="14" literal="json-pointer"/>
+    <eLiterals name="relative_json_pointer" value="15" literal="relative-json-pointer"/>
+    <eLiterals name="regex" value="16" literal="regex"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Includes">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="objectID" unique="false"

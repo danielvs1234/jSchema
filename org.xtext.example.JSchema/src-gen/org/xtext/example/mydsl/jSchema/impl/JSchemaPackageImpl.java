@@ -480,7 +480,7 @@ public class JSchemaPackageImpl extends EPackageImpl implements JSchemaPackage
    * @generated
    */
   @Override
-  public EAttribute getPrimitiveProperties_StringLenght()
+  public EAttribute getPrimitiveProperties_StringLength()
   {
     return (EAttribute)primitivePropertiesEClass.getEStructuralFeatures().get(0);
   }
@@ -650,7 +650,7 @@ public class JSchemaPackageImpl extends EPackageImpl implements JSchemaPackage
     createEReference(propertyEClass, PROPERTY__PROP_OBJ);
 
     primitivePropertiesEClass = createEClass(PRIMITIVE_PROPERTIES);
-    createEAttribute(primitivePropertiesEClass, PRIMITIVE_PROPERTIES__STRING_LENGHT);
+    createEAttribute(primitivePropertiesEClass, PRIMITIVE_PROPERTIES__STRING_LENGTH);
     createEAttribute(primitivePropertiesEClass, PRIMITIVE_PROPERTIES__PATTERN_STRING);
     createEAttribute(primitivePropertiesEClass, PRIMITIVE_PROPERTIES__STRING_FORMAT);
 
@@ -734,7 +734,7 @@ public class JSchemaPackageImpl extends EPackageImpl implements JSchemaPackage
     initEReference(getProperty_PropObj(), this.getMainObject(), null, "propObj", null, 0, 1, Property.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(primitivePropertiesEClass, PrimitiveProperties.class, "PrimitiveProperties", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEAttribute(getPrimitiveProperties_StringLenght(), ecorePackage.getEString(), "stringLenght", null, 0, 1, PrimitiveProperties.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getPrimitiveProperties_StringLength(), ecorePackage.getEString(), "stringLength", null, 0, 1, PrimitiveProperties.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getPrimitiveProperties_PatternString(), ecorePackage.getEString(), "patternString", null, 0, 1, PrimitiveProperties.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getPrimitiveProperties_StringFormat(), this.getFormatTypes(), "stringFormat", null, 0, 1, PrimitiveProperties.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
@@ -748,6 +748,7 @@ public class JSchemaPackageImpl extends EPackageImpl implements JSchemaPackage
 
     // Initialize enums and add enum literals
     initEEnum(formatTypesEEnum, FormatTypes.class, "FormatTypes");
+    addEEnumLiteral(formatTypesEEnum, FormatTypes.DEFAULT);
     addEEnumLiteral(formatTypesEEnum, FormatTypes.DATE_TIME);
     addEEnumLiteral(formatTypesEEnum, FormatTypes.TIME);
     addEEnumLiteral(formatTypesEEnum, FormatTypes.DATE);

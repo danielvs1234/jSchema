@@ -1,5 +1,6 @@
 package org.xtext.example.mydsl.generator;
 
+import org.xtext.example.mydsl.jSchema.FormatTypes;
 import org.xtext.example.mydsl.jSchema.PrimitiveObject;
 import org.xtext.example.mydsl.jSchema.PrimitiveProperties;
 
@@ -17,7 +18,7 @@ public class PrimitiveObjectClass {
 	
 	String valNumber;
 	String valString;
-	PrimitiveProperties stringProperties;
+	ArrayList<PrimitiveProperties> stringProperties;
 	
 	ArrayType optArrayType;
 	ArrayList<Object> arrayContent;
@@ -40,7 +41,7 @@ public class PrimitiveObjectClass {
 		}
 			
 	}
-	public PrimitiveObjectClass(String name, PrimitiveObject primObj, PrimitiveType primType, String optValue, PrimitiveProperties stringProperties) {
+	public PrimitiveObjectClass(String name, PrimitiveObject primObj, PrimitiveType primType, String optValue, ArrayList<PrimitiveProperties> stringProperties) {
 		primitiveObject = primObj;
 		this.type = primType;
 		this.name = name;
@@ -65,14 +66,6 @@ public class PrimitiveObjectClass {
 		}
 	}
 	
-			
-	
-	
-	
-	public void compileArray(ArrayType arrayType) {
-		
-	}
-	
 	
 	public String getPrimitiveObjectString() {
 		StringBuilder string = new StringBuilder();
@@ -81,35 +74,130 @@ public class PrimitiveObjectClass {
 			
 			string.append("\"" + valString + "\":{\n");
 			string.append("\"$id\":\"" + valString + "\",\n");
-			if(stringProperties == null) {
-			string.append("\"type\":\"string\"\n");
+			if(stringProperties.size() == 0) {
+			string.append("\"type\":\"string\"");
 			}
-			else if(stringProperties != null) {
+			else if(stringProperties.size() > 0) {
 				string.append("\"type\":\"string\",\n");
-				if(stringProperties.getStringLenght() != null) {
-					String[] tmp = stringProperties.getStringLenght().split("-");
-					String min = tmp[0].toString();
-					String max = tmp[1].toString();
+				
+				for(int i=0 ; i < stringProperties.size() ; i++) {
+					PrimitiveProperties primProp = stringProperties.get(i);
+					if(primProp.getStringLength() != null) {
+						String[] tmp = primProp.getStringLength().split("-");
+						String min = tmp[0].toString();
+						String max = tmp[1].toString();
 					
-					string.append("\"minlength\":" + min + ",\n");
-					if(stringProperties.getPatternString() != null || stringProperties.getStringFormat() != null) {
-						string.append("\"maxlength\":" + max + ",\n");
-					} else {
-						string.append("\"maxlength\":" + max + "\n");
+						string.append("\"minlength\":" + min + ",\n");
+						string.append("\"maxlength\":" + max);
+						}
+						
+					
+					if(primProp.getPatternString() != null) {
+							string.append("\"pattern\":\"" + primProp.getPatternString() + "\"");
+						}
+							
+					if(primProp.getStringFormat() != FormatTypes.DEFAULT) {
+						string.append("\"format\":\"" + primProp.getStringFormat().getName().toString() + "\"");
 					}
 					
+					if(i+1 < stringProperties.size()) {
+						string.append(",\n");
+					}
 				}
-				if(stringProperties.getPatternString() != null) {
+				
+			}
+				string.append("\n}");
+		}
+		
+		else if(type.equals(PrimitiveType.NUMBER)) {
+			if(valNumber != null) {
+				string.append("{\n");
+				string.append("\"type\":\"number\",\n");
+				string.append("\"value\":\"" + valNumber + "\"\n");
+			} else {
+				string.append("\"type\":\"number\"\n");
+			}
+			string.append("}");
+		}
+		
+		else if(type.equals(PrimitiveType.ARRAY)) {
+			string.append("\"" + this.name + "\":{\n");
+			string.append("\"type\":\"array\",\n");
+			string.append("\"$id\":\"" + this.name + "\",\n");
+			
+			if((arrayContent != null && arrayContent.size() > 0) || optArrayType != null) {
+				string.append("\"items\":[\n");
+				
+				if(optArrayType != null) {
+					string.append("{\n");
+					string.append("\"type\":\"" + ("\"") + primitiveObject.getType().getArray().getArrayType() + "\"");
+					string.append("}\n");
+					string.append("]\n");
+					string.append("}");
 					
-					if(stringProperties.getStringFormat() != null) {
-						string.append("\"pattern\":\"" + stringProperties.getPatternString() + "\",\n");
-					} else {
-						string.append("\"pattern\":\"" + stringProperties.getPatternString() + "\"\n");
+					return string.toString();
+				} else if(arrayContent.size() > 0) {
+					string.append("{\n");
+					
+					for(int i = 0 ; i < arrayContent.size() ; i++) {
+						Object e = arrayContent.get(i);
+						if(e instanceof ObjectClass) {
+							string.append(((ObjectClass) e).getObjectJSchemaString());
+						} else if (e instanceof PrimitiveObjectClass) {
+							string.append(((PrimitiveObjectClass) e).getObjectItemRepresentation());
+						}
+						if(i+1 < arrayContent.size()) {
+							string.append(",\n");
+						} else {
+							string.append("\n");
+						}
+					}
+					string.append("]");
+					string.append("\n}");
+					
+				}
+				
+			}
+		}
+	
+		return string.toString();
+	}
+	
+	
+	public String getObjectItemRepresentation() {
+		StringBuilder string = new StringBuilder();
+		
+		if(type.equals(PrimitiveType.STRING)){
+			string.append("\"$id\":\"" + valString + "\",\n");
+			if(stringProperties.size() == 0) {
+			string.append("\"type\":\"string\"");
+			}
+			else if(stringProperties.size() > 0) {
+				string.append("\"type\":\"string\",\n");
+				
+				for(int i=0 ; i < stringProperties.size() ; i++) {
+					PrimitiveProperties primProp = stringProperties.get(i);
+					if(primProp.getStringLength() != null) {
+						String[] tmp = primProp.getStringLength().split("-");
+						String min = tmp[0].toString();
+						String max = tmp[1].toString();
+					
+						string.append("\"minlength\":" + min + ",\n");
+						string.append("\"maxlength\":" + max);
+						}
+						
+					
+					if(primProp.getPatternString() != null) {
+							string.append("\"pattern\":\"" + primProp.getPatternString() + "\"");
+						}
+							
+					if(primProp.getStringFormat() != FormatTypes.DEFAULT) {
+						string.append("\"format\":\"" + primProp.getStringFormat().getName().toString() + "\"");
 					}
 					
-				}
-				if(stringProperties.getStringFormat() != null) {
-					string.append("\"format\":\"" + stringProperties.getStringFormat().toString() + "\"\n");
+					if(i+1 < stringProperties.size()) {
+						string.append(",\n");
+					}
 				}
 				
 			}
@@ -159,16 +247,16 @@ public class PrimitiveObjectClass {
 							string.append("\n");
 						}
 					}
-					
+					string.append("]");
 					string.append("}\n");
-					string.append("]\n");
-					string.append("}");
 					
 				}
 				
 			}
 		}
 	
+		
+		
 		return string.toString();
 	}
 }

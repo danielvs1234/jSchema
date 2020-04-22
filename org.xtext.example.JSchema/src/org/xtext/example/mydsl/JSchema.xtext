@@ -7,9 +7,6 @@ Model:
 	AbstractObject+=AbstractObject*
 ;
 
-terminal NULL:
-	'null'
-;
 
 Number:
     number=INT ('.' decimal=INT)?
@@ -50,7 +47,7 @@ Property:
 ;
 
 PrimitiveProperties:
-	'length' stringLenght=StringLength | ('pattern' patternString=STRING ) | 'format' stringFormat=FormatTypes
+	'length' stringLength=StringLength | ('pattern' patternString=STRING ) | 'format' stringFormat=FormatTypes
 ;
 
 StringLength:
@@ -58,22 +55,23 @@ StringLength:
 ;
 
 enum FormatTypes:
-	date_time='"date-time"' |
-	time='"time"' | 
-	date='"date"' | 
-	email='"email"' | 
-	idn_email='"idn-email"' | 
-	hostname='"hostname"' | 
-	ipv4='"ipv4"' | 
-	ipv6='"ipv6"' | 
-	uri='"uri"' | 
-	uri_reference='"uri-reference"' | 
-	iri='"iri"' | 
-	iri_reference='"iri-reference"' | 
-	uri_template='"uri-template"' | 
-	json_pointer='"json-pointer"' | 
-	relative_json_pointer='"relative-json-pointer"' | 
-	regex='"regex"'
+	default='null'|
+	date_time='date-time' |
+	time='time' | 
+	date='date' | 
+	email='email' | 
+	idn_email='idn-email' | 
+	hostname='hostname' | 
+	ipv4='ipv4' | 
+	ipv6='ipv6' | 
+	uri='uri' | 
+	uri_reference='uri-reference' | 
+	iri='iri' | 
+	iri_reference='iri-reference' | 
+	uri_template='uri-template' | 
+	json_pointer='json-pointer' | 
+	relative_json_pointer='relative-json-pointer' | 
+	regex='regex'
 ;
 
 Includes:
