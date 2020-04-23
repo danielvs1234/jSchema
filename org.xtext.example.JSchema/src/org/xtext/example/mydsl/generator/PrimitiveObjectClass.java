@@ -164,7 +164,7 @@ public class PrimitiveObjectClass {
 	}
 	
 	
-	public String getObjectItemRepresentation() {
+	private String getObjectItemRepresentation() {
 		StringBuilder string = new StringBuilder();
 		
 		if(type.equals(PrimitiveType.STRING)){
@@ -201,12 +201,12 @@ public class PrimitiveObjectClass {
 				}
 				
 			}
-				string.append("\n}");
+				string.append("\n}//String\\\\");
 		}
 		
 		else if(type.equals(PrimitiveType.NUMBER)) {
 			if(valNumber != null) {
-				string.append("{\n");
+				string.append("{");
 				string.append("\"type\":\"number\",\n");
 				string.append("\"value\":\"" + valNumber + "\"\n");
 			} else {

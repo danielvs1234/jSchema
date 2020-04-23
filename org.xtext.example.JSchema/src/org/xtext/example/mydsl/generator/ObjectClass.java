@@ -76,14 +76,37 @@ public class ObjectClass{
 			string.append("\"" + this.name + "\":{\n");
 			string.append("\"$id\":\"" + this.name + ",\n");
 		}
-		string.append( "\"type\":\"object\",\n");
+		
+		
+		if(hasMainObjectPropertiesList.size() == 0 &&
+				hasPrimtiveObjectPropertiesList.size() == 0 &&
+				includedPrimitiveObjects.size() == 0 &&
+				includedMainObjects.size() == 0
+				) {
+			string.append( "\"type\":\"object\"");
+		} else {
+			string.append( "\"type\":\"object\",\n");
+		}
+		
 		
 		if(hasMainObjectPropertiesList.size() > 0) {
 			string.append("\"properties\":{\n");
-			for(ObjectClass property : hasMainObjectPropertiesList) {
-				string.append(property.getObjectJSchemaString());
-				string.append("\n}");
+			
+			for(int i=0 ; i < hasMainObjectPropertiesList.size() ; i++) {
+				ObjectClass mainObj = hasMainObjectPropertiesList.get(i);
+				string.append(mainObj.getObjectJSchemaString());
+				if(i+1 < hasMainObjectPropertiesList.size()) {
+					string.append(",\n");
+				} else {
+					if(hasPrimtiveObjectPropertiesList.size() > 0) {
+					continue;	
+					} else {
+						string.append("\n}//Properties\\");
+					}
+				}
+
 			}
+			
 			if(hasPrimtiveObjectPropertiesList.size() > 0 || includedPrimitiveObjects.size() > 0 || includedMainObjects.size() > 0) {
 				string.append(",\n");
 			}
@@ -91,25 +114,30 @@ public class ObjectClass{
 		}
 		
 		if (hasPrimtiveObjectPropertiesList.size () > 0) {
+			if(hasMainObjectPropertiesList.size() == 0) {
 			string.append("\"properties\":{\n");
-			for(PrimitiveObjectClass primObject : hasPrimtiveObjectPropertiesList) {
-				string.append(primObject.getPrimitiveObjectString());
-				string.append("\n}");
+			}
+			for(int i=0 ; i < hasPrimtiveObjectPropertiesList.size() ; i++) {
+				PrimitiveObjectClass primObj = hasPrimtiveObjectPropertiesList.get(i);
+				string.append(primObj.getPrimitiveObjectString());
+				if(i+1 < hasPrimtiveObjectPropertiesList.size()) {
+					string.append(",\n");
+				} else {
+					string.append("\n}//PropertiesPrim\\");
+				}
 			}
 			if(includedPrimitiveObjects.size() > 0 || includedMainObjects.size() > 0) {
 				string.append(",\n");
-			} else {
-				string.append("\n}");
+				
 			}
 		}
 		
 		
 		
-		
-		
-		if(hasPrimtiveObjectPropertiesList.size() == 0 && hasMainObjectPropertiesList.size() == 0) {
+		if(hasPrimtiveObjectPropertiesList.size() == 0 && hasMainObjectPropertiesList.size() == 0 && (includedPrimitiveObjects.size() > 0 || includedMainObjects.size() > 0)) {
 			string.append("\"properties\":{\n");
 		}
+		
 		if(includedPrimitiveObjects.size() > 0 || includedMainObjects.size() > 0) {
 			string.append("\"allOf\":[\n");
 			
@@ -121,7 +149,7 @@ public class ObjectClass{
 				string.append("{\n");
 				string.append("\"properties\":{\n");
 				string.append(mainObj.getObjectJSchemaString());
-				string.append("\n}");
+				string.append("\n}//includeMainPropBracket\\");
 				string.append("\n}");
 				
 				if(i+1 < includedMainObjects.size()) {
@@ -138,7 +166,7 @@ public class ObjectClass{
 				string.append("{\n");
 				string.append("\"properties\":{\n");
 				string.append(primObj.getPrimitiveObjectString());
-				string.append("\n}");
+				string.append("\n}//IncludePrimPropBracket\\");
 				string.append("\n}");
 				if(i+1 < includedPrimitiveObjects.size()) {
 					string.append(",\n");
@@ -147,7 +175,16 @@ public class ObjectClass{
 		}
 		
 		string.append("\n]");
+		
+		if(hasPrimtiveObjectPropertiesList.size() == 0 && hasMainObjectPropertiesList.size() == 0 && (includedPrimitiveObjects.size() > 0 || includedMainObjects.size() > 0)) {
+			string.append("\n}//ENDOFINCLUDEDPROPERTIESBRAKCET\\");
 		}
+		}
+		
+		if(isRoot == false) {
+			string.append("\n}//NOTROOTBRACKET\\");
+		}
+		
 		
 		return string.toString();
 	}

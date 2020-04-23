@@ -1,0 +1,12 @@
+package org.xtext.example.mydsl.generator;
+
+import org.apache.sling.commons.json.JSONObject;
+public class JsonFormatter {
+
+	JSONObject jsonObject = new JSONObject()
+	public JsonFormatter() {
+		
+	}
+	
+	
+}

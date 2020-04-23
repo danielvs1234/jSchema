@@ -96,9 +96,9 @@ public class JSchemaGenerator extends AbstractGenerator {
     }
     for (final ObjectClass compiledObject : this.compiledMainObjects) {
       if ((compiledObject.isRoot == true)) {
-        System.out.println("{");
+        System.out.println("{//Start\\");
         System.out.println(compiledObject.getObjectJSchemaString());
-        System.out.println("}");
+        System.out.println("}//Start\\");
       }
     }
   }
