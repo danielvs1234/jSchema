@@ -32,6 +32,9 @@ class JSchemaGenerator extends AbstractGenerator {
 	  ArrayList<PrimitiveObjectClass> compiledPrimitiveObjects;
 	  FileController fileController;
 	  JsonFormatter jsonFormatter;
+	  
+	  //Edit for writing file to custom directory
+	  String filePath = "C:\\Users\\Schmidt\\Desktop\\JSchemaFile.txt";
 
 	override void doGenerate(Resource resource, IFileSystemAccess2 fsa, IGeneratorContext context) {
 			primitiveObjectList = new ArrayList<PrimitiveObject>()
@@ -39,7 +42,7 @@ class JSchemaGenerator extends AbstractGenerator {
 			compiledPrimitiveObjects = new ArrayList<PrimitiveObjectClass>();
 			compiledMainObjects = new ArrayList<ObjectClass>();
 			val abstractObjects = resource.allContents.filter(Model).next
-			fileController = new FileController();
+			fileController = new FileController(filePath);
 			jsonFormatter = new JsonFormatter();
 			
 			System.out.println("Amount of primitive objects found: " + primitiveObjectList.size())
@@ -71,7 +74,6 @@ class JSchemaGenerator extends AbstractGenerator {
 				stringBuilder.append("{\n")
 				stringBuilder.append(compiledObject.objectJSchemaString);
 				stringBuilder.append("\n}")
-				//var String newString = stringBuilder.toString().replaceAll("\n", "").replaceAll("\"", "");
 				fileController.writeFile(jsonFormatter.formatString(stringBuilder.toString()));
 				}
 			}
@@ -211,10 +213,6 @@ class JSchemaGenerator extends AbstractGenerator {
 		return propertyList
 	}
 	
-	
-	def stringBuilder(String string){
-		
-	}
 	
 
 			

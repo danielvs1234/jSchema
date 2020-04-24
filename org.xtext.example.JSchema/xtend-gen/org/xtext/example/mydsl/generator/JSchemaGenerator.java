@@ -56,6 +56,8 @@ public class JSchemaGenerator extends AbstractGenerator {
   
   private JsonFormatter jsonFormatter;
   
+  private String filePath = "C:\\Users\\Schmidt\\Desktop\\JSchemaFile.txt";
+  
   @Override
   public void doGenerate(final Resource resource, final IFileSystemAccess2 fsa, final IGeneratorContext context) {
     ArrayList<PrimitiveObject> _arrayList = new ArrayList<PrimitiveObject>();
@@ -67,7 +69,7 @@ public class JSchemaGenerator extends AbstractGenerator {
     ArrayList<ObjectClass> _arrayList_3 = new ArrayList<ObjectClass>();
     this.compiledMainObjects = _arrayList_3;
     final Model abstractObjects = Iterators.<Model>filter(resource.getAllContents(), Model.class).next();
-    FileController _fileController = new FileController();
+    FileController _fileController = new FileController(this.filePath);
     this.fileController = _fileController;
     JsonFormatter _jsonFormatter = new JsonFormatter();
     this.jsonFormatter = _jsonFormatter;
@@ -295,9 +297,5 @@ public class JSchemaGenerator extends AbstractGenerator {
       propertyList.add(e);
     }
     return propertyList;
-  }
-  
-  public Object stringBuilder(final String string) {
-    return null;
   }
 }

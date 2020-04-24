@@ -8,12 +8,16 @@ import java.nio.file.Paths;
 
 public class FileController {
 	
-	public FileController() {
-		
+	String path;
+	
+	public FileController(String path) {
+		this.path = path;
 	}
 	
+	
+	
 	public void writeFile(String file) {
-		Path p= Paths.get("C:\\Users\\Schmidt\\Desktop\\JSchemaFile.txt");
+		Path p= Paths.get(this.path);
 		PrintWriter pr;
 		
 		try {
