@@ -30,6 +30,8 @@ class JSchemaGenerator extends AbstractGenerator {
 	  ArrayList<MainObject>	mainObjectList;
 	  ArrayList<ObjectClass> compiledMainObjects;
 	  ArrayList<PrimitiveObjectClass> compiledPrimitiveObjects;
+	  FileController fileController;
+	  JsonFormatter jsonFormatter;
 
 	override void doGenerate(Resource resource, IFileSystemAccess2 fsa, IGeneratorContext context) {
 			primitiveObjectList = new ArrayList<PrimitiveObject>()
@@ -37,7 +39,8 @@ class JSchemaGenerator extends AbstractGenerator {
 			compiledPrimitiveObjects = new ArrayList<PrimitiveObjectClass>();
 			compiledMainObjects = new ArrayList<ObjectClass>();
 			val abstractObjects = resource.allContents.filter(Model).next
-			
+			fileController = new FileController();
+			jsonFormatter = new JsonFormatter();
 			
 			System.out.println("Amount of primitive objects found: " + primitiveObjectList.size())
 			
@@ -64,9 +67,12 @@ class JSchemaGenerator extends AbstractGenerator {
 			
 			for (ObjectClass compiledObject : compiledMainObjects){
 			if(compiledObject.isRoot == true){
-				System.out.println("{//Start\\")
-				System.out.println(compiledObject.objectJSchemaString);
-				System.out.println("}//Start\\")
+				var StringBuilder stringBuilder = new StringBuilder();
+				stringBuilder.append("{\n")
+				stringBuilder.append(compiledObject.objectJSchemaString);
+				stringBuilder.append("\n}")
+				//var String newString = stringBuilder.toString().replaceAll("\n", "").replaceAll("\"", "");
+				fileController.writeFile(jsonFormatter.formatString(stringBuilder.toString()));
 				}
 			}
 				

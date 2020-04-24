@@ -18,6 +18,8 @@ import org.eclipse.xtext.naming.IQualifiedNameProvider;
 import org.eclipse.xtext.xbase.lib.Extension;
 import org.eclipse.xtext.xbase.lib.IteratorExtensions;
 import org.xtext.example.mydsl.generator.ArrayType;
+import org.xtext.example.mydsl.generator.FileController;
+import org.xtext.example.mydsl.generator.JsonFormatter;
 import org.xtext.example.mydsl.generator.ObjectClass;
 import org.xtext.example.mydsl.generator.PrimitiveObjectClass;
 import org.xtext.example.mydsl.generator.PrimitiveType;
@@ -50,6 +52,10 @@ public class JSchemaGenerator extends AbstractGenerator {
   
   private ArrayList<PrimitiveObjectClass> compiledPrimitiveObjects;
   
+  private FileController fileController;
+  
+  private JsonFormatter jsonFormatter;
+  
   @Override
   public void doGenerate(final Resource resource, final IFileSystemAccess2 fsa, final IGeneratorContext context) {
     ArrayList<PrimitiveObject> _arrayList = new ArrayList<PrimitiveObject>();
@@ -61,6 +67,10 @@ public class JSchemaGenerator extends AbstractGenerator {
     ArrayList<ObjectClass> _arrayList_3 = new ArrayList<ObjectClass>();
     this.compiledMainObjects = _arrayList_3;
     final Model abstractObjects = Iterators.<Model>filter(resource.getAllContents(), Model.class).next();
+    FileController _fileController = new FileController();
+    this.fileController = _fileController;
+    JsonFormatter _jsonFormatter = new JsonFormatter();
+    this.jsonFormatter = _jsonFormatter;
     int _size = this.primitiveObjectList.size();
     String _plus = ("Amount of primitive objects found: " + Integer.valueOf(_size));
     System.out.println(_plus);
@@ -96,9 +106,11 @@ public class JSchemaGenerator extends AbstractGenerator {
     }
     for (final ObjectClass compiledObject : this.compiledMainObjects) {
       if ((compiledObject.isRoot == true)) {
-        System.out.println("{//Start\\");
-        System.out.println(compiledObject.getObjectJSchemaString());
-        System.out.println("}//Start\\");
+        StringBuilder stringBuilder = new StringBuilder();
+        stringBuilder.append("{\n");
+        stringBuilder.append(compiledObject.getObjectJSchemaString());
+        stringBuilder.append("\n}");
+        this.fileController.writeFile(this.jsonFormatter.formatString(stringBuilder.toString()));
       }
     }
   }

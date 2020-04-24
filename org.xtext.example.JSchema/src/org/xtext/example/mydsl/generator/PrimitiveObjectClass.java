@@ -201,18 +201,15 @@ public class PrimitiveObjectClass {
 				}
 				
 			}
-				string.append("\n}//String\\\\");
+				string.append("\n}");
 		}
 		
 		else if(type.equals(PrimitiveType.NUMBER)) {
 			if(valNumber != null) {
 				string.append("{");
-				string.append("\"type\":\"number\",\n");
-				string.append("\"value\":\"" + valNumber + "\"\n");
-			} else {
 				string.append("\"type\":\"number\"\n");
+				string.append("}");
 			}
-			string.append("}");
 		}
 		
 		else if(type.equals(PrimitiveType.ARRAY)) {

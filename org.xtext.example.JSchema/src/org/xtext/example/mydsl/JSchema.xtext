@@ -15,7 +15,6 @@ Number:
 AbstractObject:
 	MainObject | PrimitiveObject
 ;
-//(nestedObjectName=ID nestedObject=Object)
 
 MainObject:
  	objectName=ID (root=IsRoot)? ('includes' includeObjects=Includes)? '{'  (properties+=hasProperties (',' properties+=hasProperties)*)? '}' 
@@ -26,9 +25,6 @@ PrimitiveObject:
 	type=PrimitiveTypes ('with' primitiveProperties+=PrimitiveProperties (',' primitiveProperties+=PrimitiveProperties)* ';' )? 
 ;
 
-//ObjectRequireMinimumProperties:
-//	'require' (('minimum') | ('maximum')) INT 'properties' properties=hasProperties
-//;
 
 PrimitiveTypes:
 	'String' string=STRING | array=Array | 'num' (number=Number)?
@@ -78,7 +74,6 @@ Includes:
 	objectID+=STRING (',' objectID+=STRING)*
 ;
 
-//Types
 Array:
  	arrayName=ID '[' (properties+=Property (',' properties+=Property)*)? (arrayType=ArrayType)? ']'
 ;

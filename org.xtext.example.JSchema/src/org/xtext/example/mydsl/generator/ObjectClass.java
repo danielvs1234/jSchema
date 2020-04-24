@@ -71,10 +71,10 @@ public class ObjectClass{
 	public String getObjectJSchemaString() {
 		StringBuilder string = new StringBuilder();
 		if (isRoot == true) {
-			string.append("\"$id\":\"" + this.name + ",\n");
+			string.append("\"$id\":\"" + this.name + "\",\n");
 		} else {
 			string.append("\"" + this.name + "\":{\n");
-			string.append("\"$id\":\"" + this.name + ",\n");
+			string.append("\"$id\":\"" + this.name + "\",\n");
 		}
 		
 		
@@ -101,7 +101,7 @@ public class ObjectClass{
 					if(hasPrimtiveObjectPropertiesList.size() > 0) {
 					continue;	
 					} else {
-						string.append("\n}//Properties\\");
+						string.append("\n}");
 					}
 				}
 
@@ -123,7 +123,7 @@ public class ObjectClass{
 				if(i+1 < hasPrimtiveObjectPropertiesList.size()) {
 					string.append(",\n");
 				} else {
-					string.append("\n}//PropertiesPrim\\");
+					string.append("\n}");
 				}
 			}
 			if(includedPrimitiveObjects.size() > 0 || includedMainObjects.size() > 0) {
@@ -149,7 +149,7 @@ public class ObjectClass{
 				string.append("{\n");
 				string.append("\"properties\":{\n");
 				string.append(mainObj.getObjectJSchemaString());
-				string.append("\n}//includeMainPropBracket\\");
+				string.append("\n}");
 				string.append("\n}");
 				
 				if(i+1 < includedMainObjects.size()) {
@@ -166,7 +166,7 @@ public class ObjectClass{
 				string.append("{\n");
 				string.append("\"properties\":{\n");
 				string.append(primObj.getPrimitiveObjectString());
-				string.append("\n}//IncludePrimPropBracket\\");
+				string.append("\n}");
 				string.append("\n}");
 				if(i+1 < includedPrimitiveObjects.size()) {
 					string.append(",\n");
@@ -177,12 +177,12 @@ public class ObjectClass{
 		string.append("\n]");
 		
 		if(hasPrimtiveObjectPropertiesList.size() == 0 && hasMainObjectPropertiesList.size() == 0 && (includedPrimitiveObjects.size() > 0 || includedMainObjects.size() > 0)) {
-			string.append("\n}//ENDOFINCLUDEDPROPERTIESBRAKCET\\");
+			string.append("\n}");
 		}
 		}
 		
 		if(isRoot == false) {
-			string.append("\n}//NOTROOTBRACKET\\");
+			string.append("\n}");
 		}
 		
 		

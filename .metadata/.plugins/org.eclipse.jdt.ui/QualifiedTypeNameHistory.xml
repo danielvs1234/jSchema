@@ -11,4 +11,13 @@
     <fullyQualifiedTypeName name="org.eclipse.emf.ecore.EObject"/>
     <fullyQualifiedTypeName name="java.lang.String"/>
     <fullyQualifiedTypeName name="org.xtext.example.mydsl.jSchema.FormatTypes"/>
+    <fullyQualifiedTypeName name="java.nio.file.Path"/>
+    <fullyQualifiedTypeName name="java.nio.file.Paths"/>
+    <fullyQualifiedTypeName name="java.io.PrintWriter"/>
+    <fullyQualifiedTypeName name="java.nio.file.Files"/>
+    <fullyQualifiedTypeName name="java.io.IOException"/>
+    <fullyQualifiedTypeName name="com.google.gson.Gson"/>
+    <fullyQualifiedTypeName name="com.google.gson.GsonBuilder"/>
+    <fullyQualifiedTypeName name="com.google.gson.JsonParser"/>
+    <fullyQualifiedTypeName name="com.google.gson.JsonObject"/>
 </qualifiedTypeNameHistroy>
