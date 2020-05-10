@@ -80,14 +80,6 @@ class JSchemaGenerator extends AbstractGenerator {
 				
 			}
 			
-			
-			
-	
-			
-	
-			
-			
-			
 	
 			
 	def ObjectClass compileMainObject(MainObject obj){
