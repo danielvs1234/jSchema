@@ -28,12 +28,15 @@ import com.github.fge.jsonschema.cfg.ValidationConfigurationBuilder
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper
 import com.github.fge.jsonschema.core.report.ProcessingReport
+import org.xtext.example.mydsl.jSchema.AbstractObject
+import org.quicktheories.WithQuickTheories
+import java.security.SecureRandom
 
 @ExtendWith(InjectionExtension)
 
 @InjectWith(JSchemaInjectorProvider)
 
-class JSchemaParsingTest {
+class JSchemaParsingTest implements WithQuickTheories {
 	@Inject
 	ParseHelper<Model> parseHelper
 	@Inject
@@ -87,16 +90,34 @@ class JSchemaParsingTest {
 		println(report)
 		
 	}
+
+	def void addingTwoPositiveIntegers() {
+		qt().forAll(integers.allPositive, integers.allPositive).check([Integer i, Integer j|i + j > 0]);
+	}
+
+	@Test
+	def void checkStringThings() {
+		qt().forAll(strings().allPossible.ofLengthBetween(0, 1000))
+		.checkAssert(String a | Assertions.assertTrue((parseHelper.parse('''String "�a�"''')).eResource.errors.isEmpty))
+	}
 	
-	
+	@Test
+	def void checkArrayThings() {
 		
-//		
-//		val JsonValidator validator = factory.validator
-//		
-//		validator.class.
-//		
-//		
-	
-	
+	}
+
+
+
+	def String generateRandomString(int len) {
+		val possibleChars = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
+		val rnd = new SecureRandom();
+
+		var StringBuilder sb = new StringBuilder(len)
+		for (var i = 0; i < len; i++) {
+			sb.append(possibleChars.charAt(rnd.nextInt(possibleChars.length())));
+		}
+		
+		return sb.toString();
+	}
 	
 }

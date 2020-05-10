@@ -20,4 +20,7 @@
     <fullyQualifiedTypeName name="com.google.gson.GsonBuilder"/>
     <fullyQualifiedTypeName name="com.google.gson.JsonParser"/>
     <fullyQualifiedTypeName name="com.google.gson.JsonObject"/>
+    <fullyQualifiedTypeName name="org.quicktheories.WithQuickTheories"/>
+    <fullyQualifiedTypeName name="org.xtext.example.mydsl.jSchema.Model"/>
+    <fullyQualifiedTypeName name="com.google.inject.Inject"/>
 </qualifiedTypeNameHistroy>

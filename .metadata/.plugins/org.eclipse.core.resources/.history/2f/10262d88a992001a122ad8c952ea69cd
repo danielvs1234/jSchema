@@ -1,0 +1,17 @@
+package org.xtext.example.mydsl.tests;
+
+
+//quickTheories imports
+import static org.quicktheories.QuickTheory.qt;
+import static org.quicktheories.generators.SourceDSL.*;
+
+
+public class Test {
+	
+	  public void addingTwoPositiveIntegersAlwaysGivesAPositiveInteger(){
+	    qt()
+	    .forAll(integers().allPositive()
+	          , integers().allPositive())
+	    .check((i,j) -> i + j > 0); 
+	  }
+}

@@ -1,5 +1,0 @@
-package org.xtext.example.mydsl.generator;
-
-public class JsonFormatter extends JsonFormatter {
-
-}

@@ -66,4 +66,6 @@ public class JSchemaInjectorProvider implements IInjectorProvider, IRegistryConf
 		}
 		stateAfterInjectorCreation.restoreGlobalState();
 	}
+	
+	
 }

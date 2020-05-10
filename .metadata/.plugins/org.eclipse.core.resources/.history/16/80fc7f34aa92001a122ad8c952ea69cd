@@ -1,0 +1,21 @@
+package org.xtext.example.mydsl.tests;
+
+
+//quickTheories imports
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.quicktheories.WithQuickTheories;
+
+
+public class TestingTestingTesting implements WithQuickTheories {
+	
+	@Test
+	  public void addingTwoPositiveIntegersAlwaysGivesAPositiveInteger(){
+	    qt()
+	    .forAll(integers().allPositive()
+	          , integers().allPositive())
+	    .check((i,j) -> i + j > 0); 
+	  }
+	  
+}
