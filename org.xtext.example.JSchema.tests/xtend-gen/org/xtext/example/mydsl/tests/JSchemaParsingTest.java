@@ -3,16 +3,16 @@
  */
 package org.xtext.example.mydsl.tests;
 
+import com.fasterxml.jackson.databind.JsonNode;
 import com.google.inject.Inject;
-import org.eclipse.emf.common.util.EList;
-import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.xtend2.lib.StringConcatenation;
+import org.eclipse.xtext.generator.GeneratorContext;
+import org.eclipse.xtext.generator.IGenerator2;
+import org.eclipse.xtext.generator.IGeneratorContext;
 import org.eclipse.xtext.testing.InjectWith;
 import org.eclipse.xtext.testing.extensions.InjectionExtension;
 import org.eclipse.xtext.testing.util.ParseHelper;
 import org.eclipse.xtext.xbase.lib.Exceptions;
-import org.eclipse.xtext.xbase.lib.IterableExtensions;
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.xtext.example.mydsl.jSchema.Model;
@@ -25,23 +25,61 @@ public class JSchemaParsingTest {
   @Inject
   private ParseHelper<Model> parseHelper;
   
-  @Test
-  public void loadModel() {
+  @Inject
+  private IGenerator2 underTest;
+  
+  private JsonNode output;
+  
+  private static IGeneratorContext context = new GeneratorContext();
+  
+  public Model generateSchema() {
     try {
       StringConcatenation _builder = new StringConcatenation();
-      _builder.append("Hello Xtext!");
+      _builder.append("testobjectProp {");
       _builder.newLine();
-      final Model result = this.parseHelper.parse(_builder);
-      Assertions.assertNotNull(result);
-      final EList<Resource.Diagnostic> errors = result.eResource().getErrors();
-      boolean _isEmpty = errors.isEmpty();
-      StringConcatenation _builder_1 = new StringConcatenation();
-      _builder_1.append("Unexpected errors: ");
-      String _join = IterableExtensions.join(errors, ", ");
-      _builder_1.append(_join);
-      Assertions.assertTrue(_isEmpty, _builder_1.toString());
+      _builder.append("     ");
+      _builder.append("String \"testProp\"");
+      _builder.newLine();
+      _builder.append("}");
+      _builder.newLine();
+      _builder.newLine();
+      _builder.append("String \"testStringProp\" with ");
+      _builder.newLine();
+      _builder.append("    ");
+      _builder.append("length 3-5, ");
+      _builder.newLine();
+      _builder.append("    ");
+      _builder.append("pattern \"/&\", ");
+      _builder.newLine();
+      _builder.append("    ");
+      _builder.append("format uri;");
+      _builder.newLine();
+      _builder.newLine();
+      _builder.append("TestArray2 [String \"name1\", num 4]");
+      _builder.newLine();
+      _builder.newLine();
+      _builder.append("mainTestProp root{ ");
+      _builder.newLine();
+      _builder.append("    ");
+      _builder.append("Test includes \"testStringProp\", \"testobjectProp\", \"TestArray2\"{");
+      _builder.newLine();
+      _builder.append("        ");
+      _builder.append("TestArray [String \"a\", num 1]");
+      _builder.newLine();
+      _builder.append("    ");
+      _builder.append("}");
+      _builder.newLine();
+      _builder.append("}");
+      _builder.newLine();
+      return this.parseHelper.parse(_builder);
     } catch (Throwable _e) {
       throw Exceptions.sneakyThrow(_e);
     }
+  }
+  
+  @Test
+  public void loadModel() {
+    throw new Error("Unresolved compilation problems:"
+      + "\nType mismatch: cannot convert from boolean to ProcessingReport");
   }
 }

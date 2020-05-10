@@ -4,27 +4,99 @@
 package org.xtext.example.mydsl.tests
 
 import com.google.inject.Inject
+import org.eclipse.xtext.generator.IFileSystemAccess
+import org.eclipse.xtext.generator.IGeneratorContext
+import org.eclipse.xtext.generator.InMemoryFileSystemAccess
 import org.eclipse.xtext.testing.InjectWith
+import org.eclipse.xtext.testing.XtextRunner
 import org.eclipse.xtext.testing.extensions.InjectionExtension
 import org.eclipse.xtext.testing.util.ParseHelper
 import org.junit.jupiter.api.Assertions
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.^extension.ExtendWith
+import org.junit.runner.RunWith
 import org.xtext.example.mydsl.jSchema.Model
+import org.eclipse.xtext.generator.GeneratorContext
+import org.eclipse.xtext.generator.IGenerator2
+import org.eclipse.xtext.generator.IFileSystemAccess2
+import com.github.fge.jsonschema.examples.Utils
+import com.github.fge.jsonschema.main.JsonSchemaFactory
+import com.github.fge.jsonschema.main.JsonSchema
+import com.github.fge.jsonschema.main.JsonValidator
+import com.github.fge.jsonschema.processors.syntax.SyntaxValidator
+import com.github.fge.jsonschema.cfg.ValidationConfigurationBuilder
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper
+import com.github.fge.jsonschema.core.report.ProcessingReport
 
 @ExtendWith(InjectionExtension)
+
 @InjectWith(JSchemaInjectorProvider)
+
 class JSchemaParsingTest {
 	@Inject
 	ParseHelper<Model> parseHelper
+	@Inject
+	IGenerator2 underTest
+	
+	JsonNode output
+	
+	static IGeneratorContext context = new GeneratorContext()
+	
+	def Model generateSchema(){
+		
+		return parseHelper.parse('''
+		testobjectProp {
+		     String "testProp"
+		}
+		
+		String "testStringProp" with 
+		    length 3-5, 
+		    pattern "/&", 
+		    format uri;
+		
+		TestArray2 [String "name1", num 4]
+		
+		mainTestProp root{ 
+		    Test includes "testStringProp", "testobjectProp", "TestArray2"{
+		        TestArray [String "a", num 1]
+		    }
+		}
+		''')
+	}
 	
 	@Test
 	def void loadModel() {
-		val result = parseHelper.parse('''
-			Hello Xtext!
-		''')
-		Assertions.assertNotNull(result)
-		val errors = result.eResource.errors
-		Assertions.assertTrue(errors.isEmpty, '''Unexpected errors: «errors.join(", ")»''')
+		val fsa = new InMemoryFileSystemAccess()
+		println(fsa.toString())
+		println(generateSchema.eResource.toString())
+		println(context.toString())
+		underTest.doGenerate(generateSchema.eResource, fsa, context)
+		println(fsa.textFiles.containsKey(IFileSystemAccess::DEFAULT_OUTPUT+"testFile.json"))
+		println(fsa.textFiles.get(IFileSystemAccess::DEFAULT_OUTPUT+"testFile.json"))
+		Assertions.assertTrue(fsa.textFiles.containsKey(IFileSystemAccess::DEFAULT_OUTPUT+"testFile.json"))
+		Assertions.assertEquals(1, fsa.textFiles.size)
+		
+		val JsonNode schema = new ObjectMapper().readTree(fsa.textFiles.get(IFileSystemAccess::DEFAULT_OUTPUT+"testFile.json") as String)
+		
+		var JsonSchemaFactory factory = JsonSchemaFactory.newBuilder.freeze;
+		(factory.syntaxValidator as com.github.fge.jsonschema.processors.syntax.SyntaxValidator)
+		var sv = factory.getSyntaxValidator() as SyntaxValidator;
+		var ProcessingReport report;
+		report = sv.schemaIsValid(schema)
+		println(report)
+		
 	}
+	
+	
+		
+//		
+//		val JsonValidator validator = factory.validator
+//		
+//		validator.class.
+//		
+//		
+	
+	
+	
 }
