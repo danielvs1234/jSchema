@@ -87,8 +87,8 @@ public class PrimitiveObjectClass {
 						String min = tmp[0].toString();
 						String max = tmp[1].toString();
 					
-						string.append("\"minlength\":" + min + ",\n");
-						string.append("\"maxlength\":" + max);
+						string.append("\"minLength\":" + min + ",\n");
+						string.append("\"maxLength\":" + max);
 						}
 						
 					
@@ -182,8 +182,8 @@ public class PrimitiveObjectClass {
 						String min = tmp[0].toString();
 						String max = tmp[1].toString();
 					
-						string.append("\"minlength\":" + min + ",\n");
-						string.append("\"maxlength\":" + max);
+						string.append("\"minLength\":" + min + ",\n");
+						string.append("\"maxLength\":" + max);
 						}
 						
 					
