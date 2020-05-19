@@ -3,18 +3,30 @@
  */
 package org.xtext.example.mydsl.tests;
 
+import com.fasterxml.jackson.databind.JsonNode;
+import com.google.common.base.Objects;
 import com.google.inject.Inject;
+import java.io.BufferedReader;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.OutputStream;
+import java.net.URL;
+import java.net.URLConnection;
 import java.security.SecureRandom;
 import java.util.function.BiPredicate;
 import java.util.function.Consumer;
-import org.eclipse.emf.common.util.EList;
-import org.eclipse.emf.ecore.resource.Resource;
+import javax.net.ssl.HttpsURLConnection;
 import org.eclipse.xtend2.lib.StringConcatenation;
+import org.eclipse.xtext.generator.GeneratorContext;
+import org.eclipse.xtext.generator.IFileSystemAccess;
+import org.eclipse.xtext.generator.IGenerator2;
+import org.eclipse.xtext.generator.IGeneratorContext;
+import org.eclipse.xtext.generator.InMemoryFileSystemAccess;
 import org.eclipse.xtext.testing.InjectWith;
 import org.eclipse.xtext.testing.extensions.InjectionExtension;
 import org.eclipse.xtext.testing.util.ParseHelper;
 import org.eclipse.xtext.xbase.lib.Exceptions;
-import org.eclipse.xtext.xbase.lib.IterableExtensions;
+import org.eclipse.xtext.xbase.lib.InputOutput;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -29,21 +41,90 @@ public class JSchemaParsingTest implements WithQuickTheories {
   @Inject
   private ParseHelper<Model> parseHelper;
   
-  @Test
-  public void loadModel() {
+  @Inject
+  private IGenerator2 underTest;
+  
+  private JsonNode output;
+  
+  private static IGeneratorContext context = new GeneratorContext();
+  
+  public Model generateSchema() {
     try {
       StringConcatenation _builder = new StringConcatenation();
-      _builder.append("Hello Xtext!");
+      _builder.append("testobjectProp {");
       _builder.newLine();
-      final Model result = this.parseHelper.parse(_builder);
-      Assertions.assertNotNull(result);
-      final EList<Resource.Diagnostic> errors = result.eResource().getErrors();
-      boolean _isEmpty = errors.isEmpty();
-      StringConcatenation _builder_1 = new StringConcatenation();
-      _builder_1.append("Unexpected errors: ");
-      String _join = IterableExtensions.join(errors, ", ");
-      _builder_1.append(_join);
-      Assertions.assertTrue(_isEmpty, _builder_1.toString());
+      _builder.append("     ");
+      _builder.append("String \"testProp\"");
+      _builder.newLine();
+      _builder.append("}");
+      _builder.newLine();
+      _builder.newLine();
+      _builder.append("String \"testStringProp\" with ");
+      _builder.newLine();
+      _builder.append("    ");
+      _builder.append("length 3-5, ");
+      _builder.newLine();
+      _builder.append("    ");
+      _builder.append("pattern \"/&\", ");
+      _builder.newLine();
+      _builder.append("    ");
+      _builder.append("format uri;");
+      _builder.newLine();
+      _builder.newLine();
+      _builder.append("TestArray2 [String \"name1\", num 4]");
+      _builder.newLine();
+      _builder.newLine();
+      _builder.append("mainTestProp root{");
+      _builder.newLine();
+      _builder.append("    ");
+      _builder.append("Test includes \"testStringProp\", \"testobjectProp\", \"TestArray2\"{");
+      _builder.newLine();
+      _builder.append("        ");
+      _builder.append("TestArray [String \"a\", num 1]");
+      _builder.newLine();
+      _builder.append("    ");
+      _builder.append("}");
+      _builder.newLine();
+      _builder.append("}");
+      _builder.newLine();
+      return this.parseHelper.parse(_builder);
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
+    }
+  }
+  
+  @Test
+  public void testModel() {
+    try {
+      final InMemoryFileSystemAccess fsa = new InMemoryFileSystemAccess();
+      this.underTest.doGenerate(this.generateSchema().eResource(), fsa, JSchemaParsingTest.context);
+      final String postUrl = "https://www.jsonschemavalidator.net/api/jsonschema/validate";
+      final byte[] postBody = fsa.getTextFiles().get((IFileSystemAccess.DEFAULT_OUTPUT + "testFile.json")).toString().getBytes();
+      final String USER_AGENT = "Mozilla/5.0";
+      final URL obj = new URL(postUrl);
+      URLConnection _openConnection = obj.openConnection();
+      final HttpsURLConnection con = ((HttpsURLConnection) _openConnection);
+      con.setRequestMethod("POST");
+      con.setDoOutput(true);
+      final OutputStream os = con.getOutputStream();
+      os.write(postBody);
+      os.flush();
+      os.close();
+      final int response = con.getResponseCode();
+      if ((response == HttpsURLConnection.HTTP_OK)) {
+        InputStream _inputStream = con.getInputStream();
+        InputStreamReader _inputStreamReader = new InputStreamReader(_inputStream);
+        final BufferedReader in = new BufferedReader(_inputStreamReader);
+        String inputLine = null;
+        final StringBuffer responseBuffer = new StringBuffer();
+        while ((!Objects.equal((inputLine = in.readLine()), null))) {
+          responseBuffer.append(inputLine);
+        }
+        in.close();
+        InputOutput.<String>println(Integer.valueOf(response).toString());
+      } else {
+        InputOutput.<String>println(("post request failed" + Integer.valueOf(response)));
+      }
     } catch (Throwable _e) {
       throw Exceptions.sneakyThrow(_e);
     }

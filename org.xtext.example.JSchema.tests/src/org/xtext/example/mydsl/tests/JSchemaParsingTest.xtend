@@ -14,22 +14,106 @@ import org.xtext.example.mydsl.jSchema.Model
 import org.xtext.example.mydsl.jSchema.AbstractObject
 import org.quicktheories.WithQuickTheories
 import java.security.SecureRandom
+import org.eclipse.xtext.generator.InMemoryFileSystemAccess
+import org.eclipse.xtext.generator.IGenerator2
+import com.fasterxml.jackson.databind.JsonNode
+import org.eclipse.xtext.generator.IGeneratorContext
+import org.eclipse.xtext.generator.GeneratorContext
+import org.eclipse.xtext.generator.IFileSystemAccess
+import com.fasterxml.jackson.databind.ObjectMapper
+import com.github.fge.jsonschema.processors.syntax.SyntaxValidator
+import com.github.fge.jsonschema.main.JsonSchemaFactory
+import com.github.fge.jsonschema.core.report.ProcessingReport
+import static org.junit.Assert.assertTrue
+import javax.net.ssl.HttpsURLConnection
+import java.net.URL
+import java.io.OutputStream
+import java.io.BufferedReader
+import java.io.InputStreamReader
 
 @ExtendWith(InjectionExtension)
 @InjectWith(JSchemaInjectorProvider)
 class JSchemaParsingTest implements WithQuickTheories {
 	@Inject
 	ParseHelper<Model> parseHelper
-
-	@Test
-	def void loadModel() {
-		val result = parseHelper.parse('''
-			Hello Xtext!
+	
+	@Inject
+	IGenerator2 underTest
+	
+	JsonNode output
+	
+	static IGeneratorContext context = new GeneratorContext()
+	
+	def Model generateSchema(){
+		
+		return parseHelper.parse('''
+		testobjectProp {
+		     String "testProp"
+		}
+		
+		String "testStringProp" with 
+		    length 3-5, 
+		    pattern "/&", 
+		    format uri;
+		
+		TestArray2 [String "name1", num 4]
+		
+		mainTestProp root{
+		    Test includes "testStringProp", "testobjectProp", "TestArray2"{
+		        TestArray [String "a", num 1]
+		    }
+		}
 		''')
-		Assertions.assertNotNull(result)
-		val errors = result.eResource.errors
-		Assertions.assertTrue(errors.isEmpty, '''Unexpected errors: «errors.join(", ")»''')
 	}
+	
+	@Test
+	def void testModel() {
+		val fsa = new InMemoryFileSystemAccess()
+		underTest.doGenerate(generateSchema.eResource, fsa, context)
+		
+//		println(fsa.textFiles.containsKey(IFileSystemAccess::DEFAULT_OUTPUT+"testFile.json"))
+//		println("AaaAa"+fsa.textFiles.get(IFileSystemAccess::DEFAULT_OUTPUT+"testFile.json"))
+//		
+//		Assertions.assertTrue(fsa.textFiles.containsKey(IFileSystemAccess::DEFAULT_OUTPUT+"testFile.json"))
+//		Assertions.assertEquals(1, fsa.textFiles.size)
+//		println(fsa.textFiles.get(IFileSystemAccess::DEFAULT_OUTPUT+"testFile.json") as String)
+//		val JsonNode schema = new ObjectMapper().readTree(fsa.textFiles.get(IFileSystemAccess::DEFAULT_OUTPUT+"testFile.json") as String)
+//		val JsonSchemaFactory factory = JsonSchemaFactory.byDefault()
+//		val SyntaxValidator sv = factory.syntaxValidator
+//		val ProcessingReport pr = sv.validateSchema(schema)
+//		
+//		assertTrue(pr.success)
+		
+		val postUrl = "https://www.jsonschemavalidator.net/api/jsonschema/validate"
+		val postBody = fsa.textFiles.get(IFileSystemAccess::DEFAULT_OUTPUT+"testFile.json").toString.bytes
+		val USER_AGENT = "Mozilla/5.0";
+		
+		val URL obj = new URL(postUrl)
+		val HttpsURLConnection con =  obj.openConnection() as HttpsURLConnection
+		con.requestMethod = "POST"
+
+		con.setDoOutput(true)
+		val OutputStream os = con.getOutputStream
+		os.write(postBody)
+		os.flush()
+		os.close()
+		val response = con.responseCode
+		
+		if(response == HttpsURLConnection.HTTP_OK){
+			val BufferedReader in = new BufferedReader(new InputStreamReader(con.getInputStream))
+			var String inputLine;
+			val StringBuffer responseBuffer = new StringBuffer
+			
+			while ((inputLine = in.readLine) != null) {
+				responseBuffer.append(inputLine)
+			}
+			in.close()
+			println(response.toString)
+		} else {
+			println("post request failed" + response)
+		}
+	}
+
 
 	def void addingTwoPositiveIntegers() {
 		qt().forAll(integers.allPositive, integers.allPositive).check([Integer i, Integer j|i + j > 0]);
