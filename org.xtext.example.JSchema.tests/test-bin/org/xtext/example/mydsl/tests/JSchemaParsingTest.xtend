@@ -37,13 +37,14 @@ class JSchemaParsingTest implements WithQuickTheories {
 
 	@Test
 	def void checkStringThings() {
-		qt().forAll(strings().allPossible.ofLengthBetween(0, 1000))
+		qt().forAll(strings().basicLatinAlphabet.ofLengthBetween(0, 1000))
 		.checkAssert(String a | Assertions.assertTrue((parseHelper.parse('''String "«a»"''')).eResource.errors.isEmpty))
 	}
 	
 	@Test
 	def void checkArrayThings() {
-		
+		qt.forAll(integers().allPositive)
+		.checkAssert(Integer i | Assertions.assertTrue((parseHelper.parse('''num «i»''')).eResource.errors.isEmpty))
 	}
 
 

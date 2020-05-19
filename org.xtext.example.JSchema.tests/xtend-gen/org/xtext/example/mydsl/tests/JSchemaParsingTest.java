@@ -69,11 +69,22 @@ public class JSchemaParsingTest implements WithQuickTheories {
         throw Exceptions.sneakyThrow(_e);
       }
     };
-    this.qt().<String>forAll(this.strings().allPossible().ofLengthBetween(0, 1000)).checkAssert(_function);
+    this.qt().<String>forAll(this.strings().basicLatinAlphabet().ofLengthBetween(0, 1000)).checkAssert(_function);
   }
   
   @Test
   public void checkArrayThings() {
+    final Consumer<Integer> _function = (Integer i) -> {
+      try {
+        StringConcatenation _builder = new StringConcatenation();
+        _builder.append("num ");
+        _builder.append(i);
+        Assertions.assertTrue(this.parseHelper.parse(_builder).eResource().getErrors().isEmpty());
+      } catch (Throwable _e) {
+        throw Exceptions.sneakyThrow(_e);
+      }
+    };
+    this.qt().<Integer>forAll(this.integers().allPositive()).checkAssert(_function);
   }
   
   public String generateRandomString(final int len) {
