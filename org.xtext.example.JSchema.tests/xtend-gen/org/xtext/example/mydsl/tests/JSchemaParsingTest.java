@@ -19,6 +19,8 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.quicktheories.WithQuickTheories;
+import org.quicktheories.api.QuadConsumer;
+import org.quicktheories.api.TriConsumer;
 import org.xtext.example.mydsl.jSchema.Model;
 import org.xtext.example.mydsl.tests.JSchemaInjectorProvider;
 
@@ -58,22 +60,25 @@ public class JSchemaParsingTest implements WithQuickTheories {
   
   @Test
   public void checkStringThings() {
-    final Consumer<String> _function = (String a) -> {
+    final TriConsumer<String, String, String> _function = (String a, String b, String c) -> {
       try {
         StringConcatenation _builder = new StringConcatenation();
         _builder.append("String \"");
-        _builder.append(a);
+        _builder.append(((a + b) + c));
         _builder.append("\"");
         Assertions.assertTrue(this.parseHelper.parse(_builder).eResource().getErrors().isEmpty());
       } catch (Throwable _e) {
         throw Exceptions.sneakyThrow(_e);
       }
     };
-    this.qt().<String>forAll(this.strings().basicLatinAlphabet().ofLengthBetween(0, 1000)).checkAssert(_function);
+    this.qt().<String, String, String>forAll(
+      this.strings().betweenCodePoints(0x0023, 0x0026).ofLengthBetween(0, 1500), 
+      this.strings().betweenCodePoints(0x0028, 0x005B).ofLengthBetween(0, 1500), 
+      this.strings().betweenCodePoints(0x005D, 0x007A).ofLengthBetween(0, 1500)).checkAssert(_function);
   }
   
   @Test
-  public void checkArrayThings() {
+  public void checkNumbers() {
     final Consumer<Integer> _function = (Integer i) -> {
       try {
         StringConcatenation _builder = new StringConcatenation();
@@ -84,7 +89,82 @@ public class JSchemaParsingTest implements WithQuickTheories {
         throw Exceptions.sneakyThrow(_e);
       }
     };
-    this.qt().<Integer>forAll(this.integers().allPositive()).checkAssert(_function);
+    this.qt().<Integer>forAll(
+      this.integers().allPositive()).checkAssert(_function);
+  }
+  
+  @Test
+  public void checkArrayWithStrings() {
+    final TriConsumer<String, String, String> _function = (String a, String b, String c) -> {
+      try {
+        StringConcatenation _builder = new StringConcatenation();
+        _builder.append("TestArrayName [String \"");
+        _builder.append(((a + b) + c));
+        _builder.append("\"]");
+        Assertions.assertTrue(this.parseHelper.parse(_builder).eResource().getErrors().isEmpty());
+      } catch (Throwable _e) {
+        throw Exceptions.sneakyThrow(_e);
+      }
+    };
+    this.qt().<String, String, String>forAll(
+      this.strings().betweenCodePoints(0x0023, 0x0026).ofLengthBetween(0, 1500), 
+      this.strings().betweenCodePoints(0x0028, 0x005B).ofLengthBetween(0, 1500), 
+      this.strings().betweenCodePoints(0x005D, 0x007A).ofLengthBetween(0, 1500)).checkAssert(_function);
+  }
+  
+  @Test
+  public void checkArrayWithNumbers() {
+    final Consumer<Integer> _function = (Integer i) -> {
+      try {
+        StringConcatenation _builder = new StringConcatenation();
+        _builder.append("TestArrayName [num ");
+        _builder.append(i);
+        _builder.append("]");
+        Assertions.assertTrue(this.parseHelper.parse(_builder).eResource().getErrors().isEmpty());
+      } catch (Throwable _e) {
+        throw Exceptions.sneakyThrow(_e);
+      }
+    };
+    this.qt().<Integer>forAll(
+      this.integers().allPositive()).checkAssert(_function);
+  }
+  
+  @Test
+  public void checkArrayWithStringAndNumber() {
+    final QuadConsumer<Integer, String, String, String> _function = (Integer i, String a, String b, String c) -> {
+      try {
+        StringConcatenation _builder = new StringConcatenation();
+        _builder.append("TestArrayName [String \"");
+        _builder.append(((a + b) + c));
+        _builder.append("\", num ");
+        _builder.append(i);
+        _builder.append("]");
+        Assertions.assertTrue(this.parseHelper.parse(_builder).eResource().getErrors().isEmpty());
+      } catch (Throwable _e) {
+        throw Exceptions.sneakyThrow(_e);
+      }
+    };
+    this.qt().<Integer, String, String, String>forAll(
+      this.integers().allPositive(), 
+      this.strings().betweenCodePoints(0x0023, 0x0026).ofLengthBetween(0, 1500), 
+      this.strings().betweenCodePoints(0x0028, 0x005B).ofLengthBetween(0, 1500), 
+      this.strings().betweenCodePoints(0x005D, 0x007A).ofLengthBetween(0, 1500)).checkAssert(_function);
+  }
+  
+  @Test
+  public void checkArrayWithName() {
+    final Consumer<String> _function = (String a) -> {
+      try {
+        StringConcatenation _builder = new StringConcatenation();
+        _builder.append(a);
+        _builder.append("[]");
+        Assertions.assertTrue(this.parseHelper.parse(_builder).eResource().getErrors().isEmpty());
+      } catch (Throwable _e) {
+        throw Exceptions.sneakyThrow(_e);
+      }
+    };
+    this.qt().<String>forAll(
+      this.strings().basicLatinAlphabet().ofLengthBetween(1, 1500)).checkAssert(_function);
   }
   
   public String generateRandomString(final int len) {

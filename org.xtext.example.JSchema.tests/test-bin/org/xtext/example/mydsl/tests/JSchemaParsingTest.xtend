@@ -14,6 +14,7 @@ import org.xtext.example.mydsl.jSchema.Model
 import org.xtext.example.mydsl.jSchema.AbstractObject
 import org.quicktheories.WithQuickTheories
 import java.security.SecureRandom
+import static org.junit.Assert.assertTrue
 
 @ExtendWith(InjectionExtension)
 @InjectWith(JSchemaInjectorProvider)
@@ -37,17 +38,60 @@ class JSchemaParsingTest implements WithQuickTheories {
 
 	@Test
 	def void checkStringThings() {
-		qt().forAll(strings().basicLatinAlphabet.ofLengthBetween(0, 1000))
-		.checkAssert(String a | Assertions.assertTrue((parseHelper.parse('''String "«a»"''')).eResource.errors.isEmpty))
+		qt().forAll(
+			strings().betweenCodePoints(0x0023, 0x0026).ofLengthBetween(0, 1500),
+			strings().betweenCodePoints(0x0028, 0x005B).ofLengthBetween(0, 1500),
+			strings().betweenCodePoints(0x005D, 0x007A).ofLengthBetween(0, 1500)
+			)
+			.checkAssert(a,b,c | Assertions.assertTrue((parseHelper.parse('''String "«a+b+c»"''')).eResource.errors.isEmpty))
+			}
+	
+	
+	@Test
+	def void checkNumbers() {
+		qt.forAll(
+			integers().allPositive
+		)
+		.checkAssert(Integer i | Assertions.assertTrue((parseHelper.parse('''num «i»''')).eResource.errors.isEmpty))
 	}
 	
 	@Test
-	def void checkArrayThings() {
-		qt.forAll(integers().allPositive)
-		.checkAssert(Integer i | Assertions.assertTrue((parseHelper.parse('''num «i»''')).eResource.errors.isEmpty))
+	def void checkArrayWithStrings(){
+		qt.forAll(
+			strings().betweenCodePoints(0x0023, 0x0026).ofLengthBetween(0, 1500),
+			strings().betweenCodePoints(0x0028, 0x005B).ofLengthBetween(0, 1500),
+			strings().betweenCodePoints(0x005D, 0x007A).ofLengthBetween(0, 1500)
+			)
+		
+		.checkAssert(a,b,c | Assertions.assertTrue((parseHelper.parse('''TestArrayName [String "«a+b+c»"]''')).eResource.errors.isEmpty))
 	}
-
-
+	
+	@Test
+	def void checkArrayWithNumbers(){
+		qt.forAll(
+			integers.allPositive
+			)
+			.checkAssert(i | Assertions.assertTrue((parseHelper.parse('''TestArrayName [num «i»]''')).eResource.errors.isEmpty))
+	}
+	
+	@Test
+	def void checkArrayWithStringAndNumber(){
+		qt.forAll(
+			integers.allPositive,
+			strings().betweenCodePoints(0x0023, 0x0026).ofLengthBetween(0, 1500),
+			strings().betweenCodePoints(0x0028, 0x005B).ofLengthBetween(0, 1500),
+			strings().betweenCodePoints(0x005D, 0x007A).ofLengthBetween(0, 1500)
+		)
+		.checkAssert(i,a,b,c | Assertions.assertTrue((parseHelper.parse('''TestArrayName [String "«a+b+c»", num «i»]''')).eResource.errors.isEmpty))
+	}
+	
+	@Test
+	def void checkArrayWithName(){
+		qt.forAll(
+			strings().basicLatinAlphabet().ofLengthBetween(1,1500)
+		)
+		.checkAssert(a | Assertions.assertTrue((parseHelper.parse('''«a»[]''')).eResource.errors.isEmpty))
+	}
 
 	def String generateRandomString(int len) {
 		val possibleChars = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
@@ -60,5 +104,7 @@ class JSchemaParsingTest implements WithQuickTheories {
 		
 		return sb.toString();
 	}
+	
+	
 	
 }
