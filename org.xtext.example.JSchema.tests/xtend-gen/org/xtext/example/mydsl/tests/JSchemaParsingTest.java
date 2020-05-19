@@ -4,18 +4,14 @@
 package org.xtext.example.mydsl.tests;
 
 import com.fasterxml.jackson.databind.JsonNode;
-import com.google.common.base.Objects;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.github.fge.jsonschema.core.report.ProcessingReport;
+import com.github.fge.jsonschema.main.JsonSchemaFactory;
+import com.github.fge.jsonschema.processors.syntax.SyntaxValidator;
 import com.google.inject.Inject;
-import java.io.BufferedReader;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.io.OutputStream;
-import java.net.URL;
-import java.net.URLConnection;
 import java.security.SecureRandom;
 import java.util.function.BiPredicate;
 import java.util.function.Consumer;
-import javax.net.ssl.HttpsURLConnection;
 import org.eclipse.xtend2.lib.StringConcatenation;
 import org.eclipse.xtext.generator.GeneratorContext;
 import org.eclipse.xtext.generator.IFileSystemAccess;
@@ -27,6 +23,7 @@ import org.eclipse.xtext.testing.extensions.InjectionExtension;
 import org.eclipse.xtext.testing.util.ParseHelper;
 import org.eclipse.xtext.xbase.lib.Exceptions;
 import org.eclipse.xtext.xbase.lib.InputOutput;
+import org.junit.Assert;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -97,34 +94,24 @@ public class JSchemaParsingTest implements WithQuickTheories {
   public void testModel() {
     try {
       final InMemoryFileSystemAccess fsa = new InMemoryFileSystemAccess();
-      this.underTest.doGenerate(this.generateSchema().eResource(), fsa, JSchemaParsingTest.context);
-      final String postUrl = "https://www.jsonschemavalidator.net/api/jsonschema/validate";
-      final byte[] postBody = fsa.getTextFiles().get((IFileSystemAccess.DEFAULT_OUTPUT + "testFile.json")).toString().getBytes();
-      final String USER_AGENT = "Mozilla/5.0";
-      final URL obj = new URL(postUrl);
-      URLConnection _openConnection = obj.openConnection();
-      final HttpsURLConnection con = ((HttpsURLConnection) _openConnection);
-      con.setRequestMethod("POST");
-      con.setDoOutput(true);
-      final OutputStream os = con.getOutputStream();
-      os.write(postBody);
-      os.flush();
-      os.close();
-      final int response = con.getResponseCode();
-      if ((response == HttpsURLConnection.HTTP_OK)) {
-        InputStream _inputStream = con.getInputStream();
-        InputStreamReader _inputStreamReader = new InputStreamReader(_inputStream);
-        final BufferedReader in = new BufferedReader(_inputStreamReader);
-        String inputLine = null;
-        final StringBuffer responseBuffer = new StringBuffer();
-        while ((!Objects.equal((inputLine = in.readLine()), null))) {
-          responseBuffer.append(inputLine);
-        }
-        in.close();
-        InputOutput.<String>println(Integer.valueOf(response).toString());
-      } else {
-        InputOutput.<String>println(("post request failed" + Integer.valueOf(response)));
+      if (((this.generateSchema() != null) && (!this.generateSchema().eResource().getErrors().isEmpty()))) {
+        Assert.assertTrue("Errors in syntax", false);
       }
+      this.underTest.doGenerate(this.generateSchema().eResource(), fsa, JSchemaParsingTest.context);
+      InputOutput.<Boolean>println(Boolean.valueOf(fsa.getTextFiles().containsKey((IFileSystemAccess.DEFAULT_OUTPUT + "testFile.json"))));
+      CharSequence _get = fsa.getTextFiles().get((IFileSystemAccess.DEFAULT_OUTPUT + "testFile.json"));
+      String _plus = ("AaaAa" + _get);
+      InputOutput.<String>println(_plus);
+      Assertions.assertTrue(fsa.getTextFiles().containsKey((IFileSystemAccess.DEFAULT_OUTPUT + "testFile.json")));
+      Assertions.assertEquals(1, fsa.getTextFiles().size());
+      CharSequence _get_1 = fsa.getTextFiles().get((IFileSystemAccess.DEFAULT_OUTPUT + "testFile.json"));
+      InputOutput.<String>println(((String) _get_1));
+      CharSequence _get_2 = fsa.getTextFiles().get((IFileSystemAccess.DEFAULT_OUTPUT + "testFile.json"));
+      final JsonNode schema = new ObjectMapper().readTree(((String) _get_2));
+      final JsonSchemaFactory factory = JsonSchemaFactory.byDefault();
+      final SyntaxValidator sv = factory.getSyntaxValidator();
+      final ProcessingReport pr = sv.validateSchema(schema);
+      Assert.assertTrue(pr.isSuccess());
     } catch (Throwable _e) {
       throw Exceptions.sneakyThrow(_e);
     }

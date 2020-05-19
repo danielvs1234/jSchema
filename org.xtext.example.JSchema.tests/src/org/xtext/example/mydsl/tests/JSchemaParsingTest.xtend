@@ -3,33 +3,33 @@
  */
 package org.xtext.example.mydsl.tests
 
+import com.fasterxml.jackson.databind.JsonNode
 import com.google.inject.Inject
+import java.io.BufferedReader
+import java.io.InputStreamReader
+import java.io.OutputStream
+import java.net.HttpURLConnection
+import java.net.URL
+import java.security.SecureRandom
+import org.eclipse.xtext.generator.GeneratorContext
+import org.eclipse.xtext.generator.IFileSystemAccess
+import org.eclipse.xtext.generator.IGenerator2
+import org.eclipse.xtext.generator.IGeneratorContext
+import org.eclipse.xtext.generator.InMemoryFileSystemAccess
 import org.eclipse.xtext.testing.InjectWith
 import org.eclipse.xtext.testing.extensions.InjectionExtension
 import org.eclipse.xtext.testing.util.ParseHelper
 import org.junit.jupiter.api.Assertions
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.^extension.ExtendWith
-import org.xtext.example.mydsl.jSchema.Model
-import org.xtext.example.mydsl.jSchema.AbstractObject
 import org.quicktheories.WithQuickTheories
-import java.security.SecureRandom
-import org.eclipse.xtext.generator.InMemoryFileSystemAccess
-import org.eclipse.xtext.generator.IGenerator2
-import com.fasterxml.jackson.databind.JsonNode
-import org.eclipse.xtext.generator.IGeneratorContext
-import org.eclipse.xtext.generator.GeneratorContext
-import org.eclipse.xtext.generator.IFileSystemAccess
+import org.xtext.example.mydsl.jSchema.Model
 import com.fasterxml.jackson.databind.ObjectMapper
-import com.github.fge.jsonschema.processors.syntax.SyntaxValidator
 import com.github.fge.jsonschema.main.JsonSchemaFactory
+import com.github.fge.jsonschema.processors.syntax.SyntaxValidator
 import com.github.fge.jsonschema.core.report.ProcessingReport
+import org.junit.Assert
 import static org.junit.Assert.assertTrue
-import javax.net.ssl.HttpsURLConnection
-import java.net.URL
-import java.io.OutputStream
-import java.io.BufferedReader
-import java.io.InputStreamReader
 
 @ExtendWith(InjectionExtension)
 @InjectWith(JSchemaInjectorProvider)
@@ -69,49 +69,53 @@ class JSchemaParsingTest implements WithQuickTheories {
 	@Test
 	def void testModel() {
 		val fsa = new InMemoryFileSystemAccess()
+		if(generateSchema !== null && !generateSchema.eResource.errors.isEmpty){
+			assertTrue("Errors in syntax" , false)
+		}
 		underTest.doGenerate(generateSchema.eResource, fsa, context)
 		
-//		println(fsa.textFiles.containsKey(IFileSystemAccess::DEFAULT_OUTPUT+"testFile.json"))
-//		println("AaaAa"+fsa.textFiles.get(IFileSystemAccess::DEFAULT_OUTPUT+"testFile.json"))
+		println(fsa.textFiles.containsKey(IFileSystemAccess::DEFAULT_OUTPUT+"testFile.json"))
+		println("AaaAa"+fsa.textFiles.get(IFileSystemAccess::DEFAULT_OUTPUT+"testFile.json"))
+		
+		Assertions.assertTrue(fsa.textFiles.containsKey(IFileSystemAccess::DEFAULT_OUTPUT+"testFile.json"))
+		Assertions.assertEquals(1, fsa.textFiles.size)
+		println(fsa.textFiles.get(IFileSystemAccess::DEFAULT_OUTPUT+"testFile.json") as String)
+		val JsonNode schema = new ObjectMapper().readTree(fsa.textFiles.get(IFileSystemAccess::DEFAULT_OUTPUT+"testFile.json") as String)
+		val JsonSchemaFactory factory = JsonSchemaFactory.byDefault()
+		val SyntaxValidator sv = factory.syntaxValidator
+		val ProcessingReport pr = sv.validateSchema(schema)
+		
+		assertTrue(pr.success)
+		
+//		val postUrl = "https://www.jsonschemavalidator.net/api/jsonschema/validate"
+//		val postBody = fsa.textFiles.get(IFileSystemAccess::DEFAULT_OUTPUT+"testFile.json").toString.bytes
+//		val USER_AGENT = "Mozilla/5.0";
 //		
-//		Assertions.assertTrue(fsa.textFiles.containsKey(IFileSystemAccess::DEFAULT_OUTPUT+"testFile.json"))
-//		Assertions.assertEquals(1, fsa.textFiles.size)
-//		println(fsa.textFiles.get(IFileSystemAccess::DEFAULT_OUTPUT+"testFile.json") as String)
-//		val JsonNode schema = new ObjectMapper().readTree(fsa.textFiles.get(IFileSystemAccess::DEFAULT_OUTPUT+"testFile.json") as String)
-//		val JsonSchemaFactory factory = JsonSchemaFactory.byDefault()
-//		val SyntaxValidator sv = factory.syntaxValidator
-//		val ProcessingReport pr = sv.validateSchema(schema)
+//		val URL obj = new URL(postUrl)
+//		val HttpURLConnection con =  obj.openConnection() as HttpURLConnection
+//		con.requestMethod = "POST"
+//		con.setRequestProperty("User-Agent", USER_AGENT)
+//
+//		con.setDoOutput(true)
+//		val OutputStream os = con.getOutputStream
+//		os.write(postBody)
+//		os.flush()
+//		os.close()
+//		val response = con.responseCode
 //		
-//		assertTrue(pr.success)
-		
-		val postUrl = "https://www.jsonschemavalidator.net/api/jsonschema/validate"
-		val postBody = fsa.textFiles.get(IFileSystemAccess::DEFAULT_OUTPUT+"testFile.json").toString.bytes
-		val USER_AGENT = "Mozilla/5.0";
-		
-		val URL obj = new URL(postUrl)
-		val HttpsURLConnection con =  obj.openConnection() as HttpsURLConnection
-		con.requestMethod = "POST"
-
-		con.setDoOutput(true)
-		val OutputStream os = con.getOutputStream
-		os.write(postBody)
-		os.flush()
-		os.close()
-		val response = con.responseCode
-		
-		if(response == HttpsURLConnection.HTTP_OK){
-			val BufferedReader in = new BufferedReader(new InputStreamReader(con.getInputStream))
-			var String inputLine;
-			val StringBuffer responseBuffer = new StringBuffer
-			
-			while ((inputLine = in.readLine) != null) {
-				responseBuffer.append(inputLine)
-			}
-			in.close()
-			println(response.toString)
-		} else {
-			println("post request failed" + response)
-		}
+//		if(response == HttpURLConnection.HTTP_OK){
+//			val BufferedReader in = new BufferedReader(new InputStreamReader(con.getInputStream))
+//			var String inputLine;
+//			val StringBuffer responseBuffer = new StringBuffer
+//			
+//			while ((inputLine = in.readLine) != null) {
+//				responseBuffer.append(inputLine)
+//			}
+//			in.close()
+//			println(response.toString)
+//		} else {
+//			println("post request failed" + response + con.responseMessage)
+//		}
 	}
 
 
