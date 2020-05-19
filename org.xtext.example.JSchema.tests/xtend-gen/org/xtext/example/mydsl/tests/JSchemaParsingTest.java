@@ -3,18 +3,27 @@
  */
 package org.xtext.example.mydsl.tests;
 
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.github.fge.jsonschema.core.report.ProcessingReport;
+import com.github.fge.jsonschema.main.JsonSchemaFactory;
+import com.github.fge.jsonschema.processors.syntax.SyntaxValidator;
 import com.google.inject.Inject;
 import java.security.SecureRandom;
 import java.util.function.BiPredicate;
 import java.util.function.Consumer;
-import org.eclipse.emf.common.util.EList;
-import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.xtend2.lib.StringConcatenation;
+import org.eclipse.xtext.generator.GeneratorContext;
+import org.eclipse.xtext.generator.IFileSystemAccess;
+import org.eclipse.xtext.generator.IGenerator2;
+import org.eclipse.xtext.generator.IGeneratorContext;
+import org.eclipse.xtext.generator.InMemoryFileSystemAccess;
 import org.eclipse.xtext.testing.InjectWith;
 import org.eclipse.xtext.testing.extensions.InjectionExtension;
 import org.eclipse.xtext.testing.util.ParseHelper;
 import org.eclipse.xtext.xbase.lib.Exceptions;
-import org.eclipse.xtext.xbase.lib.IterableExtensions;
+import org.eclipse.xtext.xbase.lib.InputOutput;
+import org.junit.Assert;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -31,21 +40,80 @@ public class JSchemaParsingTest implements WithQuickTheories {
   @Inject
   private ParseHelper<Model> parseHelper;
   
-  @Test
-  public void loadModel() {
+  @Inject
+  private IGenerator2 underTest;
+  
+  private JsonNode output;
+  
+  private static IGeneratorContext context = new GeneratorContext();
+  
+  public Model generateSchema() {
     try {
       StringConcatenation _builder = new StringConcatenation();
-      _builder.append("Hello Xtext!");
+      _builder.append("testobjectProp {");
       _builder.newLine();
-      final Model result = this.parseHelper.parse(_builder);
-      Assertions.assertNotNull(result);
-      final EList<Resource.Diagnostic> errors = result.eResource().getErrors();
-      boolean _isEmpty = errors.isEmpty();
-      StringConcatenation _builder_1 = new StringConcatenation();
-      _builder_1.append("Unexpected errors: ");
-      String _join = IterableExtensions.join(errors, ", ");
-      _builder_1.append(_join);
-      Assertions.assertTrue(_isEmpty, _builder_1.toString());
+      _builder.append("     ");
+      _builder.append("String \"testProp\"");
+      _builder.newLine();
+      _builder.append("}");
+      _builder.newLine();
+      _builder.newLine();
+      _builder.append("String \"testStringProp\" with ");
+      _builder.newLine();
+      _builder.append("    ");
+      _builder.append("length 3-5, ");
+      _builder.newLine();
+      _builder.append("    ");
+      _builder.append("pattern \"/&\", ");
+      _builder.newLine();
+      _builder.append("    ");
+      _builder.append("format uri;");
+      _builder.newLine();
+      _builder.newLine();
+      _builder.append("TestArray2 [String \"name1\", num 4]");
+      _builder.newLine();
+      _builder.newLine();
+      _builder.append("mainTestProp root{");
+      _builder.newLine();
+      _builder.append("    ");
+      _builder.append("Test includes \"testStringProp\", \"testobjectProp\", \"TestArray2\"{");
+      _builder.newLine();
+      _builder.append("        ");
+      _builder.append("TestArray [String \"a\", num 1]");
+      _builder.newLine();
+      _builder.append("    ");
+      _builder.append("}");
+      _builder.newLine();
+      _builder.append("}");
+      _builder.newLine();
+      return this.parseHelper.parse(_builder);
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
+    }
+  }
+  
+  @Test
+  public void testModel() {
+    try {
+      final InMemoryFileSystemAccess fsa = new InMemoryFileSystemAccess();
+      if (((this.generateSchema() != null) && (!this.generateSchema().eResource().getErrors().isEmpty()))) {
+        Assert.assertTrue("Errors in syntax", false);
+      }
+      this.underTest.doGenerate(this.generateSchema().eResource(), fsa, JSchemaParsingTest.context);
+      InputOutput.<Boolean>println(Boolean.valueOf(fsa.getTextFiles().containsKey((IFileSystemAccess.DEFAULT_OUTPUT + "testFile.json"))));
+      CharSequence _get = fsa.getTextFiles().get((IFileSystemAccess.DEFAULT_OUTPUT + "testFile.json"));
+      String _plus = ("AaaAa" + _get);
+      InputOutput.<String>println(_plus);
+      Assertions.assertTrue(fsa.getTextFiles().containsKey((IFileSystemAccess.DEFAULT_OUTPUT + "testFile.json")));
+      Assertions.assertEquals(1, fsa.getTextFiles().size());
+      CharSequence _get_1 = fsa.getTextFiles().get((IFileSystemAccess.DEFAULT_OUTPUT + "testFile.json"));
+      InputOutput.<String>println(((String) _get_1));
+      CharSequence _get_2 = fsa.getTextFiles().get((IFileSystemAccess.DEFAULT_OUTPUT + "testFile.json"));
+      final JsonNode schema = new ObjectMapper().readTree(((String) _get_2));
+      final JsonSchemaFactory factory = JsonSchemaFactory.byDefault();
+      final SyntaxValidator sv = factory.getSyntaxValidator();
+      final ProcessingReport pr = sv.validateSchema(schema);
+      Assert.assertTrue(pr.isSuccess());
     } catch (Throwable _e) {
       throw Exceptions.sneakyThrow(_e);
     }
