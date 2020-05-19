@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <classpath>
-	<classpathentry including="**/*.java" kind="src" output="target/classes" path="src">
+	<classpathentry kind="src" output="test-bin" path="src">
 		<attributes>
-			<attribute name="optional" value="true"/>
-			<attribute name="maven.pomderived" value="true"/>
+			<attribute name="test" value="true"/>
 		</attributes>
 	</classpathentry>
 	<classpathentry kind="src" output="test-bin" path="src-gen">
@@ -11,9 +10,9 @@
 			<attribute name="test" value="true"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry excluding="**" kind="src" output="target/classes" path="xtend-gen">
+	<classpathentry kind="src" output="test-bin" path="xtend-gen">
 		<attributes>
-			<attribute name="maven.pomderived" value="true"/>
+			<attribute name="test" value="true"/>
 		</attributes>
 	</classpathentry>
 	<classpathentry exported="true" kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/5">
@@ -23,24 +22,14 @@
 	</classpathentry>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.8">
 		<attributes>
-			<attribute name="maven.pomderived" value="true"/>
+			<attribute name="module" value="true"/>
 		</attributes>
 	</classpathentry>
 	<classpathentry kind="con" path="org.eclipse.pde.core.requiredPlugins"/>
 	<classpathentry kind="lib" path="C:/Users/Mathias/Documents/quicktheories-0.26.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Mathias/Documents/json-schema-validator-2.2.13.jar" sourcepath="C:/Users/Mathias/Downloads/json-schema-validator-master.zip"/>
 	<classpathentry kind="lib" path="C:/Users/Mathias/Documents/jackson-core-2.11.0.jar"/>
 	<classpathentry kind="lib" path="C:/Users/Mathias/Documents/jackson-databind-2.11.0.jar"/>
 	<classpathentry kind="lib" path="C:/Users/Mathias/Documents/json-schema-core-1.2.5.jar"/>
-	<classpathentry kind="lib" path="C:/Users/Mathias/Documents/jackson-annotations-2.11.0.jar"/>
-	<classpathentry kind="lib" path="C:/Users/Mathias/Documents/json-schema-validator-2.2.13.jar"/>
-	<classpathentry kind="lib" path="C:/Users/Mathias/Documents/btf-1.2.jar"/>
-	<classpathentry kind="lib" path="C:/Users/Mathias/Documents/jackson-coreutils-1.8.jar"/>
-	<classpathentry kind="lib" path="C:/Users/Mathias/Documents/msg-simple-1.1.jar"/>
-	<classpathentry kind="lib" path="C:/Users/Mathias/Documents/joda-time-2.10.6.jar"/>
-	<classpathentry kind="con" path="org.eclipse.m2e.MAVEN2_CLASSPATH_CONTAINER">
-		<attributes>
-			<attribute name="maven.pomderived" value="true"/>
-		</attributes>
-	</classpathentry>
-	<classpathentry kind="output" path="target/classes"/>
+	<classpathentry kind="output" path="bin"/>
 </classpath>

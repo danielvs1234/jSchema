@@ -4,29 +4,25 @@
 package org.xtext.example.mydsl.tests;
 
 import com.fasterxml.jackson.databind.JsonNode;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.inject.Inject;
 import java.security.SecureRandom;
 import java.util.function.BiPredicate;
 import java.util.function.Consumer;
+import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.xtend2.lib.StringConcatenation;
 import org.eclipse.xtext.generator.GeneratorContext;
-import org.eclipse.xtext.generator.IFileSystemAccess;
 import org.eclipse.xtext.generator.IGenerator2;
 import org.eclipse.xtext.generator.IGeneratorContext;
-import org.eclipse.xtext.generator.InMemoryFileSystemAccess;
 import org.eclipse.xtext.testing.InjectWith;
 import org.eclipse.xtext.testing.extensions.InjectionExtension;
 import org.eclipse.xtext.testing.util.ParseHelper;
 import org.eclipse.xtext.xbase.lib.Exceptions;
-import org.eclipse.xtext.xbase.lib.InputOutput;
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.quicktheories.WithQuickTheories;
 import org.xtext.example.mydsl.jSchema.Model;
 import org.xtext.example.mydsl.tests.JSchemaInjectorProvider;
-import org.xtext.example.mydsl.tests.TestUtils;
 
 @ExtendWith(InjectionExtension.class)
 @InjectWith(JSchemaInjectorProvider.class)
@@ -87,28 +83,6 @@ public class JSchemaParsingTest implements WithQuickTheories {
     }
   }
   
-  @Test
-  public void loadModel() {
-    try {
-      final InMemoryFileSystemAccess fsa = new InMemoryFileSystemAccess();
-      this.underTest.doGenerate(this.generateSchema().eResource(), fsa, JSchemaParsingTest.context);
-      InputOutput.<Boolean>println(Boolean.valueOf(fsa.getTextFiles().containsKey((IFileSystemAccess.DEFAULT_OUTPUT + "testFile.json"))));
-      CharSequence _get = fsa.getTextFiles().get((IFileSystemAccess.DEFAULT_OUTPUT + "testFile.json"));
-      String _plus = ("AaaAa" + _get);
-      InputOutput.<String>println(_plus);
-      Assertions.assertTrue(fsa.getTextFiles().containsKey((IFileSystemAccess.DEFAULT_OUTPUT + "testFile.json")));
-      Assertions.assertEquals(1, fsa.getTextFiles().size());
-      CharSequence _get_1 = fsa.getTextFiles().get((IFileSystemAccess.DEFAULT_OUTPUT + "testFile.json"));
-      String _plus_1 = ("bbbb" + ((String) _get_1));
-      InputOutput.<String>println(_plus_1);
-      CharSequence _get_2 = fsa.getTextFiles().get((IFileSystemAccess.DEFAULT_OUTPUT + "testFile.json"));
-      final JsonNode schema = new ObjectMapper().readTree(((String) _get_2));
-      InputOutput.<Boolean>println(Boolean.valueOf(TestUtils.validateSchema(schema)));
-    } catch (Throwable _e) {
-      throw Exceptions.sneakyThrow(_e);
-    }
-  }
-  
   public void addingTwoPositiveIntegers() {
     final BiPredicate<Integer, Integer> _function = (Integer i, Integer j) -> {
       return (((i).intValue() + (j).intValue()) > 0);
@@ -121,7 +95,9 @@ public class JSchemaParsingTest implements WithQuickTheories {
     final Consumer<String> _function = (String a) -> {
       try {
         StringConcatenation _builder = new StringConcatenation();
-        _builder.append("String \"�a�\"");
+        _builder.append("String \"");
+        _builder.append(a);
+        _builder.append("\"");
         Assertions.assertTrue(this.parseHelper.parse(_builder).eResource().getErrors().isEmpty());
       } catch (Throwable _e) {
         throw Exceptions.sneakyThrow(_e);

@@ -71,17 +71,23 @@ class JSchemaParsingTest implements WithQuickTheories {
 	@Test
 	def void loadModel() {
 		val fsa = new InMemoryFileSystemAccess()
+		println(fsa.toString())
+		println(generateSchema.eResource.toString())
+		println(context.toString())
 		underTest.doGenerate(generateSchema.eResource, fsa, context)
-		
 		println(fsa.textFiles.containsKey(IFileSystemAccess::DEFAULT_OUTPUT+"testFile.json"))
-		println("AaaAa"+fsa.textFiles.get(IFileSystemAccess::DEFAULT_OUTPUT+"testFile.json"))
-		
+		println(fsa.textFiles.get(IFileSystemAccess::DEFAULT_OUTPUT+"testFile.json"))
 		Assertions.assertTrue(fsa.textFiles.containsKey(IFileSystemAccess::DEFAULT_OUTPUT+"testFile.json"))
 		Assertions.assertEquals(1, fsa.textFiles.size)
-		println("bbbb"+fsa.textFiles.get(IFileSystemAccess::DEFAULT_OUTPUT+"testFile.json") as String)
+		
 		val JsonNode schema = new ObjectMapper().readTree(fsa.textFiles.get(IFileSystemAccess::DEFAULT_OUTPUT+"testFile.json") as String)
 		
-		println(TestUtils::validateSchema(schema))
+		var JsonSchemaFactory factory = JsonSchemaFactory.newBuilder.freeze;
+		(factory.syntaxValidator as com.github.fge.jsonschema.processors.syntax.SyntaxValidator)
+		var sv = factory.getSyntaxValidator() as SyntaxValidator;
+		var ProcessingReport report;
+		report = sv.schemaIsValid(schema)
+		println(report)
 		
 	}
 
