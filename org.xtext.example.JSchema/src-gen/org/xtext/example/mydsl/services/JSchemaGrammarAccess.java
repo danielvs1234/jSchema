@@ -115,7 +115,6 @@ public class JSchemaGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cPropertiesHasPropertiesParserRuleCall_4_1_1_0 = (RuleCall)cPropertiesAssignment_4_1_1.eContents().get(0);
 		private final Keyword cRightCurlyBracketKeyword_5 = (Keyword)cGroup.eContents().get(5);
 		
-		////(nestedObjectName=ID nestedObject=Object)
 		//MainObject:
 		//	objectName=ID root=IsRoot? ('includes' includeObjects=Includes)? '{' (properties+=hasProperties (','
 		//	properties+=hasProperties)*)? '}';
@@ -247,9 +246,6 @@ public class JSchemaGrammarAccess extends AbstractGrammarElementFinder {
 		private final Assignment cNumberAssignment_2_1 = (Assignment)cGroup_2.eContents().get(1);
 		private final RuleCall cNumberNumberParserRuleCall_2_1_0 = (RuleCall)cNumberAssignment_2_1.eContents().get(0);
 		
-		////ObjectRequireMinimumProperties:
-		////	'require' (('minimum') | ('maximum')) INT 'properties' properties=hasProperties
-		////;
 		//PrimitiveTypes:
 		//	'String' string=STRING | array=Array | 'num' number=Number?;
 		@Override public ParserRule getRule() { return rule; }
@@ -478,7 +474,6 @@ public class JSchemaGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cArrayTypeArrayTypeParserRuleCall_3_0 = (RuleCall)cArrayTypeAssignment_3.eContents().get(0);
 		private final Keyword cRightSquareBracketKeyword_4 = (Keyword)cGroup.eContents().get(4);
 		
-		////Types
 		//Array:
 		//	arrayName=ID '[' (properties+=Property (',' properties+=Property)*)? arrayType=ArrayType? ']';
 		@Override public ParserRule getRule() { return rule; }
@@ -818,7 +813,6 @@ public class JSchemaGrammarAccess extends AbstractGrammarElementFinder {
 		return getAbstractObjectAccess().getRule();
 	}
 	
-	////(nestedObjectName=ID nestedObject=Object)
 	//MainObject:
 	//	objectName=ID root=IsRoot? ('includes' includeObjects=Includes)? '{' (properties+=hasProperties (','
 	//	properties+=hasProperties)*)? '}';
@@ -841,9 +835,6 @@ public class JSchemaGrammarAccess extends AbstractGrammarElementFinder {
 		return getPrimitiveObjectAccess().getRule();
 	}
 	
-	////ObjectRequireMinimumProperties:
-	////	'require' (('minimum') | ('maximum')) INT 'properties' properties=hasProperties
-	////;
 	//PrimitiveTypes:
 	//	'String' string=STRING | array=Array | 'num' number=Number?;
 	public PrimitiveTypesElements getPrimitiveTypesAccess() {
@@ -940,7 +931,6 @@ public class JSchemaGrammarAccess extends AbstractGrammarElementFinder {
 		return getIncludesAccess().getRule();
 	}
 	
-	////Types
 	//Array:
 	//	arrayName=ID '[' (properties+=Property (',' properties+=Property)*)? arrayType=ArrayType? ']';
 	public ArrayElements getArrayAccess() {
