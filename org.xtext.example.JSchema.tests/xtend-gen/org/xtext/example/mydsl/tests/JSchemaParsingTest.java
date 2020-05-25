@@ -3,33 +3,27 @@
  */
 package org.xtext.example.mydsl.tests;
 
-import com.fasterxml.jackson.databind.JsonNode;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.github.fge.jsonschema.core.report.ProcessingReport;
-import com.github.fge.jsonschema.main.JsonSchemaFactory;
-import com.github.fge.jsonschema.processors.syntax.SyntaxValidator;
 import com.google.inject.Inject;
 import java.security.SecureRandom;
+import java.util.function.BiFunction;
 import java.util.function.BiPredicate;
 import java.util.function.Consumer;
+import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.xtend2.lib.StringConcatenation;
-import org.eclipse.xtext.generator.GeneratorContext;
-import org.eclipse.xtext.generator.IFileSystemAccess;
-import org.eclipse.xtext.generator.IGenerator2;
-import org.eclipse.xtext.generator.IGeneratorContext;
-import org.eclipse.xtext.generator.InMemoryFileSystemAccess;
 import org.eclipse.xtext.testing.InjectWith;
 import org.eclipse.xtext.testing.extensions.InjectionExtension;
 import org.eclipse.xtext.testing.util.ParseHelper;
 import org.eclipse.xtext.xbase.lib.Exceptions;
-import org.eclipse.xtext.xbase.lib.InputOutput;
-import org.junit.Assert;
+import org.eclipse.xtext.xbase.lib.IterableExtensions;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.quicktheories.WithQuickTheories;
+import org.quicktheories.api.Function3;
 import org.quicktheories.api.QuadConsumer;
 import org.quicktheories.api.TriConsumer;
+import org.quicktheories.core.Gen;
 import org.xtext.example.mydsl.jSchema.Model;
 import org.xtext.example.mydsl.tests.JSchemaInjectorProvider;
 
@@ -40,80 +34,21 @@ public class JSchemaParsingTest implements WithQuickTheories {
   @Inject
   private ParseHelper<Model> parseHelper;
   
-  @Inject
-  private IGenerator2 underTest;
-  
-  private JsonNode output;
-  
-  private static IGeneratorContext context = new GeneratorContext();
-  
-  public Model generateSchema() {
+  @Test
+  public void loadModel() {
     try {
       StringConcatenation _builder = new StringConcatenation();
-      _builder.append("testobjectProp {");
+      _builder.append("Hello Xtext!");
       _builder.newLine();
-      _builder.append("     ");
-      _builder.append("String \"testProp\"");
-      _builder.newLine();
-      _builder.append("}");
-      _builder.newLine();
-      _builder.newLine();
-      _builder.append("String \"testStringProp\" with ");
-      _builder.newLine();
-      _builder.append("    ");
-      _builder.append("length 3-5, ");
-      _builder.newLine();
-      _builder.append("    ");
-      _builder.append("pattern \"/&\", ");
-      _builder.newLine();
-      _builder.append("    ");
-      _builder.append("format uri;");
-      _builder.newLine();
-      _builder.newLine();
-      _builder.append("TestArray2 [String \"name1\", num 4]");
-      _builder.newLine();
-      _builder.newLine();
-      _builder.append("mainTestProp root{");
-      _builder.newLine();
-      _builder.append("    ");
-      _builder.append("Test includes \"testStringProp\", \"testobjectProp\", \"TestArray2\"{");
-      _builder.newLine();
-      _builder.append("        ");
-      _builder.append("TestArray [String \"a\", num 1]");
-      _builder.newLine();
-      _builder.append("    ");
-      _builder.append("}");
-      _builder.newLine();
-      _builder.append("}");
-      _builder.newLine();
-      return this.parseHelper.parse(_builder);
-    } catch (Throwable _e) {
-      throw Exceptions.sneakyThrow(_e);
-    }
-  }
-  
-  @Test
-  public void testModel() {
-    try {
-      final InMemoryFileSystemAccess fsa = new InMemoryFileSystemAccess();
-      if (((this.generateSchema() != null) && (!this.generateSchema().eResource().getErrors().isEmpty()))) {
-        Assert.assertTrue("Errors in syntax", false);
-      }
-      this.underTest.doGenerate(this.generateSchema().eResource(), fsa, JSchemaParsingTest.context);
-      InputOutput.<Boolean>println(Boolean.valueOf(fsa.getTextFiles().containsKey((IFileSystemAccess.DEFAULT_OUTPUT + "testFile.json"))));
-      CharSequence _get = fsa.getTextFiles().get((IFileSystemAccess.DEFAULT_OUTPUT + "testFile.json"));
-      String _plus = ("AaaAa" + _get);
-      InputOutput.<String>println(_plus);
-      Assertions.assertTrue(fsa.getTextFiles().containsKey((IFileSystemAccess.DEFAULT_OUTPUT + "testFile.json")));
-      Assertions.assertEquals(1, fsa.getTextFiles().size());
-      CharSequence _get_1 = fsa.getTextFiles().get((IFileSystemAccess.DEFAULT_OUTPUT + "testFile.json"));
-      InputOutput.<String>println(((String) _get_1));
-      CharSequence _get_2 = fsa.getTextFiles().get((IFileSystemAccess.DEFAULT_OUTPUT + "testFile.json"));
-      final JsonNode schema = new ObjectMapper().readTree(((String) _get_2));
-      final JsonSchemaFactory factory = JsonSchemaFactory.byDefault();
-      final SyntaxValidator sv = factory.getSyntaxValidator();
-      final ProcessingReport pr = sv.validateSchema(schema);
-      Assert.assertTrue(pr.isSuccess());
+      final Model result = this.parseHelper.parse(_builder);
+      Assertions.assertNotNull(result);
+      final EList<Resource.Diagnostic> errors = result.eResource().getErrors();
+      boolean _isEmpty = errors.isEmpty();
+      StringConcatenation _builder_1 = new StringConcatenation();
+      _builder_1.append("Unexpected errors: ");
+      String _join = IterableExtensions.join(errors, ", ");
+      _builder_1.append(_join);
+      Assertions.assertTrue(_isEmpty, _builder_1.toString());
     } catch (Throwable _e) {
       throw Exceptions.sneakyThrow(_e);
     }
@@ -221,18 +156,61 @@ public class JSchemaParsingTest implements WithQuickTheories {
   
   @Test
   public void checkArrayWithName() {
-    final Consumer<String> _function = (String a) -> {
+    final TriConsumer<String, String, String> _function = (String a, String b, String c) -> {
       try {
         StringConcatenation _builder = new StringConcatenation();
-        _builder.append(a);
+        String _replaceAll = b.replaceAll("[^a-zA-Z_0-9]", "");
+        String _plus = (a + _replaceAll);
+        String _replaceAll_1 = c.replaceAll("[^a-zA-Z_0-9]", "");
+        String _plus_1 = (_plus + _replaceAll_1);
+        _builder.append(_plus_1);
         _builder.append("[]");
         Assertions.assertTrue(this.parseHelper.parse(_builder).eResource().getErrors().isEmpty());
       } catch (Throwable _e) {
         throw Exceptions.sneakyThrow(_e);
       }
     };
+    this.qt().<String, String, String>forAll(
+      this.strings().betweenCodePoints(0x005E, 0x005E).ofLengthBetween(0, 1), 
+      this.strings().betweenCodePoints(0x0041, 0x007A).ofLengthBetween(1, 1), 
+      this.strings().betweenCodePoints(0x0041, 0x007A).ofLengthBetween(0, 1500)).checkAssert(_function);
+  }
+  
+  @Test
+  public void checkObjectName() {
+    final Consumer<String> _function = (String a) -> {
+      try {
+        StringConcatenation _builder = new StringConcatenation();
+        _builder.append(a);
+        _builder.append("{}");
+        Assertions.assertTrue(this.parseHelper.parse(_builder).eResource().getErrors().isEmpty());
+      } catch (Throwable _e) {
+        throw Exceptions.sneakyThrow(_e);
+      }
+    };
     this.qt().<String>forAll(
-      this.strings().basicLatinAlphabet().ofLengthBetween(1, 1500)).checkAssert(_function);
+      this.objectID()).checkAssert(_function);
+  }
+  
+  public Gen<String> azAZ09() {
+    return null;
+  }
+  
+  public Gen<String> objectID() {
+    final Function3<String, String, String, String> _function = (String string1, String string2, String string3) -> {
+      return string1.concat(string2.replaceAll("/*[^a-z^A-Z^_]", "")).concat(string3.replaceAll("/*[^a-zA-Z_0-9]", ""));
+    };
+    return this.strings().betweenCodePoints(0x005E, 0x005E).ofLengthBetween(0, 1).<String, String, String>zip(
+      this.strings().betweenCodePoints(0x0041, 0x007A).ofLengthBetween(1, 1), 
+      this.strings().betweenCodePoints(0x0030, 0x007A).ofLengthBetween(0, 10), _function);
+  }
+  
+  public Gen<String> letters() {
+    final BiFunction<String, String, String> _function = (String stringOne, String stringTwo) -> {
+      return stringOne.concat(stringTwo);
+    };
+    return this.strings().betweenCodePoints(0x0041, 0x005A).ofLengthBetween(0, 1500).<String, String>zip(
+      this.strings().betweenCodePoints(0x0061, 0x007A).ofLengthBetween(0, 1500), _function);
   }
   
   public String generateRandomString(final int len) {

@@ -15,6 +15,9 @@ import org.xtext.example.mydsl.jSchema.AbstractObject
 import org.quicktheories.WithQuickTheories
 import java.security.SecureRandom
 import static org.junit.Assert.assertTrue
+import org.quicktheories.core.Gen
+import org.quicktheories.api.Function4
+import org.quicktheories.api.Function3
 
 @ExtendWith(InjectionExtension)
 @InjectWith(JSchemaInjectorProvider)
@@ -88,11 +91,41 @@ class JSchemaParsingTest implements WithQuickTheories {
 	@Test
 	def void checkArrayWithName(){
 		qt.forAll(
-			strings().basicLatinAlphabet().ofLengthBetween(1,1500)
+			strings().betweenCodePoints(0x005E, 0x005E).ofLengthBetween(0,1),
+			strings().betweenCodePoints(0x0041, 0x007A).ofLengthBetween(1,1),
+			strings().betweenCodePoints(0x0041, 0x007A).ofLengthBetween(0,1500)
 		)
-		.checkAssert(a | Assertions.assertTrue((parseHelper.parse('''«a»[]''')).eResource.errors.isEmpty))
+		.checkAssert(a, b, c | Assertions.assertTrue((parseHelper.parse('''«a+b.replaceAll('[^a-zA-Z_0-9]',"")+c.replaceAll('[^a-zA-Z_0-9]',"")»[]''')).eResource.errors.isEmpty))
+	}
+	
+	@Test
+	def void checkObjectName(){
+		qt.forAll(
+			objectID
+		)
+		.checkAssert(a | Assertions.assertTrue((parseHelper.parse('''«a»{}''')).eResource.errors.isEmpty))
+	
+	}
+	
+	def Gen<String> azAZ09(){
+		
+	}
+	
+	def Gen<String> objectID(){
+		strings().betweenCodePoints(0x005E, 0x005E).ofLengthBetween(0,1).zip(
+			strings().betweenCodePoints(0x0041, 0x007A).ofLengthBetween(1,1),
+			strings().betweenCodePoints(0x0030, 0x007A).ofLengthBetween(0,10),
+			([string1, string2, string3 | string1.concat(string2.replaceAll('/*[^a-z^A-Z^_]',"")).concat(string3.replaceAll('/*[^a-zA-Z_0-9]',""))])
+		)
 	}
 
+	def Gen<String> letters(){
+		strings().betweenCodePoints(0x0041, 0x005A).ofLengthBetween(0,1500).zip(
+			strings().betweenCodePoints(0x0061, 0x007A).ofLengthBetween(0,1500),
+			([stringOne, stringTwo | stringOne.concat(stringTwo)])
+		)
+	}
+	
 	def String generateRandomString(int len) {
 		val possibleChars = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
 		val rnd = new SecureRandom();
