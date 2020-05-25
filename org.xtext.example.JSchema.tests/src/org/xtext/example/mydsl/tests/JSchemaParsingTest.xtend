@@ -18,29 +18,24 @@ import static org.junit.Assert.assertTrue
 import org.quicktheories.core.Gen
 import org.quicktheories.api.Function4
 import org.quicktheories.api.Function3
+import com.google.gson.JsonParser
+import com.google.gson.JsonParseException
+import org.eclipse.xtext.generator.InMemoryFileSystemAccess
+import org.eclipse.xtext.generator.IFileSystemAccess
+import org.eclipse.xtext.generator.IGenerator2
 
 @ExtendWith(InjectionExtension)
 @InjectWith(JSchemaInjectorProvider)
 class JSchemaParsingTest implements WithQuickTheories {
 	@Inject
 	ParseHelper<Model> parseHelper
+	@Inject
+	IGenerator2 underTest
+	
+
 
 	@Test
-	def void loadModel() {
-		val result = parseHelper.parse('''
-			Hello Xtext!
-		''')
-		Assertions.assertNotNull(result)
-		val errors = result.eResource.errors
-		Assertions.assertTrue(errors.isEmpty, '''Unexpected errors: «errors.join(", ")»''')
-	}
-
-	def void addingTwoPositiveIntegers() {
-		qt().forAll(integers.allPositive, integers.allPositive).check([Integer i, Integer j|i + j > 0]);
-	}
-
-	@Test
-	def void checkStringThings() {
+	def void checkStringGrammar() {
 		qt().forAll(
 			strings().betweenCodePoints(0x0023, 0x0026).ofLengthBetween(0, 1500),
 			strings().betweenCodePoints(0x0028, 0x005B).ofLengthBetween(0, 1500),
@@ -51,7 +46,7 @@ class JSchemaParsingTest implements WithQuickTheories {
 	
 	
 	@Test
-	def void checkNumbers() {
+	def void checkNumbersGrammar() {
 		qt.forAll(
 			integers().allPositive
 		)
@@ -59,7 +54,7 @@ class JSchemaParsingTest implements WithQuickTheories {
 	}
 	
 	@Test
-	def void checkArrayWithStrings(){
+	def void checkArrayWithStringsGrammar(){
 		qt.forAll(
 			strings().betweenCodePoints(0x0023, 0x0026).ofLengthBetween(0, 1500),
 			strings().betweenCodePoints(0x0028, 0x005B).ofLengthBetween(0, 1500),
@@ -70,7 +65,7 @@ class JSchemaParsingTest implements WithQuickTheories {
 	}
 	
 	@Test
-	def void checkArrayWithNumbers(){
+	def void checkArrayWithNumbersGrammar(){
 		qt.forAll(
 			integers.allPositive
 			)
@@ -78,7 +73,7 @@ class JSchemaParsingTest implements WithQuickTheories {
 	}
 	
 	@Test
-	def void checkArrayWithStringAndNumber(){
+	def void checkArrayWithStringAndNumberGrammar(){
 		qt.forAll(
 			integers.allPositive,
 			strings().betweenCodePoints(0x0023, 0x0026).ofLengthBetween(0, 1500),
@@ -89,7 +84,7 @@ class JSchemaParsingTest implements WithQuickTheories {
 	}
 	
 	@Test
-	def void checkArrayWithName(){
+	def void checkArrayWithNameGrammar(){
 		qt.forAll(
 			strings().betweenCodePoints(0x005E, 0x005E).ofLengthBetween(0,1),
 			strings().betweenCodePoints(0x0041, 0x007A).ofLengthBetween(1,1),
@@ -99,13 +94,74 @@ class JSchemaParsingTest implements WithQuickTheories {
 	}
 	
 	@Test
-	def void checkObjectName(){
+	def void checkObjectNameGrammar(){
 		qt.forAll(
 			objectID
 		)
 		.checkAssert(a | Assertions.assertTrue((parseHelper.parse('''«a»{}''')).eResource.errors.isEmpty))
 	
 	}
+	
+	//Tests to check if the outputtet JSON schema files are valid JSON files. 
+	@Test
+	def void checkStringOutput() {
+		qt().forAll(
+			strings().betweenCodePoints(0x0023, 0x0026).ofLengthBetween(0, 1500),
+			strings().betweenCodePoints(0x0028, 0x005B).ofLengthBetween(0, 1500),
+			strings().betweenCodePoints(0x005D, 0x007A).ofLengthBetween(0, 1500)
+			)
+			.checkAssert(a,b,c | Assertions.assertTrue(checkValidation(parseHelper.parse('''object root {String "«a+b+c»"}'''))))
+	}
+	
+	@Test
+	def void checkNumberOutput() {
+		qt.forAll(
+			integers().allPositive
+		)
+		.checkAssert(Integer i | Assertions.assertTrue((checkValidation(parseHelper.parse('''object root {num «i»}''')))))
+	}
+	
+	@Test
+	def void checkArrayWithNameOutput(){
+		qt.forAll(
+			strings().basicLatinAlphabet().ofLengthBetween(1,1500)
+		)
+		.checkAssert(a | Assertions.assertTrue((checkValidation(parseHelper.parse('''object root{«a»[]}''')))))
+		
+	}
+	
+	@Test
+	def void checkArrayWithStringsOutput(){
+		qt.forAll(
+			strings().betweenCodePoints(0x0023, 0x0026).ofLengthBetween(0, 1500),
+			strings().betweenCodePoints(0x0028, 0x005B).ofLengthBetween(0, 1500),
+			strings().betweenCodePoints(0x005D, 0x007A).ofLengthBetween(0, 1500)
+			)
+		
+		.checkAssert(a,b,c | Assertions.assertTrue((checkValidation(parseHelper.parse('''object root{TestArrayName [String "«a+b+c»"]}''')))))
+	}
+	
+	@Test
+	def void checkArrayWithNumbersOutput(){
+		qt.forAll(
+			integers.allPositive
+			)
+			.checkAssert(i | Assertions.assertTrue((checkValidation(parseHelper.parse('''object root {TestArrayName [num «i»]}''')))))
+	}
+	
+	
+	@Test
+	def void checkArrayWithStringAndNumberOutput(){
+		qt.forAll(
+			integers.allPositive,
+			strings().betweenCodePoints(0x0023, 0x0026).ofLengthBetween(0, 1500),
+			strings().betweenCodePoints(0x0028, 0x005B).ofLengthBetween(0, 1500),
+			strings().betweenCodePoints(0x005D, 0x007A).ofLengthBetween(0, 1500)
+		)
+		.checkAssert(i,a,b,c | Assertions.assertTrue((checkValidation(parseHelper.parse('''object root {TestArrayName [String "«a+b+c»", num «i»]}''')))))
+	}
+	
+	
 	
 	def Gen<String> azAZ09(){
 		
@@ -126,18 +182,33 @@ class JSchemaParsingTest implements WithQuickTheories {
 		)
 	}
 	
-	def String generateRandomString(int len) {
-		val possibleChars = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
-		val rnd = new SecureRandom();
-
-		var StringBuilder sb = new StringBuilder(len)
-		for (var i = 0; i < len; i++) {
-			sb.append(possibleChars.charAt(rnd.nextInt(possibleChars.length())));
-		}
+	def boolean checkValidation(Model model) {
+		val fsa = new InMemoryFileSystemAccess()
+		underTest.doGenerate(model.eResource, fsa, null)
+		val producedString = fsa.textFiles.get(IFileSystemAccess::DEFAULT_OUTPUT + "testFile.json")
 		
-		return sb.toString();
+		return checkIfValid(producedString.toString)
 	}
 	
 	
+	@Test
+	def void shouldReturnFalse(){
+		Assertions.assertTrue(checkIfValid("brlkgr+-*/234+ [}[{]"))
+	}
 	
+	
+
+	def boolean checkIfValid(String jsonString){
+			val JsonParser parser = new JsonParser()
+			try{
+				parser.parse(jsonString)
+				return true
+			} catch(JsonParseException e){
+				System.out.println("JSON file is not valid")
+				return false
+			}
+		
+	
+	
+}	
 }

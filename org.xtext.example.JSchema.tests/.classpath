@@ -26,8 +26,7 @@
 		</attributes>
 	</classpathentry>
 	<classpathentry kind="con" path="org.eclipse.pde.core.requiredPlugins"/>
-	<classpathentry kind="lib" path="C:/Users/Mathias/Documents/quicktheories-0.26.jar"/>
-	<classpathentry kind="lib" path="C:/Users/Mathias/Documents/json-schema-validator-2.2.6.jar"/>
-	<classpathentry kind="lib" path="C:/Users/Mathias/Documents/json-schema-validator-2.2.6-lib.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Schmidt/Documents/gson-2.8.6.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Schmidt/Documents/quicktheories-0.26.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
