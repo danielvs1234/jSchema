@@ -34,8 +34,7 @@ class JSchemaGenerator extends AbstractGenerator {
 	  JsonFormatter jsonFormatter;
 	  
 	  //Edit for writing file to custom directory
-	private String filePath = "C:\\Users\\Schmidt\\Desktop\\JSchemaFile.txt";
-	
+
 	override void doGenerate(Resource resource, IFileSystemAccess2 fsa, IGeneratorContext context) {
 			primitiveObjectList = new ArrayList<PrimitiveObject>()
 			mainObjectList = new ArrayList<MainObject>()
@@ -73,7 +72,7 @@ class JSchemaGenerator extends AbstractGenerator {
 				stringBuilder.append("{\n")
 				stringBuilder.append(compiledObject.objectJSchemaString);
 				stringBuilder.append("\n}")
-				System.out.println("Saving file: " + stringBuilder.toString())
+				
 				fsa.generateFile("testFile.json", jsonFormatter.formatString(stringBuilder.toString()))
 				}
 			}

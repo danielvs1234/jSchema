@@ -11,85 +11,91 @@ import org.junit.jupiter.api.Assertions
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.^extension.ExtendWith
 import org.xtext.example.mydsl.jSchema.Model
+import org.xtext.example.mydsl.jSchema.AbstractObject
 import org.quicktheories.WithQuickTheories
 import java.security.SecureRandom
 import static org.junit.Assert.assertTrue
-
-import org.eclipse.xtext.generator.IFileSystemAccess
-import org.eclipse.xtext.generator.InMemoryFileSystemAccess
-import com.google.gson.JsonParser
-import com.google.gson.JsonParseException
-import org.eclipse.xtext.generator.IGenerator2
-import org.eclipse.xtext.generator.IGeneratorContext
-import org.eclipse.xtext.util.CancelIndicator
+import org.quicktheories.core.Gen
+import org.quicktheories.api.Function4
+import org.quicktheories.api.Function3
 
 @ExtendWith(InjectionExtension)
 @InjectWith(JSchemaInjectorProvider)
 class JSchemaParsingTest implements WithQuickTheories {
 	@Inject
 	ParseHelper<Model> parseHelper
-	@Inject
-	IGenerator2 underTest
 
-//Test for checking if the inputtet values are valid as JSchema Grammar for the .jsc extension
 	@Test
-	def void checkStringGrammar() {
+	def void loadModel() {
+		val result = parseHelper.parse('''
+			Hello Xtext!
+		''')
+		Assertions.assertNotNull(result)
+		val errors = result.eResource.errors
+		Assertions.assertTrue(errors.isEmpty, '''Unexpected errors: «errors.join(", ")»''')
+	}
+
+	def void addingTwoPositiveIntegers() {
+		qt().forAll(integers.allPositive, integers.allPositive).check([Integer i, Integer j|i + j > 0]);
+	}
+
+	@Test
+	def void checkStringThings() {
 		qt().forAll(
 			strings().betweenCodePoints(0x0023, 0x0026).ofLengthBetween(0, 1500),
 			strings().betweenCodePoints(0x0028, 0x005B).ofLengthBetween(0, 1500),
 			strings().betweenCodePoints(0x005D, 0x007A).ofLengthBetween(0, 1500)
 			)
-			.checkAssert(a,b,c | Assertions.assertTrue((parseHelper.parse('''String "ï¿½a+b+cï¿½"''')).eResource.errors.isEmpty))
+			.checkAssert(a,b,c | Assertions.assertTrue((parseHelper.parse('''String "«a+b+c»"''')).eResource.errors.isEmpty))
 			}
 	
 	
 	@Test
-	def void checkNumberGrammar() {
+	def void checkNumbers() {
 		qt.forAll(
 			integers().allPositive
 		)
-		.checkAssert(Integer i | Assertions.assertTrue((parseHelper.parse('''num ï¿½iï¿½''')).eResource.errors.isEmpty))
+		.checkAssert(Integer i | Assertions.assertTrue((parseHelper.parse('''num «i»''')).eResource.errors.isEmpty))
 	}
 	
 	@Test
-	def void checkArrayWithStringsGrammar(){
+	def void checkArrayWithStrings(){
 		qt.forAll(
 			strings().betweenCodePoints(0x0023, 0x0026).ofLengthBetween(0, 1500),
 			strings().betweenCodePoints(0x0028, 0x005B).ofLengthBetween(0, 1500),
 			strings().betweenCodePoints(0x005D, 0x007A).ofLengthBetween(0, 1500)
 			)
 		
-		.checkAssert(a,b,c | Assertions.assertTrue((parseHelper.parse('''TestArrayName [String "ï¿½a+b+cï¿½"]''')).eResource.errors.isEmpty))
+		.checkAssert(a,b,c | Assertions.assertTrue((parseHelper.parse('''TestArrayName [String "«a+b+c»"]''')).eResource.errors.isEmpty))
 	}
 	
 	@Test
-	def void checkArrayWithNumbersGrammar(){
+	def void checkArrayWithNumbers(){
 		qt.forAll(
 			integers.allPositive
 			)
-			.checkAssert(i | Assertions.assertTrue((parseHelper.parse('''TestArrayName [num ï¿½iï¿½]''')).eResource.errors.isEmpty))
+			.checkAssert(i | Assertions.assertTrue((parseHelper.parse('''TestArrayName [num «i»]''')).eResource.errors.isEmpty))
 	}
 	
 	@Test
-	def void checkArrayWithStringAndNumberGrammar(){
+	def void checkArrayWithStringAndNumber(){
 		qt.forAll(
 			integers.allPositive,
 			strings().betweenCodePoints(0x0023, 0x0026).ofLengthBetween(0, 1500),
 			strings().betweenCodePoints(0x0028, 0x005B).ofLengthBetween(0, 1500),
 			strings().betweenCodePoints(0x005D, 0x007A).ofLengthBetween(0, 1500)
 		)
-		.checkAssert(i,a,b,c | Assertions.assertTrue((parseHelper.parse('''TestArrayName [String "ï¿½a+b+cï¿½", num ï¿½iï¿½]''')).eResource.errors.isEmpty))
+		.checkAssert(i,a,b,c | Assertions.assertTrue((parseHelper.parse('''TestArrayName [String "«a+b+c»", num «i»]''')).eResource.errors.isEmpty))
 	}
 	
-	
 	@Test
-	def void checkArrayWithNameGrammar(){
+	def void checkArrayWithName(){
 		qt.forAll(
 			strings().betweenCodePoints(0x005E, 0x005E).ofLengthBetween(0,1),
 			strings().betweenCodePoints(0x0041, 0x007A).ofLengthBetween(1,1),
 			strings().betweenCodePoints(0x0041, 0x007A).ofLengthBetween(0,1500)
 		)
-		.checkAssert(a, b, c | Assertions.assertTrue((parseHelper.parse('''ï¿½a+b.replaceAll('[^a-zA-Z_0-9]',"")+c.replaceAll('[^a-zA-Z_0-9]',"")ï¿½[]''')).eResource.errors.isEmpty))
+		.checkAssert(a, b, c | Assertions.assertTrue((parseHelper.parse('''«a+b.replaceAll('[^a-zA-Z_0-9]',"")+c.replaceAll('[^a-zA-Z_0-9]',"")»[]''')).eResource.errors.isEmpty))
 	}
 	
 	@Test
@@ -97,7 +103,7 @@ class JSchemaParsingTest implements WithQuickTheories {
 		qt.forAll(
 			objectID
 		)
-		.checkAssert(a | Assertions.assertTrue((parseHelper.parse('''ï¿½aï¿½{}''')).eResource.errors.isEmpty))
+		.checkAssert(a | Assertions.assertTrue((parseHelper.parse('''«a»{}''')).eResource.errors.isEmpty))
 	
 	}
 	
@@ -112,68 +118,6 @@ class JSchemaParsingTest implements WithQuickTheories {
 			([string1, string2, string3 | string1.concat(string2.replaceAll('/*[^a-z^A-Z^_]',"")).concat(string3.replaceAll('/*[^a-zA-Z_0-9]',""))])
 		)
 	}
-	
-	
-//Tests to check if the outputtet JSON schema files are valid JSON files. 
-	@Test
-	def void checkStringOutput() {
-		qt().forAll(
-			strings().betweenCodePoints(0x0023, 0x0026).ofLengthBetween(0, 1500),
-			strings().betweenCodePoints(0x0028, 0x005B).ofLengthBetween(0, 1500),
-			strings().betweenCodePoints(0x005D, 0x007A).ofLengthBetween(0, 1500)
-			)
-			.checkAssert(a,b,c | Assertions.assertTrue(checkValidation(parseHelper.parse('''object root {String "ï¿½a+b+cï¿½"}'''))))
-	}
-	
-	@Test
-	def void checkNumberOutput() {
-		qt.forAll(
-			integers().allPositive
-		)
-		.checkAssert(Integer i | Assertions.assertTrue((checkValidation(parseHelper.parse('''object root {num ï¿½iï¿½}''')))))
-	}
-	
-	@Test
-	def void checkArrayWithNameOutput(){
-		qt.forAll(
-			strings().basicLatinAlphabet().ofLengthBetween(1,1500)
-		)
-		.checkAssert(a | Assertions.assertTrue((checkValidation(parseHelper.parse('''object root{ï¿½aï¿½[]}''')))))
-		
-	}
-	
-	@Test
-	def void checkArrayWithStringsOutput(){
-		qt.forAll(
-			strings().betweenCodePoints(0x0023, 0x0026).ofLengthBetween(0, 1500),
-			strings().betweenCodePoints(0x0028, 0x005B).ofLengthBetween(0, 1500),
-			strings().betweenCodePoints(0x005D, 0x007A).ofLengthBetween(0, 1500)
-			)
-		
-		.checkAssert(a,b,c | Assertions.assertTrue((checkValidation(parseHelper.parse('''object root{TestArrayName [String "ï¿½a+b+cï¿½"]}''')))))
-	}
-	
-	@Test
-	def void checkArrayWithNumbersOutput(){
-		qt.forAll(
-			integers.allPositive
-			)
-			.checkAssert(i | Assertions.assertTrue((checkValidation(parseHelper.parse('''object root {TestArrayName [num ï¿½iï¿½]}''')))))
-	}
-	
-	
-	@Test
-	def void checkArrayWithStringAndNumberOutput(){
-		qt.forAll(
-			integers.allPositive,
-			strings().betweenCodePoints(0x0023, 0x0026).ofLengthBetween(0, 1500),
-			strings().betweenCodePoints(0x0028, 0x005B).ofLengthBetween(0, 1500),
-			strings().betweenCodePoints(0x005D, 0x007A).ofLengthBetween(0, 1500)
-		)
-		.checkAssert(i,a,b,c | Assertions.assertTrue((checkValidation(parseHelper.parse('''object root {TestArrayName [String "ï¿½a+b+cï¿½", num ï¿½iï¿½]}''')))))
-	}
-	
-	
 
 	def Gen<String> letters(){
 		strings().betweenCodePoints(0x0041, 0x005A).ofLengthBetween(0,1500).zip(
@@ -186,33 +130,12 @@ class JSchemaParsingTest implements WithQuickTheories {
 		val possibleChars = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
 		val rnd = new SecureRandom();
 
-
-	def boolean checkValidation(Model model) {
-		val fsa = new InMemoryFileSystemAccess()
-		underTest.doGenerate(model.eResource, fsa, null)
-		val producedString = fsa.textFiles.get(IFileSystemAccess::DEFAULT_OUTPUT + "testFile.json")
-		
-		return checkIfValid(producedString.toString)
-	}
-	
-	@Test
-	def void shouldReturnFalse(){
-		Assertions.assertTrue(checkIfValid("brlkgr+-*/234+ [}[{]"))
-	}
-	
-	
-	
-	def boolean checkIfValid(String jsonString){
-		val JsonParser parser = new JsonParser()
-		try{
-			parser.parse(jsonString)
-			return true
-		} catch(JsonParseException e){
-			System.out.println("JSON file is not valid")
-			return false
+		var StringBuilder sb = new StringBuilder(len)
+		for (var i = 0; i < len; i++) {
+			sb.append(possibleChars.charAt(rnd.nextInt(possibleChars.length())));
 		}
 		
-		
+		return sb.toString();
 	}
 	
 	
