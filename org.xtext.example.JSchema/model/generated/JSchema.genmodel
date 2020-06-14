@@ -32,7 +32,10 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute JSchema.ecore#//Number/number"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute JSchema.ecore#//Number/decimal"/>
     </genClasses>
-    <genClasses ecoreClass="JSchema.ecore#//AbstractObject"/>
+    <genClasses ecoreClass="JSchema.ecore#//AbstractObject">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference JSchema.ecore#//AbstractObject/mainObject"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference JSchema.ecore#//AbstractObject/primitiveObject"/>
+    </genClasses>
     <genClasses ecoreClass="JSchema.ecore#//MainObject">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute JSchema.ecore#//MainObject/name"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference JSchema.ecore#//MainObject/root"/>
@@ -60,7 +63,7 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute JSchema.ecore#//PrimitiveProperties/stringFormat"/>
     </genClasses>
     <genClasses ecoreClass="JSchema.ecore#//Includes">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute JSchema.ecore#//Includes/objectID"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference JSchema.ecore#//Includes/includes"/>
     </genClasses>
     <genClasses ecoreClass="JSchema.ecore#//Array">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute JSchema.ecore#//Array/name"/>

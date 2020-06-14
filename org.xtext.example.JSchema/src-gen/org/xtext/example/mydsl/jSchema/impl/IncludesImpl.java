@@ -11,8 +11,9 @@ import org.eclipse.emf.ecore.EClass;
 
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
-import org.eclipse.emf.ecore.util.EDataTypeEList;
+import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 
+import org.xtext.example.mydsl.jSchema.AbstractObject;
 import org.xtext.example.mydsl.jSchema.Includes;
 import org.xtext.example.mydsl.jSchema.JSchemaPackage;
 
@@ -24,7 +25,7 @@ import org.xtext.example.mydsl.jSchema.JSchemaPackage;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link org.xtext.example.mydsl.jSchema.impl.IncludesImpl#getObjectID <em>Object ID</em>}</li>
+ *   <li>{@link org.xtext.example.mydsl.jSchema.impl.IncludesImpl#getIncludes <em>Includes</em>}</li>
  * </ul>
  *
  * @generated
@@ -32,14 +33,14 @@ import org.xtext.example.mydsl.jSchema.JSchemaPackage;
 public class IncludesImpl extends MinimalEObjectImpl.Container implements Includes
 {
   /**
-   * The cached value of the '{@link #getObjectID() <em>Object ID</em>}' attribute list.
+   * The cached value of the '{@link #getIncludes() <em>Includes</em>}' reference list.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getObjectID()
+   * @see #getIncludes()
    * @generated
    * @ordered
    */
-  protected EList<String> objectID;
+  protected EList<AbstractObject> includes;
 
   /**
    * <!-- begin-user-doc -->
@@ -68,13 +69,13 @@ public class IncludesImpl extends MinimalEObjectImpl.Container implements Includ
    * @generated
    */
   @Override
-  public EList<String> getObjectID()
+  public EList<AbstractObject> getIncludes()
   {
-    if (objectID == null)
+    if (includes == null)
     {
-      objectID = new EDataTypeEList<String>(String.class, this, JSchemaPackage.INCLUDES__OBJECT_ID);
+      includes = new EObjectResolvingEList<AbstractObject>(AbstractObject.class, this, JSchemaPackage.INCLUDES__INCLUDES);
     }
-    return objectID;
+    return includes;
   }
 
   /**
@@ -87,8 +88,8 @@ public class IncludesImpl extends MinimalEObjectImpl.Container implements Includ
   {
     switch (featureID)
     {
-      case JSchemaPackage.INCLUDES__OBJECT_ID:
-        return getObjectID();
+      case JSchemaPackage.INCLUDES__INCLUDES:
+        return getIncludes();
     }
     return super.eGet(featureID, resolve, coreType);
   }
@@ -104,9 +105,9 @@ public class IncludesImpl extends MinimalEObjectImpl.Container implements Includ
   {
     switch (featureID)
     {
-      case JSchemaPackage.INCLUDES__OBJECT_ID:
-        getObjectID().clear();
-        getObjectID().addAll((Collection<? extends String>)newValue);
+      case JSchemaPackage.INCLUDES__INCLUDES:
+        getIncludes().clear();
+        getIncludes().addAll((Collection<? extends AbstractObject>)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -122,8 +123,8 @@ public class IncludesImpl extends MinimalEObjectImpl.Container implements Includ
   {
     switch (featureID)
     {
-      case JSchemaPackage.INCLUDES__OBJECT_ID:
-        getObjectID().clear();
+      case JSchemaPackage.INCLUDES__INCLUDES:
+        getIncludes().clear();
         return;
     }
     super.eUnset(featureID);
@@ -139,27 +140,10 @@ public class IncludesImpl extends MinimalEObjectImpl.Container implements Includ
   {
     switch (featureID)
     {
-      case JSchemaPackage.INCLUDES__OBJECT_ID:
-        return objectID != null && !objectID.isEmpty();
+      case JSchemaPackage.INCLUDES__INCLUDES:
+        return includes != null && !includes.isEmpty();
     }
     return super.eIsSet(featureID);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public String toString()
-  {
-    if (eIsProxy()) return super.toString();
-
-    StringBuilder result = new StringBuilder(super.toString());
-    result.append(" (objectID: ");
-    result.append(objectID);
-    result.append(')');
-    return result.toString();
   }
 
 } //IncludesImpl

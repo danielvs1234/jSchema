@@ -3,6 +3,21 @@
  */
 package org.xtext.example.mydsl.scoping;
 
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EReference;
+import org.eclipse.xtext.EcoreUtil2;
+import org.eclipse.xtext.scoping.IScope;
+import org.eclipse.xtext.scoping.Scopes;
+import org.xtext.example.mydsl.jSchema.AbstractObject;
+import org.xtext.example.mydsl.jSchema.Extends;
+import org.xtext.example.mydsl.jSchema.JSchemaPackage;
+import org.xtext.example.mydsl.jSchema.MainObject;
+import org.xtext.example.mydsl.jSchema.Model;
 
 /**
  * This class contains custom scoping description.
@@ -12,4 +27,16 @@ package org.xtext.example.mydsl.scoping;
  */
 public class JSchemaScopeProvider extends AbstractJSchemaScopeProvider {
 
+	@Override
+	public IScope getScope(EObject context, EReference reference) {
+		// We want to define the Scope for the Element's superElement cross-reference
+		if(context instanceof Extends && reference == JSchemaPackage.Literals.EXTENDS__EXTENDS) {
+			EObject rootElement = EcoreUtil2.getRootContainer(context);
+			
+			List<MainObject> candidates = EcoreUtil2.getAllContentsOfType(rootElement, MainObject.class);
+			return Scopes.scopeFor(candidates);
+		}
+		return super.getScope(context, reference);
+	}
+	
 }

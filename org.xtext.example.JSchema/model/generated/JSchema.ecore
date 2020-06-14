@@ -10,8 +10,13 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="number" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="decimal" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="AbstractObject"/>
-  <eClassifiers xsi:type="ecore:EClass" name="MainObject" eSuperTypes="#//AbstractObject">
+  <eClassifiers xsi:type="ecore:EClass" name="AbstractObject">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="mainObject" eType="#//MainObject"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="primitiveObject" eType="#//PrimitiveObject"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="MainObject">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="root" eType="#//IsRoot"
         containment="true"/>
@@ -24,7 +29,7 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="extends" unique="false"
         upperBound="-1" eType="#//AbstractObject"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="PrimitiveObject" eSuperTypes="#//AbstractObject">
+  <eClassifiers xsi:type="ecore:EClass" name="PrimitiveObject">
     <eStructuralFeatures xsi:type="ecore:EReference" name="type" eType="#//PrimitiveTypes"
         containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="primitiveProperties" upperBound="-1"
@@ -65,8 +70,8 @@
     <eLiterals name="regex" value="16" literal="regex"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Includes">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="objectID" unique="false"
-        upperBound="-1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="includes" unique="false"
+        upperBound="-1" eType="#//AbstractObject"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Array">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>

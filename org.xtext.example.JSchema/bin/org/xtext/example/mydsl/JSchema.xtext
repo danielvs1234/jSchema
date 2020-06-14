@@ -12,7 +12,7 @@ Number:
 ;
 
 AbstractObject:
-	MainObject | PrimitiveObject
+	mainObject=MainObject | primitiveObject=PrimitiveObject
 ;
 
 MainObject:
@@ -64,7 +64,7 @@ enum FormatTypes:
 ;
 
 Includes:
-	'includes' objectID+=ID (',' objectID+=ID)*
+	'includes' includes+=[AbstractObject|ID] (',' includes+=[AbstractObject|ID])*
 ;
 
 Array:

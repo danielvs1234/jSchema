@@ -61,6 +61,8 @@ public class JSchemaParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getModelAccess().getAbstractObjectAssignment(), "rule__Model__AbstractObjectAssignment");
 			builder.put(grammarAccess.getNumberAccess().getNumberAssignment_0(), "rule__Number__NumberAssignment_0");
 			builder.put(grammarAccess.getNumberAccess().getDecimalAssignment_1_1(), "rule__Number__DecimalAssignment_1_1");
+			builder.put(grammarAccess.getAbstractObjectAccess().getMainObjectAssignment_0(), "rule__AbstractObject__MainObjectAssignment_0");
+			builder.put(grammarAccess.getAbstractObjectAccess().getPrimitiveObjectAssignment_1(), "rule__AbstractObject__PrimitiveObjectAssignment_1");
 			builder.put(grammarAccess.getMainObjectAccess().getNameAssignment_0(), "rule__MainObject__NameAssignment_0");
 			builder.put(grammarAccess.getMainObjectAccess().getRootAssignment_1(), "rule__MainObject__RootAssignment_1");
 			builder.put(grammarAccess.getMainObjectAccess().getInheritsAssignment_2(), "rule__MainObject__InheritsAssignment_2");
@@ -79,8 +81,8 @@ public class JSchemaParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getPrimitivePropertiesAccess().getStringLengthAssignment_0_1(), "rule__PrimitiveProperties__StringLengthAssignment_0_1");
 			builder.put(grammarAccess.getPrimitivePropertiesAccess().getPatternStringAssignment_1_1(), "rule__PrimitiveProperties__PatternStringAssignment_1_1");
 			builder.put(grammarAccess.getPrimitivePropertiesAccess().getStringFormatAssignment_2_1(), "rule__PrimitiveProperties__StringFormatAssignment_2_1");
-			builder.put(grammarAccess.getIncludesAccess().getObjectIDAssignment_1(), "rule__Includes__ObjectIDAssignment_1");
-			builder.put(grammarAccess.getIncludesAccess().getObjectIDAssignment_2_1(), "rule__Includes__ObjectIDAssignment_2_1");
+			builder.put(grammarAccess.getIncludesAccess().getIncludesAssignment_1(), "rule__Includes__IncludesAssignment_1");
+			builder.put(grammarAccess.getIncludesAccess().getIncludesAssignment_2_1(), "rule__Includes__IncludesAssignment_2_1");
 			builder.put(grammarAccess.getArrayAccess().getNameAssignment_0(), "rule__Array__NameAssignment_0");
 			builder.put(grammarAccess.getArrayAccess().getPropertiesAssignment_2_0(), "rule__Array__PropertiesAssignment_2_0");
 			builder.put(grammarAccess.getArrayAccess().getPropertiesAssignment_2_1_1(), "rule__Array__PropertiesAssignment_2_1_1");

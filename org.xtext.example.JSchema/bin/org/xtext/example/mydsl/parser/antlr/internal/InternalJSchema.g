@@ -174,23 +174,45 @@ ruleAbstractObject returns [EObject current=null]
 	leaveRule();
 }:
 	(
-		{
-			newCompositeNode(grammarAccess.getAbstractObjectAccess().getMainObjectParserRuleCall_0());
-		}
-		this_MainObject_0=ruleMainObject
-		{
-			$current = $this_MainObject_0.current;
-			afterParserOrEnumRuleCall();
-		}
+		(
+			(
+				{
+					newCompositeNode(grammarAccess.getAbstractObjectAccess().getMainObjectMainObjectParserRuleCall_0_0());
+				}
+				lv_mainObject_0_0=ruleMainObject
+				{
+					if ($current==null) {
+						$current = createModelElementForParent(grammarAccess.getAbstractObjectRule());
+					}
+					set(
+						$current,
+						"mainObject",
+						lv_mainObject_0_0,
+						"org.xtext.example.mydsl.JSchema.MainObject");
+					afterParserOrEnumRuleCall();
+				}
+			)
+		)
 		    |
-		{
-			newCompositeNode(grammarAccess.getAbstractObjectAccess().getPrimitiveObjectParserRuleCall_1());
-		}
-		this_PrimitiveObject_1=rulePrimitiveObject
-		{
-			$current = $this_PrimitiveObject_1.current;
-			afterParserOrEnumRuleCall();
-		}
+		(
+			(
+				{
+					newCompositeNode(grammarAccess.getAbstractObjectAccess().getPrimitiveObjectPrimitiveObjectParserRuleCall_1_0());
+				}
+				lv_primitiveObject_1_0=rulePrimitiveObject
+				{
+					if ($current==null) {
+						$current = createModelElementForParent(grammarAccess.getAbstractObjectRule());
+					}
+					set(
+						$current,
+						"primitiveObject",
+						lv_primitiveObject_1_0,
+						"org.xtext.example.mydsl.JSchema.PrimitiveObject");
+					afterParserOrEnumRuleCall();
+				}
+			)
+		)
 	)
 ;
 
@@ -773,19 +795,14 @@ ruleIncludes returns [EObject current=null]
 		}
 		(
 			(
-				lv_objectID_1_0=RULE_ID
-				{
-					newLeafNode(lv_objectID_1_0, grammarAccess.getIncludesAccess().getObjectIDIDTerminalRuleCall_1_0());
-				}
 				{
 					if ($current==null) {
 						$current = createModelElement(grammarAccess.getIncludesRule());
 					}
-					addWithLastConsumed(
-						$current,
-						"objectID",
-						lv_objectID_1_0,
-						"org.eclipse.xtext.common.Terminals.ID");
+				}
+				otherlv_1=RULE_ID
+				{
+					newLeafNode(otherlv_1, grammarAccess.getIncludesAccess().getIncludesAbstractObjectCrossReference_1_0());
 				}
 			)
 		)
@@ -796,19 +813,14 @@ ruleIncludes returns [EObject current=null]
 			}
 			(
 				(
-					lv_objectID_3_0=RULE_ID
-					{
-						newLeafNode(lv_objectID_3_0, grammarAccess.getIncludesAccess().getObjectIDIDTerminalRuleCall_2_1_0());
-					}
 					{
 						if ($current==null) {
 							$current = createModelElement(grammarAccess.getIncludesRule());
 						}
-						addWithLastConsumed(
-							$current,
-							"objectID",
-							lv_objectID_3_0,
-							"org.eclipse.xtext.common.Terminals.ID");
+					}
+					otherlv_3=RULE_ID
+					{
+						newLeafNode(otherlv_3, grammarAccess.getIncludesAccess().getIncludesAbstractObjectCrossReference_2_1_0());
 					}
 				)
 			)

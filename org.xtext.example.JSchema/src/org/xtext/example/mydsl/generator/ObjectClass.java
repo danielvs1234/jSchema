@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import org.xtext.example.mydsl.jSchema.AbstractObject;
 import org.xtext.example.mydsl.jSchema.MainObject;
 import org.xtext.example.mydsl.jSchema.PrimitiveObject;
-import org.xtext.example.mydsl.jSchema.Property;
 
 public class ObjectClass{
 	String name;

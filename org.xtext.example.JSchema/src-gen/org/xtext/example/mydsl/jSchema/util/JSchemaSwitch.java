@@ -108,7 +108,6 @@ public class JSchemaSwitch<T> extends Switch<T>
       {
         MainObject mainObject = (MainObject)theEObject;
         T result = caseMainObject(mainObject);
-        if (result == null) result = caseAbstractObject(mainObject);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -123,7 +122,6 @@ public class JSchemaSwitch<T> extends Switch<T>
       {
         PrimitiveObject primitiveObject = (PrimitiveObject)theEObject;
         T result = casePrimitiveObject(primitiveObject);
-        if (result == null) result = caseAbstractObject(primitiveObject);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }

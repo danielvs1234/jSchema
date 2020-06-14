@@ -3,6 +3,17 @@
  */
 package org.xtext.example.mydsl.validation;
 
+import java.util.HashSet;
+import java.util.Set;
+
+import org.eclipse.emf.codegen.ecore.genmodel.GenModelPackage.Literals;
+import org.eclipse.xtext.validation.Check;
+import org.xtext.example.mydsl.jSchema.AbstractObject;
+import org.xtext.example.mydsl.jSchema.Extends;
+import org.xtext.example.mydsl.jSchema.Includes;
+import org.xtext.example.mydsl.jSchema.JSchemaPackage;
+import org.xtext.example.mydsl.jSchema.MainObject;
+import org.xtext.example.mydsl.jSchema.PrimitiveObject;
 
 /**
  * This class contains custom validation rules. 
@@ -11,15 +22,75 @@ package org.xtext.example.mydsl.validation;
  */
 public class JSchemaValidator extends AbstractJSchemaValidator {
 	
-//	public static final String INVALID_NAME = "invalidName";
-//
 //	@Check
-//	public void checkGreetingStartsWithCapital(Greeting greeting) {
-//		if (!Character.isUpperCase(greeting.getName().charAt(0))) {
-//			warning("Name should start with a capital",
-//					JSchemaPackage.Literals.GREETING__NAME,
-//					INVALID_NAME);
+//    public void checkEntityNoCyclicExtends(AbstractObject abstractObject) {
+//        Set<AbstractObject> seen = new HashSet<>();
+//        if(selfExtendsAbstractObjects(abstractObject, seen)) {
+//        	super.error("Cyclic extends relation", JSchemaPackage.Literals.MAIN_OBJECT__INHERITS);
+//        }
+//    }
+//	
+//	public boolean selfExtendsAbstractObjects(AbstractObject abstractObject, Set<AbstractObject> seen) {
+//		if(abstractObject.getMainObject().getInherits() instanceof Extends) {
+//			for(AbstractObject abs : ((Extends)abstractObject.getMainObject().getInherits()).getExtends()) {
+//				if(abs.getMainObject() != null) {
+//			        if(seen.contains(abs)) {
+//			        	return true;
+//			        } else {
+//			        	seen.add(abs);
+//			        	return selfExtendsAbstractObjects(abs, seen);
+//			    	}
+//				}
+//				else if(abs.getPrimitiveObject() != null) {
+//					return getNameOfPrimitiveObj(abs, seen);
+//				} else {
+//					return false;
+//				}
+//			}
+//			return false;
+//		} else {
+//			for(AbstractObject abs : ((Includes)abstractObject.getMainObject().getInherits()).getIncludes()) {
+//				if(abs.getMainObject() != null) {
+//			        if(seen.contains(abs)) {
+//			        	return true;
+//			        } else {
+//			        	seen.add(abs);
+//			        	return selfExtendsAbstractObjects(abs, seen);
+//			    	}
+//				}
+//				else if(abs.getPrimitiveObject()!= null) {
+//					return getNameOfPrimitiveObj(abs, seen);
+//				} else {
+//					return false;
+//				}
+//			}
+//			return false;
+//		}
+//    }
+//	
+//	public boolean getNameOfPrimitiveObj(AbstractObject abs, Set<AbstractObject> seen) {
+//		if(abs.getPrimitiveObject().getType().getName() != null) {
+//			boolean tmp = seen.contains(abs);
+//			seen.add(abs);
+//			return tmp;
+//		} else if(abs.getPrimitiveObject().getType().getArray().getName() != null) {
+//			boolean tmp = seen.contains(abs);
+//			seen.add(abs);
+//			return tmp;
+//		} else {
+//			return false;
 //		}
 //	}
 	
+//	public boolean selfExtends(MainObject e, Set<MainObject> seen) {
+//        if(e==null)
+//        	return false;
+//        else if(seen.contains(e)) {
+//        	return true;
+//        } else {
+//        	System.out.println(e.getName() + " was added to the set");
+//        	seen.add(e);
+//        	return selfExtends(e, seen);
+//    	}
+//    }
 }

@@ -16,7 +16,7 @@ import org.eclipse.emf.ecore.EObject;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link org.xtext.example.mydsl.jSchema.Includes#getObjectID <em>Object ID</em>}</li>
+ *   <li>{@link org.xtext.example.mydsl.jSchema.Includes#getIncludes <em>Includes</em>}</li>
  * </ul>
  *
  * @see org.xtext.example.mydsl.jSchema.JSchemaPackage#getIncludes()
@@ -26,15 +26,15 @@ import org.eclipse.emf.ecore.EObject;
 public interface Includes extends EObject
 {
   /**
-   * Returns the value of the '<em><b>Object ID</b></em>' attribute list.
-   * The list contents are of type {@link java.lang.String}.
+   * Returns the value of the '<em><b>Includes</b></em>' reference list.
+   * The list contents are of type {@link org.xtext.example.mydsl.jSchema.AbstractObject}.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the value of the '<em>Object ID</em>' attribute list.
-   * @see org.xtext.example.mydsl.jSchema.JSchemaPackage#getIncludes_ObjectID()
-   * @model unique="false"
+   * @return the value of the '<em>Includes</em>' reference list.
+   * @see org.xtext.example.mydsl.jSchema.JSchemaPackage#getIncludes_Includes()
+   * @model
    * @generated
    */
-  EList<String> getObjectID();
+  EList<AbstractObject> getIncludes();
 
 } // Includes
