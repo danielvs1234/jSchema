@@ -6,22 +6,19 @@ package org.xtext.example.mydsl.jSchema.impl;
 import java.util.Collection;
 
 import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.emf.common.notify.NotificationChain;
 
 import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
-import org.eclipse.emf.ecore.util.EObjectContainmentEList;
-import org.eclipse.emf.ecore.util.InternalEList;
+import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 
+import org.xtext.example.mydsl.jSchema.AbstractObject;
 import org.xtext.example.mydsl.jSchema.Array;
 import org.xtext.example.mydsl.jSchema.JSchemaPackage;
-import org.xtext.example.mydsl.jSchema.Property;
 
 /**
  * <!-- begin-user-doc -->
@@ -31,7 +28,7 @@ import org.xtext.example.mydsl.jSchema.Property;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link org.xtext.example.mydsl.jSchema.impl.ArrayImpl#getArrayName <em>Array Name</em>}</li>
+ *   <li>{@link org.xtext.example.mydsl.jSchema.impl.ArrayImpl#getName <em>Name</em>}</li>
  *   <li>{@link org.xtext.example.mydsl.jSchema.impl.ArrayImpl#getProperties <em>Properties</em>}</li>
  *   <li>{@link org.xtext.example.mydsl.jSchema.impl.ArrayImpl#getArrayType <em>Array Type</em>}</li>
  * </ul>
@@ -41,34 +38,34 @@ import org.xtext.example.mydsl.jSchema.Property;
 public class ArrayImpl extends MinimalEObjectImpl.Container implements Array
 {
   /**
-   * The default value of the '{@link #getArrayName() <em>Array Name</em>}' attribute.
+   * The default value of the '{@link #getName() <em>Name</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getArrayName()
+   * @see #getName()
    * @generated
    * @ordered
    */
-  protected static final String ARRAY_NAME_EDEFAULT = null;
+  protected static final String NAME_EDEFAULT = null;
 
   /**
-   * The cached value of the '{@link #getArrayName() <em>Array Name</em>}' attribute.
+   * The cached value of the '{@link #getName() <em>Name</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getArrayName()
+   * @see #getName()
    * @generated
    * @ordered
    */
-  protected String arrayName = ARRAY_NAME_EDEFAULT;
+  protected String name = NAME_EDEFAULT;
 
   /**
-   * The cached value of the '{@link #getProperties() <em>Properties</em>}' containment reference list.
+   * The cached value of the '{@link #getProperties() <em>Properties</em>}' reference list.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @see #getProperties()
    * @generated
    * @ordered
    */
-  protected EList<Property> properties;
+  protected EList<AbstractObject> properties;
 
   /**
    * The default value of the '{@link #getArrayType() <em>Array Type</em>}' attribute.
@@ -117,9 +114,9 @@ public class ArrayImpl extends MinimalEObjectImpl.Container implements Array
    * @generated
    */
   @Override
-  public String getArrayName()
+  public String getName()
   {
-    return arrayName;
+    return name;
   }
 
   /**
@@ -128,12 +125,12 @@ public class ArrayImpl extends MinimalEObjectImpl.Container implements Array
    * @generated
    */
   @Override
-  public void setArrayName(String newArrayName)
+  public void setName(String newName)
   {
-    String oldArrayName = arrayName;
-    arrayName = newArrayName;
+    String oldName = name;
+    name = newName;
     if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, JSchemaPackage.ARRAY__ARRAY_NAME, oldArrayName, arrayName));
+      eNotify(new ENotificationImpl(this, Notification.SET, JSchemaPackage.ARRAY__NAME, oldName, name));
   }
 
   /**
@@ -142,11 +139,11 @@ public class ArrayImpl extends MinimalEObjectImpl.Container implements Array
    * @generated
    */
   @Override
-  public EList<Property> getProperties()
+  public EList<AbstractObject> getProperties()
   {
     if (properties == null)
     {
-      properties = new EObjectContainmentEList<Property>(Property.class, this, JSchemaPackage.ARRAY__PROPERTIES);
+      properties = new EObjectResolvingEList<AbstractObject>(AbstractObject.class, this, JSchemaPackage.ARRAY__PROPERTIES);
     }
     return properties;
   }
@@ -182,28 +179,12 @@ public class ArrayImpl extends MinimalEObjectImpl.Container implements Array
    * @generated
    */
   @Override
-  public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
-  {
-    switch (featureID)
-    {
-      case JSchemaPackage.ARRAY__PROPERTIES:
-        return ((InternalEList<?>)getProperties()).basicRemove(otherEnd, msgs);
-    }
-    return super.eInverseRemove(otherEnd, featureID, msgs);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
   public Object eGet(int featureID, boolean resolve, boolean coreType)
   {
     switch (featureID)
     {
-      case JSchemaPackage.ARRAY__ARRAY_NAME:
-        return getArrayName();
+      case JSchemaPackage.ARRAY__NAME:
+        return getName();
       case JSchemaPackage.ARRAY__PROPERTIES:
         return getProperties();
       case JSchemaPackage.ARRAY__ARRAY_TYPE:
@@ -223,12 +204,12 @@ public class ArrayImpl extends MinimalEObjectImpl.Container implements Array
   {
     switch (featureID)
     {
-      case JSchemaPackage.ARRAY__ARRAY_NAME:
-        setArrayName((String)newValue);
+      case JSchemaPackage.ARRAY__NAME:
+        setName((String)newValue);
         return;
       case JSchemaPackage.ARRAY__PROPERTIES:
         getProperties().clear();
-        getProperties().addAll((Collection<? extends Property>)newValue);
+        getProperties().addAll((Collection<? extends AbstractObject>)newValue);
         return;
       case JSchemaPackage.ARRAY__ARRAY_TYPE:
         setArrayType((String)newValue);
@@ -247,8 +228,8 @@ public class ArrayImpl extends MinimalEObjectImpl.Container implements Array
   {
     switch (featureID)
     {
-      case JSchemaPackage.ARRAY__ARRAY_NAME:
-        setArrayName(ARRAY_NAME_EDEFAULT);
+      case JSchemaPackage.ARRAY__NAME:
+        setName(NAME_EDEFAULT);
         return;
       case JSchemaPackage.ARRAY__PROPERTIES:
         getProperties().clear();
@@ -270,8 +251,8 @@ public class ArrayImpl extends MinimalEObjectImpl.Container implements Array
   {
     switch (featureID)
     {
-      case JSchemaPackage.ARRAY__ARRAY_NAME:
-        return ARRAY_NAME_EDEFAULT == null ? arrayName != null : !ARRAY_NAME_EDEFAULT.equals(arrayName);
+      case JSchemaPackage.ARRAY__NAME:
+        return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
       case JSchemaPackage.ARRAY__PROPERTIES:
         return properties != null && !properties.isEmpty();
       case JSchemaPackage.ARRAY__ARRAY_TYPE:
@@ -291,8 +272,8 @@ public class ArrayImpl extends MinimalEObjectImpl.Container implements Array
     if (eIsProxy()) return super.toString();
 
     StringBuilder result = new StringBuilder(super.toString());
-    result.append(" (arrayName: ");
-    result.append(arrayName);
+    result.append(" (name: ");
+    result.append(name);
     result.append(", arrayType: ");
     result.append(arrayType);
     result.append(')');

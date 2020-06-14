@@ -5,6 +5,8 @@ package org.xtext.example.mydsl.jSchema;
 
 import org.eclipse.emf.common.util.EList;
 
+import org.eclipse.emf.ecore.EObject;
+
 /**
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>Main Object</b></em>'.
@@ -14,9 +16,9 @@ import org.eclipse.emf.common.util.EList;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link org.xtext.example.mydsl.jSchema.MainObject#getObjectName <em>Object Name</em>}</li>
+ *   <li>{@link org.xtext.example.mydsl.jSchema.MainObject#getName <em>Name</em>}</li>
  *   <li>{@link org.xtext.example.mydsl.jSchema.MainObject#getRoot <em>Root</em>}</li>
- *   <li>{@link org.xtext.example.mydsl.jSchema.MainObject#getIncludeObjects <em>Include Objects</em>}</li>
+ *   <li>{@link org.xtext.example.mydsl.jSchema.MainObject#getInherits <em>Inherits</em>}</li>
  *   <li>{@link org.xtext.example.mydsl.jSchema.MainObject#getProperties <em>Properties</em>}</li>
  * </ul>
  *
@@ -27,26 +29,26 @@ import org.eclipse.emf.common.util.EList;
 public interface MainObject extends AbstractObject
 {
   /**
-   * Returns the value of the '<em><b>Object Name</b></em>' attribute.
+   * Returns the value of the '<em><b>Name</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the value of the '<em>Object Name</em>' attribute.
-   * @see #setObjectName(String)
-   * @see org.xtext.example.mydsl.jSchema.JSchemaPackage#getMainObject_ObjectName()
+   * @return the value of the '<em>Name</em>' attribute.
+   * @see #setName(String)
+   * @see org.xtext.example.mydsl.jSchema.JSchemaPackage#getMainObject_Name()
    * @model
    * @generated
    */
-  String getObjectName();
+  String getName();
 
   /**
-   * Sets the value of the '{@link org.xtext.example.mydsl.jSchema.MainObject#getObjectName <em>Object Name</em>}' attribute.
+   * Sets the value of the '{@link org.xtext.example.mydsl.jSchema.MainObject#getName <em>Name</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Object Name</em>' attribute.
-   * @see #getObjectName()
+   * @param value the new value of the '<em>Name</em>' attribute.
+   * @see #getName()
    * @generated
    */
-  void setObjectName(String value);
+  void setName(String value);
 
   /**
    * Returns the value of the '<em><b>Root</b></em>' containment reference.
@@ -71,37 +73,37 @@ public interface MainObject extends AbstractObject
   void setRoot(IsRoot value);
 
   /**
-   * Returns the value of the '<em><b>Include Objects</b></em>' containment reference.
+   * Returns the value of the '<em><b>Inherits</b></em>' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the value of the '<em>Include Objects</em>' containment reference.
-   * @see #setIncludeObjects(Includes)
-   * @see org.xtext.example.mydsl.jSchema.JSchemaPackage#getMainObject_IncludeObjects()
+   * @return the value of the '<em>Inherits</em>' containment reference.
+   * @see #setInherits(EObject)
+   * @see org.xtext.example.mydsl.jSchema.JSchemaPackage#getMainObject_Inherits()
    * @model containment="true"
    * @generated
    */
-  Includes getIncludeObjects();
+  EObject getInherits();
 
   /**
-   * Sets the value of the '{@link org.xtext.example.mydsl.jSchema.MainObject#getIncludeObjects <em>Include Objects</em>}' containment reference.
+   * Sets the value of the '{@link org.xtext.example.mydsl.jSchema.MainObject#getInherits <em>Inherits</em>}' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Include Objects</em>' containment reference.
-   * @see #getIncludeObjects()
+   * @param value the new value of the '<em>Inherits</em>' containment reference.
+   * @see #getInherits()
    * @generated
    */
-  void setIncludeObjects(Includes value);
+  void setInherits(EObject value);
 
   /**
-   * Returns the value of the '<em><b>Properties</b></em>' containment reference list.
-   * The list contents are of type {@link org.xtext.example.mydsl.jSchema.hasProperties}.
+   * Returns the value of the '<em><b>Properties</b></em>' reference list.
+   * The list contents are of type {@link org.xtext.example.mydsl.jSchema.AbstractObject}.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the value of the '<em>Properties</em>' containment reference list.
+   * @return the value of the '<em>Properties</em>' reference list.
    * @see org.xtext.example.mydsl.jSchema.JSchemaPackage#getMainObject_Properties()
-   * @model containment="true"
+   * @model
    * @generated
    */
-  EList<hasProperties> getProperties();
+  EList<AbstractObject> getProperties();
 
 } // MainObject

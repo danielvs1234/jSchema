@@ -3,8 +3,6 @@
  */
 package org.xtext.example.mydsl.tests;
 
-import com.google.gson.JsonParseException;
-import com.google.gson.JsonParser;
 import com.google.inject.Inject;
 import java.util.function.BiFunction;
 import java.util.function.Consumer;
@@ -313,17 +311,10 @@ public class JSchemaParsingTest implements WithQuickTheories {
   }
   
   public boolean checkIfValid(final String jsonString) {
-    final JsonParser parser = new JsonParser();
-    try {
-      parser.parse(jsonString);
-      return true;
-    } catch (final Throwable _t) {
-      if (_t instanceof JsonParseException) {
-        System.out.println("JSON file is not valid");
-        return false;
-      } else {
-        throw Exceptions.sneakyThrow(_t);
-      }
-    }
+    throw new Error("Unresolved compilation problems:"
+      + "\nJsonParser cannot be resolved to a type."
+      + "\nJsonParseException cannot be resolved to a type."
+      + "\nJsonParser cannot be resolved."
+      + "\nparse cannot be resolved");
   }
 }

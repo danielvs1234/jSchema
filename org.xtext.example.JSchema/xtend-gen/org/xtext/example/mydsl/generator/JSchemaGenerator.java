@@ -3,35 +3,22 @@
  */
 package org.xtext.example.mydsl.generator;
 
-import com.google.common.base.Objects;
-import com.google.common.collect.Iterables;
 import com.google.common.collect.Iterators;
 import java.util.ArrayList;
 import javax.inject.Inject;
-import org.eclipse.emf.common.util.EList;
-import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.xtext.generator.AbstractGenerator;
 import org.eclipse.xtext.generator.IFileSystemAccess2;
 import org.eclipse.xtext.generator.IGeneratorContext;
 import org.eclipse.xtext.naming.IQualifiedNameProvider;
 import org.eclipse.xtext.xbase.lib.Extension;
-import org.eclipse.xtext.xbase.lib.IteratorExtensions;
-import org.xtext.example.mydsl.generator.ArrayType;
 import org.xtext.example.mydsl.generator.FileController;
 import org.xtext.example.mydsl.generator.JsonFormatter;
 import org.xtext.example.mydsl.generator.ObjectClass;
 import org.xtext.example.mydsl.generator.PrimitiveObjectClass;
-import org.xtext.example.mydsl.generator.PrimitiveType;
-import org.xtext.example.mydsl.jSchema.Array;
-import org.xtext.example.mydsl.jSchema.Includes;
-import org.xtext.example.mydsl.jSchema.IsRoot;
 import org.xtext.example.mydsl.jSchema.MainObject;
 import org.xtext.example.mydsl.jSchema.Model;
 import org.xtext.example.mydsl.jSchema.PrimitiveObject;
-import org.xtext.example.mydsl.jSchema.PrimitiveProperties;
-import org.xtext.example.mydsl.jSchema.Property;
-import org.xtext.example.mydsl.jSchema.hasProperties;
 
 /**
  * Generates code from your model files on save.
@@ -72,226 +59,5 @@ public class JSchemaGenerator extends AbstractGenerator {
     int _size = this.primitiveObjectList.size();
     String _plus = ("Amount of primitive objects found: " + Integer.valueOf(_size));
     System.out.println(_plus);
-    Iterable<PrimitiveObject> _filter = Iterables.<PrimitiveObject>filter(IteratorExtensions.<EObject>toIterable(resource.getAllContents()), PrimitiveObject.class);
-    for (final PrimitiveObject primObj : _filter) {
-      this.compiledPrimitiveObjects.add(this.compilePrimitiveObject(primObj));
-    }
-    Iterable<MainObject> _filter_1 = Iterables.<MainObject>filter(IteratorExtensions.<EObject>toIterable(resource.getAllContents()), MainObject.class);
-    for (final MainObject obj : _filter_1) {
-      {
-        String bool = "false";
-        String rootBool = "false";
-        boolean _checkIfObjectContainsOtherObjects = this.checkIfObjectContainsOtherObjects(obj);
-        boolean _equals = (_checkIfObjectContainsOtherObjects == true);
-        if (_equals) {
-          bool = "true";
-        }
-        IsRoot _root = obj.getRoot();
-        boolean _notEquals = (!Objects.equal(_root, null));
-        if (_notEquals) {
-          rootBool = "true";
-        }
-        String _string = obj.getObjectName().toString();
-        String _plus_1 = ((("Contains other objects: " + bool) + "  ") + _string);
-        String _plus_2 = (_plus_1 + " PropertyListSize= ");
-        int _size_1 = this.getProperties(obj).size();
-        String _plus_3 = (_plus_2 + Integer.valueOf(_size_1));
-        String _plus_4 = (_plus_3 + " isRoot: ");
-        String _plus_5 = (_plus_4 + rootBool);
-        System.out.println(_plus_5);
-        this.compiledMainObjects.add(this.compileMainObject(obj));
-      }
-    }
-    for (final ObjectClass compiledObject : this.compiledMainObjects) {
-      if ((compiledObject.isRoot == true)) {
-        StringBuilder stringBuilder = new StringBuilder();
-        stringBuilder.append("{\n");
-        stringBuilder.append(compiledObject.getObjectJSchemaString());
-        stringBuilder.append("\n}");
-        fsa.generateFile("testFile.json", this.jsonFormatter.formatString(stringBuilder.toString()));
-      }
-    }
-  }
-  
-  public ObjectClass compileMainObject(final MainObject obj) {
-    boolean isRoot = false;
-    IsRoot _root = obj.getRoot();
-    boolean _tripleNotEquals = (_root != null);
-    if (_tripleNotEquals) {
-      isRoot = true;
-    }
-    String _objectName = obj.getObjectName();
-    final ObjectClass tempObject = new ObjectClass(_objectName, isRoot, obj);
-    boolean _checkIfObjectContainsOtherObjects = this.checkIfObjectContainsOtherObjects(obj);
-    boolean _equals = (_checkIfObjectContainsOtherObjects == true);
-    if (_equals) {
-      final ArrayList<String> includeNameList = new ArrayList<String>();
-      Includes _includeObjects = obj.getIncludeObjects();
-      boolean _tripleNotEquals_1 = (_includeObjects != null);
-      if (_tripleNotEquals_1) {
-        EList<String> _objectID = obj.getIncludeObjects().getObjectID();
-        for (final String str : _objectID) {
-          includeNameList.add(str);
-        }
-      }
-      for (final String includedName : includeNameList) {
-        {
-          for (final ObjectClass mainObj : this.compiledMainObjects) {
-            boolean _equals_1 = Objects.equal(mainObj.name, includedName);
-            if (_equals_1) {
-              tempObject.addMainObject(mainObj);
-            }
-          }
-          for (final PrimitiveObjectClass compPrimObj : this.compiledPrimitiveObjects) {
-            boolean _notEquals = (!Objects.equal(compPrimObj.name, null));
-            if (_notEquals) {
-              boolean _equals_2 = Objects.equal(compPrimObj.name, includedName);
-              if (_equals_2) {
-                tempObject.addPrimitiveObject(compPrimObj);
-              }
-            }
-          }
-        }
-      }
-      ArrayList<hasProperties> _properties = this.getProperties(obj);
-      for (final hasProperties e : _properties) {
-        PrimitiveObject _propPrim = e.getProperties().getPropPrim();
-        boolean _tripleNotEquals_2 = (_propPrim != null);
-        if (_tripleNotEquals_2) {
-          System.out.println("hasProperties = nested Primitive Object");
-          tempObject.addHasPrimObj(this.compilePrimitiveObject(e.getProperties().getPropPrim()));
-        } else {
-          MainObject _propObj = e.getProperties().getPropObj();
-          boolean _tripleNotEquals_3 = (_propObj != null);
-          if (_tripleNotEquals_3) {
-            System.out.println("hasProperties = nested Main Object");
-            tempObject.addHasMainObj(this.compileMainObject(e.getProperties().getPropObj()));
-          }
-        }
-      }
-    }
-    return tempObject;
-  }
-  
-  public PrimitiveObjectClass compilePrimitiveObject(final PrimitiveObject obj) {
-    PrimitiveObjectClass temp = null;
-    String _string = obj.getType().getString();
-    boolean _tripleNotEquals = (_string != null);
-    if (_tripleNotEquals) {
-      ArrayList<PrimitiveProperties> primitiveProperties = new ArrayList<PrimitiveProperties>();
-      EList<PrimitiveProperties> _primitiveProperties = obj.getPrimitiveProperties();
-      for (final PrimitiveProperties primProp : _primitiveProperties) {
-        {
-          primitiveProperties.add(primProp);
-          System.out.println(primProp.toString());
-        }
-      }
-      String _string_1 = obj.getType().getString();
-      String _string_2 = obj.getType().getString();
-      PrimitiveObjectClass _primitiveObjectClass = new PrimitiveObjectClass(_string_1, obj, PrimitiveType.STRING, _string_2, primitiveProperties);
-      temp = _primitiveObjectClass;
-    } else {
-      Array _array = obj.getType().getArray();
-      boolean _tripleNotEquals_1 = (_array != null);
-      if (_tripleNotEquals_1) {
-        final ArrayList<Object> arrayContent = new ArrayList<Object>();
-        ArrayType arrayType = null;
-        String _arrayType = obj.getType().getArray().getArrayType();
-        boolean _tripleNotEquals_2 = (_arrayType != null);
-        if (_tripleNotEquals_2) {
-          String _string_3 = ArrayType.DOUBLE.toString();
-          String _arrayType_1 = obj.getType().getArray().getArrayType();
-          boolean _equals = Objects.equal(_string_3, _arrayType_1);
-          if (_equals) {
-            arrayType = ArrayType.DOUBLE;
-          } else {
-            String _string_4 = ArrayType.FLOAT.toString();
-            String _arrayType_2 = obj.getType().getArray().getArrayType();
-            boolean _equals_1 = Objects.equal(_string_4, _arrayType_2);
-            if (_equals_1) {
-              arrayType = ArrayType.FLOAT;
-            } else {
-              String _string_5 = ArrayType.INT.toString();
-              String _arrayType_3 = obj.getType().getArray().getArrayType();
-              boolean _equals_2 = Objects.equal(_string_5, _arrayType_3);
-              if (_equals_2) {
-                arrayType = ArrayType.INT;
-              } else {
-                String _string_6 = ArrayType.STRING.toString();
-                String _arrayType_4 = obj.getType().getArray().getArrayType();
-                boolean _equals_3 = Objects.equal(_string_6, _arrayType_4);
-                if (_equals_3) {
-                  arrayType = ArrayType.STRING;
-                }
-              }
-            }
-          }
-        }
-        int _size = obj.getType().getArray().getProperties().size();
-        boolean _greaterThan = (_size > 0);
-        if (_greaterThan) {
-          EList<Property> _properties = obj.getType().getArray().getProperties();
-          for (final Property p : _properties) {
-            MainObject _propObj = p.getPropObj();
-            boolean _tripleNotEquals_3 = (_propObj != null);
-            if (_tripleNotEquals_3) {
-              arrayContent.add(this.compileMainObject(p.getPropObj()));
-            } else {
-              PrimitiveObject _propPrim = p.getPropPrim();
-              boolean _tripleNotEquals_4 = (_propPrim != null);
-              if (_tripleNotEquals_4) {
-                arrayContent.add(this.compilePrimitiveObject(p.getPropPrim()));
-              }
-            }
-          }
-        }
-        String _string_7 = obj.getType().getArray().getArrayName().toString();
-        PrimitiveObjectClass _primitiveObjectClass_1 = new PrimitiveObjectClass(_string_7, obj, PrimitiveType.ARRAY, arrayType, arrayContent);
-        temp = _primitiveObjectClass_1;
-      } else {
-        org.xtext.example.mydsl.jSchema.Number _number = obj.getType().getNumber();
-        boolean _tripleNotEquals_5 = (_number != null);
-        if (_tripleNotEquals_5) {
-          float number = 0;
-          float firstNumber = 0;
-          float decimal = 0;
-          String numberString = null;
-          int _decimal = obj.getType().getNumber().getDecimal();
-          boolean _lessEqualsThan = (_decimal <= 0);
-          if (_lessEqualsThan) {
-            number = obj.getType().getNumber().getNumber();
-            numberString = ("" + Float.valueOf(number));
-          } else {
-            int _number_1 = obj.getType().getNumber().getNumber();
-            firstNumber = ((float) _number_1);
-            int _decimal_1 = obj.getType().getNumber().getDecimal();
-            decimal = ((float) _decimal_1);
-            String _plus = (Float.valueOf(firstNumber) + ".");
-            String _plus_1 = (_plus + Float.valueOf(decimal));
-            numberString = _plus_1;
-          }
-          PrimitiveObjectClass _primitiveObjectClass_2 = new PrimitiveObjectClass("number", obj, PrimitiveType.NUMBER, numberString);
-          temp = _primitiveObjectClass_2;
-        }
-      }
-    }
-    return temp;
-  }
-  
-  public boolean checkIfObjectContainsOtherObjects(final MainObject obj) {
-    if (((obj.getIncludeObjects() != null) || (obj.getProperties() != null))) {
-      return true;
-    } else {
-      return false;
-    }
-  }
-  
-  public ArrayList<hasProperties> getProperties(final MainObject obj) {
-    final ArrayList<hasProperties> propertyList = new ArrayList<hasProperties>();
-    EList<hasProperties> _properties = obj.getProperties();
-    for (final hasProperties e : _properties) {
-      propertyList.add(e);
-    }
-    return propertyList;
   }
 }

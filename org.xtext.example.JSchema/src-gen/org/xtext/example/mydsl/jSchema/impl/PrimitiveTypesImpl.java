@@ -24,7 +24,7 @@ import org.xtext.example.mydsl.jSchema.PrimitiveTypes;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link org.xtext.example.mydsl.jSchema.impl.PrimitiveTypesImpl#getString <em>String</em>}</li>
+ *   <li>{@link org.xtext.example.mydsl.jSchema.impl.PrimitiveTypesImpl#getName <em>Name</em>}</li>
  *   <li>{@link org.xtext.example.mydsl.jSchema.impl.PrimitiveTypesImpl#getArray <em>Array</em>}</li>
  *   <li>{@link org.xtext.example.mydsl.jSchema.impl.PrimitiveTypesImpl#getNumber <em>Number</em>}</li>
  * </ul>
@@ -34,24 +34,24 @@ import org.xtext.example.mydsl.jSchema.PrimitiveTypes;
 public class PrimitiveTypesImpl extends MinimalEObjectImpl.Container implements PrimitiveTypes
 {
   /**
-   * The default value of the '{@link #getString() <em>String</em>}' attribute.
+   * The default value of the '{@link #getName() <em>Name</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getString()
+   * @see #getName()
    * @generated
    * @ordered
    */
-  protected static final String STRING_EDEFAULT = null;
+  protected static final String NAME_EDEFAULT = null;
 
   /**
-   * The cached value of the '{@link #getString() <em>String</em>}' attribute.
+   * The cached value of the '{@link #getName() <em>Name</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getString()
+   * @see #getName()
    * @generated
    * @ordered
    */
-  protected String string = STRING_EDEFAULT;
+  protected String name = NAME_EDEFAULT;
 
   /**
    * The cached value of the '{@link #getArray() <em>Array</em>}' containment reference.
@@ -100,9 +100,9 @@ public class PrimitiveTypesImpl extends MinimalEObjectImpl.Container implements 
    * @generated
    */
   @Override
-  public String getString()
+  public String getName()
   {
-    return string;
+    return name;
   }
 
   /**
@@ -111,12 +111,12 @@ public class PrimitiveTypesImpl extends MinimalEObjectImpl.Container implements 
    * @generated
    */
   @Override
-  public void setString(String newString)
+  public void setName(String newName)
   {
-    String oldString = string;
-    string = newString;
+    String oldName = name;
+    name = newName;
     if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, JSchemaPackage.PRIMITIVE_TYPES__STRING, oldString, string));
+      eNotify(new ENotificationImpl(this, Notification.SET, JSchemaPackage.PRIMITIVE_TYPES__NAME, oldName, name));
   }
 
   /**
@@ -247,8 +247,8 @@ public class PrimitiveTypesImpl extends MinimalEObjectImpl.Container implements 
   {
     switch (featureID)
     {
-      case JSchemaPackage.PRIMITIVE_TYPES__STRING:
-        return getString();
+      case JSchemaPackage.PRIMITIVE_TYPES__NAME:
+        return getName();
       case JSchemaPackage.PRIMITIVE_TYPES__ARRAY:
         return getArray();
       case JSchemaPackage.PRIMITIVE_TYPES__NUMBER:
@@ -267,8 +267,8 @@ public class PrimitiveTypesImpl extends MinimalEObjectImpl.Container implements 
   {
     switch (featureID)
     {
-      case JSchemaPackage.PRIMITIVE_TYPES__STRING:
-        setString((String)newValue);
+      case JSchemaPackage.PRIMITIVE_TYPES__NAME:
+        setName((String)newValue);
         return;
       case JSchemaPackage.PRIMITIVE_TYPES__ARRAY:
         setArray((Array)newValue);
@@ -290,8 +290,8 @@ public class PrimitiveTypesImpl extends MinimalEObjectImpl.Container implements 
   {
     switch (featureID)
     {
-      case JSchemaPackage.PRIMITIVE_TYPES__STRING:
-        setString(STRING_EDEFAULT);
+      case JSchemaPackage.PRIMITIVE_TYPES__NAME:
+        setName(NAME_EDEFAULT);
         return;
       case JSchemaPackage.PRIMITIVE_TYPES__ARRAY:
         setArray((Array)null);
@@ -313,8 +313,8 @@ public class PrimitiveTypesImpl extends MinimalEObjectImpl.Container implements 
   {
     switch (featureID)
     {
-      case JSchemaPackage.PRIMITIVE_TYPES__STRING:
-        return STRING_EDEFAULT == null ? string != null : !STRING_EDEFAULT.equals(string);
+      case JSchemaPackage.PRIMITIVE_TYPES__NAME:
+        return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
       case JSchemaPackage.PRIMITIVE_TYPES__ARRAY:
         return array != null;
       case JSchemaPackage.PRIMITIVE_TYPES__NUMBER:
@@ -334,8 +334,8 @@ public class PrimitiveTypesImpl extends MinimalEObjectImpl.Container implements 
     if (eIsProxy()) return super.toString();
 
     StringBuilder result = new StringBuilder(super.toString());
-    result.append(" (string: ");
-    result.append(string);
+    result.append(" (name: ");
+    result.append(name);
     result.append(')');
     return result.toString();
   }

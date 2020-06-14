@@ -12,13 +12,17 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="AbstractObject"/>
   <eClassifiers xsi:type="ecore:EClass" name="MainObject" eSuperTypes="#//AbstractObject">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="objectName" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="root" eType="#//IsRoot"
         containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="includeObjects" eType="#//Includes"
+    <eStructuralFeatures xsi:type="ecore:EReference" name="inherits" eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EObject"
         containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="properties" upperBound="-1"
-        eType="#//hasProperties" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="properties" unique="false"
+        upperBound="-1" eType="#//AbstractObject"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Extends">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="extends" unique="false"
+        upperBound="-1" eType="#//AbstractObject"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="PrimitiveObject" eSuperTypes="#//AbstractObject">
     <eStructuralFeatures xsi:type="ecore:EReference" name="type" eType="#//PrimitiveTypes"
@@ -27,7 +31,7 @@
         eType="#//PrimitiveProperties" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="PrimitiveTypes">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="string" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="array" eType="#//Array"
         containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="number" eType="#//Number"
@@ -35,16 +39,6 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="IsRoot">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="string" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="hasProperties">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="properties" eType="#//Property"
-        containment="true"/>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Property">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="propPrim" eType="#//PrimitiveObject"
-        containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="propObj" eType="#//MainObject"
-        containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="PrimitiveProperties">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="stringLength" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
@@ -75,9 +69,9 @@
         upperBound="-1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Array">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="arrayName" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="properties" upperBound="-1"
-        eType="#//Property" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="properties" unique="false"
+        upperBound="-1" eType="#//AbstractObject"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="arrayType" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
 </ecore:EPackage>

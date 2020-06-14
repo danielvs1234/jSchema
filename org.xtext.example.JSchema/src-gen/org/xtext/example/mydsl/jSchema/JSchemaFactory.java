@@ -60,6 +60,15 @@ public interface JSchemaFactory extends EFactory
   MainObject createMainObject();
 
   /**
+   * Returns a new object of class '<em>Extends</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Extends</em>'.
+   * @generated
+   */
+  Extends createExtends();
+
+  /**
    * Returns a new object of class '<em>Primitive Object</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -85,24 +94,6 @@ public interface JSchemaFactory extends EFactory
    * @generated
    */
   IsRoot createIsRoot();
-
-  /**
-   * Returns a new object of class '<em>has Properties</em>'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return a new object of class '<em>has Properties</em>'.
-   * @generated
-   */
-  hasProperties createhasProperties();
-
-  /**
-   * Returns a new object of class '<em>Property</em>'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return a new object of class '<em>Property</em>'.
-   * @generated
-   */
-  Property createProperty();
 
   /**
    * Returns a new object of class '<em>Primitive Properties</em>'.

@@ -18,8 +18,6 @@ import static org.junit.Assert.assertTrue
 import org.quicktheories.core.Gen
 import org.quicktheories.api.Function4
 import org.quicktheories.api.Function3
-import com.google.gson.JsonParser
-import com.google.gson.JsonParseException
 import org.eclipse.xtext.generator.InMemoryFileSystemAccess
 import org.eclipse.xtext.generator.IFileSystemAccess
 import org.eclipse.xtext.generator.IGenerator2

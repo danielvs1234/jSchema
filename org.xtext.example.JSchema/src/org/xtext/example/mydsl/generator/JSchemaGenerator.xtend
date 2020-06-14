@@ -14,9 +14,10 @@ import org.xtext.example.mydsl.jSchema.Property
 import javax.inject.Inject
 import org.eclipse.xtext.naming.IQualifiedNameProvider
 import java.util.ArrayList
-import org.xtext.example.mydsl.jSchema.hasProperties
 import org.xtext.example.mydsl.generator.ObjectClass
 import org.xtext.example.mydsl.jSchema.PrimitiveProperties
+import org.xtext.example.mydsl.jSchema.FormatTypes
+import org.xtext.example.mydsl.jSchema.Extends
 
 /**
  * Generates code from your model files on save.
@@ -42,44 +43,216 @@ class JSchemaGenerator extends AbstractGenerator {
 			compiledMainObjects = new ArrayList<ObjectClass>();
 			val abstractObjects = resource.allContents.filter(Model).next
 			jsonFormatter = new JsonFormatter();
-			
+//			constructSchema(abstractObjects, fsa);
 			System.out.println("Amount of primitive objects found: " + primitiveObjectList.size())
 			
-			for (primObj : resource.allContents.toIterable.filter(PrimitiveObject)){
-				//compile all primitive objects
-				compiledPrimitiveObjects.add(compilePrimitiveObject(primObj));
+//			for (primObj : resource.allContents.toIterable.filter(PrimitiveObject)){
+//				//compile all primitive objects
+//				compiledPrimitiveObjects.add(compilePrimitiveObject(primObj));
+//			}
+//			
+//			for (obj : resource.allContents.toIterable.filter(MainObject)){
+//				var bool = "false"
+//				var rootBool = "false"
+//				if(checkIfObjectContainsOtherObjects(obj) == true){
+//					bool = "true"
+//				}
+//				if(obj.root != null){
+//					rootBool = "true"
+//				}
+//				System.out.println("Contains other objects: " + bool + "  " +
+//				obj.objectName.toString() + " PropertyListSize= " + getProperties(obj).size() + " isRoot: " + rootBool)
+//				//Compile all main objects
+//				compiledMainObjects.add(compileMainObject(obj));
+//				
+//			}
+//			
+//			for (ObjectClass compiledObject : compiledMainObjects){
+//			if(compiledObject.isRoot == true){
+//				var StringBuilder stringBuilder = new StringBuilder();
+//				stringBuilder.append("{\n")
+//				stringBuilder.append(compiledObject.objectJSchemaString);
+//				stringBuilder.append("\n}")
+//				
+//				fsa.generateFile("testFile.json", jsonFormatter.formatString(stringBuilder.toString()))
+//				}
+//			}
+//				
 			}
-			
-			for (obj : resource.allContents.toIterable.filter(MainObject)){
-				var bool = "false"
-				var rootBool = "false"
-				if(checkIfObjectContainsOtherObjects(obj) == true){
-					bool = "true"
-				}
-				if(obj.root != null){
-					rootBool = "true"
-				}
-				System.out.println("Contains other objects: " + bool + "  " +
-				obj.objectName.toString() + " PropertyListSize= " + getProperties(obj).size() + " isRoot: " + rootBool)
-				//Compile all main objects
-				compiledMainObjects.add(compileMainObject(obj));
-				
+
+/*
+	def constructSchema(Model rootModel,IFileSystemAccess2 fsa){
+		var counter=0;
+		fsa.generateFile("newGenFile.json", 
+			'''
+			{
+				«««Implement scoping for includes/excludes, meaning when a mainobjects has inherits i.e includes or extends it should check for other objects. Watch video, be fast, time is of the essence»»»
+				«FOR mod: rootModel.abstractObject»
+					«IF mod instanceof MainObject»
+						«System.out.println("Rootmodel objectSize: " + rootModel.abstractObject.size + "counter: "+counter)»
+						«generateMainObject(mod, rootModel.abstractObject.size == counter++)»
+					«ENDIF»
+					«IF mod instanceof PrimitiveObject»
+						«generatePrimitiveObject(mod, rootModel.abstractObject.size == counter++)»
+					«ENDIF»
+				«ENDFOR»
 			}
-			
-			for (ObjectClass compiledObject : compiledMainObjects){
-			if(compiledObject.isRoot == true){
-				var StringBuilder stringBuilder = new StringBuilder();
-				stringBuilder.append("{\n")
-				stringBuilder.append(compiledObject.objectJSchemaString);
-				stringBuilder.append("\n}")
-				
-				fsa.generateFile("testFile.json", jsonFormatter.formatString(stringBuilder.toString()))
-				}
-			}
-				
-			}
-			
+			'''
+		)
+	}
+
+	def generatePrimitiveStringObject(PrimitiveObject primitiveObject, String objName){
+		return'''
+		"«objName»" : {
+		"type": "string"
+		
+		«FOR prop: primitiveObject.primitiveProperties»
+			«IF prop.stringFormat !== FormatTypes.DEFAULT»
+				,
+				"format": "«prop.stringFormat.getName.toString»"
+			«ENDIF»
+			«IF prop.stringLength !== null»
+				,
+				"minLength": «prop.stringLength.split("-").get(0)»,
+				"maxLength": «prop.stringLength.split("-").get(1)»
+			«ENDIF»
+			«IF prop.patternString !== null»
+				,
+				"pattern": "«prop.patternString»"
+			«ENDIF»
+		«ENDFOR»
+		'''
+	}
 	
+	def generateExtendsObjects(MainObject model){
+		var counter= 0;
+		'''
+		{
+			"allOf:" [
+				{
+					«IF (model.inherits instanceof Extends) && !((model.inherits as Extends).extends).empty»
+						«val extensions = (model.inherits as Extends).extends»
+						«FOR extended : extensions»
+							«IF extended instanceof PrimitiveObject»
+								«IF extended.type.string !== null»
+									«generateStringPrimitiveObject(extended, extensions.size == counter++)»
+								«ELSEIF extended.type.array !== null»
+									«generatePrimitiveArrayObject(extended, extensions.size == counter++)»
+								«ELSEIF extended.type.number !== null»
+									«generatePrimitiveNumberObject(extended, extensions.size == counter++)»
+								«ENDIF»
+							«ELSEIF extended instanceof MainObject»
+								«generateMainObject(model, extensions.size == counter++)»
+							«ENDIF»
+						«ENDFOR»
+					«ENDIF»
+				}
+			]
+		}
+		'''
+	}
+	
+	def generatePrimitiveArrayObject(PrimitiveObject primitiveObject, boolean isLast){
+		'''
+		
+		'''
+	}
+	
+	def generatePrimitiveNumberObject(PrimitiveObject primitiveObject, boolean isLast){
+		'''
+		
+		'''
+	}
+	
+	def generateStringPrimitiveObject(PrimitiveObject mod, boolean isLast){
+		'''
+		"$id": "«mod.type.string»",
+		"type": "string"
+			«IF !mod.primitiveProperties.empty»
+				{
+				«FOR prop: mod.primitiveProperties»
+					«IF prop.stringFormat !== FormatTypes.DEFAULT»
+						,
+						"format": "«prop.stringFormat.getName.toString»"
+					«ENDIF»
+					«IF prop.stringLength !== null»
+						,
+						"minLength": «prop.stringLength.split("-").get(0)»,
+						"maxLength": «prop.stringLength.split("-").get(1)»
+					«ENDIF»
+					«IF prop.patternString !== null»
+						,
+						"pattern": "«prop.patternString»"
+					«ENDIF»
+				«ENDFOR»
+				}
+			«ELSEIF !mod.primitiveProperties.empty && !isLast»
+			,
+			«ENDIF»
+		«IF !isLast»
+			},
+		«ELSE»
+			}
+		«ENDIF»
+		'''
+	}
+	
+	def generateMainObject(MainObject mod, boolean isLast){
+		'''«IF !mod.objectName.empty»
+			"$id": "«mod.objectName»",
+			"type": "object",
+			«ENDIF»
+			«IF !mod.properties.empty»
+				"properties": {
+				«FOR prop: mod.properties»
+					«IF prop.propObj !== null»
+					«System.out.println("MainObject")»
+						"$id": "«mod.objectName»",
+						"type"": "object"
+					«ENDIF»
+					«IF prop.propPrim !== null»
+						«IF prop.propPrim.type.string !== null»
+							«generatePrimitiveStringObject(prop.propPrim, mod.objectName)»
+						«ENDIF»
+						«IF prop.propPrim.type.array !== null»
+							«generatePrimitiveArrayObject(prop.propPrim, isLast)»
+						«ENDIF»
+						«IF prop.propPrim.type.number !== null»
+							«generatePrimitiveNumberObject(prop.propPrim, isLast)»
+						«ENDIF»
+					«ENDIF»
+				«ENDFOR»
+				},
+				"allOf": {
+					
+			«ENDIF»
+			«IF !isLast»
+				},
+			«ELSE»
+				}
+			«ENDIF»
+		'''
+	}
+	
+	def generatePrimitiveObject(PrimitiveObject mod, boolean isLast){
+		
+		'''
+		«IF mod.type.string.length > 0»
+			«generateStringPrimitiveObject(mod, isLast)»
+		«ELSEIF mod.type.array.arrayName.length > 0»
+			«generatePrimitiveArrayObject(mod, isLast)»
+		«ELSEIF mod.type.number.number != 0 || mod.type.number.decimal != 0»
+			«generatePrimitiveNumberObject(mod, isLast)»
+		«ENDIF»
+		'''
+	}
+}
+		
+	*/
+	
+	
+	}
+	/*
 			
 	def ObjectClass compileMainObject(MainObject obj){
 		var boolean isRoot = false
@@ -203,9 +376,5 @@ class JSchemaGenerator extends AbstractGenerator {
 		}
 		return propertyList
 	}
-	
-	
 
-			
-	
-}
+	*/

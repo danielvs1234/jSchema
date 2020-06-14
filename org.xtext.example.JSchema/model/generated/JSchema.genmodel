@@ -34,29 +34,25 @@
     </genClasses>
     <genClasses ecoreClass="JSchema.ecore#//AbstractObject"/>
     <genClasses ecoreClass="JSchema.ecore#//MainObject">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute JSchema.ecore#//MainObject/objectName"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute JSchema.ecore#//MainObject/name"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference JSchema.ecore#//MainObject/root"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference JSchema.ecore#//MainObject/includeObjects"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference JSchema.ecore#//MainObject/properties"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference JSchema.ecore#//MainObject/inherits"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference JSchema.ecore#//MainObject/properties"/>
+    </genClasses>
+    <genClasses ecoreClass="JSchema.ecore#//Extends">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference JSchema.ecore#//Extends/extends"/>
     </genClasses>
     <genClasses ecoreClass="JSchema.ecore#//PrimitiveObject">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference JSchema.ecore#//PrimitiveObject/type"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference JSchema.ecore#//PrimitiveObject/primitiveProperties"/>
     </genClasses>
     <genClasses ecoreClass="JSchema.ecore#//PrimitiveTypes">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute JSchema.ecore#//PrimitiveTypes/string"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute JSchema.ecore#//PrimitiveTypes/name"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference JSchema.ecore#//PrimitiveTypes/array"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference JSchema.ecore#//PrimitiveTypes/number"/>
     </genClasses>
     <genClasses ecoreClass="JSchema.ecore#//IsRoot">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute JSchema.ecore#//IsRoot/string"/>
-    </genClasses>
-    <genClasses ecoreClass="JSchema.ecore#//hasProperties">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference JSchema.ecore#//hasProperties/properties"/>
-    </genClasses>
-    <genClasses ecoreClass="JSchema.ecore#//Property">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference JSchema.ecore#//Property/propPrim"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference JSchema.ecore#//Property/propObj"/>
     </genClasses>
     <genClasses ecoreClass="JSchema.ecore#//PrimitiveProperties">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute JSchema.ecore#//PrimitiveProperties/stringLength"/>
@@ -67,8 +63,8 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute JSchema.ecore#//Includes/objectID"/>
     </genClasses>
     <genClasses ecoreClass="JSchema.ecore#//Array">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute JSchema.ecore#//Array/arrayName"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference JSchema.ecore#//Array/properties"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute JSchema.ecore#//Array/name"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference JSchema.ecore#//Array/properties"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute JSchema.ecore#//Array/arrayType"/>
     </genClasses>
   </genPackages>

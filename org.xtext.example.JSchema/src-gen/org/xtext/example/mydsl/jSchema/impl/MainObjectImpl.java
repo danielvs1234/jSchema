@@ -11,18 +11,17 @@ import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
-import org.eclipse.emf.ecore.util.EObjectContainmentEList;
-import org.eclipse.emf.ecore.util.InternalEList;
+import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 
-import org.xtext.example.mydsl.jSchema.Includes;
+import org.xtext.example.mydsl.jSchema.AbstractObject;
 import org.xtext.example.mydsl.jSchema.IsRoot;
 import org.xtext.example.mydsl.jSchema.JSchemaPackage;
 import org.xtext.example.mydsl.jSchema.MainObject;
-import org.xtext.example.mydsl.jSchema.hasProperties;
 
 /**
  * <!-- begin-user-doc -->
@@ -32,9 +31,9 @@ import org.xtext.example.mydsl.jSchema.hasProperties;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link org.xtext.example.mydsl.jSchema.impl.MainObjectImpl#getObjectName <em>Object Name</em>}</li>
+ *   <li>{@link org.xtext.example.mydsl.jSchema.impl.MainObjectImpl#getName <em>Name</em>}</li>
  *   <li>{@link org.xtext.example.mydsl.jSchema.impl.MainObjectImpl#getRoot <em>Root</em>}</li>
- *   <li>{@link org.xtext.example.mydsl.jSchema.impl.MainObjectImpl#getIncludeObjects <em>Include Objects</em>}</li>
+ *   <li>{@link org.xtext.example.mydsl.jSchema.impl.MainObjectImpl#getInherits <em>Inherits</em>}</li>
  *   <li>{@link org.xtext.example.mydsl.jSchema.impl.MainObjectImpl#getProperties <em>Properties</em>}</li>
  * </ul>
  *
@@ -43,24 +42,24 @@ import org.xtext.example.mydsl.jSchema.hasProperties;
 public class MainObjectImpl extends AbstractObjectImpl implements MainObject
 {
   /**
-   * The default value of the '{@link #getObjectName() <em>Object Name</em>}' attribute.
+   * The default value of the '{@link #getName() <em>Name</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getObjectName()
+   * @see #getName()
    * @generated
    * @ordered
    */
-  protected static final String OBJECT_NAME_EDEFAULT = null;
+  protected static final String NAME_EDEFAULT = null;
 
   /**
-   * The cached value of the '{@link #getObjectName() <em>Object Name</em>}' attribute.
+   * The cached value of the '{@link #getName() <em>Name</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getObjectName()
+   * @see #getName()
    * @generated
    * @ordered
    */
-  protected String objectName = OBJECT_NAME_EDEFAULT;
+  protected String name = NAME_EDEFAULT;
 
   /**
    * The cached value of the '{@link #getRoot() <em>Root</em>}' containment reference.
@@ -73,24 +72,24 @@ public class MainObjectImpl extends AbstractObjectImpl implements MainObject
   protected IsRoot root;
 
   /**
-   * The cached value of the '{@link #getIncludeObjects() <em>Include Objects</em>}' containment reference.
+   * The cached value of the '{@link #getInherits() <em>Inherits</em>}' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getIncludeObjects()
+   * @see #getInherits()
    * @generated
    * @ordered
    */
-  protected Includes includeObjects;
+  protected EObject inherits;
 
   /**
-   * The cached value of the '{@link #getProperties() <em>Properties</em>}' containment reference list.
+   * The cached value of the '{@link #getProperties() <em>Properties</em>}' reference list.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @see #getProperties()
    * @generated
    * @ordered
    */
-  protected EList<hasProperties> properties;
+  protected EList<AbstractObject> properties;
 
   /**
    * <!-- begin-user-doc -->
@@ -119,9 +118,9 @@ public class MainObjectImpl extends AbstractObjectImpl implements MainObject
    * @generated
    */
   @Override
-  public String getObjectName()
+  public String getName()
   {
-    return objectName;
+    return name;
   }
 
   /**
@@ -130,12 +129,12 @@ public class MainObjectImpl extends AbstractObjectImpl implements MainObject
    * @generated
    */
   @Override
-  public void setObjectName(String newObjectName)
+  public void setName(String newName)
   {
-    String oldObjectName = objectName;
-    objectName = newObjectName;
+    String oldName = name;
+    name = newName;
     if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, JSchemaPackage.MAIN_OBJECT__OBJECT_NAME, oldObjectName, objectName));
+      eNotify(new ENotificationImpl(this, Notification.SET, JSchemaPackage.MAIN_OBJECT__NAME, oldName, name));
   }
 
   /**
@@ -194,9 +193,9 @@ public class MainObjectImpl extends AbstractObjectImpl implements MainObject
    * @generated
    */
   @Override
-  public Includes getIncludeObjects()
+  public EObject getInherits()
   {
-    return includeObjects;
+    return inherits;
   }
 
   /**
@@ -204,13 +203,13 @@ public class MainObjectImpl extends AbstractObjectImpl implements MainObject
    * <!-- end-user-doc -->
    * @generated
    */
-  public NotificationChain basicSetIncludeObjects(Includes newIncludeObjects, NotificationChain msgs)
+  public NotificationChain basicSetInherits(EObject newInherits, NotificationChain msgs)
   {
-    Includes oldIncludeObjects = includeObjects;
-    includeObjects = newIncludeObjects;
+    EObject oldInherits = inherits;
+    inherits = newInherits;
     if (eNotificationRequired())
     {
-      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, JSchemaPackage.MAIN_OBJECT__INCLUDE_OBJECTS, oldIncludeObjects, newIncludeObjects);
+      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, JSchemaPackage.MAIN_OBJECT__INHERITS, oldInherits, newInherits);
       if (msgs == null) msgs = notification; else msgs.add(notification);
     }
     return msgs;
@@ -222,20 +221,20 @@ public class MainObjectImpl extends AbstractObjectImpl implements MainObject
    * @generated
    */
   @Override
-  public void setIncludeObjects(Includes newIncludeObjects)
+  public void setInherits(EObject newInherits)
   {
-    if (newIncludeObjects != includeObjects)
+    if (newInherits != inherits)
     {
       NotificationChain msgs = null;
-      if (includeObjects != null)
-        msgs = ((InternalEObject)includeObjects).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - JSchemaPackage.MAIN_OBJECT__INCLUDE_OBJECTS, null, msgs);
-      if (newIncludeObjects != null)
-        msgs = ((InternalEObject)newIncludeObjects).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - JSchemaPackage.MAIN_OBJECT__INCLUDE_OBJECTS, null, msgs);
-      msgs = basicSetIncludeObjects(newIncludeObjects, msgs);
+      if (inherits != null)
+        msgs = ((InternalEObject)inherits).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - JSchemaPackage.MAIN_OBJECT__INHERITS, null, msgs);
+      if (newInherits != null)
+        msgs = ((InternalEObject)newInherits).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - JSchemaPackage.MAIN_OBJECT__INHERITS, null, msgs);
+      msgs = basicSetInherits(newInherits, msgs);
       if (msgs != null) msgs.dispatch();
     }
     else if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, JSchemaPackage.MAIN_OBJECT__INCLUDE_OBJECTS, newIncludeObjects, newIncludeObjects));
+      eNotify(new ENotificationImpl(this, Notification.SET, JSchemaPackage.MAIN_OBJECT__INHERITS, newInherits, newInherits));
   }
 
   /**
@@ -244,11 +243,11 @@ public class MainObjectImpl extends AbstractObjectImpl implements MainObject
    * @generated
    */
   @Override
-  public EList<hasProperties> getProperties()
+  public EList<AbstractObject> getProperties()
   {
     if (properties == null)
     {
-      properties = new EObjectContainmentEList<hasProperties>(hasProperties.class, this, JSchemaPackage.MAIN_OBJECT__PROPERTIES);
+      properties = new EObjectResolvingEList<AbstractObject>(AbstractObject.class, this, JSchemaPackage.MAIN_OBJECT__PROPERTIES);
     }
     return properties;
   }
@@ -265,10 +264,8 @@ public class MainObjectImpl extends AbstractObjectImpl implements MainObject
     {
       case JSchemaPackage.MAIN_OBJECT__ROOT:
         return basicSetRoot(null, msgs);
-      case JSchemaPackage.MAIN_OBJECT__INCLUDE_OBJECTS:
-        return basicSetIncludeObjects(null, msgs);
-      case JSchemaPackage.MAIN_OBJECT__PROPERTIES:
-        return ((InternalEList<?>)getProperties()).basicRemove(otherEnd, msgs);
+      case JSchemaPackage.MAIN_OBJECT__INHERITS:
+        return basicSetInherits(null, msgs);
     }
     return super.eInverseRemove(otherEnd, featureID, msgs);
   }
@@ -283,12 +280,12 @@ public class MainObjectImpl extends AbstractObjectImpl implements MainObject
   {
     switch (featureID)
     {
-      case JSchemaPackage.MAIN_OBJECT__OBJECT_NAME:
-        return getObjectName();
+      case JSchemaPackage.MAIN_OBJECT__NAME:
+        return getName();
       case JSchemaPackage.MAIN_OBJECT__ROOT:
         return getRoot();
-      case JSchemaPackage.MAIN_OBJECT__INCLUDE_OBJECTS:
-        return getIncludeObjects();
+      case JSchemaPackage.MAIN_OBJECT__INHERITS:
+        return getInherits();
       case JSchemaPackage.MAIN_OBJECT__PROPERTIES:
         return getProperties();
     }
@@ -306,18 +303,18 @@ public class MainObjectImpl extends AbstractObjectImpl implements MainObject
   {
     switch (featureID)
     {
-      case JSchemaPackage.MAIN_OBJECT__OBJECT_NAME:
-        setObjectName((String)newValue);
+      case JSchemaPackage.MAIN_OBJECT__NAME:
+        setName((String)newValue);
         return;
       case JSchemaPackage.MAIN_OBJECT__ROOT:
         setRoot((IsRoot)newValue);
         return;
-      case JSchemaPackage.MAIN_OBJECT__INCLUDE_OBJECTS:
-        setIncludeObjects((Includes)newValue);
+      case JSchemaPackage.MAIN_OBJECT__INHERITS:
+        setInherits((EObject)newValue);
         return;
       case JSchemaPackage.MAIN_OBJECT__PROPERTIES:
         getProperties().clear();
-        getProperties().addAll((Collection<? extends hasProperties>)newValue);
+        getProperties().addAll((Collection<? extends AbstractObject>)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -333,14 +330,14 @@ public class MainObjectImpl extends AbstractObjectImpl implements MainObject
   {
     switch (featureID)
     {
-      case JSchemaPackage.MAIN_OBJECT__OBJECT_NAME:
-        setObjectName(OBJECT_NAME_EDEFAULT);
+      case JSchemaPackage.MAIN_OBJECT__NAME:
+        setName(NAME_EDEFAULT);
         return;
       case JSchemaPackage.MAIN_OBJECT__ROOT:
         setRoot((IsRoot)null);
         return;
-      case JSchemaPackage.MAIN_OBJECT__INCLUDE_OBJECTS:
-        setIncludeObjects((Includes)null);
+      case JSchemaPackage.MAIN_OBJECT__INHERITS:
+        setInherits((EObject)null);
         return;
       case JSchemaPackage.MAIN_OBJECT__PROPERTIES:
         getProperties().clear();
@@ -359,12 +356,12 @@ public class MainObjectImpl extends AbstractObjectImpl implements MainObject
   {
     switch (featureID)
     {
-      case JSchemaPackage.MAIN_OBJECT__OBJECT_NAME:
-        return OBJECT_NAME_EDEFAULT == null ? objectName != null : !OBJECT_NAME_EDEFAULT.equals(objectName);
+      case JSchemaPackage.MAIN_OBJECT__NAME:
+        return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
       case JSchemaPackage.MAIN_OBJECT__ROOT:
         return root != null;
-      case JSchemaPackage.MAIN_OBJECT__INCLUDE_OBJECTS:
-        return includeObjects != null;
+      case JSchemaPackage.MAIN_OBJECT__INHERITS:
+        return inherits != null;
       case JSchemaPackage.MAIN_OBJECT__PROPERTIES:
         return properties != null && !properties.isEmpty();
     }
@@ -382,8 +379,8 @@ public class MainObjectImpl extends AbstractObjectImpl implements MainObject
     if (eIsProxy()) return super.toString();
 
     StringBuilder result = new StringBuilder(super.toString());
-    result.append(" (objectName: ");
-    result.append(objectName);
+    result.append(" (name: ");
+    result.append(name);
     result.append(')');
     return result.toString();
   }

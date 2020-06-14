@@ -10,6 +10,7 @@ import org.eclipse.emf.ecore.util.Switch;
 
 import org.xtext.example.mydsl.jSchema.AbstractObject;
 import org.xtext.example.mydsl.jSchema.Array;
+import org.xtext.example.mydsl.jSchema.Extends;
 import org.xtext.example.mydsl.jSchema.Includes;
 import org.xtext.example.mydsl.jSchema.IsRoot;
 import org.xtext.example.mydsl.jSchema.JSchemaPackage;
@@ -18,8 +19,6 @@ import org.xtext.example.mydsl.jSchema.Model;
 import org.xtext.example.mydsl.jSchema.PrimitiveObject;
 import org.xtext.example.mydsl.jSchema.PrimitiveProperties;
 import org.xtext.example.mydsl.jSchema.PrimitiveTypes;
-import org.xtext.example.mydsl.jSchema.Property;
-import org.xtext.example.mydsl.jSchema.hasProperties;
 
 /**
  * <!-- begin-user-doc -->
@@ -113,6 +112,13 @@ public class JSchemaSwitch<T> extends Switch<T>
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
+      case JSchemaPackage.EXTENDS:
+      {
+        Extends extends_ = (Extends)theEObject;
+        T result = caseExtends(extends_);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
       case JSchemaPackage.PRIMITIVE_OBJECT:
       {
         PrimitiveObject primitiveObject = (PrimitiveObject)theEObject;
@@ -132,20 +138,6 @@ public class JSchemaSwitch<T> extends Switch<T>
       {
         IsRoot isRoot = (IsRoot)theEObject;
         T result = caseIsRoot(isRoot);
-        if (result == null) result = defaultCase(theEObject);
-        return result;
-      }
-      case JSchemaPackage.HAS_PROPERTIES:
-      {
-        hasProperties hasProperties = (hasProperties)theEObject;
-        T result = casehasProperties(hasProperties);
-        if (result == null) result = defaultCase(theEObject);
-        return result;
-      }
-      case JSchemaPackage.PROPERTY:
-      {
-        Property property = (Property)theEObject;
-        T result = caseProperty(property);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -239,6 +231,22 @@ public class JSchemaSwitch<T> extends Switch<T>
   }
 
   /**
+   * Returns the result of interpreting the object as an instance of '<em>Extends</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Extends</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseExtends(Extends object)
+  {
+    return null;
+  }
+
+  /**
    * Returns the result of interpreting the object as an instance of '<em>Primitive Object</em>'.
    * <!-- begin-user-doc -->
    * This implementation returns null;
@@ -282,38 +290,6 @@ public class JSchemaSwitch<T> extends Switch<T>
    * @generated
    */
   public T caseIsRoot(IsRoot object)
-  {
-    return null;
-  }
-
-  /**
-   * Returns the result of interpreting the object as an instance of '<em>has Properties</em>'.
-   * <!-- begin-user-doc -->
-   * This implementation returns null;
-   * returning a non-null result will terminate the switch.
-   * <!-- end-user-doc -->
-   * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>has Properties</em>'.
-   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-   * @generated
-   */
-  public T casehasProperties(hasProperties object)
-  {
-    return null;
-  }
-
-  /**
-   * Returns the result of interpreting the object as an instance of '<em>Property</em>'.
-   * <!-- begin-user-doc -->
-   * This implementation returns null;
-   * returning a non-null result will terminate the switch.
-   * <!-- end-user-doc -->
-   * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Property</em>'.
-   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-   * @generated
-   */
-  public T caseProperty(Property object)
   {
     return null;
   }

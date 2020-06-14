@@ -14,6 +14,7 @@ import org.eclipse.emf.ecore.plugin.EcorePlugin;
 
 import org.xtext.example.mydsl.jSchema.AbstractObject;
 import org.xtext.example.mydsl.jSchema.Array;
+import org.xtext.example.mydsl.jSchema.Extends;
 import org.xtext.example.mydsl.jSchema.FormatTypes;
 import org.xtext.example.mydsl.jSchema.Includes;
 import org.xtext.example.mydsl.jSchema.IsRoot;
@@ -24,8 +25,6 @@ import org.xtext.example.mydsl.jSchema.Model;
 import org.xtext.example.mydsl.jSchema.PrimitiveObject;
 import org.xtext.example.mydsl.jSchema.PrimitiveProperties;
 import org.xtext.example.mydsl.jSchema.PrimitiveTypes;
-import org.xtext.example.mydsl.jSchema.Property;
-import org.xtext.example.mydsl.jSchema.hasProperties;
 
 /**
  * <!-- begin-user-doc -->
@@ -83,11 +82,10 @@ public class JSchemaFactoryImpl extends EFactoryImpl implements JSchemaFactory
       case JSchemaPackage.NUMBER: return createNumber();
       case JSchemaPackage.ABSTRACT_OBJECT: return createAbstractObject();
       case JSchemaPackage.MAIN_OBJECT: return createMainObject();
+      case JSchemaPackage.EXTENDS: return createExtends();
       case JSchemaPackage.PRIMITIVE_OBJECT: return createPrimitiveObject();
       case JSchemaPackage.PRIMITIVE_TYPES: return createPrimitiveTypes();
       case JSchemaPackage.IS_ROOT: return createIsRoot();
-      case JSchemaPackage.HAS_PROPERTIES: return createhasProperties();
-      case JSchemaPackage.PROPERTY: return createProperty();
       case JSchemaPackage.PRIMITIVE_PROPERTIES: return createPrimitiveProperties();
       case JSchemaPackage.INCLUDES: return createIncludes();
       case JSchemaPackage.ARRAY: return createArray();
@@ -184,6 +182,18 @@ public class JSchemaFactoryImpl extends EFactoryImpl implements JSchemaFactory
    * @generated
    */
   @Override
+  public Extends createExtends()
+  {
+    ExtendsImpl extends_ = new ExtendsImpl();
+    return extends_;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
   public PrimitiveObject createPrimitiveObject()
   {
     PrimitiveObjectImpl primitiveObject = new PrimitiveObjectImpl();
@@ -212,30 +222,6 @@ public class JSchemaFactoryImpl extends EFactoryImpl implements JSchemaFactory
   {
     IsRootImpl isRoot = new IsRootImpl();
     return isRoot;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public hasProperties createhasProperties()
-  {
-    hasPropertiesImpl hasProperties = new hasPropertiesImpl();
-    return hasProperties;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public Property createProperty()
-  {
-    PropertyImpl property = new PropertyImpl();
-    return property;
   }
 
   /**

@@ -7,7 +7,6 @@ Model:
 	AbstractObject+=AbstractObject*
 ;
 
-
 Number:
     number=INT ('.' decimal=INT)?
 ;
@@ -17,33 +16,27 @@ AbstractObject:
 ;
 
 MainObject:
- 	objectName=ID (root=IsRoot)? ('includes' includeObjects=Includes)? '{'  (properties+=hasProperties (',' properties+=hasProperties)*)? '}' 
+ 	name=ID root=IsRoot? inherits=(Extends | Includes)? '{'  (properties+=[AbstractObject](',' properties+=[AbstractObject])*)? '}' 
 ; 
 
+Extends:
+	'extends' extends+=[AbstractObject|ID] (',' extends+=[AbstractObject|ID])*
+;
 
 PrimitiveObject:
 	type=PrimitiveTypes ('with' primitiveProperties+=PrimitiveProperties (',' primitiveProperties+=PrimitiveProperties)* ';' )? 
 ;
-
-
+ 
 PrimitiveTypes:
-	'String' string=STRING | array=Array | 'num' (number=Number)?
+	'String' name=ID | array=Array | 'num' name=ID "=" number=Number
 ;
 
 IsRoot:
 	string='root'
 ;
 
-hasProperties:
-	properties=Property
-;
-
-Property:
- 	propPrim=PrimitiveObject | propObj=MainObject
-;
-
 PrimitiveProperties:
-	'length' stringLength=StringLength | ('pattern' patternString=STRING ) | 'format' stringFormat=FormatTypes
+	'length' stringLength=StringLength | 'pattern' patternString=STRING | 'format' stringFormat=FormatTypes
 ;
 
 StringLength:
@@ -71,22 +64,13 @@ enum FormatTypes:
 ;
 
 Includes:
-	objectID+=STRING (',' objectID+=STRING)*
+	'includes' objectID+=ID (',' objectID+=ID)*
 ;
 
 Array:
- 	arrayName=ID '[' (properties+=Property (',' properties+=Property)*)? (arrayType=ArrayType)? ']'
+ 	name=ID '[' (properties+=[AbstractObject] (',' properties+=[AbstractObject])*)? (arrayType=ArrayType)? ']'
 ;
 
 ArrayType:
 	'string' | 'integer' | 'float' | 'double'
 ;
-
-
-
-
-
-
-
-
-

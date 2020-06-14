@@ -8,6 +8,7 @@ import com.google.inject.Singleton;
 import java.util.List;
 import org.eclipse.xtext.Alternatives;
 import org.eclipse.xtext.Assignment;
+import org.eclipse.xtext.CrossReference;
 import org.eclipse.xtext.EnumLiteralDeclaration;
 import org.eclipse.xtext.EnumRule;
 import org.eclipse.xtext.Grammar;
@@ -97,38 +98,40 @@ public class JSchemaGrammarAccess extends AbstractGrammarElementFinder {
 	public class MainObjectElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.xtext.example.mydsl.JSchema.MainObject");
 		private final Group cGroup = (Group)rule.eContents().get(1);
-		private final Assignment cObjectNameAssignment_0 = (Assignment)cGroup.eContents().get(0);
-		private final RuleCall cObjectNameIDTerminalRuleCall_0_0 = (RuleCall)cObjectNameAssignment_0.eContents().get(0);
+		private final Assignment cNameAssignment_0 = (Assignment)cGroup.eContents().get(0);
+		private final RuleCall cNameIDTerminalRuleCall_0_0 = (RuleCall)cNameAssignment_0.eContents().get(0);
 		private final Assignment cRootAssignment_1 = (Assignment)cGroup.eContents().get(1);
 		private final RuleCall cRootIsRootParserRuleCall_1_0 = (RuleCall)cRootAssignment_1.eContents().get(0);
-		private final Group cGroup_2 = (Group)cGroup.eContents().get(2);
-		private final Keyword cIncludesKeyword_2_0 = (Keyword)cGroup_2.eContents().get(0);
-		private final Assignment cIncludeObjectsAssignment_2_1 = (Assignment)cGroup_2.eContents().get(1);
-		private final RuleCall cIncludeObjectsIncludesParserRuleCall_2_1_0 = (RuleCall)cIncludeObjectsAssignment_2_1.eContents().get(0);
+		private final Assignment cInheritsAssignment_2 = (Assignment)cGroup.eContents().get(2);
+		private final Alternatives cInheritsAlternatives_2_0 = (Alternatives)cInheritsAssignment_2.eContents().get(0);
+		private final RuleCall cInheritsExtendsParserRuleCall_2_0_0 = (RuleCall)cInheritsAlternatives_2_0.eContents().get(0);
+		private final RuleCall cInheritsIncludesParserRuleCall_2_0_1 = (RuleCall)cInheritsAlternatives_2_0.eContents().get(1);
 		private final Keyword cLeftCurlyBracketKeyword_3 = (Keyword)cGroup.eContents().get(3);
 		private final Group cGroup_4 = (Group)cGroup.eContents().get(4);
 		private final Assignment cPropertiesAssignment_4_0 = (Assignment)cGroup_4.eContents().get(0);
-		private final RuleCall cPropertiesHasPropertiesParserRuleCall_4_0_0 = (RuleCall)cPropertiesAssignment_4_0.eContents().get(0);
+		private final CrossReference cPropertiesAbstractObjectCrossReference_4_0_0 = (CrossReference)cPropertiesAssignment_4_0.eContents().get(0);
+		private final RuleCall cPropertiesAbstractObjectIDTerminalRuleCall_4_0_0_1 = (RuleCall)cPropertiesAbstractObjectCrossReference_4_0_0.eContents().get(1);
 		private final Group cGroup_4_1 = (Group)cGroup_4.eContents().get(1);
 		private final Keyword cCommaKeyword_4_1_0 = (Keyword)cGroup_4_1.eContents().get(0);
 		private final Assignment cPropertiesAssignment_4_1_1 = (Assignment)cGroup_4_1.eContents().get(1);
-		private final RuleCall cPropertiesHasPropertiesParserRuleCall_4_1_1_0 = (RuleCall)cPropertiesAssignment_4_1_1.eContents().get(0);
+		private final CrossReference cPropertiesAbstractObjectCrossReference_4_1_1_0 = (CrossReference)cPropertiesAssignment_4_1_1.eContents().get(0);
+		private final RuleCall cPropertiesAbstractObjectIDTerminalRuleCall_4_1_1_0_1 = (RuleCall)cPropertiesAbstractObjectCrossReference_4_1_1_0.eContents().get(1);
 		private final Keyword cRightCurlyBracketKeyword_5 = (Keyword)cGroup.eContents().get(5);
 		
 		//MainObject:
-		//	objectName=ID root=IsRoot? ('includes' includeObjects=Includes)? '{' (properties+=hasProperties (','
-		//	properties+=hasProperties)*)? '}';
+		//	name=ID root=IsRoot? inherits=(Extends | Includes)? '{' (properties+=[AbstractObject] (','
+		//	properties+=[AbstractObject])*)? '}';
 		@Override public ParserRule getRule() { return rule; }
 		
-		//objectName=ID root=IsRoot? ('includes' includeObjects=Includes)? '{' (properties+=hasProperties (','
-		//properties+=hasProperties)*)? '}'
+		//name=ID root=IsRoot? inherits=(Extends | Includes)? '{' (properties+=[AbstractObject] (','
+		//properties+=[AbstractObject])*)? '}'
 		public Group getGroup() { return cGroup; }
 		
-		//objectName=ID
-		public Assignment getObjectNameAssignment_0() { return cObjectNameAssignment_0; }
+		//name=ID
+		public Assignment getNameAssignment_0() { return cNameAssignment_0; }
 		
 		//ID
-		public RuleCall getObjectNameIDTerminalRuleCall_0_0() { return cObjectNameIDTerminalRuleCall_0_0; }
+		public RuleCall getNameIDTerminalRuleCall_0_0() { return cNameIDTerminalRuleCall_0_0; }
 		
 		//root=IsRoot?
 		public Assignment getRootAssignment_1() { return cRootAssignment_1; }
@@ -136,44 +139,97 @@ public class JSchemaGrammarAccess extends AbstractGrammarElementFinder {
 		//IsRoot
 		public RuleCall getRootIsRootParserRuleCall_1_0() { return cRootIsRootParserRuleCall_1_0; }
 		
-		//('includes' includeObjects=Includes)?
-		public Group getGroup_2() { return cGroup_2; }
+		//inherits=(Extends | Includes)?
+		public Assignment getInheritsAssignment_2() { return cInheritsAssignment_2; }
 		
-		//'includes'
-		public Keyword getIncludesKeyword_2_0() { return cIncludesKeyword_2_0; }
+		//(Extends | Includes)
+		public Alternatives getInheritsAlternatives_2_0() { return cInheritsAlternatives_2_0; }
 		
-		//includeObjects=Includes
-		public Assignment getIncludeObjectsAssignment_2_1() { return cIncludeObjectsAssignment_2_1; }
+		//Extends
+		public RuleCall getInheritsExtendsParserRuleCall_2_0_0() { return cInheritsExtendsParserRuleCall_2_0_0; }
 		
 		//Includes
-		public RuleCall getIncludeObjectsIncludesParserRuleCall_2_1_0() { return cIncludeObjectsIncludesParserRuleCall_2_1_0; }
+		public RuleCall getInheritsIncludesParserRuleCall_2_0_1() { return cInheritsIncludesParserRuleCall_2_0_1; }
 		
 		//'{'
 		public Keyword getLeftCurlyBracketKeyword_3() { return cLeftCurlyBracketKeyword_3; }
 		
-		//(properties+=hasProperties (',' properties+=hasProperties)*)?
+		//(properties+=[AbstractObject] (',' properties+=[AbstractObject])*)?
 		public Group getGroup_4() { return cGroup_4; }
 		
-		//properties+=hasProperties
+		//properties+=[AbstractObject]
 		public Assignment getPropertiesAssignment_4_0() { return cPropertiesAssignment_4_0; }
 		
-		//hasProperties
-		public RuleCall getPropertiesHasPropertiesParserRuleCall_4_0_0() { return cPropertiesHasPropertiesParserRuleCall_4_0_0; }
+		//[AbstractObject]
+		public CrossReference getPropertiesAbstractObjectCrossReference_4_0_0() { return cPropertiesAbstractObjectCrossReference_4_0_0; }
 		
-		//(',' properties+=hasProperties)*
+		//ID
+		public RuleCall getPropertiesAbstractObjectIDTerminalRuleCall_4_0_0_1() { return cPropertiesAbstractObjectIDTerminalRuleCall_4_0_0_1; }
+		
+		//(',' properties+=[AbstractObject])*
 		public Group getGroup_4_1() { return cGroup_4_1; }
 		
 		//','
 		public Keyword getCommaKeyword_4_1_0() { return cCommaKeyword_4_1_0; }
 		
-		//properties+=hasProperties
+		//properties+=[AbstractObject]
 		public Assignment getPropertiesAssignment_4_1_1() { return cPropertiesAssignment_4_1_1; }
 		
-		//hasProperties
-		public RuleCall getPropertiesHasPropertiesParserRuleCall_4_1_1_0() { return cPropertiesHasPropertiesParserRuleCall_4_1_1_0; }
+		//[AbstractObject]
+		public CrossReference getPropertiesAbstractObjectCrossReference_4_1_1_0() { return cPropertiesAbstractObjectCrossReference_4_1_1_0; }
+		
+		//ID
+		public RuleCall getPropertiesAbstractObjectIDTerminalRuleCall_4_1_1_0_1() { return cPropertiesAbstractObjectIDTerminalRuleCall_4_1_1_0_1; }
 		
 		//'}'
 		public Keyword getRightCurlyBracketKeyword_5() { return cRightCurlyBracketKeyword_5; }
+	}
+	public class ExtendsElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.xtext.example.mydsl.JSchema.Extends");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final Keyword cExtendsKeyword_0 = (Keyword)cGroup.eContents().get(0);
+		private final Assignment cExtendsAssignment_1 = (Assignment)cGroup.eContents().get(1);
+		private final CrossReference cExtendsAbstractObjectCrossReference_1_0 = (CrossReference)cExtendsAssignment_1.eContents().get(0);
+		private final RuleCall cExtendsAbstractObjectIDTerminalRuleCall_1_0_1 = (RuleCall)cExtendsAbstractObjectCrossReference_1_0.eContents().get(1);
+		private final Group cGroup_2 = (Group)cGroup.eContents().get(2);
+		private final Keyword cCommaKeyword_2_0 = (Keyword)cGroup_2.eContents().get(0);
+		private final Assignment cExtendsAssignment_2_1 = (Assignment)cGroup_2.eContents().get(1);
+		private final CrossReference cExtendsAbstractObjectCrossReference_2_1_0 = (CrossReference)cExtendsAssignment_2_1.eContents().get(0);
+		private final RuleCall cExtendsAbstractObjectIDTerminalRuleCall_2_1_0_1 = (RuleCall)cExtendsAbstractObjectCrossReference_2_1_0.eContents().get(1);
+		
+		//Extends:
+		//	'extends' extends+=[AbstractObject] (',' extends+=[AbstractObject])*;
+		@Override public ParserRule getRule() { return rule; }
+		
+		//'extends' extends+=[AbstractObject] (',' extends+=[AbstractObject])*
+		public Group getGroup() { return cGroup; }
+		
+		//'extends'
+		public Keyword getExtendsKeyword_0() { return cExtendsKeyword_0; }
+		
+		//extends+=[AbstractObject]
+		public Assignment getExtendsAssignment_1() { return cExtendsAssignment_1; }
+		
+		//[AbstractObject]
+		public CrossReference getExtendsAbstractObjectCrossReference_1_0() { return cExtendsAbstractObjectCrossReference_1_0; }
+		
+		//ID
+		public RuleCall getExtendsAbstractObjectIDTerminalRuleCall_1_0_1() { return cExtendsAbstractObjectIDTerminalRuleCall_1_0_1; }
+		
+		//(',' extends+=[AbstractObject])*
+		public Group getGroup_2() { return cGroup_2; }
+		
+		//','
+		public Keyword getCommaKeyword_2_0() { return cCommaKeyword_2_0; }
+		
+		//extends+=[AbstractObject]
+		public Assignment getExtendsAssignment_2_1() { return cExtendsAssignment_2_1; }
+		
+		//[AbstractObject]
+		public CrossReference getExtendsAbstractObjectCrossReference_2_1_0() { return cExtendsAbstractObjectCrossReference_2_1_0; }
+		
+		//ID
+		public RuleCall getExtendsAbstractObjectIDTerminalRuleCall_2_1_0_1() { return cExtendsAbstractObjectIDTerminalRuleCall_2_1_0_1; }
 	}
 	public class PrimitiveObjectElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.xtext.example.mydsl.JSchema.PrimitiveObject");
@@ -237,33 +293,36 @@ public class JSchemaGrammarAccess extends AbstractGrammarElementFinder {
 		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
 		private final Group cGroup_0 = (Group)cAlternatives.eContents().get(0);
 		private final Keyword cStringKeyword_0_0 = (Keyword)cGroup_0.eContents().get(0);
-		private final Assignment cStringAssignment_0_1 = (Assignment)cGroup_0.eContents().get(1);
-		private final RuleCall cStringSTRINGTerminalRuleCall_0_1_0 = (RuleCall)cStringAssignment_0_1.eContents().get(0);
+		private final Assignment cNameAssignment_0_1 = (Assignment)cGroup_0.eContents().get(1);
+		private final RuleCall cNameIDTerminalRuleCall_0_1_0 = (RuleCall)cNameAssignment_0_1.eContents().get(0);
 		private final Assignment cArrayAssignment_1 = (Assignment)cAlternatives.eContents().get(1);
 		private final RuleCall cArrayArrayParserRuleCall_1_0 = (RuleCall)cArrayAssignment_1.eContents().get(0);
 		private final Group cGroup_2 = (Group)cAlternatives.eContents().get(2);
 		private final Keyword cNumKeyword_2_0 = (Keyword)cGroup_2.eContents().get(0);
-		private final Assignment cNumberAssignment_2_1 = (Assignment)cGroup_2.eContents().get(1);
-		private final RuleCall cNumberNumberParserRuleCall_2_1_0 = (RuleCall)cNumberAssignment_2_1.eContents().get(0);
+		private final Assignment cNameAssignment_2_1 = (Assignment)cGroup_2.eContents().get(1);
+		private final RuleCall cNameIDTerminalRuleCall_2_1_0 = (RuleCall)cNameAssignment_2_1.eContents().get(0);
+		private final Keyword cEqualsSignKeyword_2_2 = (Keyword)cGroup_2.eContents().get(2);
+		private final Assignment cNumberAssignment_2_3 = (Assignment)cGroup_2.eContents().get(3);
+		private final RuleCall cNumberNumberParserRuleCall_2_3_0 = (RuleCall)cNumberAssignment_2_3.eContents().get(0);
 		
 		//PrimitiveTypes:
-		//	'String' string=STRING | array=Array | 'num' number=Number?;
+		//	'String' name=ID | array=Array | 'num' name=ID "=" number=Number;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//'String' string=STRING | array=Array | 'num' number=Number?
+		//'String' name=ID | array=Array | 'num' name=ID "=" number=Number
 		public Alternatives getAlternatives() { return cAlternatives; }
 		
-		//'String' string=STRING
+		//'String' name=ID
 		public Group getGroup_0() { return cGroup_0; }
 		
 		//'String'
 		public Keyword getStringKeyword_0_0() { return cStringKeyword_0_0; }
 		
-		//string=STRING
-		public Assignment getStringAssignment_0_1() { return cStringAssignment_0_1; }
+		//name=ID
+		public Assignment getNameAssignment_0_1() { return cNameAssignment_0_1; }
 		
-		//STRING
-		public RuleCall getStringSTRINGTerminalRuleCall_0_1_0() { return cStringSTRINGTerminalRuleCall_0_1_0; }
+		//ID
+		public RuleCall getNameIDTerminalRuleCall_0_1_0() { return cNameIDTerminalRuleCall_0_1_0; }
 		
 		//array=Array
 		public Assignment getArrayAssignment_1() { return cArrayAssignment_1; }
@@ -271,17 +330,26 @@ public class JSchemaGrammarAccess extends AbstractGrammarElementFinder {
 		//Array
 		public RuleCall getArrayArrayParserRuleCall_1_0() { return cArrayArrayParserRuleCall_1_0; }
 		
-		//'num' number=Number?
+		//'num' name=ID "=" number=Number
 		public Group getGroup_2() { return cGroup_2; }
 		
 		//'num'
 		public Keyword getNumKeyword_2_0() { return cNumKeyword_2_0; }
 		
-		//number=Number?
-		public Assignment getNumberAssignment_2_1() { return cNumberAssignment_2_1; }
+		//name=ID
+		public Assignment getNameAssignment_2_1() { return cNameAssignment_2_1; }
+		
+		//ID
+		public RuleCall getNameIDTerminalRuleCall_2_1_0() { return cNameIDTerminalRuleCall_2_1_0; }
+		
+		//"="
+		public Keyword getEqualsSignKeyword_2_2() { return cEqualsSignKeyword_2_2; }
+		
+		//number=Number
+		public Assignment getNumberAssignment_2_3() { return cNumberAssignment_2_3; }
 		
 		//Number
-		public RuleCall getNumberNumberParserRuleCall_2_1_0() { return cNumberNumberParserRuleCall_2_1_0; }
+		public RuleCall getNumberNumberParserRuleCall_2_3_0() { return cNumberNumberParserRuleCall_2_3_0; }
 	}
 	public class IsRootElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.xtext.example.mydsl.JSchema.IsRoot");
@@ -297,48 +365,6 @@ public class JSchemaGrammarAccess extends AbstractGrammarElementFinder {
 		
 		//'root'
 		public Keyword getStringRootKeyword_0() { return cStringRootKeyword_0; }
-	}
-	public class HasPropertiesElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.xtext.example.mydsl.JSchema.hasProperties");
-		private final Assignment cPropertiesAssignment = (Assignment)rule.eContents().get(1);
-		private final RuleCall cPropertiesPropertyParserRuleCall_0 = (RuleCall)cPropertiesAssignment.eContents().get(0);
-		
-		//hasProperties:
-		//	properties=Property;
-		@Override public ParserRule getRule() { return rule; }
-		
-		//properties=Property
-		public Assignment getPropertiesAssignment() { return cPropertiesAssignment; }
-		
-		//Property
-		public RuleCall getPropertiesPropertyParserRuleCall_0() { return cPropertiesPropertyParserRuleCall_0; }
-	}
-	public class PropertyElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.xtext.example.mydsl.JSchema.Property");
-		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
-		private final Assignment cPropPrimAssignment_0 = (Assignment)cAlternatives.eContents().get(0);
-		private final RuleCall cPropPrimPrimitiveObjectParserRuleCall_0_0 = (RuleCall)cPropPrimAssignment_0.eContents().get(0);
-		private final Assignment cPropObjAssignment_1 = (Assignment)cAlternatives.eContents().get(1);
-		private final RuleCall cPropObjMainObjectParserRuleCall_1_0 = (RuleCall)cPropObjAssignment_1.eContents().get(0);
-		
-		//Property:
-		//	propPrim=PrimitiveObject | propObj=MainObject;
-		@Override public ParserRule getRule() { return rule; }
-		
-		//propPrim=PrimitiveObject | propObj=MainObject
-		public Alternatives getAlternatives() { return cAlternatives; }
-		
-		//propPrim=PrimitiveObject
-		public Assignment getPropPrimAssignment_0() { return cPropPrimAssignment_0; }
-		
-		//PrimitiveObject
-		public RuleCall getPropPrimPrimitiveObjectParserRuleCall_0_0() { return cPropPrimPrimitiveObjectParserRuleCall_0_0; }
-		
-		//propObj=MainObject
-		public Assignment getPropObjAssignment_1() { return cPropObjAssignment_1; }
-		
-		//MainObject
-		public RuleCall getPropObjMainObjectParserRuleCall_1_0() { return cPropObjMainObjectParserRuleCall_1_0; }
 	}
 	public class PrimitivePropertiesElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.xtext.example.mydsl.JSchema.PrimitiveProperties");
@@ -425,91 +451,103 @@ public class JSchemaGrammarAccess extends AbstractGrammarElementFinder {
 	public class IncludesElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.xtext.example.mydsl.JSchema.Includes");
 		private final Group cGroup = (Group)rule.eContents().get(1);
-		private final Assignment cObjectIDAssignment_0 = (Assignment)cGroup.eContents().get(0);
-		private final RuleCall cObjectIDSTRINGTerminalRuleCall_0_0 = (RuleCall)cObjectIDAssignment_0.eContents().get(0);
-		private final Group cGroup_1 = (Group)cGroup.eContents().get(1);
-		private final Keyword cCommaKeyword_1_0 = (Keyword)cGroup_1.eContents().get(0);
-		private final Assignment cObjectIDAssignment_1_1 = (Assignment)cGroup_1.eContents().get(1);
-		private final RuleCall cObjectIDSTRINGTerminalRuleCall_1_1_0 = (RuleCall)cObjectIDAssignment_1_1.eContents().get(0);
+		private final Keyword cIncludesKeyword_0 = (Keyword)cGroup.eContents().get(0);
+		private final Assignment cObjectIDAssignment_1 = (Assignment)cGroup.eContents().get(1);
+		private final RuleCall cObjectIDIDTerminalRuleCall_1_0 = (RuleCall)cObjectIDAssignment_1.eContents().get(0);
+		private final Group cGroup_2 = (Group)cGroup.eContents().get(2);
+		private final Keyword cCommaKeyword_2_0 = (Keyword)cGroup_2.eContents().get(0);
+		private final Assignment cObjectIDAssignment_2_1 = (Assignment)cGroup_2.eContents().get(1);
+		private final RuleCall cObjectIDIDTerminalRuleCall_2_1_0 = (RuleCall)cObjectIDAssignment_2_1.eContents().get(0);
 		
 		//Includes:
-		//	objectID+=STRING (',' objectID+=STRING)*;
+		//	'includes' objectID+=ID (',' objectID+=ID)*;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//objectID+=STRING (',' objectID+=STRING)*
+		//'includes' objectID+=ID (',' objectID+=ID)*
 		public Group getGroup() { return cGroup; }
 		
-		//objectID+=STRING
-		public Assignment getObjectIDAssignment_0() { return cObjectIDAssignment_0; }
+		//'includes'
+		public Keyword getIncludesKeyword_0() { return cIncludesKeyword_0; }
 		
-		//STRING
-		public RuleCall getObjectIDSTRINGTerminalRuleCall_0_0() { return cObjectIDSTRINGTerminalRuleCall_0_0; }
+		//objectID+=ID
+		public Assignment getObjectIDAssignment_1() { return cObjectIDAssignment_1; }
 		
-		//(',' objectID+=STRING)*
-		public Group getGroup_1() { return cGroup_1; }
+		//ID
+		public RuleCall getObjectIDIDTerminalRuleCall_1_0() { return cObjectIDIDTerminalRuleCall_1_0; }
+		
+		//(',' objectID+=ID)*
+		public Group getGroup_2() { return cGroup_2; }
 		
 		//','
-		public Keyword getCommaKeyword_1_0() { return cCommaKeyword_1_0; }
+		public Keyword getCommaKeyword_2_0() { return cCommaKeyword_2_0; }
 		
-		//objectID+=STRING
-		public Assignment getObjectIDAssignment_1_1() { return cObjectIDAssignment_1_1; }
+		//objectID+=ID
+		public Assignment getObjectIDAssignment_2_1() { return cObjectIDAssignment_2_1; }
 		
-		//STRING
-		public RuleCall getObjectIDSTRINGTerminalRuleCall_1_1_0() { return cObjectIDSTRINGTerminalRuleCall_1_1_0; }
+		//ID
+		public RuleCall getObjectIDIDTerminalRuleCall_2_1_0() { return cObjectIDIDTerminalRuleCall_2_1_0; }
 	}
 	public class ArrayElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.xtext.example.mydsl.JSchema.Array");
 		private final Group cGroup = (Group)rule.eContents().get(1);
-		private final Assignment cArrayNameAssignment_0 = (Assignment)cGroup.eContents().get(0);
-		private final RuleCall cArrayNameIDTerminalRuleCall_0_0 = (RuleCall)cArrayNameAssignment_0.eContents().get(0);
+		private final Assignment cNameAssignment_0 = (Assignment)cGroup.eContents().get(0);
+		private final RuleCall cNameIDTerminalRuleCall_0_0 = (RuleCall)cNameAssignment_0.eContents().get(0);
 		private final Keyword cLeftSquareBracketKeyword_1 = (Keyword)cGroup.eContents().get(1);
 		private final Group cGroup_2 = (Group)cGroup.eContents().get(2);
 		private final Assignment cPropertiesAssignment_2_0 = (Assignment)cGroup_2.eContents().get(0);
-		private final RuleCall cPropertiesPropertyParserRuleCall_2_0_0 = (RuleCall)cPropertiesAssignment_2_0.eContents().get(0);
+		private final CrossReference cPropertiesAbstractObjectCrossReference_2_0_0 = (CrossReference)cPropertiesAssignment_2_0.eContents().get(0);
+		private final RuleCall cPropertiesAbstractObjectIDTerminalRuleCall_2_0_0_1 = (RuleCall)cPropertiesAbstractObjectCrossReference_2_0_0.eContents().get(1);
 		private final Group cGroup_2_1 = (Group)cGroup_2.eContents().get(1);
 		private final Keyword cCommaKeyword_2_1_0 = (Keyword)cGroup_2_1.eContents().get(0);
 		private final Assignment cPropertiesAssignment_2_1_1 = (Assignment)cGroup_2_1.eContents().get(1);
-		private final RuleCall cPropertiesPropertyParserRuleCall_2_1_1_0 = (RuleCall)cPropertiesAssignment_2_1_1.eContents().get(0);
+		private final CrossReference cPropertiesAbstractObjectCrossReference_2_1_1_0 = (CrossReference)cPropertiesAssignment_2_1_1.eContents().get(0);
+		private final RuleCall cPropertiesAbstractObjectIDTerminalRuleCall_2_1_1_0_1 = (RuleCall)cPropertiesAbstractObjectCrossReference_2_1_1_0.eContents().get(1);
 		private final Assignment cArrayTypeAssignment_3 = (Assignment)cGroup.eContents().get(3);
 		private final RuleCall cArrayTypeArrayTypeParserRuleCall_3_0 = (RuleCall)cArrayTypeAssignment_3.eContents().get(0);
 		private final Keyword cRightSquareBracketKeyword_4 = (Keyword)cGroup.eContents().get(4);
 		
 		//Array:
-		//	arrayName=ID '[' (properties+=Property (',' properties+=Property)*)? arrayType=ArrayType? ']';
+		//	name=ID '[' (properties+=[AbstractObject] (',' properties+=[AbstractObject])*)? arrayType=ArrayType? ']';
 		@Override public ParserRule getRule() { return rule; }
 		
-		//arrayName=ID '[' (properties+=Property (',' properties+=Property)*)? arrayType=ArrayType? ']'
+		//name=ID '[' (properties+=[AbstractObject] (',' properties+=[AbstractObject])*)? arrayType=ArrayType? ']'
 		public Group getGroup() { return cGroup; }
 		
-		//arrayName=ID
-		public Assignment getArrayNameAssignment_0() { return cArrayNameAssignment_0; }
+		//name=ID
+		public Assignment getNameAssignment_0() { return cNameAssignment_0; }
 		
 		//ID
-		public RuleCall getArrayNameIDTerminalRuleCall_0_0() { return cArrayNameIDTerminalRuleCall_0_0; }
+		public RuleCall getNameIDTerminalRuleCall_0_0() { return cNameIDTerminalRuleCall_0_0; }
 		
 		//'['
 		public Keyword getLeftSquareBracketKeyword_1() { return cLeftSquareBracketKeyword_1; }
 		
-		//(properties+=Property (',' properties+=Property)*)?
+		//(properties+=[AbstractObject] (',' properties+=[AbstractObject])*)?
 		public Group getGroup_2() { return cGroup_2; }
 		
-		//properties+=Property
+		//properties+=[AbstractObject]
 		public Assignment getPropertiesAssignment_2_0() { return cPropertiesAssignment_2_0; }
 		
-		//Property
-		public RuleCall getPropertiesPropertyParserRuleCall_2_0_0() { return cPropertiesPropertyParserRuleCall_2_0_0; }
+		//[AbstractObject]
+		public CrossReference getPropertiesAbstractObjectCrossReference_2_0_0() { return cPropertiesAbstractObjectCrossReference_2_0_0; }
 		
-		//(',' properties+=Property)*
+		//ID
+		public RuleCall getPropertiesAbstractObjectIDTerminalRuleCall_2_0_0_1() { return cPropertiesAbstractObjectIDTerminalRuleCall_2_0_0_1; }
+		
+		//(',' properties+=[AbstractObject])*
 		public Group getGroup_2_1() { return cGroup_2_1; }
 		
 		//','
 		public Keyword getCommaKeyword_2_1_0() { return cCommaKeyword_2_1_0; }
 		
-		//properties+=Property
+		//properties+=[AbstractObject]
 		public Assignment getPropertiesAssignment_2_1_1() { return cPropertiesAssignment_2_1_1; }
 		
-		//Property
-		public RuleCall getPropertiesPropertyParserRuleCall_2_1_1_0() { return cPropertiesPropertyParserRuleCall_2_1_1_0; }
+		//[AbstractObject]
+		public CrossReference getPropertiesAbstractObjectCrossReference_2_1_1_0() { return cPropertiesAbstractObjectCrossReference_2_1_1_0; }
+		
+		//ID
+		public RuleCall getPropertiesAbstractObjectIDTerminalRuleCall_2_1_1_0_1() { return cPropertiesAbstractObjectIDTerminalRuleCall_2_1_1_0_1; }
 		
 		//arrayType=ArrayType?
 		public Assignment getArrayTypeAssignment_3() { return cArrayTypeAssignment_3; }
@@ -718,11 +756,10 @@ public class JSchemaGrammarAccess extends AbstractGrammarElementFinder {
 	private final NumberElements pNumber;
 	private final AbstractObjectElements pAbstractObject;
 	private final MainObjectElements pMainObject;
+	private final ExtendsElements pExtends;
 	private final PrimitiveObjectElements pPrimitiveObject;
 	private final PrimitiveTypesElements pPrimitiveTypes;
 	private final IsRootElements pIsRoot;
-	private final HasPropertiesElements pHasProperties;
-	private final PropertyElements pProperty;
 	private final PrimitivePropertiesElements pPrimitiveProperties;
 	private final StringLengthElements pStringLength;
 	private final FormatTypesElements eFormatTypes;
@@ -743,11 +780,10 @@ public class JSchemaGrammarAccess extends AbstractGrammarElementFinder {
 		this.pNumber = new NumberElements();
 		this.pAbstractObject = new AbstractObjectElements();
 		this.pMainObject = new MainObjectElements();
+		this.pExtends = new ExtendsElements();
 		this.pPrimitiveObject = new PrimitiveObjectElements();
 		this.pPrimitiveTypes = new PrimitiveTypesElements();
 		this.pIsRoot = new IsRootElements();
-		this.pHasProperties = new HasPropertiesElements();
-		this.pProperty = new PropertyElements();
 		this.pPrimitiveProperties = new PrimitivePropertiesElements();
 		this.pStringLength = new StringLengthElements();
 		this.eFormatTypes = new FormatTypesElements();
@@ -814,14 +850,24 @@ public class JSchemaGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	//MainObject:
-	//	objectName=ID root=IsRoot? ('includes' includeObjects=Includes)? '{' (properties+=hasProperties (','
-	//	properties+=hasProperties)*)? '}';
+	//	name=ID root=IsRoot? inherits=(Extends | Includes)? '{' (properties+=[AbstractObject] (','
+	//	properties+=[AbstractObject])*)? '}';
 	public MainObjectElements getMainObjectAccess() {
 		return pMainObject;
 	}
 	
 	public ParserRule getMainObjectRule() {
 		return getMainObjectAccess().getRule();
+	}
+	
+	//Extends:
+	//	'extends' extends+=[AbstractObject] (',' extends+=[AbstractObject])*;
+	public ExtendsElements getExtendsAccess() {
+		return pExtends;
+	}
+	
+	public ParserRule getExtendsRule() {
+		return getExtendsAccess().getRule();
 	}
 	
 	//PrimitiveObject:
@@ -836,7 +882,7 @@ public class JSchemaGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	//PrimitiveTypes:
-	//	'String' string=STRING | array=Array | 'num' number=Number?;
+	//	'String' name=ID | array=Array | 'num' name=ID "=" number=Number;
 	public PrimitiveTypesElements getPrimitiveTypesAccess() {
 		return pPrimitiveTypes;
 	}
@@ -853,26 +899,6 @@ public class JSchemaGrammarAccess extends AbstractGrammarElementFinder {
 	
 	public ParserRule getIsRootRule() {
 		return getIsRootAccess().getRule();
-	}
-	
-	//hasProperties:
-	//	properties=Property;
-	public HasPropertiesElements getHasPropertiesAccess() {
-		return pHasProperties;
-	}
-	
-	public ParserRule getHasPropertiesRule() {
-		return getHasPropertiesAccess().getRule();
-	}
-	
-	//Property:
-	//	propPrim=PrimitiveObject | propObj=MainObject;
-	public PropertyElements getPropertyAccess() {
-		return pProperty;
-	}
-	
-	public ParserRule getPropertyRule() {
-		return getPropertyAccess().getRule();
 	}
 	
 	//PrimitiveProperties:
@@ -922,7 +948,7 @@ public class JSchemaGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	//Includes:
-	//	objectID+=STRING (',' objectID+=STRING)*;
+	//	'includes' objectID+=ID (',' objectID+=ID)*;
 	public IncludesElements getIncludesAccess() {
 		return pIncludes;
 	}
@@ -932,7 +958,7 @@ public class JSchemaGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	//Array:
-	//	arrayName=ID '[' (properties+=Property (',' properties+=Property)*)? arrayType=ArrayType? ']';
+	//	name=ID '[' (properties+=[AbstractObject] (',' properties+=[AbstractObject])*)? arrayType=ArrayType? ']';
 	public ArrayElements getArrayAccess() {
 		return pArray;
 	}
