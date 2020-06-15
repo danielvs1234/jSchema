@@ -189,7 +189,7 @@ public interface JSchemaPackage extends EPackage
   int MAIN_OBJECT__ROOT = 1;
 
   /**
-   * The feature id for the '<em><b>Inherits</b></em>' containment reference.
+   * The feature id for the '<em><b>Inherits</b></em>' containment reference list.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
@@ -198,7 +198,7 @@ public interface JSchemaPackage extends EPackage
   int MAIN_OBJECT__INHERITS = 2;
 
   /**
-   * The feature id for the '<em><b>Properties</b></em>' reference list.
+   * The feature id for the '<em><b>Properties</b></em>' containment reference list.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
@@ -226,13 +226,22 @@ public interface JSchemaPackage extends EPackage
   int EXTENDS = 4;
 
   /**
-   * The feature id for the '<em><b>Extends</b></em>' reference list.
+   * The feature id for the '<em><b>Extension Main Object</b></em>' reference list.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int EXTENDS__EXTENDS = 0;
+  int EXTENDS__EXTENSION_MAIN_OBJECT = 0;
+
+  /**
+   * The feature id for the '<em><b>Extension Primitive Object</b></em>' reference list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int EXTENDS__EXTENSION_PRIMITIVE_OBJECT = 1;
 
   /**
    * The number of structural features of the '<em>Extends</em>' class.
@@ -241,7 +250,7 @@ public interface JSchemaPackage extends EPackage
    * @generated
    * @ordered
    */
-  int EXTENDS_FEATURE_COUNT = 1;
+  int EXTENDS_FEATURE_COUNT = 2;
 
   /**
    * The meta object id for the '{@link org.xtext.example.mydsl.jSchema.impl.PrimitiveObjectImpl <em>Primitive Object</em>}' class.
@@ -411,13 +420,22 @@ public interface JSchemaPackage extends EPackage
   int INCLUDES = 9;
 
   /**
-   * The feature id for the '<em><b>Includes</b></em>' reference list.
+   * The feature id for the '<em><b>Includes Main Object</b></em>' reference list.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int INCLUDES__INCLUDES = 0;
+  int INCLUDES__INCLUDES_MAIN_OBJECT = 0;
+
+  /**
+   * The feature id for the '<em><b>Includes Primitive Object</b></em>' reference list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int INCLUDES__INCLUDES_PRIMITIVE_OBJECT = 1;
 
   /**
    * The number of structural features of the '<em>Includes</em>' class.
@@ -426,7 +444,7 @@ public interface JSchemaPackage extends EPackage
    * @generated
    * @ordered
    */
-  int INCLUDES_FEATURE_COUNT = 1;
+  int INCLUDES_FEATURE_COUNT = 2;
 
   /**
    * The meta object id for the '{@link org.xtext.example.mydsl.jSchema.impl.ArrayImpl <em>Array</em>}' class.
@@ -603,10 +621,10 @@ public interface JSchemaPackage extends EPackage
   EReference getMainObject_Root();
 
   /**
-   * Returns the meta object for the containment reference '{@link org.xtext.example.mydsl.jSchema.MainObject#getInherits <em>Inherits</em>}'.
+   * Returns the meta object for the containment reference list '{@link org.xtext.example.mydsl.jSchema.MainObject#getInherits <em>Inherits</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for the containment reference '<em>Inherits</em>'.
+   * @return the meta object for the containment reference list '<em>Inherits</em>'.
    * @see org.xtext.example.mydsl.jSchema.MainObject#getInherits()
    * @see #getMainObject()
    * @generated
@@ -614,10 +632,10 @@ public interface JSchemaPackage extends EPackage
   EReference getMainObject_Inherits();
 
   /**
-   * Returns the meta object for the reference list '{@link org.xtext.example.mydsl.jSchema.MainObject#getProperties <em>Properties</em>}'.
+   * Returns the meta object for the containment reference list '{@link org.xtext.example.mydsl.jSchema.MainObject#getProperties <em>Properties</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for the reference list '<em>Properties</em>'.
+   * @return the meta object for the containment reference list '<em>Properties</em>'.
    * @see org.xtext.example.mydsl.jSchema.MainObject#getProperties()
    * @see #getMainObject()
    * @generated
@@ -635,15 +653,26 @@ public interface JSchemaPackage extends EPackage
   EClass getExtends();
 
   /**
-   * Returns the meta object for the reference list '{@link org.xtext.example.mydsl.jSchema.Extends#getExtends <em>Extends</em>}'.
+   * Returns the meta object for the reference list '{@link org.xtext.example.mydsl.jSchema.Extends#getExtensionMainObject <em>Extension Main Object</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for the reference list '<em>Extends</em>'.
-   * @see org.xtext.example.mydsl.jSchema.Extends#getExtends()
+   * @return the meta object for the reference list '<em>Extension Main Object</em>'.
+   * @see org.xtext.example.mydsl.jSchema.Extends#getExtensionMainObject()
    * @see #getExtends()
    * @generated
    */
-  EReference getExtends_Extends();
+  EReference getExtends_ExtensionMainObject();
+
+  /**
+   * Returns the meta object for the reference list '{@link org.xtext.example.mydsl.jSchema.Extends#getExtensionPrimitiveObject <em>Extension Primitive Object</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the reference list '<em>Extension Primitive Object</em>'.
+   * @see org.xtext.example.mydsl.jSchema.Extends#getExtensionPrimitiveObject()
+   * @see #getExtends()
+   * @generated
+   */
+  EReference getExtends_ExtensionPrimitiveObject();
 
   /**
    * Returns the meta object for class '{@link org.xtext.example.mydsl.jSchema.PrimitiveObject <em>Primitive Object</em>}'.
@@ -795,15 +824,26 @@ public interface JSchemaPackage extends EPackage
   EClass getIncludes();
 
   /**
-   * Returns the meta object for the reference list '{@link org.xtext.example.mydsl.jSchema.Includes#getIncludes <em>Includes</em>}'.
+   * Returns the meta object for the reference list '{@link org.xtext.example.mydsl.jSchema.Includes#getIncludesMainObject <em>Includes Main Object</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for the reference list '<em>Includes</em>'.
-   * @see org.xtext.example.mydsl.jSchema.Includes#getIncludes()
+   * @return the meta object for the reference list '<em>Includes Main Object</em>'.
+   * @see org.xtext.example.mydsl.jSchema.Includes#getIncludesMainObject()
    * @see #getIncludes()
    * @generated
    */
-  EReference getIncludes_Includes();
+  EReference getIncludes_IncludesMainObject();
+
+  /**
+   * Returns the meta object for the reference list '{@link org.xtext.example.mydsl.jSchema.Includes#getIncludesPrimitiveObject <em>Includes Primitive Object</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the reference list '<em>Includes Primitive Object</em>'.
+   * @see org.xtext.example.mydsl.jSchema.Includes#getIncludesPrimitiveObject()
+   * @see #getIncludes()
+   * @generated
+   */
+  EReference getIncludes_IncludesPrimitiveObject();
 
   /**
    * Returns the meta object for class '{@link org.xtext.example.mydsl.jSchema.Array <em>Array</em>}'.
@@ -978,7 +1018,7 @@ public interface JSchemaPackage extends EPackage
     EReference MAIN_OBJECT__ROOT = eINSTANCE.getMainObject_Root();
 
     /**
-     * The meta object literal for the '<em><b>Inherits</b></em>' containment reference feature.
+     * The meta object literal for the '<em><b>Inherits</b></em>' containment reference list feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
@@ -986,7 +1026,7 @@ public interface JSchemaPackage extends EPackage
     EReference MAIN_OBJECT__INHERITS = eINSTANCE.getMainObject_Inherits();
 
     /**
-     * The meta object literal for the '<em><b>Properties</b></em>' reference list feature.
+     * The meta object literal for the '<em><b>Properties</b></em>' containment reference list feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
@@ -1004,12 +1044,20 @@ public interface JSchemaPackage extends EPackage
     EClass EXTENDS = eINSTANCE.getExtends();
 
     /**
-     * The meta object literal for the '<em><b>Extends</b></em>' reference list feature.
+     * The meta object literal for the '<em><b>Extension Main Object</b></em>' reference list feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    EReference EXTENDS__EXTENDS = eINSTANCE.getExtends_Extends();
+    EReference EXTENDS__EXTENSION_MAIN_OBJECT = eINSTANCE.getExtends_ExtensionMainObject();
+
+    /**
+     * The meta object literal for the '<em><b>Extension Primitive Object</b></em>' reference list feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference EXTENDS__EXTENSION_PRIMITIVE_OBJECT = eINSTANCE.getExtends_ExtensionPrimitiveObject();
 
     /**
      * The meta object literal for the '{@link org.xtext.example.mydsl.jSchema.impl.PrimitiveObjectImpl <em>Primitive Object</em>}' class.
@@ -1134,12 +1182,20 @@ public interface JSchemaPackage extends EPackage
     EClass INCLUDES = eINSTANCE.getIncludes();
 
     /**
-     * The meta object literal for the '<em><b>Includes</b></em>' reference list feature.
+     * The meta object literal for the '<em><b>Includes Main Object</b></em>' reference list feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    EReference INCLUDES__INCLUDES = eINSTANCE.getIncludes_Includes();
+    EReference INCLUDES__INCLUDES_MAIN_OBJECT = eINSTANCE.getIncludes_IncludesMainObject();
+
+    /**
+     * The meta object literal for the '<em><b>Includes Primitive Object</b></em>' reference list feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference INCLUDES__INCLUDES_PRIMITIVE_OBJECT = eINSTANCE.getIncludes_IncludesPrimitiveObject();
 
     /**
      * The meta object literal for the '{@link org.xtext.example.mydsl.jSchema.impl.ArrayImpl <em>Array</em>}' class.

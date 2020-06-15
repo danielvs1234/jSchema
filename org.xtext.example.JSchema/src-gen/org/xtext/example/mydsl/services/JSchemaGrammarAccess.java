@@ -6,6 +6,7 @@ package org.xtext.example.mydsl.services;
 import com.google.inject.Inject;
 import com.google.inject.Singleton;
 import java.util.List;
+import org.eclipse.xtext.Action;
 import org.eclipse.xtext.Alternatives;
 import org.eclipse.xtext.Assignment;
 import org.eclipse.xtext.CrossReference;
@@ -117,22 +118,20 @@ public class JSchemaGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cLeftCurlyBracketKeyword_3 = (Keyword)cGroup.eContents().get(3);
 		private final Group cGroup_4 = (Group)cGroup.eContents().get(4);
 		private final Assignment cPropertiesAssignment_4_0 = (Assignment)cGroup_4.eContents().get(0);
-		private final CrossReference cPropertiesAbstractObjectCrossReference_4_0_0 = (CrossReference)cPropertiesAssignment_4_0.eContents().get(0);
-		private final RuleCall cPropertiesAbstractObjectIDTerminalRuleCall_4_0_0_1 = (RuleCall)cPropertiesAbstractObjectCrossReference_4_0_0.eContents().get(1);
+		private final RuleCall cPropertiesAbstractObjectParserRuleCall_4_0_0 = (RuleCall)cPropertiesAssignment_4_0.eContents().get(0);
 		private final Group cGroup_4_1 = (Group)cGroup_4.eContents().get(1);
 		private final Keyword cCommaKeyword_4_1_0 = (Keyword)cGroup_4_1.eContents().get(0);
 		private final Assignment cPropertiesAssignment_4_1_1 = (Assignment)cGroup_4_1.eContents().get(1);
-		private final CrossReference cPropertiesAbstractObjectCrossReference_4_1_1_0 = (CrossReference)cPropertiesAssignment_4_1_1.eContents().get(0);
-		private final RuleCall cPropertiesAbstractObjectIDTerminalRuleCall_4_1_1_0_1 = (RuleCall)cPropertiesAbstractObjectCrossReference_4_1_1_0.eContents().get(1);
+		private final RuleCall cPropertiesAbstractObjectParserRuleCall_4_1_1_0 = (RuleCall)cPropertiesAssignment_4_1_1.eContents().get(0);
 		private final Keyword cRightCurlyBracketKeyword_5 = (Keyword)cGroup.eContents().get(5);
 		
 		//MainObject:
-		//	name=ID root=IsRoot? inherits=(Extends | Includes)? '{' (properties+=[AbstractObject] (','
-		//	properties+=[AbstractObject])*)? '}';
+		//	name=ID root=IsRoot? inherits+=(Extends | Includes)* '{' (properties+=AbstractObject (','
+		//	properties+=AbstractObject)*)? '}';
 		@Override public ParserRule getRule() { return rule; }
 		
-		//name=ID root=IsRoot? inherits=(Extends | Includes)? '{' (properties+=[AbstractObject] (','
-		//properties+=[AbstractObject])*)? '}'
+		//name=ID root=IsRoot? inherits+=(Extends | Includes)* '{' (properties+=AbstractObject (',' properties+=AbstractObject)*)?
+		//'}'
 		public Group getGroup() { return cGroup; }
 		
 		//name=ID
@@ -147,7 +146,7 @@ public class JSchemaGrammarAccess extends AbstractGrammarElementFinder {
 		//IsRoot
 		public RuleCall getRootIsRootParserRuleCall_1_0() { return cRootIsRootParserRuleCall_1_0; }
 		
-		//inherits=(Extends | Includes)?
+		//inherits+=(Extends | Includes)*
 		public Assignment getInheritsAssignment_2() { return cInheritsAssignment_2; }
 		
 		//(Extends | Includes)
@@ -162,32 +161,26 @@ public class JSchemaGrammarAccess extends AbstractGrammarElementFinder {
 		//'{'
 		public Keyword getLeftCurlyBracketKeyword_3() { return cLeftCurlyBracketKeyword_3; }
 		
-		//(properties+=[AbstractObject] (',' properties+=[AbstractObject])*)?
+		//(properties+=AbstractObject (',' properties+=AbstractObject)*)?
 		public Group getGroup_4() { return cGroup_4; }
 		
-		//properties+=[AbstractObject]
+		//properties+=AbstractObject
 		public Assignment getPropertiesAssignment_4_0() { return cPropertiesAssignment_4_0; }
 		
-		//[AbstractObject]
-		public CrossReference getPropertiesAbstractObjectCrossReference_4_0_0() { return cPropertiesAbstractObjectCrossReference_4_0_0; }
+		//AbstractObject
+		public RuleCall getPropertiesAbstractObjectParserRuleCall_4_0_0() { return cPropertiesAbstractObjectParserRuleCall_4_0_0; }
 		
-		//ID
-		public RuleCall getPropertiesAbstractObjectIDTerminalRuleCall_4_0_0_1() { return cPropertiesAbstractObjectIDTerminalRuleCall_4_0_0_1; }
-		
-		//(',' properties+=[AbstractObject])*
+		//(',' properties+=AbstractObject)*
 		public Group getGroup_4_1() { return cGroup_4_1; }
 		
 		//','
 		public Keyword getCommaKeyword_4_1_0() { return cCommaKeyword_4_1_0; }
 		
-		//properties+=[AbstractObject]
+		//properties+=AbstractObject
 		public Assignment getPropertiesAssignment_4_1_1() { return cPropertiesAssignment_4_1_1; }
 		
-		//[AbstractObject]
-		public CrossReference getPropertiesAbstractObjectCrossReference_4_1_1_0() { return cPropertiesAbstractObjectCrossReference_4_1_1_0; }
-		
-		//ID
-		public RuleCall getPropertiesAbstractObjectIDTerminalRuleCall_4_1_1_0_1() { return cPropertiesAbstractObjectIDTerminalRuleCall_4_1_1_0_1; }
+		//AbstractObject
+		public RuleCall getPropertiesAbstractObjectParserRuleCall_4_1_1_0() { return cPropertiesAbstractObjectParserRuleCall_4_1_1_0; }
 		
 		//'}'
 		public Keyword getRightCurlyBracketKeyword_5() { return cRightCurlyBracketKeyword_5; }
@@ -195,49 +188,97 @@ public class JSchemaGrammarAccess extends AbstractGrammarElementFinder {
 	public class ExtendsElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.xtext.example.mydsl.JSchema.Extends");
 		private final Group cGroup = (Group)rule.eContents().get(1);
-		private final Keyword cExtendsKeyword_0 = (Keyword)cGroup.eContents().get(0);
-		private final Assignment cExtendsAssignment_1 = (Assignment)cGroup.eContents().get(1);
-		private final CrossReference cExtendsAbstractObjectCrossReference_1_0 = (CrossReference)cExtendsAssignment_1.eContents().get(0);
-		private final RuleCall cExtendsAbstractObjectIDTerminalRuleCall_1_0_1 = (RuleCall)cExtendsAbstractObjectCrossReference_1_0.eContents().get(1);
-		private final Group cGroup_2 = (Group)cGroup.eContents().get(2);
-		private final Keyword cCommaKeyword_2_0 = (Keyword)cGroup_2.eContents().get(0);
-		private final Assignment cExtendsAssignment_2_1 = (Assignment)cGroup_2.eContents().get(1);
-		private final CrossReference cExtendsAbstractObjectCrossReference_2_1_0 = (CrossReference)cExtendsAssignment_2_1.eContents().get(0);
-		private final RuleCall cExtendsAbstractObjectIDTerminalRuleCall_2_1_0_1 = (RuleCall)cExtendsAbstractObjectCrossReference_2_1_0.eContents().get(1);
+		private final Action cExtendsAction_0 = (Action)cGroup.eContents().get(0);
+		private final Alternatives cAlternatives_1 = (Alternatives)cGroup.eContents().get(1);
+		private final Group cGroup_1_0 = (Group)cAlternatives_1.eContents().get(0);
+		private final Keyword cExtendsKeyword_1_0_0 = (Keyword)cGroup_1_0.eContents().get(0);
+		private final Assignment cExtensionMainObjectAssignment_1_0_1 = (Assignment)cGroup_1_0.eContents().get(1);
+		private final CrossReference cExtensionMainObjectMainObjectCrossReference_1_0_1_0 = (CrossReference)cExtensionMainObjectAssignment_1_0_1.eContents().get(0);
+		private final RuleCall cExtensionMainObjectMainObjectIDTerminalRuleCall_1_0_1_0_1 = (RuleCall)cExtensionMainObjectMainObjectCrossReference_1_0_1_0.eContents().get(1);
+		private final Group cGroup_1_1 = (Group)cAlternatives_1.eContents().get(1);
+		private final Assignment cExtensionPrimitiveObjectAssignment_1_1_0 = (Assignment)cGroup_1_1.eContents().get(0);
+		private final CrossReference cExtensionPrimitiveObjectPrimitiveObjectCrossReference_1_1_0_0 = (CrossReference)cExtensionPrimitiveObjectAssignment_1_1_0.eContents().get(0);
+		private final RuleCall cExtensionPrimitiveObjectPrimitiveObjectIDTerminalRuleCall_1_1_0_0_1 = (RuleCall)cExtensionPrimitiveObjectPrimitiveObjectCrossReference_1_1_0_0.eContents().get(1);
+		private final Alternatives cAlternatives_1_1_1 = (Alternatives)cGroup_1_1.eContents().get(1);
+		private final Group cGroup_1_1_1_0 = (Group)cAlternatives_1_1_1.eContents().get(0);
+		private final Keyword cCommaKeyword_1_1_1_0_0 = (Keyword)cGroup_1_1_1_0.eContents().get(0);
+		private final Assignment cExtensionMainObjectAssignment_1_1_1_0_1 = (Assignment)cGroup_1_1_1_0.eContents().get(1);
+		private final CrossReference cExtensionMainObjectMainObjectCrossReference_1_1_1_0_1_0 = (CrossReference)cExtensionMainObjectAssignment_1_1_1_0_1.eContents().get(0);
+		private final RuleCall cExtensionMainObjectMainObjectIDTerminalRuleCall_1_1_1_0_1_0_1 = (RuleCall)cExtensionMainObjectMainObjectCrossReference_1_1_1_0_1_0.eContents().get(1);
+		private final Assignment cExtensionPrimitiveObjectAssignment_1_1_1_1 = (Assignment)cAlternatives_1_1_1.eContents().get(1);
+		private final CrossReference cExtensionPrimitiveObjectPrimitiveObjectCrossReference_1_1_1_1_0 = (CrossReference)cExtensionPrimitiveObjectAssignment_1_1_1_1.eContents().get(0);
+		private final RuleCall cExtensionPrimitiveObjectPrimitiveObjectIDTerminalRuleCall_1_1_1_1_0_1 = (RuleCall)cExtensionPrimitiveObjectPrimitiveObjectCrossReference_1_1_1_1_0.eContents().get(1);
 		
 		//Extends:
-		//	'extends' extends+=[AbstractObject] (',' extends+=[AbstractObject])*;
+		//	{Extends} ('extends' extensionMainObject+=[MainObject] | extensionPrimitiveObject+=[PrimitiveObject] (','
+		//	extensionMainObject+=[MainObject] | extensionPrimitiveObject+=[PrimitiveObject])*);
 		@Override public ParserRule getRule() { return rule; }
 		
-		//'extends' extends+=[AbstractObject] (',' extends+=[AbstractObject])*
+		//{Extends} ('extends' extensionMainObject+=[MainObject] | extensionPrimitiveObject+=[PrimitiveObject] (','
+		//extensionMainObject+=[MainObject] | extensionPrimitiveObject+=[PrimitiveObject])*)
 		public Group getGroup() { return cGroup; }
 		
+		//{Extends}
+		public Action getExtendsAction_0() { return cExtendsAction_0; }
+		
+		//('extends' extensionMainObject+=[MainObject] | extensionPrimitiveObject+=[PrimitiveObject] (','
+		//extensionMainObject+=[MainObject] | extensionPrimitiveObject+=[PrimitiveObject])*)
+		public Alternatives getAlternatives_1() { return cAlternatives_1; }
+		
+		//'extends' extensionMainObject+=[MainObject]
+		public Group getGroup_1_0() { return cGroup_1_0; }
+		
 		//'extends'
-		public Keyword getExtendsKeyword_0() { return cExtendsKeyword_0; }
+		public Keyword getExtendsKeyword_1_0_0() { return cExtendsKeyword_1_0_0; }
 		
-		//extends+=[AbstractObject]
-		public Assignment getExtendsAssignment_1() { return cExtendsAssignment_1; }
+		//extensionMainObject+=[MainObject]
+		public Assignment getExtensionMainObjectAssignment_1_0_1() { return cExtensionMainObjectAssignment_1_0_1; }
 		
-		//[AbstractObject]
-		public CrossReference getExtendsAbstractObjectCrossReference_1_0() { return cExtendsAbstractObjectCrossReference_1_0; }
+		//[MainObject]
+		public CrossReference getExtensionMainObjectMainObjectCrossReference_1_0_1_0() { return cExtensionMainObjectMainObjectCrossReference_1_0_1_0; }
 		
 		//ID
-		public RuleCall getExtendsAbstractObjectIDTerminalRuleCall_1_0_1() { return cExtendsAbstractObjectIDTerminalRuleCall_1_0_1; }
+		public RuleCall getExtensionMainObjectMainObjectIDTerminalRuleCall_1_0_1_0_1() { return cExtensionMainObjectMainObjectIDTerminalRuleCall_1_0_1_0_1; }
 		
-		//(',' extends+=[AbstractObject])*
-		public Group getGroup_2() { return cGroup_2; }
+		//extensionPrimitiveObject+=[PrimitiveObject] (',' extensionMainObject+=[MainObject] |
+		//extensionPrimitiveObject+=[PrimitiveObject])*
+		public Group getGroup_1_1() { return cGroup_1_1; }
+		
+		//extensionPrimitiveObject+=[PrimitiveObject]
+		public Assignment getExtensionPrimitiveObjectAssignment_1_1_0() { return cExtensionPrimitiveObjectAssignment_1_1_0; }
+		
+		//[PrimitiveObject]
+		public CrossReference getExtensionPrimitiveObjectPrimitiveObjectCrossReference_1_1_0_0() { return cExtensionPrimitiveObjectPrimitiveObjectCrossReference_1_1_0_0; }
+		
+		//ID
+		public RuleCall getExtensionPrimitiveObjectPrimitiveObjectIDTerminalRuleCall_1_1_0_0_1() { return cExtensionPrimitiveObjectPrimitiveObjectIDTerminalRuleCall_1_1_0_0_1; }
+		
+		//(',' extensionMainObject+=[MainObject] | extensionPrimitiveObject+=[PrimitiveObject])*
+		public Alternatives getAlternatives_1_1_1() { return cAlternatives_1_1_1; }
+		
+		//',' extensionMainObject+=[MainObject]
+		public Group getGroup_1_1_1_0() { return cGroup_1_1_1_0; }
 		
 		//','
-		public Keyword getCommaKeyword_2_0() { return cCommaKeyword_2_0; }
+		public Keyword getCommaKeyword_1_1_1_0_0() { return cCommaKeyword_1_1_1_0_0; }
 		
-		//extends+=[AbstractObject]
-		public Assignment getExtendsAssignment_2_1() { return cExtendsAssignment_2_1; }
+		//extensionMainObject+=[MainObject]
+		public Assignment getExtensionMainObjectAssignment_1_1_1_0_1() { return cExtensionMainObjectAssignment_1_1_1_0_1; }
 		
-		//[AbstractObject]
-		public CrossReference getExtendsAbstractObjectCrossReference_2_1_0() { return cExtendsAbstractObjectCrossReference_2_1_0; }
+		//[MainObject]
+		public CrossReference getExtensionMainObjectMainObjectCrossReference_1_1_1_0_1_0() { return cExtensionMainObjectMainObjectCrossReference_1_1_1_0_1_0; }
 		
 		//ID
-		public RuleCall getExtendsAbstractObjectIDTerminalRuleCall_2_1_0_1() { return cExtendsAbstractObjectIDTerminalRuleCall_2_1_0_1; }
+		public RuleCall getExtensionMainObjectMainObjectIDTerminalRuleCall_1_1_1_0_1_0_1() { return cExtensionMainObjectMainObjectIDTerminalRuleCall_1_1_1_0_1_0_1; }
+		
+		//extensionPrimitiveObject+=[PrimitiveObject]
+		public Assignment getExtensionPrimitiveObjectAssignment_1_1_1_1() { return cExtensionPrimitiveObjectAssignment_1_1_1_1; }
+		
+		//[PrimitiveObject]
+		public CrossReference getExtensionPrimitiveObjectPrimitiveObjectCrossReference_1_1_1_1_0() { return cExtensionPrimitiveObjectPrimitiveObjectCrossReference_1_1_1_1_0; }
+		
+		//ID
+		public RuleCall getExtensionPrimitiveObjectPrimitiveObjectIDTerminalRuleCall_1_1_1_1_0_1() { return cExtensionPrimitiveObjectPrimitiveObjectIDTerminalRuleCall_1_1_1_1_0_1; }
 	}
 	public class PrimitiveObjectElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.xtext.example.mydsl.JSchema.PrimitiveObject");
@@ -459,49 +500,84 @@ public class JSchemaGrammarAccess extends AbstractGrammarElementFinder {
 	public class IncludesElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.xtext.example.mydsl.JSchema.Includes");
 		private final Group cGroup = (Group)rule.eContents().get(1);
-		private final Keyword cIncludesKeyword_0 = (Keyword)cGroup.eContents().get(0);
-		private final Assignment cIncludesAssignment_1 = (Assignment)cGroup.eContents().get(1);
-		private final CrossReference cIncludesAbstractObjectCrossReference_1_0 = (CrossReference)cIncludesAssignment_1.eContents().get(0);
-		private final RuleCall cIncludesAbstractObjectIDTerminalRuleCall_1_0_1 = (RuleCall)cIncludesAbstractObjectCrossReference_1_0.eContents().get(1);
-		private final Group cGroup_2 = (Group)cGroup.eContents().get(2);
-		private final Keyword cCommaKeyword_2_0 = (Keyword)cGroup_2.eContents().get(0);
-		private final Assignment cIncludesAssignment_2_1 = (Assignment)cGroup_2.eContents().get(1);
-		private final CrossReference cIncludesAbstractObjectCrossReference_2_1_0 = (CrossReference)cIncludesAssignment_2_1.eContents().get(0);
-		private final RuleCall cIncludesAbstractObjectIDTerminalRuleCall_2_1_0_1 = (RuleCall)cIncludesAbstractObjectCrossReference_2_1_0.eContents().get(1);
+		private final Action cIncludesAction_0 = (Action)cGroup.eContents().get(0);
+		private final Group cGroup_1 = (Group)cGroup.eContents().get(1);
+		private final Keyword cIncludesKeyword_1_0 = (Keyword)cGroup_1.eContents().get(0);
+		private final Assignment cIncludesMainObjectAssignment_1_1 = (Assignment)cGroup_1.eContents().get(1);
+		private final CrossReference cIncludesMainObjectMainObjectCrossReference_1_1_0 = (CrossReference)cIncludesMainObjectAssignment_1_1.eContents().get(0);
+		private final RuleCall cIncludesMainObjectMainObjectIDTerminalRuleCall_1_1_0_1 = (RuleCall)cIncludesMainObjectMainObjectCrossReference_1_1_0.eContents().get(1);
+		private final Assignment cIncludesPrimitiveObjectAssignment_1_2 = (Assignment)cGroup_1.eContents().get(2);
+		private final CrossReference cIncludesPrimitiveObjectPrimitiveObjectCrossReference_1_2_0 = (CrossReference)cIncludesPrimitiveObjectAssignment_1_2.eContents().get(0);
+		private final RuleCall cIncludesPrimitiveObjectPrimitiveObjectIDTerminalRuleCall_1_2_0_1 = (RuleCall)cIncludesPrimitiveObjectPrimitiveObjectCrossReference_1_2_0.eContents().get(1);
+		private final Group cGroup_1_3 = (Group)cGroup_1.eContents().get(3);
+		private final Keyword cCommaKeyword_1_3_0 = (Keyword)cGroup_1_3.eContents().get(0);
+		private final Assignment cIncludesMainObjectAssignment_1_3_1 = (Assignment)cGroup_1_3.eContents().get(1);
+		private final CrossReference cIncludesMainObjectMainObjectCrossReference_1_3_1_0 = (CrossReference)cIncludesMainObjectAssignment_1_3_1.eContents().get(0);
+		private final RuleCall cIncludesMainObjectMainObjectIDTerminalRuleCall_1_3_1_0_1 = (RuleCall)cIncludesMainObjectMainObjectCrossReference_1_3_1_0.eContents().get(1);
+		private final Assignment cIncludesPrimitiveObjectAssignment_1_3_2 = (Assignment)cGroup_1_3.eContents().get(2);
+		private final CrossReference cIncludesPrimitiveObjectPrimitiveObjectCrossReference_1_3_2_0 = (CrossReference)cIncludesPrimitiveObjectAssignment_1_3_2.eContents().get(0);
+		private final RuleCall cIncludesPrimitiveObjectPrimitiveObjectIDTerminalRuleCall_1_3_2_0_1 = (RuleCall)cIncludesPrimitiveObjectPrimitiveObjectCrossReference_1_3_2_0.eContents().get(1);
 		
 		//Includes:
-		//	'includes' includes+=[AbstractObject] (',' includes+=[AbstractObject])*;
+		//	{Includes} ('includes' includesMainObject+=[MainObject] includesPrimitiveObject+=[PrimitiveObject] (','
+		//	includesMainObject+=[MainObject] includesPrimitiveObject+=[PrimitiveObject])*);
 		@Override public ParserRule getRule() { return rule; }
 		
-		//'includes' includes+=[AbstractObject] (',' includes+=[AbstractObject])*
+		//{Includes} ('includes' includesMainObject+=[MainObject] includesPrimitiveObject+=[PrimitiveObject] (','
+		//includesMainObject+=[MainObject] includesPrimitiveObject+=[PrimitiveObject])*)
 		public Group getGroup() { return cGroup; }
 		
+		//{Includes}
+		public Action getIncludesAction_0() { return cIncludesAction_0; }
+		
+		//('includes' includesMainObject+=[MainObject] includesPrimitiveObject+=[PrimitiveObject] (','
+		//includesMainObject+=[MainObject] includesPrimitiveObject+=[PrimitiveObject])*)
+		public Group getGroup_1() { return cGroup_1; }
+		
 		//'includes'
-		public Keyword getIncludesKeyword_0() { return cIncludesKeyword_0; }
+		public Keyword getIncludesKeyword_1_0() { return cIncludesKeyword_1_0; }
 		
-		//includes+=[AbstractObject]
-		public Assignment getIncludesAssignment_1() { return cIncludesAssignment_1; }
+		//includesMainObject+=[MainObject]
+		public Assignment getIncludesMainObjectAssignment_1_1() { return cIncludesMainObjectAssignment_1_1; }
 		
-		//[AbstractObject]
-		public CrossReference getIncludesAbstractObjectCrossReference_1_0() { return cIncludesAbstractObjectCrossReference_1_0; }
+		//[MainObject]
+		public CrossReference getIncludesMainObjectMainObjectCrossReference_1_1_0() { return cIncludesMainObjectMainObjectCrossReference_1_1_0; }
 		
 		//ID
-		public RuleCall getIncludesAbstractObjectIDTerminalRuleCall_1_0_1() { return cIncludesAbstractObjectIDTerminalRuleCall_1_0_1; }
+		public RuleCall getIncludesMainObjectMainObjectIDTerminalRuleCall_1_1_0_1() { return cIncludesMainObjectMainObjectIDTerminalRuleCall_1_1_0_1; }
 		
-		//(',' includes+=[AbstractObject])*
-		public Group getGroup_2() { return cGroup_2; }
+		//includesPrimitiveObject+=[PrimitiveObject]
+		public Assignment getIncludesPrimitiveObjectAssignment_1_2() { return cIncludesPrimitiveObjectAssignment_1_2; }
+		
+		//[PrimitiveObject]
+		public CrossReference getIncludesPrimitiveObjectPrimitiveObjectCrossReference_1_2_0() { return cIncludesPrimitiveObjectPrimitiveObjectCrossReference_1_2_0; }
+		
+		//ID
+		public RuleCall getIncludesPrimitiveObjectPrimitiveObjectIDTerminalRuleCall_1_2_0_1() { return cIncludesPrimitiveObjectPrimitiveObjectIDTerminalRuleCall_1_2_0_1; }
+		
+		//(',' includesMainObject+=[MainObject] includesPrimitiveObject+=[PrimitiveObject])*
+		public Group getGroup_1_3() { return cGroup_1_3; }
 		
 		//','
-		public Keyword getCommaKeyword_2_0() { return cCommaKeyword_2_0; }
+		public Keyword getCommaKeyword_1_3_0() { return cCommaKeyword_1_3_0; }
 		
-		//includes+=[AbstractObject]
-		public Assignment getIncludesAssignment_2_1() { return cIncludesAssignment_2_1; }
+		//includesMainObject+=[MainObject]
+		public Assignment getIncludesMainObjectAssignment_1_3_1() { return cIncludesMainObjectAssignment_1_3_1; }
 		
-		//[AbstractObject]
-		public CrossReference getIncludesAbstractObjectCrossReference_2_1_0() { return cIncludesAbstractObjectCrossReference_2_1_0; }
+		//[MainObject]
+		public CrossReference getIncludesMainObjectMainObjectCrossReference_1_3_1_0() { return cIncludesMainObjectMainObjectCrossReference_1_3_1_0; }
 		
 		//ID
-		public RuleCall getIncludesAbstractObjectIDTerminalRuleCall_2_1_0_1() { return cIncludesAbstractObjectIDTerminalRuleCall_2_1_0_1; }
+		public RuleCall getIncludesMainObjectMainObjectIDTerminalRuleCall_1_3_1_0_1() { return cIncludesMainObjectMainObjectIDTerminalRuleCall_1_3_1_0_1; }
+		
+		//includesPrimitiveObject+=[PrimitiveObject]
+		public Assignment getIncludesPrimitiveObjectAssignment_1_3_2() { return cIncludesPrimitiveObjectAssignment_1_3_2; }
+		
+		//[PrimitiveObject]
+		public CrossReference getIncludesPrimitiveObjectPrimitiveObjectCrossReference_1_3_2_0() { return cIncludesPrimitiveObjectPrimitiveObjectCrossReference_1_3_2_0; }
+		
+		//ID
+		public RuleCall getIncludesPrimitiveObjectPrimitiveObjectIDTerminalRuleCall_1_3_2_0_1() { return cIncludesPrimitiveObjectPrimitiveObjectIDTerminalRuleCall_1_3_2_0_1; }
 	}
 	public class ArrayElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.xtext.example.mydsl.JSchema.Array");
@@ -600,6 +676,33 @@ public class JSchemaGrammarAccess extends AbstractGrammarElementFinder {
 		
 		//'double'
 		public Keyword getDoubleKeyword_3() { return cDoubleKeyword_3; }
+	}
+	public class FQNElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.xtext.example.mydsl.JSchema.FQN");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final RuleCall cIDTerminalRuleCall_0 = (RuleCall)cGroup.eContents().get(0);
+		private final Group cGroup_1 = (Group)cGroup.eContents().get(1);
+		private final Keyword cFullStopKeyword_1_0 = (Keyword)cGroup_1.eContents().get(0);
+		private final RuleCall cIDTerminalRuleCall_1_1 = (RuleCall)cGroup_1.eContents().get(1);
+		
+		//FQN:
+		//	ID ('.' ID)*;
+		@Override public ParserRule getRule() { return rule; }
+		
+		//ID ('.' ID)*
+		public Group getGroup() { return cGroup; }
+		
+		//ID
+		public RuleCall getIDTerminalRuleCall_0() { return cIDTerminalRuleCall_0; }
+		
+		//('.' ID)*
+		public Group getGroup_1() { return cGroup_1; }
+		
+		//'.'
+		public Keyword getFullStopKeyword_1_0() { return cFullStopKeyword_1_0; }
+		
+		//ID
+		public RuleCall getIDTerminalRuleCall_1_1() { return cIDTerminalRuleCall_1_1; }
 	}
 	
 	public class FormatTypesElements extends AbstractEnumRuleElementFinder {
@@ -782,6 +885,7 @@ public class JSchemaGrammarAccess extends AbstractGrammarElementFinder {
 	private final IncludesElements pIncludes;
 	private final ArrayElements pArray;
 	private final ArrayTypeElements pArrayType;
+	private final FQNElements pFQN;
 	
 	private final Grammar grammar;
 	
@@ -806,6 +910,7 @@ public class JSchemaGrammarAccess extends AbstractGrammarElementFinder {
 		this.pIncludes = new IncludesElements();
 		this.pArray = new ArrayElements();
 		this.pArrayType = new ArrayTypeElements();
+		this.pFQN = new FQNElements();
 	}
 	
 	protected Grammar internalFindGrammar(GrammarProvider grammarProvider) {
@@ -866,8 +971,8 @@ public class JSchemaGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	//MainObject:
-	//	name=ID root=IsRoot? inherits=(Extends | Includes)? '{' (properties+=[AbstractObject] (','
-	//	properties+=[AbstractObject])*)? '}';
+	//	name=ID root=IsRoot? inherits+=(Extends | Includes)* '{' (properties+=AbstractObject (','
+	//	properties+=AbstractObject)*)? '}';
 	public MainObjectElements getMainObjectAccess() {
 		return pMainObject;
 	}
@@ -877,7 +982,8 @@ public class JSchemaGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	//Extends:
-	//	'extends' extends+=[AbstractObject] (',' extends+=[AbstractObject])*;
+	//	{Extends} ('extends' extensionMainObject+=[MainObject] | extensionPrimitiveObject+=[PrimitiveObject] (','
+	//	extensionMainObject+=[MainObject] | extensionPrimitiveObject+=[PrimitiveObject])*);
 	public ExtendsElements getExtendsAccess() {
 		return pExtends;
 	}
@@ -964,7 +1070,8 @@ public class JSchemaGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	//Includes:
-	//	'includes' includes+=[AbstractObject] (',' includes+=[AbstractObject])*;
+	//	{Includes} ('includes' includesMainObject+=[MainObject] includesPrimitiveObject+=[PrimitiveObject] (','
+	//	includesMainObject+=[MainObject] includesPrimitiveObject+=[PrimitiveObject])*);
 	public IncludesElements getIncludesAccess() {
 		return pIncludes;
 	}
@@ -991,6 +1098,16 @@ public class JSchemaGrammarAccess extends AbstractGrammarElementFinder {
 	
 	public ParserRule getArrayTypeRule() {
 		return getArrayTypeAccess().getRule();
+	}
+	
+	//FQN:
+	//	ID ('.' ID)*;
+	public FQNElements getFQNAccess() {
+		return pFQN;
+	}
+	
+	public ParserRule getFQNRule() {
+		return getFQNAccess().getRule();
 	}
 	
 	//terminal ID:

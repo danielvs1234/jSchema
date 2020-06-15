@@ -22,65 +22,60 @@ import org.xtext.example.mydsl.jSchema.PrimitiveObject;
  */
 public class JSchemaValidator extends AbstractJSchemaValidator {
 	
-//	@Check
-//    public void checkEntityNoCyclicExtends(AbstractObject abstractObject) {
-//        Set<AbstractObject> seen = new HashSet<>();
-//        if(selfExtendsAbstractObjects(abstractObject, seen)) {
-//        	super.error("Cyclic extends relation", JSchemaPackage.Literals.MAIN_OBJECT__INHERITS);
-//        }
-//    }
-//	
-//	public boolean selfExtendsAbstractObjects(AbstractObject abstractObject, Set<AbstractObject> seen) {
-//		if(abstractObject.getMainObject().getInherits() instanceof Extends) {
-//			for(AbstractObject abs : ((Extends)abstractObject.getMainObject().getInherits()).getExtends()) {
-//				if(abs.getMainObject() != null) {
-//			        if(seen.contains(abs)) {
-//			        	return true;
-//			        } else {
-//			        	seen.add(abs);
-//			        	return selfExtendsAbstractObjects(abs, seen);
-//			    	}
-//				}
-//				else if(abs.getPrimitiveObject() != null) {
-//					return getNameOfPrimitiveObj(abs, seen);
-//				} else {
-//					return false;
-//				}
-//			}
-//			return false;
-//		} else {
-//			for(AbstractObject abs : ((Includes)abstractObject.getMainObject().getInherits()).getIncludes()) {
-//				if(abs.getMainObject() != null) {
-//			        if(seen.contains(abs)) {
-//			        	return true;
-//			        } else {
-//			        	seen.add(abs);
-//			        	return selfExtendsAbstractObjects(abs, seen);
-//			    	}
-//				}
-//				else if(abs.getPrimitiveObject()!= null) {
-//					return getNameOfPrimitiveObj(abs, seen);
-//				} else {
-//					return false;
-//				}
-//			}
-//			return false;
-//		}
-//    }
-//	
-//	public boolean getNameOfPrimitiveObj(AbstractObject abs, Set<AbstractObject> seen) {
-//		if(abs.getPrimitiveObject().getType().getName() != null) {
-//			boolean tmp = seen.contains(abs);
-//			seen.add(abs);
-//			return tmp;
-//		} else if(abs.getPrimitiveObject().getType().getArray().getName() != null) {
-//			boolean tmp = seen.contains(abs);
-//			seen.add(abs);
-//			return tmp;
-//		} else {
-//			return false;
-//		}
-//	}
+	@Check
+    public void checkEntityNoCyclicExtends(MainObject mainobject) {
+        Set<MainObject> seen = new HashSet<>();
+        if(selfExtendsAbstractObjects(mainobject, seen)) {
+        	super.error("Cyclic extends relation", JSchemaPackage.Literals.EXTENDS__EXTENSION_MAIN_OBJECT);
+        }
+    }
+	
+	public boolean selfExtendsAbstractObjects(MainObject mainobject, Set<MainObject> seen) {
+		if(mainobject.getInherits() instanceof Extends) {
+			for(MainObject abs : ((Extends)mainobject.getInherits()).getExtensionMainObject()) {
+				if(abs != null) {
+			        if(seen.contains(abs)) {
+			        	return true;
+			        } else {
+			        	seen.add(abs);
+			        	return selfExtendsAbstractObjects(abs, seen);
+			    	}
+				} else {
+					return false;
+				}
+			}
+			return false;
+		} else if(mainobject.getInherits() instanceof Includes) {
+			for(MainObject abs : ((Includes)mainobject.getInherits()).getIncludesMainObject()) {
+				if(abs != null) {
+			        if(seen.contains(abs)) {
+			        	return true;
+			        } else {
+			        	seen.add(abs);
+			        	return selfExtendsAbstractObjects(abs, seen);
+			    	}
+				} else {
+					return false;
+				}
+			}
+			return false;
+		}
+		return false;
+    }
+	
+	public boolean getNameOfPrimitiveObj(AbstractObject abs, Set<AbstractObject> seen) {
+		if(abs.getPrimitiveObject().getType().getName() != null) {
+			boolean tmp = seen.contains(abs);
+			seen.add(abs);
+			return tmp;
+		} else if(abs.getPrimitiveObject().getType().getArray().getName() != null) {
+			boolean tmp = seen.contains(abs);
+			seen.add(abs);
+			return tmp;
+		} else {
+			return false;
+		}
+	}
 	
 //	public boolean selfExtends(MainObject e, Set<MainObject> seen) {
 //        if(e==null)

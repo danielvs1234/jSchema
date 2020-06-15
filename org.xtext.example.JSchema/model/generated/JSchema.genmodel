@@ -40,10 +40,11 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute JSchema.ecore#//MainObject/name"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference JSchema.ecore#//MainObject/root"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference JSchema.ecore#//MainObject/inherits"/>
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference JSchema.ecore#//MainObject/properties"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference JSchema.ecore#//MainObject/properties"/>
     </genClasses>
     <genClasses ecoreClass="JSchema.ecore#//Extends">
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference JSchema.ecore#//Extends/extends"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference JSchema.ecore#//Extends/extensionMainObject"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference JSchema.ecore#//Extends/extensionPrimitiveObject"/>
     </genClasses>
     <genClasses ecoreClass="JSchema.ecore#//PrimitiveObject">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference JSchema.ecore#//PrimitiveObject/type"/>
@@ -63,7 +64,8 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute JSchema.ecore#//PrimitiveProperties/stringFormat"/>
     </genClasses>
     <genClasses ecoreClass="JSchema.ecore#//Includes">
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference JSchema.ecore#//Includes/includes"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference JSchema.ecore#//Includes/includesMainObject"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference JSchema.ecore#//Includes/includesPrimitiveObject"/>
     </genClasses>
     <genClasses ecoreClass="JSchema.ecore#//Array">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute JSchema.ecore#//Array/name"/>

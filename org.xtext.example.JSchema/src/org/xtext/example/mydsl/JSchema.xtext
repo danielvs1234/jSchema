@@ -16,17 +16,18 @@ AbstractObject:
 ;
 
 MainObject:
- 	name=ID root=IsRoot? inherits=(Extends | Includes)? '{'  (properties+=[AbstractObject](',' properties+=[AbstractObject])*)? '}' 
+ 	name=ID root=IsRoot? inherits+=(Extends | Includes)* '{'  (properties+=AbstractObject (',' properties+=AbstractObject)*)? '}' 
 ; 
 
 Extends:
-	'extends' extends+=[AbstractObject|ID] (',' extends+=[AbstractObject|ID])*
+	{Extends} ('extends' extensionMainObject+=[MainObject] | extensionPrimitiveObject+=[PrimitiveObject]
+	(',' extensionMainObject+=[MainObject] | extensionPrimitiveObject+=[PrimitiveObject])*)
 ;
 
 PrimitiveObject:
 	type=PrimitiveTypes ('with' primitiveProperties+=PrimitiveProperties (',' primitiveProperties+=PrimitiveProperties)* ';' )? 
 ;
- 
+
 PrimitiveTypes:
 	'String' name=ID | array=Array | 'num' name=ID "=" number=Number
 ;
@@ -64,7 +65,7 @@ enum FormatTypes:
 ;
 
 Includes:
-	'includes' includes+=[AbstractObject|ID] (',' includes+=[AbstractObject|ID])*
+	{Includes} ('includes' includesMainObject+=[MainObject] includesPrimitiveObject+=[PrimitiveObject] (',' includesMainObject+=[MainObject] includesPrimitiveObject+=[PrimitiveObject])*)
 ;
 
 Array:
@@ -73,4 +74,8 @@ Array:
 
 ArrayType:
 	'string' | 'integer' | 'float' | 'double'
+;
+
+FQN:
+	ID ('.' ID)*
 ;

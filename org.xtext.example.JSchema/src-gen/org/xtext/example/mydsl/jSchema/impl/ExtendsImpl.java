@@ -13,9 +13,10 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 
-import org.xtext.example.mydsl.jSchema.AbstractObject;
 import org.xtext.example.mydsl.jSchema.Extends;
 import org.xtext.example.mydsl.jSchema.JSchemaPackage;
+import org.xtext.example.mydsl.jSchema.MainObject;
+import org.xtext.example.mydsl.jSchema.PrimitiveObject;
 
 /**
  * <!-- begin-user-doc -->
@@ -25,7 +26,8 @@ import org.xtext.example.mydsl.jSchema.JSchemaPackage;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link org.xtext.example.mydsl.jSchema.impl.ExtendsImpl#getExtends <em>Extends</em>}</li>
+ *   <li>{@link org.xtext.example.mydsl.jSchema.impl.ExtendsImpl#getExtensionMainObject <em>Extension Main Object</em>}</li>
+ *   <li>{@link org.xtext.example.mydsl.jSchema.impl.ExtendsImpl#getExtensionPrimitiveObject <em>Extension Primitive Object</em>}</li>
  * </ul>
  *
  * @generated
@@ -33,14 +35,24 @@ import org.xtext.example.mydsl.jSchema.JSchemaPackage;
 public class ExtendsImpl extends MinimalEObjectImpl.Container implements Extends
 {
   /**
-   * The cached value of the '{@link #getExtends() <em>Extends</em>}' reference list.
+   * The cached value of the '{@link #getExtensionMainObject() <em>Extension Main Object</em>}' reference list.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getExtends()
+   * @see #getExtensionMainObject()
    * @generated
    * @ordered
    */
-  protected EList<AbstractObject> extends_;
+  protected EList<MainObject> extensionMainObject;
+
+  /**
+   * The cached value of the '{@link #getExtensionPrimitiveObject() <em>Extension Primitive Object</em>}' reference list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getExtensionPrimitiveObject()
+   * @generated
+   * @ordered
+   */
+  protected EList<PrimitiveObject> extensionPrimitiveObject;
 
   /**
    * <!-- begin-user-doc -->
@@ -69,13 +81,28 @@ public class ExtendsImpl extends MinimalEObjectImpl.Container implements Extends
    * @generated
    */
   @Override
-  public EList<AbstractObject> getExtends()
+  public EList<MainObject> getExtensionMainObject()
   {
-    if (extends_ == null)
+    if (extensionMainObject == null)
     {
-      extends_ = new EObjectResolvingEList<AbstractObject>(AbstractObject.class, this, JSchemaPackage.EXTENDS__EXTENDS);
+      extensionMainObject = new EObjectResolvingEList<MainObject>(MainObject.class, this, JSchemaPackage.EXTENDS__EXTENSION_MAIN_OBJECT);
     }
-    return extends_;
+    return extensionMainObject;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EList<PrimitiveObject> getExtensionPrimitiveObject()
+  {
+    if (extensionPrimitiveObject == null)
+    {
+      extensionPrimitiveObject = new EObjectResolvingEList<PrimitiveObject>(PrimitiveObject.class, this, JSchemaPackage.EXTENDS__EXTENSION_PRIMITIVE_OBJECT);
+    }
+    return extensionPrimitiveObject;
   }
 
   /**
@@ -88,8 +115,10 @@ public class ExtendsImpl extends MinimalEObjectImpl.Container implements Extends
   {
     switch (featureID)
     {
-      case JSchemaPackage.EXTENDS__EXTENDS:
-        return getExtends();
+      case JSchemaPackage.EXTENDS__EXTENSION_MAIN_OBJECT:
+        return getExtensionMainObject();
+      case JSchemaPackage.EXTENDS__EXTENSION_PRIMITIVE_OBJECT:
+        return getExtensionPrimitiveObject();
     }
     return super.eGet(featureID, resolve, coreType);
   }
@@ -105,9 +134,13 @@ public class ExtendsImpl extends MinimalEObjectImpl.Container implements Extends
   {
     switch (featureID)
     {
-      case JSchemaPackage.EXTENDS__EXTENDS:
-        getExtends().clear();
-        getExtends().addAll((Collection<? extends AbstractObject>)newValue);
+      case JSchemaPackage.EXTENDS__EXTENSION_MAIN_OBJECT:
+        getExtensionMainObject().clear();
+        getExtensionMainObject().addAll((Collection<? extends MainObject>)newValue);
+        return;
+      case JSchemaPackage.EXTENDS__EXTENSION_PRIMITIVE_OBJECT:
+        getExtensionPrimitiveObject().clear();
+        getExtensionPrimitiveObject().addAll((Collection<? extends PrimitiveObject>)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -123,8 +156,11 @@ public class ExtendsImpl extends MinimalEObjectImpl.Container implements Extends
   {
     switch (featureID)
     {
-      case JSchemaPackage.EXTENDS__EXTENDS:
-        getExtends().clear();
+      case JSchemaPackage.EXTENDS__EXTENSION_MAIN_OBJECT:
+        getExtensionMainObject().clear();
+        return;
+      case JSchemaPackage.EXTENDS__EXTENSION_PRIMITIVE_OBJECT:
+        getExtensionPrimitiveObject().clear();
         return;
     }
     super.eUnset(featureID);
@@ -140,8 +176,10 @@ public class ExtendsImpl extends MinimalEObjectImpl.Container implements Extends
   {
     switch (featureID)
     {
-      case JSchemaPackage.EXTENDS__EXTENDS:
-        return extends_ != null && !extends_.isEmpty();
+      case JSchemaPackage.EXTENDS__EXTENSION_MAIN_OBJECT:
+        return extensionMainObject != null && !extensionMainObject.isEmpty();
+      case JSchemaPackage.EXTENDS__EXTENSION_PRIMITIVE_OBJECT:
+        return extensionPrimitiveObject != null && !extensionPrimitiveObject.isEmpty();
     }
     return super.eIsSet(featureID);
   }

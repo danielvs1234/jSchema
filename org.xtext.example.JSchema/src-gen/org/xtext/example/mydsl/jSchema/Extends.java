@@ -16,7 +16,8 @@ import org.eclipse.emf.ecore.EObject;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link org.xtext.example.mydsl.jSchema.Extends#getExtends <em>Extends</em>}</li>
+ *   <li>{@link org.xtext.example.mydsl.jSchema.Extends#getExtensionMainObject <em>Extension Main Object</em>}</li>
+ *   <li>{@link org.xtext.example.mydsl.jSchema.Extends#getExtensionPrimitiveObject <em>Extension Primitive Object</em>}</li>
  * </ul>
  *
  * @see org.xtext.example.mydsl.jSchema.JSchemaPackage#getExtends()
@@ -26,15 +27,27 @@ import org.eclipse.emf.ecore.EObject;
 public interface Extends extends EObject
 {
   /**
-   * Returns the value of the '<em><b>Extends</b></em>' reference list.
-   * The list contents are of type {@link org.xtext.example.mydsl.jSchema.AbstractObject}.
+   * Returns the value of the '<em><b>Extension Main Object</b></em>' reference list.
+   * The list contents are of type {@link org.xtext.example.mydsl.jSchema.MainObject}.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the value of the '<em>Extends</em>' reference list.
-   * @see org.xtext.example.mydsl.jSchema.JSchemaPackage#getExtends_Extends()
+   * @return the value of the '<em>Extension Main Object</em>' reference list.
+   * @see org.xtext.example.mydsl.jSchema.JSchemaPackage#getExtends_ExtensionMainObject()
    * @model
    * @generated
    */
-  EList<AbstractObject> getExtends();
+  EList<MainObject> getExtensionMainObject();
+
+  /**
+   * Returns the value of the '<em><b>Extension Primitive Object</b></em>' reference list.
+   * The list contents are of type {@link org.xtext.example.mydsl.jSchema.PrimitiveObject}.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the value of the '<em>Extension Primitive Object</em>' reference list.
+   * @see org.xtext.example.mydsl.jSchema.JSchemaPackage#getExtends_ExtensionPrimitiveObject()
+   * @model
+   * @generated
+   */
+  EList<PrimitiveObject> getExtensionPrimitiveObject();
 
 } // Extends

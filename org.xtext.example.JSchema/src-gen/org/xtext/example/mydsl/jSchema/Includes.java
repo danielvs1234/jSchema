@@ -16,7 +16,8 @@ import org.eclipse.emf.ecore.EObject;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link org.xtext.example.mydsl.jSchema.Includes#getIncludes <em>Includes</em>}</li>
+ *   <li>{@link org.xtext.example.mydsl.jSchema.Includes#getIncludesMainObject <em>Includes Main Object</em>}</li>
+ *   <li>{@link org.xtext.example.mydsl.jSchema.Includes#getIncludesPrimitiveObject <em>Includes Primitive Object</em>}</li>
  * </ul>
  *
  * @see org.xtext.example.mydsl.jSchema.JSchemaPackage#getIncludes()
@@ -26,15 +27,27 @@ import org.eclipse.emf.ecore.EObject;
 public interface Includes extends EObject
 {
   /**
-   * Returns the value of the '<em><b>Includes</b></em>' reference list.
-   * The list contents are of type {@link org.xtext.example.mydsl.jSchema.AbstractObject}.
+   * Returns the value of the '<em><b>Includes Main Object</b></em>' reference list.
+   * The list contents are of type {@link org.xtext.example.mydsl.jSchema.MainObject}.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the value of the '<em>Includes</em>' reference list.
-   * @see org.xtext.example.mydsl.jSchema.JSchemaPackage#getIncludes_Includes()
+   * @return the value of the '<em>Includes Main Object</em>' reference list.
+   * @see org.xtext.example.mydsl.jSchema.JSchemaPackage#getIncludes_IncludesMainObject()
    * @model
    * @generated
    */
-  EList<AbstractObject> getIncludes();
+  EList<MainObject> getIncludesMainObject();
+
+  /**
+   * Returns the value of the '<em><b>Includes Primitive Object</b></em>' reference list.
+   * The list contents are of type {@link org.xtext.example.mydsl.jSchema.PrimitiveObject}.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the value of the '<em>Includes Primitive Object</em>' reference list.
+   * @see org.xtext.example.mydsl.jSchema.JSchemaPackage#getIncludes_IncludesPrimitiveObject()
+   * @model
+   * @generated
+   */
+  EList<PrimitiveObject> getIncludesPrimitiveObject();
 
 } // Includes

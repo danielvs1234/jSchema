@@ -108,7 +108,10 @@ public class JSchemaSemanticSequencer extends AbstractDelegatingSemanticSequence
 	 *     Extends returns Extends
 	 *
 	 * Constraint:
-	 *     (extends+=[AbstractObject|ID] extends+=[AbstractObject|ID]*)
+	 *     (
+	 *         extensionMainObject+=[MainObject|ID] | 
+	 *         (extensionPrimitiveObject+=[PrimitiveObject|ID] (extensionMainObject+=[MainObject|ID] | extensionPrimitiveObject+=[PrimitiveObject|ID])*)
+	 *     )
 	 */
 	protected void sequence_Extends(ISerializationContext context, Extends semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -120,7 +123,11 @@ public class JSchemaSemanticSequencer extends AbstractDelegatingSemanticSequence
 	 *     Includes returns Includes
 	 *
 	 * Constraint:
-	 *     (includes+=[AbstractObject|ID] includes+=[AbstractObject|ID]*)
+	 *     (
+	 *         includesMainObject+=[MainObject|ID] 
+	 *         includesPrimitiveObject+=[PrimitiveObject|ID] 
+	 *         (includesMainObject+=[MainObject|ID] includesPrimitiveObject+=[PrimitiveObject|ID])*
+	 *     )
 	 */
 	protected void sequence_Includes(ISerializationContext context, Includes semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -150,7 +157,7 @@ public class JSchemaSemanticSequencer extends AbstractDelegatingSemanticSequence
 	 *     MainObject returns MainObject
 	 *
 	 * Constraint:
-	 *     (name=ID root=IsRoot? (inherits=Extends | inherits=Includes)? (properties+=[AbstractObject|ID] properties+=[AbstractObject|ID]*)?)
+	 *     (name=ID root=IsRoot? (inherits+=Extends | inherits+=Includes)* (properties+=AbstractObject properties+=AbstractObject*)?)
 	 */
 	protected void sequence_MainObject(ISerializationContext context, MainObject semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);

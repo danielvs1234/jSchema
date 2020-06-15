@@ -73,35 +73,25 @@ public interface MainObject extends EObject
   void setRoot(IsRoot value);
 
   /**
-   * Returns the value of the '<em><b>Inherits</b></em>' containment reference.
+   * Returns the value of the '<em><b>Inherits</b></em>' containment reference list.
+   * The list contents are of type {@link org.eclipse.emf.ecore.EObject}.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the value of the '<em>Inherits</em>' containment reference.
-   * @see #setInherits(EObject)
+   * @return the value of the '<em>Inherits</em>' containment reference list.
    * @see org.xtext.example.mydsl.jSchema.JSchemaPackage#getMainObject_Inherits()
    * @model containment="true"
    * @generated
    */
-  EObject getInherits();
+  EList<EObject> getInherits();
 
   /**
-   * Sets the value of the '{@link org.xtext.example.mydsl.jSchema.MainObject#getInherits <em>Inherits</em>}' containment reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Inherits</em>' containment reference.
-   * @see #getInherits()
-   * @generated
-   */
-  void setInherits(EObject value);
-
-  /**
-   * Returns the value of the '<em><b>Properties</b></em>' reference list.
+   * Returns the value of the '<em><b>Properties</b></em>' containment reference list.
    * The list contents are of type {@link org.xtext.example.mydsl.jSchema.AbstractObject}.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the value of the '<em>Properties</em>' reference list.
+   * @return the value of the '<em>Properties</em>' containment reference list.
    * @see org.xtext.example.mydsl.jSchema.JSchemaPackage#getMainObject_Properties()
-   * @model
+   * @model containment="true"
    * @generated
    */
   EList<AbstractObject> getProperties();

@@ -13,9 +13,10 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 
-import org.xtext.example.mydsl.jSchema.AbstractObject;
 import org.xtext.example.mydsl.jSchema.Includes;
 import org.xtext.example.mydsl.jSchema.JSchemaPackage;
+import org.xtext.example.mydsl.jSchema.MainObject;
+import org.xtext.example.mydsl.jSchema.PrimitiveObject;
 
 /**
  * <!-- begin-user-doc -->
@@ -25,7 +26,8 @@ import org.xtext.example.mydsl.jSchema.JSchemaPackage;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link org.xtext.example.mydsl.jSchema.impl.IncludesImpl#getIncludes <em>Includes</em>}</li>
+ *   <li>{@link org.xtext.example.mydsl.jSchema.impl.IncludesImpl#getIncludesMainObject <em>Includes Main Object</em>}</li>
+ *   <li>{@link org.xtext.example.mydsl.jSchema.impl.IncludesImpl#getIncludesPrimitiveObject <em>Includes Primitive Object</em>}</li>
  * </ul>
  *
  * @generated
@@ -33,14 +35,24 @@ import org.xtext.example.mydsl.jSchema.JSchemaPackage;
 public class IncludesImpl extends MinimalEObjectImpl.Container implements Includes
 {
   /**
-   * The cached value of the '{@link #getIncludes() <em>Includes</em>}' reference list.
+   * The cached value of the '{@link #getIncludesMainObject() <em>Includes Main Object</em>}' reference list.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getIncludes()
+   * @see #getIncludesMainObject()
    * @generated
    * @ordered
    */
-  protected EList<AbstractObject> includes;
+  protected EList<MainObject> includesMainObject;
+
+  /**
+   * The cached value of the '{@link #getIncludesPrimitiveObject() <em>Includes Primitive Object</em>}' reference list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getIncludesPrimitiveObject()
+   * @generated
+   * @ordered
+   */
+  protected EList<PrimitiveObject> includesPrimitiveObject;
 
   /**
    * <!-- begin-user-doc -->
@@ -69,13 +81,28 @@ public class IncludesImpl extends MinimalEObjectImpl.Container implements Includ
    * @generated
    */
   @Override
-  public EList<AbstractObject> getIncludes()
+  public EList<MainObject> getIncludesMainObject()
   {
-    if (includes == null)
+    if (includesMainObject == null)
     {
-      includes = new EObjectResolvingEList<AbstractObject>(AbstractObject.class, this, JSchemaPackage.INCLUDES__INCLUDES);
+      includesMainObject = new EObjectResolvingEList<MainObject>(MainObject.class, this, JSchemaPackage.INCLUDES__INCLUDES_MAIN_OBJECT);
     }
-    return includes;
+    return includesMainObject;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EList<PrimitiveObject> getIncludesPrimitiveObject()
+  {
+    if (includesPrimitiveObject == null)
+    {
+      includesPrimitiveObject = new EObjectResolvingEList<PrimitiveObject>(PrimitiveObject.class, this, JSchemaPackage.INCLUDES__INCLUDES_PRIMITIVE_OBJECT);
+    }
+    return includesPrimitiveObject;
   }
 
   /**
@@ -88,8 +115,10 @@ public class IncludesImpl extends MinimalEObjectImpl.Container implements Includ
   {
     switch (featureID)
     {
-      case JSchemaPackage.INCLUDES__INCLUDES:
-        return getIncludes();
+      case JSchemaPackage.INCLUDES__INCLUDES_MAIN_OBJECT:
+        return getIncludesMainObject();
+      case JSchemaPackage.INCLUDES__INCLUDES_PRIMITIVE_OBJECT:
+        return getIncludesPrimitiveObject();
     }
     return super.eGet(featureID, resolve, coreType);
   }
@@ -105,9 +134,13 @@ public class IncludesImpl extends MinimalEObjectImpl.Container implements Includ
   {
     switch (featureID)
     {
-      case JSchemaPackage.INCLUDES__INCLUDES:
-        getIncludes().clear();
-        getIncludes().addAll((Collection<? extends AbstractObject>)newValue);
+      case JSchemaPackage.INCLUDES__INCLUDES_MAIN_OBJECT:
+        getIncludesMainObject().clear();
+        getIncludesMainObject().addAll((Collection<? extends MainObject>)newValue);
+        return;
+      case JSchemaPackage.INCLUDES__INCLUDES_PRIMITIVE_OBJECT:
+        getIncludesPrimitiveObject().clear();
+        getIncludesPrimitiveObject().addAll((Collection<? extends PrimitiveObject>)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -123,8 +156,11 @@ public class IncludesImpl extends MinimalEObjectImpl.Container implements Includ
   {
     switch (featureID)
     {
-      case JSchemaPackage.INCLUDES__INCLUDES:
-        getIncludes().clear();
+      case JSchemaPackage.INCLUDES__INCLUDES_MAIN_OBJECT:
+        getIncludesMainObject().clear();
+        return;
+      case JSchemaPackage.INCLUDES__INCLUDES_PRIMITIVE_OBJECT:
+        getIncludesPrimitiveObject().clear();
         return;
     }
     super.eUnset(featureID);
@@ -140,8 +176,10 @@ public class IncludesImpl extends MinimalEObjectImpl.Container implements Includ
   {
     switch (featureID)
     {
-      case JSchemaPackage.INCLUDES__INCLUDES:
-        return includes != null && !includes.isEmpty();
+      case JSchemaPackage.INCLUDES__INCLUDES_MAIN_OBJECT:
+        return includesMainObject != null && !includesMainObject.isEmpty();
+      case JSchemaPackage.INCLUDES__INCLUDES_PRIMITIVE_OBJECT:
+        return includesPrimitiveObject != null && !includesPrimitiveObject.isEmpty();
     }
     return super.eIsSet(featureID);
   }
