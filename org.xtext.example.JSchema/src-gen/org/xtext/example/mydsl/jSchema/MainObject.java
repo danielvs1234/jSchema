@@ -73,16 +73,26 @@ public interface MainObject extends EObject
   void setRoot(IsRoot value);
 
   /**
-   * Returns the value of the '<em><b>Inherits</b></em>' containment reference list.
-   * The list contents are of type {@link org.eclipse.emf.ecore.EObject}.
+   * Returns the value of the '<em><b>Inherits</b></em>' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the value of the '<em>Inherits</em>' containment reference list.
+   * @return the value of the '<em>Inherits</em>' containment reference.
+   * @see #setInherits(EObject)
    * @see org.xtext.example.mydsl.jSchema.JSchemaPackage#getMainObject_Inherits()
    * @model containment="true"
    * @generated
    */
-  EList<EObject> getInherits();
+  EObject getInherits();
+
+  /**
+   * Sets the value of the '{@link org.xtext.example.mydsl.jSchema.MainObject#getInherits <em>Inherits</em>}' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @param value the new value of the '<em>Inherits</em>' containment reference.
+   * @see #getInherits()
+   * @generated
+   */
+  void setInherits(EObject value);
 
   /**
    * Returns the value of the '<em><b>Properties</b></em>' containment reference list.

@@ -14,6 +14,7 @@ import org.xtext.example.mydsl.jSchema.Includes;
 import org.xtext.example.mydsl.jSchema.JSchemaPackage;
 import org.xtext.example.mydsl.jSchema.MainObject;
 import org.xtext.example.mydsl.jSchema.PrimitiveObject;
+import org.xtext.example.mydsl.jSchema.PrimitiveProperties;
 
 /**
  * This class contains custom validation rules. 
@@ -23,12 +24,34 @@ import org.xtext.example.mydsl.jSchema.PrimitiveObject;
 public class JSchemaValidator extends AbstractJSchemaValidator {
 	
 	@Check
-    public void checkEntityNoCyclicExtends(MainObject mainobject) {
-        Set<MainObject> seen = new HashSet<>();
-        if(selfExtendsAbstractObjects(mainobject, seen)) {
-        	super.error("Cyclic extends relation", JSchemaPackage.Literals.EXTENDS__EXTENSION_MAIN_OBJECT);
+    public void checkEntityNoCyclicExtends(Extends extendsObject) {
+        for(MainObject mainObject : extendsObject.getExtensionMainObject()) {
+            Set<MainObject> seen = new HashSet<>();
+	        if(selfExtendsAbstractObjects(mainObject, seen)) {
+	        	error("Cyclic extends relation", JSchemaPackage.Literals.EXTENDS__EXTENSION_MAIN_OBJECT);
+	        }
         }
     }
+
+	@Check
+    public void checkEntityNoCyclicExtends(Includes includesObject) {
+        for(MainObject mainObject : includesObject.getIncludesMainObject()) {
+            Set<MainObject> seen = new HashSet<>();
+	        if(selfExtendsAbstractObjects(mainObject, seen)) {
+	        	error("Cyclic extends relation", JSchemaPackage.Literals.INCLUDES__INCLUDES_MAIN_OBJECT);
+	        }
+        }
+    }
+	
+	@Check
+	public void checkStringLength(PrimitiveProperties properties) {
+		if(properties.getStringLength() != null) {
+			if(!(Integer.parseInt(properties.getStringLength().split("-")[0]) <= Integer.parseInt(properties.getStringLength().split("-")[1]))) {
+				System.out.println(Integer.parseInt(properties.getStringLength().split("-")[0]) +"  "+ Integer.parseInt(properties.getStringLength().split("-")[1]));
+				error("minLength > maxLength", JSchemaPackage.Literals.PRIMITIVE_PROPERTIES__STRING_LENGTH);
+			}
+		}
+	}
 	
 	public boolean selfExtendsAbstractObjects(MainObject mainobject, Set<MainObject> seen) {
 		if(mainobject.getInherits() instanceof Extends) {
@@ -61,31 +84,5 @@ public class JSchemaValidator extends AbstractJSchemaValidator {
 			return false;
 		}
 		return false;
-    }
-	
-	public boolean getNameOfPrimitiveObj(AbstractObject abs, Set<AbstractObject> seen) {
-		if(abs.getPrimitiveObject().getType().getName() != null) {
-			boolean tmp = seen.contains(abs);
-			seen.add(abs);
-			return tmp;
-		} else if(abs.getPrimitiveObject().getType().getArray().getName() != null) {
-			boolean tmp = seen.contains(abs);
-			seen.add(abs);
-			return tmp;
-		} else {
-			return false;
-		}
 	}
-	
-//	public boolean selfExtends(MainObject e, Set<MainObject> seen) {
-//        if(e==null)
-//        	return false;
-//        else if(seen.contains(e)) {
-//        	return true;
-//        } else {
-//        	System.out.println(e.getName() + " was added to the set");
-//        	seen.add(e);
-//        	return selfExtends(e, seen);
-//    	}
-//    }
 }

@@ -189,7 +189,7 @@ public interface JSchemaPackage extends EPackage
   int MAIN_OBJECT__ROOT = 1;
 
   /**
-   * The feature id for the '<em><b>Inherits</b></em>' containment reference list.
+   * The feature id for the '<em><b>Inherits</b></em>' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
@@ -621,10 +621,10 @@ public interface JSchemaPackage extends EPackage
   EReference getMainObject_Root();
 
   /**
-   * Returns the meta object for the containment reference list '{@link org.xtext.example.mydsl.jSchema.MainObject#getInherits <em>Inherits</em>}'.
+   * Returns the meta object for the containment reference '{@link org.xtext.example.mydsl.jSchema.MainObject#getInherits <em>Inherits</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for the containment reference list '<em>Inherits</em>'.
+   * @return the meta object for the containment reference '<em>Inherits</em>'.
    * @see org.xtext.example.mydsl.jSchema.MainObject#getInherits()
    * @see #getMainObject()
    * @generated
@@ -1018,7 +1018,7 @@ public interface JSchemaPackage extends EPackage
     EReference MAIN_OBJECT__ROOT = eINSTANCE.getMainObject_Root();
 
     /**
-     * The meta object literal for the '<em><b>Inherits</b></em>' containment reference list feature.
+     * The meta object literal for the '<em><b>Inherits</b></em>' containment reference feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated

@@ -157,7 +157,7 @@ public class JSchemaSemanticSequencer extends AbstractDelegatingSemanticSequence
 	 *     MainObject returns MainObject
 	 *
 	 * Constraint:
-	 *     (name=ID root=IsRoot? (inherits+=Extends | inherits+=Includes)* (properties+=AbstractObject properties+=AbstractObject*)?)
+	 *     (name=ID root=IsRoot? (inherits=Extends | inherits=Includes)? (properties+=AbstractObject properties+=AbstractObject*)?)
 	 */
 	protected void sequence_MainObject(ISerializationContext context, MainObject semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);

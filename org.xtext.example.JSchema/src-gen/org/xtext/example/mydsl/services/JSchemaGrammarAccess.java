@@ -115,23 +115,24 @@ public class JSchemaGrammarAccess extends AbstractGrammarElementFinder {
 		private final Alternatives cInheritsAlternatives_2_0 = (Alternatives)cInheritsAssignment_2.eContents().get(0);
 		private final RuleCall cInheritsExtendsParserRuleCall_2_0_0 = (RuleCall)cInheritsAlternatives_2_0.eContents().get(0);
 		private final RuleCall cInheritsIncludesParserRuleCall_2_0_1 = (RuleCall)cInheritsAlternatives_2_0.eContents().get(1);
-		private final Keyword cLeftCurlyBracketKeyword_3 = (Keyword)cGroup.eContents().get(3);
-		private final Group cGroup_4 = (Group)cGroup.eContents().get(4);
-		private final Assignment cPropertiesAssignment_4_0 = (Assignment)cGroup_4.eContents().get(0);
-		private final RuleCall cPropertiesAbstractObjectParserRuleCall_4_0_0 = (RuleCall)cPropertiesAssignment_4_0.eContents().get(0);
-		private final Group cGroup_4_1 = (Group)cGroup_4.eContents().get(1);
-		private final Keyword cCommaKeyword_4_1_0 = (Keyword)cGroup_4_1.eContents().get(0);
-		private final Assignment cPropertiesAssignment_4_1_1 = (Assignment)cGroup_4_1.eContents().get(1);
-		private final RuleCall cPropertiesAbstractObjectParserRuleCall_4_1_1_0 = (RuleCall)cPropertiesAssignment_4_1_1.eContents().get(0);
-		private final Keyword cRightCurlyBracketKeyword_5 = (Keyword)cGroup.eContents().get(5);
+		private final Group cGroup_3 = (Group)cGroup.eContents().get(3);
+		private final Keyword cLeftCurlyBracketKeyword_3_0 = (Keyword)cGroup_3.eContents().get(0);
+		private final Group cGroup_3_1 = (Group)cGroup_3.eContents().get(1);
+		private final Assignment cPropertiesAssignment_3_1_0 = (Assignment)cGroup_3_1.eContents().get(0);
+		private final RuleCall cPropertiesAbstractObjectParserRuleCall_3_1_0_0 = (RuleCall)cPropertiesAssignment_3_1_0.eContents().get(0);
+		private final Group cGroup_3_1_1 = (Group)cGroup_3_1.eContents().get(1);
+		private final Keyword cCommaKeyword_3_1_1_0 = (Keyword)cGroup_3_1_1.eContents().get(0);
+		private final Assignment cPropertiesAssignment_3_1_1_1 = (Assignment)cGroup_3_1_1.eContents().get(1);
+		private final RuleCall cPropertiesAbstractObjectParserRuleCall_3_1_1_1_0 = (RuleCall)cPropertiesAssignment_3_1_1_1.eContents().get(0);
+		private final Keyword cRightCurlyBracketKeyword_3_2 = (Keyword)cGroup_3.eContents().get(2);
 		
 		//MainObject:
-		//	name=ID root=IsRoot? inherits+=(Extends | Includes)* '{' (properties+=AbstractObject (','
-		//	properties+=AbstractObject)*)? '}';
+		//	name=ID root=IsRoot? inherits=(Extends | Includes)? ('{' (properties+=AbstractObject (','
+		//	properties+=AbstractObject)*)? '}')?;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//name=ID root=IsRoot? inherits+=(Extends | Includes)* '{' (properties+=AbstractObject (',' properties+=AbstractObject)*)?
-		//'}'
+		//name=ID root=IsRoot? inherits=(Extends | Includes)? ('{' (properties+=AbstractObject (',' properties+=AbstractObject)*)?
+		//'}')?
 		public Group getGroup() { return cGroup; }
 		
 		//name=ID
@@ -146,7 +147,7 @@ public class JSchemaGrammarAccess extends AbstractGrammarElementFinder {
 		//IsRoot
 		public RuleCall getRootIsRootParserRuleCall_1_0() { return cRootIsRootParserRuleCall_1_0; }
 		
-		//inherits+=(Extends | Includes)*
+		//inherits=(Extends | Includes)?
 		public Assignment getInheritsAssignment_2() { return cInheritsAssignment_2; }
 		
 		//(Extends | Includes)
@@ -158,127 +159,121 @@ public class JSchemaGrammarAccess extends AbstractGrammarElementFinder {
 		//Includes
 		public RuleCall getInheritsIncludesParserRuleCall_2_0_1() { return cInheritsIncludesParserRuleCall_2_0_1; }
 		
+		//('{' (properties+=AbstractObject (',' properties+=AbstractObject)*)? '}')?
+		public Group getGroup_3() { return cGroup_3; }
+		
 		//'{'
-		public Keyword getLeftCurlyBracketKeyword_3() { return cLeftCurlyBracketKeyword_3; }
+		public Keyword getLeftCurlyBracketKeyword_3_0() { return cLeftCurlyBracketKeyword_3_0; }
 		
 		//(properties+=AbstractObject (',' properties+=AbstractObject)*)?
-		public Group getGroup_4() { return cGroup_4; }
+		public Group getGroup_3_1() { return cGroup_3_1; }
 		
 		//properties+=AbstractObject
-		public Assignment getPropertiesAssignment_4_0() { return cPropertiesAssignment_4_0; }
+		public Assignment getPropertiesAssignment_3_1_0() { return cPropertiesAssignment_3_1_0; }
 		
 		//AbstractObject
-		public RuleCall getPropertiesAbstractObjectParserRuleCall_4_0_0() { return cPropertiesAbstractObjectParserRuleCall_4_0_0; }
+		public RuleCall getPropertiesAbstractObjectParserRuleCall_3_1_0_0() { return cPropertiesAbstractObjectParserRuleCall_3_1_0_0; }
 		
 		//(',' properties+=AbstractObject)*
-		public Group getGroup_4_1() { return cGroup_4_1; }
+		public Group getGroup_3_1_1() { return cGroup_3_1_1; }
 		
 		//','
-		public Keyword getCommaKeyword_4_1_0() { return cCommaKeyword_4_1_0; }
+		public Keyword getCommaKeyword_3_1_1_0() { return cCommaKeyword_3_1_1_0; }
 		
 		//properties+=AbstractObject
-		public Assignment getPropertiesAssignment_4_1_1() { return cPropertiesAssignment_4_1_1; }
+		public Assignment getPropertiesAssignment_3_1_1_1() { return cPropertiesAssignment_3_1_1_1; }
 		
 		//AbstractObject
-		public RuleCall getPropertiesAbstractObjectParserRuleCall_4_1_1_0() { return cPropertiesAbstractObjectParserRuleCall_4_1_1_0; }
+		public RuleCall getPropertiesAbstractObjectParserRuleCall_3_1_1_1_0() { return cPropertiesAbstractObjectParserRuleCall_3_1_1_1_0; }
 		
 		//'}'
-		public Keyword getRightCurlyBracketKeyword_5() { return cRightCurlyBracketKeyword_5; }
+		public Keyword getRightCurlyBracketKeyword_3_2() { return cRightCurlyBracketKeyword_3_2; }
 	}
 	public class ExtendsElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.xtext.example.mydsl.JSchema.Extends");
-		private final Group cGroup = (Group)rule.eContents().get(1);
-		private final Action cExtendsAction_0 = (Action)cGroup.eContents().get(0);
-		private final Alternatives cAlternatives_1 = (Alternatives)cGroup.eContents().get(1);
-		private final Group cGroup_1_0 = (Group)cAlternatives_1.eContents().get(0);
-		private final Keyword cExtendsKeyword_1_0_0 = (Keyword)cGroup_1_0.eContents().get(0);
-		private final Assignment cExtensionMainObjectAssignment_1_0_1 = (Assignment)cGroup_1_0.eContents().get(1);
-		private final CrossReference cExtensionMainObjectMainObjectCrossReference_1_0_1_0 = (CrossReference)cExtensionMainObjectAssignment_1_0_1.eContents().get(0);
-		private final RuleCall cExtensionMainObjectMainObjectIDTerminalRuleCall_1_0_1_0_1 = (RuleCall)cExtensionMainObjectMainObjectCrossReference_1_0_1_0.eContents().get(1);
-		private final Group cGroup_1_1 = (Group)cAlternatives_1.eContents().get(1);
-		private final Assignment cExtensionPrimitiveObjectAssignment_1_1_0 = (Assignment)cGroup_1_1.eContents().get(0);
-		private final CrossReference cExtensionPrimitiveObjectPrimitiveObjectCrossReference_1_1_0_0 = (CrossReference)cExtensionPrimitiveObjectAssignment_1_1_0.eContents().get(0);
-		private final RuleCall cExtensionPrimitiveObjectPrimitiveObjectIDTerminalRuleCall_1_1_0_0_1 = (RuleCall)cExtensionPrimitiveObjectPrimitiveObjectCrossReference_1_1_0_0.eContents().get(1);
-		private final Alternatives cAlternatives_1_1_1 = (Alternatives)cGroup_1_1.eContents().get(1);
-		private final Group cGroup_1_1_1_0 = (Group)cAlternatives_1_1_1.eContents().get(0);
-		private final Keyword cCommaKeyword_1_1_1_0_0 = (Keyword)cGroup_1_1_1_0.eContents().get(0);
-		private final Assignment cExtensionMainObjectAssignment_1_1_1_0_1 = (Assignment)cGroup_1_1_1_0.eContents().get(1);
-		private final CrossReference cExtensionMainObjectMainObjectCrossReference_1_1_1_0_1_0 = (CrossReference)cExtensionMainObjectAssignment_1_1_1_0_1.eContents().get(0);
-		private final RuleCall cExtensionMainObjectMainObjectIDTerminalRuleCall_1_1_1_0_1_0_1 = (RuleCall)cExtensionMainObjectMainObjectCrossReference_1_1_1_0_1_0.eContents().get(1);
-		private final Assignment cExtensionPrimitiveObjectAssignment_1_1_1_1 = (Assignment)cAlternatives_1_1_1.eContents().get(1);
-		private final CrossReference cExtensionPrimitiveObjectPrimitiveObjectCrossReference_1_1_1_1_0 = (CrossReference)cExtensionPrimitiveObjectAssignment_1_1_1_1.eContents().get(0);
-		private final RuleCall cExtensionPrimitiveObjectPrimitiveObjectIDTerminalRuleCall_1_1_1_1_0_1 = (RuleCall)cExtensionPrimitiveObjectPrimitiveObjectCrossReference_1_1_1_1_0.eContents().get(1);
+		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
+		private final Group cGroup_0 = (Group)cAlternatives.eContents().get(0);
+		private final Keyword cExtendsKeyword_0_0 = (Keyword)cGroup_0.eContents().get(0);
+		private final Assignment cExtensionMainObjectAssignment_0_1 = (Assignment)cGroup_0.eContents().get(1);
+		private final CrossReference cExtensionMainObjectMainObjectCrossReference_0_1_0 = (CrossReference)cExtensionMainObjectAssignment_0_1.eContents().get(0);
+		private final RuleCall cExtensionMainObjectMainObjectIDTerminalRuleCall_0_1_0_1 = (RuleCall)cExtensionMainObjectMainObjectCrossReference_0_1_0.eContents().get(1);
+		private final Group cGroup_1 = (Group)cAlternatives.eContents().get(1);
+		private final Assignment cExtensionPrimitiveObjectAssignment_1_0 = (Assignment)cGroup_1.eContents().get(0);
+		private final CrossReference cExtensionPrimitiveObjectPrimitiveObjectCrossReference_1_0_0 = (CrossReference)cExtensionPrimitiveObjectAssignment_1_0.eContents().get(0);
+		private final RuleCall cExtensionPrimitiveObjectPrimitiveObjectIDTerminalRuleCall_1_0_0_1 = (RuleCall)cExtensionPrimitiveObjectPrimitiveObjectCrossReference_1_0_0.eContents().get(1);
+		private final Alternatives cAlternatives_1_1 = (Alternatives)cGroup_1.eContents().get(1);
+		private final Group cGroup_1_1_0 = (Group)cAlternatives_1_1.eContents().get(0);
+		private final Keyword cCommaKeyword_1_1_0_0 = (Keyword)cGroup_1_1_0.eContents().get(0);
+		private final Assignment cExtensionMainObjectAssignment_1_1_0_1 = (Assignment)cGroup_1_1_0.eContents().get(1);
+		private final CrossReference cExtensionMainObjectMainObjectCrossReference_1_1_0_1_0 = (CrossReference)cExtensionMainObjectAssignment_1_1_0_1.eContents().get(0);
+		private final RuleCall cExtensionMainObjectMainObjectIDTerminalRuleCall_1_1_0_1_0_1 = (RuleCall)cExtensionMainObjectMainObjectCrossReference_1_1_0_1_0.eContents().get(1);
+		private final Assignment cExtensionPrimitiveObjectAssignment_1_1_1 = (Assignment)cAlternatives_1_1.eContents().get(1);
+		private final CrossReference cExtensionPrimitiveObjectPrimitiveObjectCrossReference_1_1_1_0 = (CrossReference)cExtensionPrimitiveObjectAssignment_1_1_1.eContents().get(0);
+		private final RuleCall cExtensionPrimitiveObjectPrimitiveObjectIDTerminalRuleCall_1_1_1_0_1 = (RuleCall)cExtensionPrimitiveObjectPrimitiveObjectCrossReference_1_1_1_0.eContents().get(1);
 		
 		//Extends:
-		//	{Extends} ('extends' extensionMainObject+=[MainObject] | extensionPrimitiveObject+=[PrimitiveObject] (','
-		//	extensionMainObject+=[MainObject] | extensionPrimitiveObject+=[PrimitiveObject])*);
+		//	'extends' extensionMainObject+=[MainObject] | extensionPrimitiveObject+=[PrimitiveObject] (','
+		//	extensionMainObject+=[MainObject] | extensionPrimitiveObject+=[PrimitiveObject])*;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//{Extends} ('extends' extensionMainObject+=[MainObject] | extensionPrimitiveObject+=[PrimitiveObject] (','
-		//extensionMainObject+=[MainObject] | extensionPrimitiveObject+=[PrimitiveObject])*)
-		public Group getGroup() { return cGroup; }
-		
-		//{Extends}
-		public Action getExtendsAction_0() { return cExtendsAction_0; }
-		
-		//('extends' extensionMainObject+=[MainObject] | extensionPrimitiveObject+=[PrimitiveObject] (','
-		//extensionMainObject+=[MainObject] | extensionPrimitiveObject+=[PrimitiveObject])*)
-		public Alternatives getAlternatives_1() { return cAlternatives_1; }
+		//'extends' extensionMainObject+=[MainObject] | extensionPrimitiveObject+=[PrimitiveObject] (','
+		//extensionMainObject+=[MainObject] | extensionPrimitiveObject+=[PrimitiveObject])*
+		public Alternatives getAlternatives() { return cAlternatives; }
 		
 		//'extends' extensionMainObject+=[MainObject]
-		public Group getGroup_1_0() { return cGroup_1_0; }
+		public Group getGroup_0() { return cGroup_0; }
 		
 		//'extends'
-		public Keyword getExtendsKeyword_1_0_0() { return cExtendsKeyword_1_0_0; }
+		public Keyword getExtendsKeyword_0_0() { return cExtendsKeyword_0_0; }
 		
 		//extensionMainObject+=[MainObject]
-		public Assignment getExtensionMainObjectAssignment_1_0_1() { return cExtensionMainObjectAssignment_1_0_1; }
+		public Assignment getExtensionMainObjectAssignment_0_1() { return cExtensionMainObjectAssignment_0_1; }
 		
 		//[MainObject]
-		public CrossReference getExtensionMainObjectMainObjectCrossReference_1_0_1_0() { return cExtensionMainObjectMainObjectCrossReference_1_0_1_0; }
+		public CrossReference getExtensionMainObjectMainObjectCrossReference_0_1_0() { return cExtensionMainObjectMainObjectCrossReference_0_1_0; }
 		
 		//ID
-		public RuleCall getExtensionMainObjectMainObjectIDTerminalRuleCall_1_0_1_0_1() { return cExtensionMainObjectMainObjectIDTerminalRuleCall_1_0_1_0_1; }
+		public RuleCall getExtensionMainObjectMainObjectIDTerminalRuleCall_0_1_0_1() { return cExtensionMainObjectMainObjectIDTerminalRuleCall_0_1_0_1; }
 		
 		//extensionPrimitiveObject+=[PrimitiveObject] (',' extensionMainObject+=[MainObject] |
 		//extensionPrimitiveObject+=[PrimitiveObject])*
-		public Group getGroup_1_1() { return cGroup_1_1; }
+		public Group getGroup_1() { return cGroup_1; }
 		
 		//extensionPrimitiveObject+=[PrimitiveObject]
-		public Assignment getExtensionPrimitiveObjectAssignment_1_1_0() { return cExtensionPrimitiveObjectAssignment_1_1_0; }
+		public Assignment getExtensionPrimitiveObjectAssignment_1_0() { return cExtensionPrimitiveObjectAssignment_1_0; }
 		
 		//[PrimitiveObject]
-		public CrossReference getExtensionPrimitiveObjectPrimitiveObjectCrossReference_1_1_0_0() { return cExtensionPrimitiveObjectPrimitiveObjectCrossReference_1_1_0_0; }
+		public CrossReference getExtensionPrimitiveObjectPrimitiveObjectCrossReference_1_0_0() { return cExtensionPrimitiveObjectPrimitiveObjectCrossReference_1_0_0; }
 		
 		//ID
-		public RuleCall getExtensionPrimitiveObjectPrimitiveObjectIDTerminalRuleCall_1_1_0_0_1() { return cExtensionPrimitiveObjectPrimitiveObjectIDTerminalRuleCall_1_1_0_0_1; }
+		public RuleCall getExtensionPrimitiveObjectPrimitiveObjectIDTerminalRuleCall_1_0_0_1() { return cExtensionPrimitiveObjectPrimitiveObjectIDTerminalRuleCall_1_0_0_1; }
 		
 		//(',' extensionMainObject+=[MainObject] | extensionPrimitiveObject+=[PrimitiveObject])*
-		public Alternatives getAlternatives_1_1_1() { return cAlternatives_1_1_1; }
+		public Alternatives getAlternatives_1_1() { return cAlternatives_1_1; }
 		
 		//',' extensionMainObject+=[MainObject]
-		public Group getGroup_1_1_1_0() { return cGroup_1_1_1_0; }
+		public Group getGroup_1_1_0() { return cGroup_1_1_0; }
 		
 		//','
-		public Keyword getCommaKeyword_1_1_1_0_0() { return cCommaKeyword_1_1_1_0_0; }
+		public Keyword getCommaKeyword_1_1_0_0() { return cCommaKeyword_1_1_0_0; }
 		
 		//extensionMainObject+=[MainObject]
-		public Assignment getExtensionMainObjectAssignment_1_1_1_0_1() { return cExtensionMainObjectAssignment_1_1_1_0_1; }
+		public Assignment getExtensionMainObjectAssignment_1_1_0_1() { return cExtensionMainObjectAssignment_1_1_0_1; }
 		
 		//[MainObject]
-		public CrossReference getExtensionMainObjectMainObjectCrossReference_1_1_1_0_1_0() { return cExtensionMainObjectMainObjectCrossReference_1_1_1_0_1_0; }
+		public CrossReference getExtensionMainObjectMainObjectCrossReference_1_1_0_1_0() { return cExtensionMainObjectMainObjectCrossReference_1_1_0_1_0; }
 		
 		//ID
-		public RuleCall getExtensionMainObjectMainObjectIDTerminalRuleCall_1_1_1_0_1_0_1() { return cExtensionMainObjectMainObjectIDTerminalRuleCall_1_1_1_0_1_0_1; }
+		public RuleCall getExtensionMainObjectMainObjectIDTerminalRuleCall_1_1_0_1_0_1() { return cExtensionMainObjectMainObjectIDTerminalRuleCall_1_1_0_1_0_1; }
 		
 		//extensionPrimitiveObject+=[PrimitiveObject]
-		public Assignment getExtensionPrimitiveObjectAssignment_1_1_1_1() { return cExtensionPrimitiveObjectAssignment_1_1_1_1; }
+		public Assignment getExtensionPrimitiveObjectAssignment_1_1_1() { return cExtensionPrimitiveObjectAssignment_1_1_1; }
 		
 		//[PrimitiveObject]
-		public CrossReference getExtensionPrimitiveObjectPrimitiveObjectCrossReference_1_1_1_1_0() { return cExtensionPrimitiveObjectPrimitiveObjectCrossReference_1_1_1_1_0; }
+		public CrossReference getExtensionPrimitiveObjectPrimitiveObjectCrossReference_1_1_1_0() { return cExtensionPrimitiveObjectPrimitiveObjectCrossReference_1_1_1_0; }
 		
 		//ID
-		public RuleCall getExtensionPrimitiveObjectPrimitiveObjectIDTerminalRuleCall_1_1_1_1_0_1() { return cExtensionPrimitiveObjectPrimitiveObjectIDTerminalRuleCall_1_1_1_1_0_1; }
+		public RuleCall getExtensionPrimitiveObjectPrimitiveObjectIDTerminalRuleCall_1_1_1_0_1() { return cExtensionPrimitiveObjectPrimitiveObjectIDTerminalRuleCall_1_1_1_0_1; }
 	}
 	public class PrimitiveObjectElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.xtext.example.mydsl.JSchema.PrimitiveObject");
@@ -971,8 +966,8 @@ public class JSchemaGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	//MainObject:
-	//	name=ID root=IsRoot? inherits+=(Extends | Includes)* '{' (properties+=AbstractObject (','
-	//	properties+=AbstractObject)*)? '}';
+	//	name=ID root=IsRoot? inherits=(Extends | Includes)? ('{' (properties+=AbstractObject (','
+	//	properties+=AbstractObject)*)? '}')?;
 	public MainObjectElements getMainObjectAccess() {
 		return pMainObject;
 	}
@@ -982,8 +977,8 @@ public class JSchemaGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	//Extends:
-	//	{Extends} ('extends' extensionMainObject+=[MainObject] | extensionPrimitiveObject+=[PrimitiveObject] (','
-	//	extensionMainObject+=[MainObject] | extensionPrimitiveObject+=[PrimitiveObject])*);
+	//	'extends' extensionMainObject+=[MainObject] | extensionPrimitiveObject+=[PrimitiveObject] (','
+	//	extensionMainObject+=[MainObject] | extensionPrimitiveObject+=[PrimitiveObject])*;
 	public ExtendsElements getExtendsAccess() {
 		return pExtends;
 	}

@@ -16,11 +16,11 @@ AbstractObject:
 ;
 
 MainObject:
- 	name=ID root=IsRoot? inherits+=(Extends | Includes)* '{'  (properties+=AbstractObject (',' properties+=AbstractObject)*)? '}' 
+ 	name=ID root=IsRoot? inherits=(Extends | Includes)? ('{'  (properties+=AbstractObject (',' properties+=AbstractObject)*)? '}')? 
 ; 
 
 Extends:
-	{Extends} ('extends' extensionMainObject+=[MainObject] | extensionPrimitiveObject+=[PrimitiveObject]
+	('extends' extensionMainObject+=[MainObject] | extensionPrimitiveObject+=[PrimitiveObject]
 	(',' extensionMainObject+=[MainObject] | extensionPrimitiveObject+=[PrimitiveObject])*)
 ;
 
@@ -74,8 +74,4 @@ Array:
 
 ArrayType:
 	'string' | 'integer' | 'float' | 'double'
-;
-
-FQN:
-	ID ('.' ID)*
 ;

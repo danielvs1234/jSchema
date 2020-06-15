@@ -74,14 +74,14 @@ public class MainObjectImpl extends MinimalEObjectImpl.Container implements Main
   protected IsRoot root;
 
   /**
-   * The cached value of the '{@link #getInherits() <em>Inherits</em>}' containment reference list.
+   * The cached value of the '{@link #getInherits() <em>Inherits</em>}' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @see #getInherits()
    * @generated
    * @ordered
    */
-  protected EList<EObject> inherits;
+  protected EObject inherits;
 
   /**
    * The cached value of the '{@link #getProperties() <em>Properties</em>}' containment reference list.
@@ -195,13 +195,48 @@ public class MainObjectImpl extends MinimalEObjectImpl.Container implements Main
    * @generated
    */
   @Override
-  public EList<EObject> getInherits()
+  public EObject getInherits()
   {
-    if (inherits == null)
-    {
-      inherits = new EObjectContainmentEList<EObject>(EObject.class, this, JSchemaPackage.MAIN_OBJECT__INHERITS);
-    }
     return inherits;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public NotificationChain basicSetInherits(EObject newInherits, NotificationChain msgs)
+  {
+    EObject oldInherits = inherits;
+    inherits = newInherits;
+    if (eNotificationRequired())
+    {
+      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, JSchemaPackage.MAIN_OBJECT__INHERITS, oldInherits, newInherits);
+      if (msgs == null) msgs = notification; else msgs.add(notification);
+    }
+    return msgs;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public void setInherits(EObject newInherits)
+  {
+    if (newInherits != inherits)
+    {
+      NotificationChain msgs = null;
+      if (inherits != null)
+        msgs = ((InternalEObject)inherits).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - JSchemaPackage.MAIN_OBJECT__INHERITS, null, msgs);
+      if (newInherits != null)
+        msgs = ((InternalEObject)newInherits).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - JSchemaPackage.MAIN_OBJECT__INHERITS, null, msgs);
+      msgs = basicSetInherits(newInherits, msgs);
+      if (msgs != null) msgs.dispatch();
+    }
+    else if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, JSchemaPackage.MAIN_OBJECT__INHERITS, newInherits, newInherits));
   }
 
   /**
@@ -232,7 +267,7 @@ public class MainObjectImpl extends MinimalEObjectImpl.Container implements Main
       case JSchemaPackage.MAIN_OBJECT__ROOT:
         return basicSetRoot(null, msgs);
       case JSchemaPackage.MAIN_OBJECT__INHERITS:
-        return ((InternalEList<?>)getInherits()).basicRemove(otherEnd, msgs);
+        return basicSetInherits(null, msgs);
       case JSchemaPackage.MAIN_OBJECT__PROPERTIES:
         return ((InternalEList<?>)getProperties()).basicRemove(otherEnd, msgs);
     }
@@ -279,8 +314,7 @@ public class MainObjectImpl extends MinimalEObjectImpl.Container implements Main
         setRoot((IsRoot)newValue);
         return;
       case JSchemaPackage.MAIN_OBJECT__INHERITS:
-        getInherits().clear();
-        getInherits().addAll((Collection<? extends EObject>)newValue);
+        setInherits((EObject)newValue);
         return;
       case JSchemaPackage.MAIN_OBJECT__PROPERTIES:
         getProperties().clear();
@@ -307,7 +341,7 @@ public class MainObjectImpl extends MinimalEObjectImpl.Container implements Main
         setRoot((IsRoot)null);
         return;
       case JSchemaPackage.MAIN_OBJECT__INHERITS:
-        getInherits().clear();
+        setInherits((EObject)null);
         return;
       case JSchemaPackage.MAIN_OBJECT__PROPERTIES:
         getProperties().clear();
@@ -331,7 +365,7 @@ public class MainObjectImpl extends MinimalEObjectImpl.Container implements Main
       case JSchemaPackage.MAIN_OBJECT__ROOT:
         return root != null;
       case JSchemaPackage.MAIN_OBJECT__INHERITS:
-        return inherits != null && !inherits.isEmpty();
+        return inherits != null;
       case JSchemaPackage.MAIN_OBJECT__PROPERTIES:
         return properties != null && !properties.isEmpty();
     }

@@ -280,7 +280,7 @@ ruleMainObject returns [EObject current=null]
 						if ($current==null) {
 							$current = createModelElementForParent(grammarAccess.getMainObjectRule());
 						}
-						add(
+						set(
 							$current,
 							"inherits",
 							lv_inherits_2_1,
@@ -296,7 +296,7 @@ ruleMainObject returns [EObject current=null]
 						if ($current==null) {
 							$current = createModelElementForParent(grammarAccess.getMainObjectRule());
 						}
-						add(
+						set(
 							$current,
 							"inherits",
 							lv_inherits_2_2,
@@ -305,42 +305,19 @@ ruleMainObject returns [EObject current=null]
 					}
 				)
 			)
-		)*
-		otherlv_3='{'
-		{
-			newLeafNode(otherlv_3, grammarAccess.getMainObjectAccess().getLeftCurlyBracketKeyword_3());
-		}
+		)?
 		(
+			otherlv_3='{'
+			{
+				newLeafNode(otherlv_3, grammarAccess.getMainObjectAccess().getLeftCurlyBracketKeyword_3_0());
+			}
 			(
-				(
-					{
-						newCompositeNode(grammarAccess.getMainObjectAccess().getPropertiesAbstractObjectParserRuleCall_4_0_0());
-					}
-					lv_properties_4_0=ruleAbstractObject
-					{
-						if ($current==null) {
-							$current = createModelElementForParent(grammarAccess.getMainObjectRule());
-						}
-						add(
-							$current,
-							"properties",
-							lv_properties_4_0,
-							"org.xtext.example.mydsl.JSchema.AbstractObject");
-						afterParserOrEnumRuleCall();
-					}
-				)
-			)
-			(
-				otherlv_5=','
-				{
-					newLeafNode(otherlv_5, grammarAccess.getMainObjectAccess().getCommaKeyword_4_1_0());
-				}
 				(
 					(
 						{
-							newCompositeNode(grammarAccess.getMainObjectAccess().getPropertiesAbstractObjectParserRuleCall_4_1_1_0());
+							newCompositeNode(grammarAccess.getMainObjectAccess().getPropertiesAbstractObjectParserRuleCall_3_1_0_0());
 						}
-						lv_properties_6_0=ruleAbstractObject
+						lv_properties_4_0=ruleAbstractObject
 						{
 							if ($current==null) {
 								$current = createModelElementForParent(grammarAccess.getMainObjectRule());
@@ -348,18 +325,43 @@ ruleMainObject returns [EObject current=null]
 							add(
 								$current,
 								"properties",
-								lv_properties_6_0,
+								lv_properties_4_0,
 								"org.xtext.example.mydsl.JSchema.AbstractObject");
 							afterParserOrEnumRuleCall();
 						}
 					)
 				)
-			)*
+				(
+					otherlv_5=','
+					{
+						newLeafNode(otherlv_5, grammarAccess.getMainObjectAccess().getCommaKeyword_3_1_1_0());
+					}
+					(
+						(
+							{
+								newCompositeNode(grammarAccess.getMainObjectAccess().getPropertiesAbstractObjectParserRuleCall_3_1_1_1_0());
+							}
+							lv_properties_6_0=ruleAbstractObject
+							{
+								if ($current==null) {
+									$current = createModelElementForParent(grammarAccess.getMainObjectRule());
+								}
+								add(
+									$current,
+									"properties",
+									lv_properties_6_0,
+									"org.xtext.example.mydsl.JSchema.AbstractObject");
+								afterParserOrEnumRuleCall();
+							}
+						)
+					)
+				)*
+			)?
+			otherlv_7='}'
+			{
+				newLeafNode(otherlv_7, grammarAccess.getMainObjectAccess().getRightCurlyBracketKeyword_3_2());
+			}
 		)?
-		otherlv_7='}'
-		{
-			newLeafNode(otherlv_7, grammarAccess.getMainObjectAccess().getRightCurlyBracketKeyword_5());
-		}
 	)
 ;
 
@@ -380,68 +382,45 @@ ruleExtends returns [EObject current=null]
 }:
 	(
 		(
+			otherlv_0='extends'
 			{
-				$current = forceCreateModelElement(
-					grammarAccess.getExtendsAccess().getExtendsAction_0(),
-					$current);
+				newLeafNode(otherlv_0, grammarAccess.getExtendsAccess().getExtendsKeyword_0_0());
 			}
-		)
-		(
 			(
-				otherlv_1='extends'
-				{
-					newLeafNode(otherlv_1, grammarAccess.getExtendsAccess().getExtendsKeyword_1_0_0());
-				}
 				(
-					(
-						{
-							if ($current==null) {
-								$current = createModelElement(grammarAccess.getExtendsRule());
-							}
+					{
+						if ($current==null) {
+							$current = createModelElement(grammarAccess.getExtendsRule());
 						}
-						otherlv_2=RULE_ID
-						{
-							newLeafNode(otherlv_2, grammarAccess.getExtendsAccess().getExtensionMainObjectMainObjectCrossReference_1_0_1_0());
-						}
-					)
+					}
+					otherlv_1=RULE_ID
+					{
+						newLeafNode(otherlv_1, grammarAccess.getExtendsAccess().getExtensionMainObjectMainObjectCrossReference_0_1_0());
+					}
 				)
 			)
-			    |
+		)
+		    |
+		(
 			(
 				(
-					(
-						{
-							if ($current==null) {
-								$current = createModelElement(grammarAccess.getExtendsRule());
-							}
+					{
+						if ($current==null) {
+							$current = createModelElement(grammarAccess.getExtendsRule());
 						}
-						otherlv_3=RULE_ID
-						{
-							newLeafNode(otherlv_3, grammarAccess.getExtendsAccess().getExtensionPrimitiveObjectPrimitiveObjectCrossReference_1_1_0_0());
-						}
-					)
+					}
+					otherlv_2=RULE_ID
+					{
+						newLeafNode(otherlv_2, grammarAccess.getExtendsAccess().getExtensionPrimitiveObjectPrimitiveObjectCrossReference_1_0_0());
+					}
 				)
+			)
+			(
 				(
-					(
-						otherlv_4=','
-						{
-							newLeafNode(otherlv_4, grammarAccess.getExtendsAccess().getCommaKeyword_1_1_1_0_0());
-						}
-						(
-							(
-								{
-									if ($current==null) {
-										$current = createModelElement(grammarAccess.getExtendsRule());
-									}
-								}
-								otherlv_5=RULE_ID
-								{
-									newLeafNode(otherlv_5, grammarAccess.getExtendsAccess().getExtensionMainObjectMainObjectCrossReference_1_1_1_0_1_0());
-								}
-							)
-						)
-					)
-					    |
+					otherlv_3=','
+					{
+						newLeafNode(otherlv_3, grammarAccess.getExtendsAccess().getCommaKeyword_1_1_0_0());
+					}
 					(
 						(
 							{
@@ -449,14 +428,28 @@ ruleExtends returns [EObject current=null]
 									$current = createModelElement(grammarAccess.getExtendsRule());
 								}
 							}
-							otherlv_6=RULE_ID
+							otherlv_4=RULE_ID
 							{
-								newLeafNode(otherlv_6, grammarAccess.getExtendsAccess().getExtensionPrimitiveObjectPrimitiveObjectCrossReference_1_1_1_1_0());
+								newLeafNode(otherlv_4, grammarAccess.getExtendsAccess().getExtensionMainObjectMainObjectCrossReference_1_1_0_1_0());
 							}
 						)
 					)
-				)*
-			)
+				)
+				    |
+				(
+					(
+						{
+							if ($current==null) {
+								$current = createModelElement(grammarAccess.getExtendsRule());
+							}
+						}
+						otherlv_5=RULE_ID
+						{
+							newLeafNode(otherlv_5, grammarAccess.getExtendsAccess().getExtensionPrimitiveObjectPrimitiveObjectCrossReference_1_1_1_0());
+						}
+					)
+				)
+			)*
 		)
 	)
 ;

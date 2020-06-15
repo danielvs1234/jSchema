@@ -34,24 +34,17 @@ public class JSchemaScopeProvider extends AbstractJSchemaScopeProvider {
 
 	@Override
 	public IScope getScope(EObject context, EReference reference) {
-		// We want to define the Scope for the Element's superElement cross-reference
 		
 		if(context instanceof Extends && reference == JSchemaPackage.Literals.EXTENDS__EXTENSION_MAIN_OBJECT) {
-			//Løsningen på problemet er at flytte det fra at være et temporary objekt til at være det reelle objekt der skal bruges
 			Extends cont = (Extends)context;
-
 			EObject rootElement = EcoreUtil2.getRootContainer(cont);
 			List<MainObject> candidates = EcoreUtil2.getAllContentsOfType(rootElement, MainObject.class);
-			
 			return Scopes.scopeFor(candidates);
 		}
 		if(context instanceof Extends && reference == JSchemaPackage.Literals.EXTENDS__EXTENSION_PRIMITIVE_OBJECT) {
-			//Løsningen på problemet er at flytte det fra at være et temporary objekt til at være det reelle objekt der skal bruges
 			Extends cont = (Extends)context;
-
 			EObject rootElement = EcoreUtil2.getRootContainer(cont);
 			List<PrimitiveObject> candidates = EcoreUtil2.getAllContentsOfType(rootElement, PrimitiveObject.class);
-			
 			return Scopes.scopeFor(candidates);
 		}
 		if(context instanceof Includes && reference == JSchemaPackage.Literals.INCLUDES__INCLUDES_MAIN_OBJECT) {

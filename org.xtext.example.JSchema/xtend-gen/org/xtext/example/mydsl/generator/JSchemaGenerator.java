@@ -5,7 +5,6 @@ package org.xtext.example.mydsl.generator;
 
 import com.google.common.base.Objects;
 import com.google.common.collect.Iterators;
-import java.util.ArrayList;
 import javax.inject.Inject;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
@@ -16,10 +15,6 @@ import org.eclipse.xtext.generator.IFileSystemAccess2;
 import org.eclipse.xtext.generator.IGeneratorContext;
 import org.eclipse.xtext.naming.IQualifiedNameProvider;
 import org.eclipse.xtext.xbase.lib.Extension;
-import org.xtext.example.mydsl.generator.FileController;
-import org.xtext.example.mydsl.generator.JsonFormatter;
-import org.xtext.example.mydsl.generator.ObjectClass;
-import org.xtext.example.mydsl.generator.PrimitiveObjectClass;
 import org.xtext.example.mydsl.jSchema.AbstractObject;
 import org.xtext.example.mydsl.jSchema.Array;
 import org.xtext.example.mydsl.jSchema.Extends;
@@ -41,23 +36,9 @@ public class JSchemaGenerator extends AbstractGenerator {
   @Extension
   private IQualifiedNameProvider _iQualifiedNameProvider;
   
-  private ArrayList<PrimitiveObject> primitiveObjectList;
-  
-  private ArrayList<MainObject> mainObjectList;
-  
-  private ArrayList<ObjectClass> compiledMainObjects;
-  
-  private ArrayList<PrimitiveObjectClass> compiledPrimitiveObjects;
-  
-  private FileController fileController;
-  
-  private JsonFormatter jsonFormatter;
-  
   @Override
   public void doGenerate(final Resource resource, final IFileSystemAccess2 fsa, final IGeneratorContext context) {
     final Model model = Iterators.<Model>filter(resource.getAllContents(), Model.class).next();
-    JsonFormatter _jsonFormatter = new JsonFormatter();
-    this.jsonFormatter = _jsonFormatter;
     this.constructSchema(model, fsa);
   }
   
@@ -73,11 +54,7 @@ public class JSchemaGenerator extends AbstractGenerator {
           MainObject _mainObject = mod.getMainObject();
           boolean _tripleNotEquals = (_mainObject != null);
           if (_tripleNotEquals) {
-            MainObject _mainObject_1 = mod.getMainObject();
-            int _size = rootModel.getAbstractObject().size();
-            int _plusPlus = counter++;
-            boolean _equals = (_size == _plusPlus);
-            CharSequence _generateMainObject = this.generateMainObject(_mainObject_1, _equals);
+            CharSequence _generateMainObject = this.generateMainObject(mod.getMainObject());
             _builder.append(_generateMainObject);
             _builder.newLineIfNotEmpty();
           }
@@ -86,11 +63,7 @@ public class JSchemaGenerator extends AbstractGenerator {
           PrimitiveObject _primitiveObject = mod.getPrimitiveObject();
           boolean _notEquals = (!Objects.equal(_primitiveObject, null));
           if (_notEquals) {
-            PrimitiveObject _primitiveObject_1 = mod.getPrimitiveObject();
-            int _size_1 = rootModel.getAbstractObject().size();
-            int _plusPlus_1 = counter++;
-            boolean _equals_1 = (_size_1 == _plusPlus_1);
-            CharSequence _generatePrimitiveObject = this.generatePrimitiveObject(_primitiveObject_1, _equals_1);
+            CharSequence _generatePrimitiveObject = this.generatePrimitiveObject(mod.getPrimitiveObject());
             _builder.append(_generatePrimitiveObject);
             _builder.newLineIfNotEmpty();
           }
@@ -102,7 +75,7 @@ public class JSchemaGenerator extends AbstractGenerator {
     fsa.generateFile("newGenFile.json", _builder);
   }
   
-  public String generatePrimitiveStringObject(final PrimitiveObject primitiveObject, final String objName) {
+  public String generatePrimitiveStringObjectss(final PrimitiveObject primitiveObject, final String objName) {
     StringConcatenation _builder = new StringConcatenation();
     _builder.append("\"");
     _builder.append(objName);
@@ -163,112 +136,166 @@ public class JSchemaGenerator extends AbstractGenerator {
   }
   
   public CharSequence generateExtendsObjects(final MainObject model) {
-    CharSequence _xblockexpression = null;
+    StringConcatenation _builder = new StringConcatenation();
+    _builder.append("\"allOf\": [");
+    _builder.newLine();
+    _builder.append("\t");
+    _builder.append("{");
+    _builder.newLine();
     {
-      int counter = 0;
-      StringConcatenation _builder = new StringConcatenation();
-      _builder.append("\"allOf\": [");
-      _builder.newLine();
-      _builder.append("\t");
-      _builder.append("{");
-      _builder.newLine();
-      {
-        EList<EObject> _inherits = model.getInherits();
-        boolean _tripleNotEquals = (_inherits != null);
-        if (_tripleNotEquals) {
-          {
-            if (((model.getInherits() instanceof Extends) && (!((Extends) model.getInherits()).getExtensionMainObject().isEmpty()))) {
-              _builder.append("\t\t");
-              EList<EObject> _inherits_1 = model.getInherits();
-              final EList<MainObject> extensions = ((Extends) _inherits_1).getExtensionMainObject();
-              _builder.newLineIfNotEmpty();
-              {
-                for(final MainObject extended : extensions) {
-                  _builder.append("\t\t");
-                  int _size = extensions.size();
-                  int _plusPlus = counter++;
-                  boolean _equals = (_size == _plusPlus);
-                  Object _generateMainObject = this.generateMainObject(extended, _equals);
-                  _builder.append(_generateMainObject, "\t\t");
-                  _builder.newLineIfNotEmpty();
-                }
-              }
-              {
-                EList<EObject> _inherits_2 = model.getInherits();
-                EList<PrimitiveObject> _extensionPrimitiveObject = ((Extends) _inherits_2).getExtensionPrimitiveObject();
-                for(final PrimitiveObject extended_1 : _extensionPrimitiveObject) {
-                  _builder.append("\t\t");
-                  int _size_1 = extensions.size();
-                  int _plusPlus_1 = counter++;
-                  boolean _equals_1 = (_size_1 == _plusPlus_1);
-                  CharSequence _generatePrimitiveObject = this.generatePrimitiveObject(extended_1, _equals_1);
-                  _builder.append(_generatePrimitiveObject, "\t\t");
-                  _builder.newLineIfNotEmpty();
-                }
+      if (((model.getInherits() instanceof Extends) && (!((Extends) model.getInherits()).getExtensionMainObject().isEmpty()))) {
+        {
+          EObject _inherits = model.getInherits();
+          EList<MainObject> _extensionMainObject = ((Extends) _inherits).getExtensionMainObject();
+          for(final MainObject extended : _extensionMainObject) {
+            _builder.append("\t");
+            Object _generateMainObject = this.generateMainObject(extended);
+            _builder.append(_generateMainObject, "\t");
+            _builder.newLineIfNotEmpty();
+          }
+        }
+        {
+          EObject _inherits_1 = model.getInherits();
+          EList<PrimitiveObject> _extensionPrimitiveObject = ((Extends) _inherits_1).getExtensionPrimitiveObject();
+          for(final PrimitiveObject extended_1 : _extensionPrimitiveObject) {
+            _builder.append("\t");
+            CharSequence _generatePrimitiveObject = this.generatePrimitiveObject(extended_1);
+            _builder.append(_generatePrimitiveObject, "\t");
+            _builder.newLineIfNotEmpty();
+          }
+        }
+      }
+    }
+    {
+      if (((model.getInherits() instanceof Includes) && (!((Includes) model.getInherits()).getIncludesMainObject().isEmpty()))) {
+        {
+          EObject _inherits_2 = model.getInherits();
+          EList<MainObject> _includesMainObject = ((Includes) _inherits_2).getIncludesMainObject();
+          for(final MainObject included : _includesMainObject) {
+            _builder.append("\t");
+            Object _generateMainObject_1 = this.generateMainObject(included);
+            _builder.append(_generateMainObject_1, "\t");
+            _builder.newLineIfNotEmpty();
+          }
+        }
+        {
+          EObject _inherits_3 = model.getInherits();
+          EList<PrimitiveObject> _includesPrimitiveObject = ((Includes) _inherits_3).getIncludesPrimitiveObject();
+          for(final PrimitiveObject included_1 : _includesPrimitiveObject) {
+            _builder.append("\t");
+            CharSequence _generatePrimitiveObject_1 = this.generatePrimitiveObject(included_1);
+            _builder.append(_generatePrimitiveObject_1, "\t");
+            _builder.newLineIfNotEmpty();
+          }
+        }
+      }
+    }
+    _builder.append("\t");
+    _builder.append("}");
+    _builder.newLine();
+    _builder.append("],");
+    _builder.newLine();
+    return _builder;
+  }
+  
+  public CharSequence generatePrimitiveArrayObject(final PrimitiveObject primitiveObject) {
+    StringConcatenation _builder = new StringConcatenation();
+    _builder.append("\"type\": \"array\",");
+    _builder.newLine();
+    {
+      String _arrayType = primitiveObject.getType().getArray().getArrayType();
+      boolean _tripleNotEquals = (_arrayType != null);
+      if (_tripleNotEquals) {
+        _builder.append("\"items\": {");
+        _builder.newLine();
+        _builder.append("\t");
+        _builder.append("\"type\" : ");
+        String _arrayType_1 = primitiveObject.getType().getArray().getArrayType();
+        _builder.append(_arrayType_1, "\t");
+        _builder.newLineIfNotEmpty();
+        _builder.append("}");
+        _builder.newLine();
+      }
+    }
+    return _builder;
+  }
+  
+  public CharSequence generatePrimitiveNumberObject(final PrimitiveObject primitiveObject) {
+    StringConcatenation _builder = new StringConcatenation();
+    _builder.append(",\"type\" : \"number\"");
+    _builder.newLine();
+    return _builder;
+  }
+  
+  public CharSequence generatePropertyString(final PrimitiveObject mod) {
+    StringConcatenation _builder = new StringConcatenation();
+    _builder.append("\"");
+    String _name = mod.getType().getName();
+    _builder.append(_name);
+    _builder.append("\": {");
+    _builder.newLineIfNotEmpty();
+    _builder.append("\"type\": \"string\"");
+    _builder.newLine();
+    {
+      boolean _isEmpty = mod.getPrimitiveProperties().isEmpty();
+      boolean _not = (!_isEmpty);
+      if (_not) {
+        {
+          EList<PrimitiveProperties> _primitiveProperties = mod.getPrimitiveProperties();
+          for(final PrimitiveProperties prop : _primitiveProperties) {
+            {
+              FormatTypes _stringFormat = prop.getStringFormat();
+              boolean _tripleNotEquals = (_stringFormat != FormatTypes.DEFAULT);
+              if (_tripleNotEquals) {
+                _builder.append(",");
+                _builder.newLine();
+                _builder.append("\"format\": \"");
+                String _string = prop.getStringFormat().getName().toString();
+                _builder.append(_string);
+                _builder.append("\"");
+                _builder.newLineIfNotEmpty();
               }
             }
-          }
-          {
-            if (((model.getInherits() instanceof Includes) && (!((Includes) model.getInherits()).getIncludesMainObject().isEmpty()))) {
-              {
-                EList<EObject> _inherits_3 = model.getInherits();
-                EList<MainObject> _includesMainObject = ((Includes) _inherits_3).getIncludesMainObject();
-                for(final MainObject included : _includesMainObject) {
-                  _builder.append("\t\t");
-                  EList<EObject> _inherits_4 = model.getInherits();
-                  int _size_2 = ((Includes) _inherits_4).getIncludesMainObject().size();
-                  int _plusPlus_2 = counter++;
-                  boolean _equals_2 = (_size_2 == _plusPlus_2);
-                  Object _generateMainObject_1 = this.generateMainObject(included, _equals_2);
-                  _builder.append(_generateMainObject_1, "\t\t");
-                  _builder.newLineIfNotEmpty();
-                }
+            {
+              String _stringLength = prop.getStringLength();
+              boolean _tripleNotEquals_1 = (_stringLength != null);
+              if (_tripleNotEquals_1) {
+                _builder.append(",");
+                _builder.newLine();
+                _builder.append("\"minLength\": ");
+                String _get = prop.getStringLength().split("-")[0];
+                _builder.append(_get);
+                _builder.append(",");
+                _builder.newLineIfNotEmpty();
+                _builder.append("\"maxLength\": ");
+                String _get_1 = prop.getStringLength().split("-")[1];
+                _builder.append(_get_1);
+                _builder.newLineIfNotEmpty();
               }
-              {
-                EList<EObject> _inherits_5 = model.getInherits();
-                EList<PrimitiveObject> _includesPrimitiveObject = ((Includes) _inherits_5).getIncludesPrimitiveObject();
-                for(final PrimitiveObject included_1 : _includesPrimitiveObject) {
-                  _builder.append("\t\t");
-                  EList<EObject> _inherits_6 = model.getInherits();
-                  int _size_3 = ((Includes) _inherits_6).getIncludesPrimitiveObject().size();
-                  int _plusPlus_3 = counter++;
-                  boolean _equals_3 = (_size_3 == _plusPlus_3);
-                  CharSequence _generatePrimitiveObject_1 = this.generatePrimitiveObject(included_1, _equals_3);
-                  _builder.append(_generatePrimitiveObject_1, "\t\t");
-                  _builder.newLineIfNotEmpty();
-                }
+            }
+            {
+              String _patternString = prop.getPatternString();
+              boolean _tripleNotEquals_2 = (_patternString != null);
+              if (_tripleNotEquals_2) {
+                _builder.append(",");
+                _builder.newLine();
+                _builder.append("\"pattern\": \"");
+                String _patternString_1 = prop.getPatternString();
+                _builder.append(_patternString_1);
+                _builder.append("\"");
+                _builder.newLineIfNotEmpty();
               }
             }
           }
         }
       }
-      _builder.append("\t\t");
-      _builder.newLine();
-      _builder.append("\t");
-      _builder.append("}");
-      _builder.newLine();
-      _builder.append("]");
-      _builder.newLine();
-      _xblockexpression = _builder;
     }
-    return _xblockexpression;
-  }
-  
-  public CharSequence generatePrimitiveArrayObject(final PrimitiveObject primitiveObject, final boolean isLast) {
-    StringConcatenation _builder = new StringConcatenation();
-    _builder.append("\t\t");
+    _builder.append("},");
     _builder.newLine();
     return _builder;
   }
   
-  public CharSequence generatePrimitiveNumberObject(final PrimitiveObject primitiveObject, final boolean isLast) {
-    StringConcatenation _builder = new StringConcatenation();
-    _builder.append("\t\t\t");
-    _builder.newLine();
-    return _builder;
-  }
-  
-  public CharSequence generateStringPrimitiveObject(final PrimitiveObject mod, final boolean isLast) {
+  public CharSequence generateStringPrimitiveObject(final PrimitiveObject mod) {
     StringConcatenation _builder = new StringConcatenation();
     _builder.append("\"$id\": \"");
     String _name = mod.getType().getName();
@@ -329,14 +356,14 @@ public class JSchemaGenerator extends AbstractGenerator {
             }
           }
         }
-        _builder.append(",");
-        _builder.newLine();
       }
     }
+    _builder.append(",");
+    _builder.newLine();
     return _builder;
   }
   
-  public CharSequence generateMainObject(final MainObject mod, final boolean isLast) {
+  public CharSequence generateMainObject(final MainObject mod) {
     StringConcatenation _builder = new StringConcatenation();
     {
       boolean _isEmpty = mod.getName().isEmpty();
@@ -362,20 +389,28 @@ public class JSchemaGenerator extends AbstractGenerator {
           EList<AbstractObject> _properties = mod.getProperties();
           for(final AbstractObject prop : _properties) {
             {
-              if ((prop instanceof MainObject)) {
+              MainObject _mainObject = prop.getMainObject();
+              boolean _tripleNotEquals = (_mainObject != null);
+              if (_tripleNotEquals) {
                 _builder.append("\t");
-                _builder.append("\"$id\": \"");
-                String _name_1 = ((MainObject)prop).getName();
+                _builder.append("\"$");
+                String _name_1 = prop.getMainObject().getName();
                 _builder.append(_name_1, "\t");
-                _builder.append("\",");
+                _builder.append("\": {");
                 _builder.newLineIfNotEmpty();
                 _builder.append("\t");
-                _builder.append("\"type\"\": \"object\"");
+                _builder.append("\t");
+                _builder.append("\"type\": \"object\"");
+                _builder.newLine();
+                _builder.append("\t");
+                _builder.append("}");
                 _builder.newLine();
               } else {
-                if ((prop instanceof PrimitiveObject)) {
+                PrimitiveObject _primitiveObject = prop.getPrimitiveObject();
+                boolean _tripleNotEquals_1 = (_primitiveObject != null);
+                if (_tripleNotEquals_1) {
                   _builder.append("\t");
-                  CharSequence _generatePrimitiveObject = this.generatePrimitiveObject(((PrimitiveObject) prop), isLast);
+                  CharSequence _generatePrimitiveObject = this.generatePrimitiveObject(prop.getPrimitiveObject());
                   _builder.append(_generatePrimitiveObject, "\t");
                   _builder.newLineIfNotEmpty();
                 }
@@ -389,9 +424,9 @@ public class JSchemaGenerator extends AbstractGenerator {
       }
     }
     {
-      EList<EObject> _inherits = mod.getInherits();
-      boolean _tripleNotEquals = (_inherits != null);
-      if (_tripleNotEquals) {
+      EObject _inherits = mod.getInherits();
+      boolean _tripleNotEquals_2 = (_inherits != null);
+      if (_tripleNotEquals_2) {
         CharSequence _generateExtendsObjects = this.generateExtendsObjects(mod);
         _builder.append(_generateExtendsObjects);
         _builder.newLineIfNotEmpty();
@@ -400,27 +435,27 @@ public class JSchemaGenerator extends AbstractGenerator {
     return _builder;
   }
   
-  public CharSequence generatePrimitiveObject(final PrimitiveObject mod, final boolean isLast) {
+  public CharSequence generatePrimitiveObject(final PrimitiveObject mod) {
     StringConcatenation _builder = new StringConcatenation();
     {
       String _name = mod.getType().getName();
       boolean _tripleNotEquals = (_name != null);
       if (_tripleNotEquals) {
-        CharSequence _generateStringPrimitiveObject = this.generateStringPrimitiveObject(mod, isLast);
+        CharSequence _generateStringPrimitiveObject = this.generateStringPrimitiveObject(mod);
         _builder.append(_generateStringPrimitiveObject);
         _builder.newLineIfNotEmpty();
       } else {
         Array _array = mod.getType().getArray();
         boolean _tripleNotEquals_1 = (_array != null);
         if (_tripleNotEquals_1) {
-          CharSequence _generatePrimitiveArrayObject = this.generatePrimitiveArrayObject(mod, isLast);
+          CharSequence _generatePrimitiveArrayObject = this.generatePrimitiveArrayObject(mod);
           _builder.append(_generatePrimitiveArrayObject);
           _builder.newLineIfNotEmpty();
         } else {
           org.xtext.example.mydsl.jSchema.Number _number = mod.getType().getNumber();
           boolean _tripleNotEquals_2 = (_number != null);
           if (_tripleNotEquals_2) {
-            CharSequence _generatePrimitiveNumberObject = this.generatePrimitiveNumberObject(mod, isLast);
+            CharSequence _generatePrimitiveNumberObject = this.generatePrimitiveNumberObject(mod);
             _builder.append(_generatePrimitiveNumberObject);
             _builder.newLineIfNotEmpty();
           }
